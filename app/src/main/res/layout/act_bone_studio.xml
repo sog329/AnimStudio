@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:orientation="horizontal"
+    tools:context=".MainAct">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".382">
+
+        <com.sunshine.studio.bone.logic.StudioSv
+            android:id="@+id/sv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#66000000"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5px">
+
+            <com.sunshine.studio.base.StudioImageBtn
+                android:id="@+id/set"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5px"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="10px"
+                android:src="@drawable/set"
+                android:textColor="@color/tv_color"/>
+
+            <android.support.v7.widget.AppCompatSeekBar
+                android:id="@+id/size_w"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"/>
+
+            <android.support.v7.widget.AppCompatSeekBar
+                android:id="@+id/size_h"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"/>
+
+            <com.sunshine.studio.base.StudioCb
+                android:id="@+id/cb_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".618">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <com.sunshine.studio.bone.logic.AnimLv
+                    android:id="@+id/lv_anim"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@null"
+                    android:scrollbars="vertical"/>
+
+                <com.sunshine.studio.bone.logic.PercentMask
+                    android:id="@+id/mask"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5px">
+
+                <com.sunshine.studio.base.StudioImageBtn
+                    android:id="@+id/save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5px"
+                    android:background="@drawable/bg_btn"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:padding="10px"
+                    android:src="@drawable/save"
+                    android:textColor="@color/tv_color"/>
+
+                <com.sunshine.studio.base.StudioImageBtn
+                    android:id="@+id/add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5px"
+                    android:background="@drawable/bg_btn"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:padding="10px"
+                    android:src="@drawable/add"
+                    android:textColor="@color/tv_color"/>
+
+                <com.sunshine.studio.base.StudioImageBtn
+                    android:id="@+id/play"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5px"
+                    android:background="@drawable/bg_btn"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:padding="10px"
+                    android:src="@drawable/play"
+                    android:textColor="@color/tv_color"/>
+
+                <android.support.v7.widget.AppCompatSeekBar
+                    android:id="@+id/progress"
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:max="100"/>
+
+                <com.sunshine.studio.base.StudioImageBtn
+                    android:id="@+id/open"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5px"
+                    android:layout_marginLeft="5px"
+                    android:layout_marginTop="5px"
+                    android:background="@drawable/bg_btn"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:padding="10px"
+                    android:src="@drawable/open"
+                    android:textColor="@color/tv_color"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <include
+            layout="@layout/view_bone_studio_anim_editor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
+    </RelativeLayout>
+</LinearLayout>

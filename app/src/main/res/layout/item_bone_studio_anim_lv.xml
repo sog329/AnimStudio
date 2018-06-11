@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <com.sunshine.studio.bone.logic.BoneIv
+        android:id="@+id/iv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10px"
+        android:layout_marginRight="5px"/>
+
+    <com.sunshine.studio.base.StudioImageBtn
+        android:id="@+id/up"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="5px"
+        android:background="@drawable/bg_btn"
+        android:gravity="center"
+        android:src="@drawable/up"/>
+
+    <com.sunshine.studio.base.StudioImageBtn
+        android:id="@+id/down"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="5px"
+        android:background="@drawable/bg_btn"
+        android:gravity="center"
+        android:src="@drawable/down"/>
+
+    <LinearLayout
+        android:id="@+id/ln"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:padding="5px"/>
+
+    <com.sunshine.studio.base.StudioImageBtn
+        android:id="@+id/del"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="5px"
+        android:background="@drawable/bg_btn"
+        android:gravity="center"
+        android:src="@drawable/del"/>
+</LinearLayout>

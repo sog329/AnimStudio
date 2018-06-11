@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sunshine.studio.bone.logic.AnimEditorView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:attrs="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/win_editor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DD000000">
+
+    <LinearLayout
+        android:id="@+id/editor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/dlg_bg"
+        android:orientation="vertical">
+
+        <!--tab_top-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.sunshine.studio.base.StudioTv
+                android:id="@+id/tv_base"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="base"
+                android:textColor="@color/tv_color"/>
+
+            <com.sunshine.studio.base.StudioTv
+                android:id="@+id/tv_scale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="scale"
+                android:textColor="@color/tv_color"/>
+
+            <com.sunshine.studio.base.StudioTv
+                android:id="@+id/tv_alpha"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="alpha"
+                android:textColor="@color/tv_color"/>
+
+            <com.sunshine.studio.base.StudioTv
+                android:id="@+id/tv_rotate_range"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="rotate"
+                android:textColor="@color/tv_color"/>
+        </LinearLayout>
+        <!--base-->
+        <LinearLayout
+            android:id="@+id/edit_base"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal">
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/edit_base_from"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="from"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"/>
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="->"
+                android:textColor="@color/tv_color"/>
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/edit_base_to"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="to"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"/>
+        </LinearLayout>
+        <!--move_from-->
+        <LinearLayout
+            android:id="@+id/edit_move_from"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="("
+                android:textColor="@color/tv_color"/>
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/edit_move_from_x"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="fromX"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"/>
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/edit_move_from_y"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="fromY"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"/>
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text=")"
+                android:textColor="@color/tv_color"/>
+
+            <com.sunshine.studio.base.StudioImageBtn
+                android:id="@+id/edit_move_from_copy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5px"
+                android:background="@drawable/bg_btn"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="10px"
+                android:rotation="90"
+                android:src="@drawable/up"
+                android:textColor="@color/tv_color"/>
+        </LinearLayout>
+        <!--move_to-->
+        <LinearLayout
+            android:id="@+id/edit_move_to"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <com.sunshine.studio.base.StudioImageBtn
+                    android:id="@+id/edit_move_to_copy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="5px"
+                    android:background="@drawable/bg_btn"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:padding="10px"
+                    android:rotation="-90"
+                    android:src="@drawable/up"
+                    android:textColor="@color/tv_color"/>
+
+                <com.sunshine.studio.base.StudioTv
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="("
+                    android:textColor="@color/tv_color"/>
+
+                <com.sunshine.studio.base.StudioEt
+                    android:id="@+id/edit_move_to_x"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/tv_color"/>
+
+                <com.sunshine.studio.base.StudioEt
+                    android:id="@+id/edit_move_to_y"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/tv_color"/>
+
+                <com.sunshine.studio.base.StudioTv
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text=")"
+                    android:textColor="@color/tv_color"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.sunshine.studio.base.StudioTv
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="x:"
+                    android:textColor="@color/tv_color"/>
+
+
+                <include
+                    android:id="@+id/edit_move_interpolator_x"
+                    layout="@layout/view_spinner_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
+
+                <com.sunshine.studio.base.StudioTv
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="y:"
+                    android:textColor="@color/tv_color"/>
+
+                <include
+                    android:id="@+id/edit_move_interpolator_y"
+                    layout="@layout/view_spinner_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
+            </LinearLayout>
+        </LinearLayout>
+        <!--scale-->
+        <LinearLayout
+            android:id="@+id/edit_scale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.sunshine.studio.base.StudioEt
+                    android:id="@+id/edit_scale_from_x"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="fromX"
+                    android:maxLines="1"
+                    android:textColor="@color/tv_color"/>
+
+                <com.sunshine.studio.base.StudioEt
+                    android:id="@+id/edit_scale_from_y"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="fromY"
+                    android:maxLines="1"
+                    android:textColor="@color/tv_color"/>
+
+                <com.sunshine.studio.base.StudioTv
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="->"
+                    android:textColor="@color/tv_color"/>
+
+                <com.sunshine.studio.base.StudioEt
+                    android:id="@+id/edit_scale_to_x"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/tv_color"/>
+
+                <com.sunshine.studio.base.StudioEt
+                    android:id="@+id/edit_scale_to_y"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/tv_color"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.sunshine.studio.base.StudioTv
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="x:"
+                    android:textColor="@color/tv_color"/>
+
+                <include
+                    android:id="@+id/edit_scale_interpolator_x"
+                    layout="@layout/view_spinner_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
+
+                <com.sunshine.studio.base.StudioTv
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="y:"
+                    android:textColor="@color/tv_color"/>
+
+
+                <include
+                    android:id="@+id/edit_scale_interpolator_y"
+                    layout="@layout/view_spinner_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
+            </LinearLayout>
+        </LinearLayout>
+        <!--alpha-->
+        <LinearLayout
+            android:id="@+id/edit_alpha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <com.sunshine.studio.base.StudioTv
+                    android:id="@+id/edit_alpha_tip_from"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha=".5"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/tv_color"/>
+
+                <android.support.v7.widget.AppCompatSeekBar
+                    android:id="@+id/edit_alpha_from"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:max="255"/>
+            </FrameLayout>
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15px"
+                android:layout_marginTop="15px"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="->"
+                android:textColor="@color/tv_color"/>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <android.support.v7.widget.AppCompatSeekBar
+                    android:id="@+id/edit_alpha_to"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:max="255"
+                    android:maxLines="1"/>
+
+                <com.sunshine.studio.base.StudioTv
+                    android:id="@+id/edit_alpha_tip_to"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha=".5"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/tv_color"/>
+            </FrameLayout>
+
+
+            <include
+                android:id="@+id/edit_alpha_interpolator"
+                layout="@layout/view_spinner_container"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"/>
+        </LinearLayout>
+        <!--rotate-->
+        <LinearLayout
+            android:id="@+id/edit_rotate_range"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/edit_rotate_from"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"/>
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="->"
+                android:textColor="@color/tv_color"/>
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/edit_rotate_to"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"/>
+
+            <include
+                android:id="@+id/edit_rotate_interpolator"
+                layout="@layout/view_spinner_container"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"/>
+
+        </LinearLayout>
+        <!--anchor-->
+        <LinearLayout
+            android:id="@+id/edit_rotate_anchor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="("
+                android:textColor="@color/tv_color"/>
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/edit_rotate_x"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="fromX"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"/>
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/edit_rotate_y"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"/>
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text=")"
+                android:textColor="@color/tv_color"/>
+        </LinearLayout>
+        <!--tab_bottom-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.sunshine.studio.base.StudioTv
+                android:id="@+id/tv_move_from"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="from"
+                android:textColor="@color/tv_color"/>
+
+            <com.sunshine.studio.base.StudioTv
+                android:id="@+id/tv_move_to"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="to"
+                android:textColor="@color/tv_color"/>
+
+            <com.sunshine.studio.base.StudioTv
+                android:id="@+id/tv_rotate_anchor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="anchor"
+                android:textColor="@color/tv_color"/>
+        </LinearLayout>
+    </LinearLayout>
+</com.sunshine.studio.bone.logic.AnimEditorView>

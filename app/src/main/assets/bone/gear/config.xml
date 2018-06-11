@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<stage>
+    <duration>6000</duration>
+    <width_height>180,210</width_height>
+    <layout_type>bottom</layout_type>
+    <actor>
+        <bone>
+            <src_ltwh>1,1,158,158</src_ltwh>
+            <anim>
+                <range>0.0,1.0</range>
+                <move>135,160,135,160</move>
+                <move_interpolator>linear,linear</move_interpolator>
+                <scale>1.0,1.0,1.0,1.0</scale>
+                <scale_interpolator>linear,linear</scale_interpolator>
+                <rotate>0,180,78,78</rotate>
+                <rotate_interpolator>sin</rotate_interpolator>
+                <alpha>255,255</alpha>
+                <alpha_interpolator>linear</alpha_interpolator>
+            </anim>
+        </bone>
+        <bone>
+            <src_ltwh>1,161,82,82</src_ltwh>
+            <anim>
+                <range>0.0,1.0</range>
+                <move>25,130,25,130</move>
+                <move_interpolator>linear,linear</move_interpolator>
+                <scale>1.0,1.0,1.0,1.0</scale>
+                <scale_interpolator>linear,linear</scale_interpolator>
+                <rotate>0,-359,41,41</rotate>
+                <rotate_interpolator>sin</rotate_interpolator>
+                <alpha>255,255</alpha>
+                <alpha_interpolator>linear</alpha_interpolator>
+            </anim>
+        </bone>
+    </actor>
+</stage>

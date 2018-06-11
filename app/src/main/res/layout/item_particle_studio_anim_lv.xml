@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:attrs="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    android:background="@drawable/bg_anim"
+    android:orientation="horizontal">
+
+    <com.sunshine.studio.bone.logic.BoneIv
+        android:id="@+id/iv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+
+    <com.sunshine.studio.base.StudioTv
+        android:id="@+id/from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|left"
+        android:maxLines="1"
+        android:textColor="@color/tv_color"
+        attrs:scale=".5"/>
+
+    <com.sunshine.studio.base.StudioTv
+        android:id="@+id/to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:maxLines="1"
+        android:textColor="@color/tv_color"
+        attrs:scale=".5"/>
+</FrameLayout>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:orientation="horizontal"
+    tools:context=".MainAct">
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="20px">
+
+        <com.sunshine.engine.bone.StageView
+            android:id="@+id/bone_demo_sv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <com.sunshine.studio.base.StudioTv
+            android:id="@+id/bone_demo_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:background="@drawable/bg_btn"
+            android:gravity="top|center_horizontal"
+            android:text="Bone\nDemo"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".5"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="20px">
+
+            <com.sunshine.engine.bone.StageView
+                android:id="@+id/bone_studio_sv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <com.sunshine.studio.base.StudioTv
+                android:id="@+id/bone_studio_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:background="@drawable/bg_btn"
+                android:gravity="top|center_horizontal"
+                android:text="Bone\nStudio"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="20px">
+
+
+            <com.sunshine.engine.bone.StageView
+                android:id="@+id/particle_studio_sv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <com.sunshine.studio.base.StudioTv
+                android:id="@+id/particle_studio_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:background="@drawable/bg_btn_p"
+                android:gravity="top|center_horizontal"
+                android:text="Particle\nStudio"/>
+        </FrameLayout>
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="20px">
+
+        <com.sunshine.engine.particle.SceneView
+            android:id="@+id/particle_demo_sv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <com.sunshine.studio.base.StudioTv
+            android:id="@+id/particle_demo_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:background="@drawable/bg_btn_p"
+            android:gravity="top|center_horizontal"
+            android:text="Particle\nDemo"/>
+    </FrameLayout>
+</LinearLayout>

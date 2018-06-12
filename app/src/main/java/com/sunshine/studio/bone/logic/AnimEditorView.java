@@ -8,6 +8,7 @@ import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 
@@ -109,7 +110,33 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
             (v, b) -> {
               if (b) setPercent(anim.duration, true);
             });
-
+    findViewById(R.id.edit_base_add)
+        .setOnClickListener(
+            v -> {
+              int index = bone.lstAnim.indexOf(anim);
+              float delta = anim.duration.getDelta();
+              anim.duration.setTo(anim.duration.getFrom() + delta / 2);
+              Anim nextAnim = bone.buildAnim(studio.entity, anim);
+              nextAnim.duration.setTo(anim.duration.getFrom() + delta);
+              bone.lstAnim.remove(anim);
+              bone.lstAnim.add(index, nextAnim);
+              bone.lstAnim.add(index, anim);
+              bone.checkAnim(studio.entity);
+              studio.updateAnimLv();
+              setVisibility(GONE);
+            });
+    findViewById(R.id.edit_base_delete)
+        .setOnClickListener(
+            v -> {
+              int index = bone.lstAnim.indexOf(anim);
+              if (index > 0) {
+                bone.lstAnim.get(index - 1).duration.setTo(anim.duration.getTo());
+              }
+              bone.lstAnim.remove(anim);
+              bone.checkAnim(studio.entity);
+              studio.updateAnimLv();
+              setVisibility(GONE);
+            });
     // scale
     ((StudioEt<Float>) findViewById(R.id.edit_scale_from_x))
         .mapValue(anim.scaleX.getFrom(), f -> anim.scaleX.setFrom(f))
@@ -140,6 +167,15 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
 
     ((InterpolatorSpinner) findViewById(R.id.edit_scale_interpolator_y))
         .interpolator(anim.scaleY.getInterpolatorName(), s -> anim.scaleY.setInterpolator(s));
+
+    findViewById(R.id.edit_scale_copy)
+        .setOnClickListener(
+            v -> {
+              ((EditText) findViewById(R.id.edit_scale_to_x))
+                  .setText(((EditText) findViewById(R.id.edit_scale_from_x)).getText());
+              ((EditText) findViewById(R.id.edit_scale_to_y))
+                  .setText(((EditText) findViewById(R.id.edit_scale_from_y)).getText());
+            });
     // alpha_from
     StudioTv tvFrom = findViewById(R.id.edit_alpha_tip_from);
     AppCompatSeekBar sbAlphaFrom = findViewById(R.id.edit_alpha_from);
@@ -202,6 +238,11 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
             });
     ((InterpolatorSpinner) findViewById(R.id.edit_rotate_interpolator))
         .interpolator(anim.rotate.getInterpolatorName(), s -> anim.rotate.setInterpolator(s));
+    findViewById(R.id.edit_rotate_copy)
+        .setOnClickListener(
+            v ->
+                ((EditText) findViewById(R.id.edit_rotate_to))
+                    .setText(((EditText) findViewById(R.id.edit_rotate_from)).getText()));
     // from
     ((StudioEt<Integer>) findViewById(R.id.edit_move_from_x))
         .mapValue(anim.centerX.getFrom(), n -> anim.centerX.setFrom(n));

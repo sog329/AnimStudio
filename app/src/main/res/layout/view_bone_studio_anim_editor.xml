@@ -101,6 +101,34 @@
                 android:hint="to"
                 android:maxLines="1"
                 android:textColor="@color/tv_color"/>
+
+
+            <com.sunshine.studio.base.StudioImageBtn
+                android:id="@+id/edit_base_add"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5px"
+                android:background="@drawable/bg_btn"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="10px"
+                android:src="@drawable/add"
+                android:textColor="@color/tv_color"/>
+
+            <com.sunshine.studio.base.StudioImageBtn
+                android:id="@+id/edit_base_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5px"
+                android:background="@drawable/bg_btn"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="10px"
+                android:rotation="90"
+                android:src="@drawable/del"
+                android:textColor="@color/tv_color"/>
         </LinearLayout>
         <!--move_from-->
         <LinearLayout
@@ -298,12 +326,18 @@
                     android:maxLines="1"
                     android:textColor="@color/tv_color"/>
 
-                <com.sunshine.studio.base.StudioTv
+                <com.sunshine.studio.base.StudioImageBtn
+                    android:id="@+id/edit_scale_copy"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="5px"
+                    android:background="@drawable/bg_btn"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="->"
+                    android:padding="10px"
+                    android:rotation="90"
+                    android:src="@drawable/up"
                     android:textColor="@color/tv_color"/>
 
                 <com.sunshine.studio.base.StudioEt
@@ -458,12 +492,18 @@
                 android:maxLines="1"
                 android:textColor="@color/tv_color"/>
 
-            <com.sunshine.studio.base.StudioTv
+            <com.sunshine.studio.base.StudioImageBtn
+                android:id="@+id/edit_rotate_copy"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5px"
+                android:background="@drawable/bg_btn"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="->"
+                android:padding="10px"
+                android:rotation="90"
+                android:src="@drawable/up"
                 android:textColor="@color/tv_color"/>
 
             <com.sunshine.studio.base.StudioEt

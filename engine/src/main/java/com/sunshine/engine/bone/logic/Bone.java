@@ -70,7 +70,7 @@ public class Bone {
 
   public void checkAnim(Stage stage) {
     if (lstAnim.size() == 0) {
-      addAnim(stage, null);
+      lstAnim.add(buildAnim(stage, null));
     } else {
       for (int i = 0; i < lstAnim.size(); i++) {
         Anim anim = lstAnim.get(i);
@@ -92,14 +92,14 @@ public class Bone {
         }
         if (i == lstAnim.size() - 1) {
           if (anim.duration.getTo() < 1) {
-            addAnim(stage, anim);
+            lstAnim.add(buildAnim(stage, anim));
           }
         }
       }
     }
   }
 
-  private void addAnim(Stage stage, Anim last) {
+  public Anim buildAnim(Stage stage, Anim last) {
     Anim anim = new Anim();
     if (last == null) {
       anim.duration.set(0, 1);
@@ -123,6 +123,6 @@ public class Bone {
       anim.scaleX.set(last.scaleX.getTo(), last.scaleX.getTo());
       anim.scaleY.set(last.scaleY.getTo(), last.scaleY.getTo());
     }
-    lstAnim.add(anim);
+    return anim;
   }
 }

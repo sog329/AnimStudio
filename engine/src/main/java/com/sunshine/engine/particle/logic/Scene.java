@@ -26,6 +26,11 @@ public class Scene extends Entity {
   private long drawTime = Tool.NONE;
   private ProcessFloat intensity = new ProcessFloat(0f, 1f, "spring");
 
+  private boolean isManual = false;
+  private boolean toActive = false;
+  private long manualInterval = Tool.NONE;
+  private long manualTime = Tool.NONE;
+
   public Scene(ViewHelper helper, String configPath, String picPath, String soundPath) {
     super(helper, configPath, picPath, soundPath);
     scriptSize.height = scriptSize.width;
@@ -56,7 +61,7 @@ public class Scene extends Entity {
   public void draw(Canvas can) {
     buildActiveParticle();
     renderActiveParticle(can);
-    if (!repeat && getPercent() >= 1 && lstActiveParticle.size() == 0 && !inStudio) {
+    if (!(repeat || isManual) && getPercent() >= 1 && lstActiveParticle.size() == 0 && !inStudio) {
       helper.stop();
     }
   }
@@ -68,11 +73,12 @@ public class Scene extends Entity {
 
   @Override
   public boolean needDraw(float percent) {
-    return true;
+    return isManual ? lstActiveParticle.size() > 0 || toActive : true;
   }
 
   private void buildActiveParticle() {
-    int numActive = repeat ? maxParticle : (int) (intensity.get(getPercent()) * maxParticle);
+    int numActive =
+        (isManual || repeat) ? maxParticle : (int) (intensity.get(getPercent()) * maxParticle);
     if (numActive > lstActiveParticle.size()) {
       int num = maxParticle - lstActiveParticle.size();
       if (judgeBorn(num)) {
@@ -97,8 +103,10 @@ public class Scene extends Entity {
             }
             if (pm != null) {
               pm.build(this, p);
-              if (repeat && dValue > 4) { // 排队如果>4个，立即显示出非出生状态的粒子
-                p.activeTimeStart = drawTime - (long) (p.activeTimeDuration * Math.random());
+              if (!isManual) {
+                if (repeat && dValue > 4) { // 排队如果>4个，立即显示出非出生状态的粒子
+                  p.activeTimeStart = drawTime - (long) (p.activeTimeDuration * Math.random());
+                }
               }
               lstIdleParticle.remove(p);
               lstActiveParticle.add(p);
@@ -127,12 +135,17 @@ public class Scene extends Entity {
 
   private boolean judgeBorn(int n) {
     boolean b = false;
-    if (n > 2) { // 憋到N个，就立即生产1个粒子，避免越憋越多的问题。
-      b = true;
+    if (isManual) {
+      b = toActive;
+      toActive = false;
     } else {
-      long now = Tool.getTime();
-      if (Math.abs(now - lastBornTime) >= interval) {
+      if (n > 2) { // 憋到N个，就立即生产1个粒子，避免越憋越多的问题。
         b = true;
+      } else {
+        long now = Tool.getTime();
+        if (Math.abs(now - lastBornTime) >= interval) {
+          b = true;
+        }
       }
     }
     return b;
@@ -154,5 +167,29 @@ public class Scene extends Entity {
   public boolean draw(Canvas can, long dt) {
     drawTime = dt;
     return super.draw(can, dt);
+  }
+
+  public void isManual(boolean isManual, long manualInterval) {
+    this.isManual = isManual;
+    this.manualInterval = manualInterval;
+  }
+
+  public boolean addParticle() {
+    if (isManual) {
+      if (toActive) {
+        return false;
+      } else {
+        long now = Tool.getTime();
+        if (Math.abs(now - manualTime) >= manualInterval) {
+          manualTime = now;
+          toActive = true;
+          return true;
+        } else {
+          return false;
+        }
+      }
+    } else {
+      return false;
+    }
   }
 }

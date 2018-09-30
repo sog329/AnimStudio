@@ -23,4 +23,33 @@ public class SceneView extends AnimView<SceneHelper> {
   public SceneHelper buildHelper() {
     return new SceneHelper();
   }
+
+  /**
+   * 设置手动模式
+   *
+   * @param isManual 是否为手动模式
+   * @param interval 手动模式增加粒子的间隔
+   */
+  public void isManual(boolean isManual, int interval) {
+    if (helper.entity != null) {
+      helper.entity.isManual(isManual, interval);
+    }
+  }
+
+  /**
+   * 手动模式下增加粒子
+   *
+   * @return
+   */
+  public boolean addParticle() {
+    if (helper.entity == null) {
+      return false;
+    } else {
+      boolean result = helper.entity.addParticle();
+      if (result) {
+        invalidate();
+      }
+      return result;
+    }
+  }
 }

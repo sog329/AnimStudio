@@ -72,6 +72,10 @@ public class StageParser extends XmlParser {
           Rect rc = new Rect(left, top, right, bottom);
           bone.lstRect.add(rc);
           break;
+        case EXTEND_Y:
+          bone = stage.getLastActor().getLastBone();
+          bone.extendY = Integer.parseInt(ary[0]);
+          break;
         case SRC_ID_WH:
           bone = stage.getLastActor().getLastBone();
           bone.externalBmpId = ary[0];

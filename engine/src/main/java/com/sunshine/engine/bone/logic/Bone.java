@@ -16,6 +16,7 @@ public class Bone {
   public String externalBmpId = null;
   public List<Anim> lstAnim = new ArrayList<>();
   public Anim animJump = null;
+  public Integer extendY = null;
 
   public void draw(Stage stage, Canvas can) {
     Bitmap bmp = stage.bmp;
@@ -40,7 +41,36 @@ public class Bone {
           if (lstRect.size() > 1) {
             rect = lstRect.get((int) (percent * (lstRect.size() - 1)));
           }
-          Render2D.draw(can, bmp, rect, stage.drawInfo);
+          if (extendY == null) {
+            Render2D.draw(can, bmp, rect, stage.drawInfo);
+          } else {
+            Rect rcBmp = new Rect(rect);
+            Rect rcDst = new Rect(stage.drawInfo.rcDst);
+            if (0 < extendY && extendY <= rect.height()) {
+              int topH = 0;
+              int bottomH = 0;
+              // up
+              if (extendY > 1) {
+                rcBmp.set(rect.left, rect.top, rect.right, rect.top + extendY - 1);
+                topH = stage.drawInfo.rcDst.width() * rcBmp.height() / rcBmp.width();
+                stage.drawInfo.rcDst.set(rcDst.left, rcDst.top, rcDst.right, rcDst.top + topH);
+                Render2D.draw(can, bmp, rcBmp, stage.drawInfo);
+              }
+              // down
+              if (extendY < rect.height()) {
+                rcBmp.set(rect.left, rect.bottom - extendY, rect.right, rect.bottom);
+                bottomH = stage.drawInfo.rcDst.width() * rcBmp.height() / rcBmp.width();
+                stage.drawInfo.rcDst.set(
+                    rcDst.left, rcDst.bottom - bottomH, rcDst.right, rcDst.bottom);
+                Render2D.draw(can, bmp, rcBmp, stage.drawInfo);
+              }
+              // middle
+              rcBmp.set(rect.left, rect.top + extendY - 1, rect.right, rect.top + extendY);
+              stage.drawInfo.rcDst.set(
+                  rcDst.left, rcDst.top + topH, rcDst.right, rcDst.bottom - bottomH);
+              Render2D.draw(can, bmp, rcBmp, stage.drawInfo);
+            }
+          }
         }
       }
     }

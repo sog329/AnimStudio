@@ -1,7 +1,6 @@
 package com.sunshine.studio.bone.logic;
 
 import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.widget.SeekBar;
 
@@ -14,8 +13,6 @@ import com.sunshine.studio.R;
 import com.sunshine.studio.base.RenderHelper;
 import com.sunshine.studio.base.Studio;
 import com.sunshine.studio.base.XmlWriter;
-
-import java.util.List;
 
 /** Created by songxiaoguang on 2017/12/2. */
 public class BoneStudio extends Studio<Stage> {
@@ -95,9 +92,10 @@ public class BoneStudio extends Studio<Stage> {
   }
 
   @Override
-  public void onGetPicRect(List<Rect> lstRect, boolean isExternal) {
+  public void onGetPicRect(BmpRect bmpRect, boolean isExternal) {
     Bone bone = new Bone();
-    bone.lstRect = lstRect;
+    bone.lstRect = bmpRect.lstRect;
+    bone.extendY = bmpRect.extendY;
     bone.checkAnim(entity);
     if (entity.lstActor.size() == 0) {
       entity.lstActor.add(new Actor());

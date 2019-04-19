@@ -85,7 +85,7 @@ public class PicGv extends GridView {
       boolean isExternal = position == (getCount() - 1);
       BmpRect bmpRect = lstData.get(position);
       iv.setBmp(callback.getBmp(isExternal), bmpRect.lstRect.get(0));
-      iv.setOnClickListener(v -> callback.onClick(bmpRect.lstRect, isExternal));
+      iv.setOnClickListener(v -> callback.onClick(bmpRect, isExternal));
 
       StudioTv tv = convertView.findViewById(R.id.tv);
       StudioTv.initSize(tv, .5f);
@@ -95,7 +95,7 @@ public class PicGv extends GridView {
     }
 
     public interface Callback {
-      void onClick(List<Rect> lstRect, boolean isExternal);
+      void onClick(BmpRect bmpRect, boolean isExternal);
 
       String getPlistPath();
 

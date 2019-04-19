@@ -1,7 +1,6 @@
 package com.sunshine.studio.particle.logic;
 
 import android.app.Dialog;
-import android.graphics.Rect;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +18,8 @@ import com.sunshine.studio.base.StudioCb;
 import com.sunshine.studio.base.StudioEt;
 import com.sunshine.studio.base.StudioTool;
 import com.sunshine.studio.base.XmlWriter;
+import com.sunshine.studio.bone.logic.BmpRect;
 import com.sunshine.studio.bone.logic.BoneIv;
-
-import java.util.List;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
@@ -145,7 +143,7 @@ public class ParticleStudio extends Studio<Scene> {
   }
 
   @Override
-  public void onGetPicRect(List<Rect> lstRect, boolean isExternal) {
+  public void onGetPicRect(BmpRect bmpRect, boolean isExternal) {
     ParticleModel model = new ParticleModel();
 
     if (entity.lstParticleModel.size() > 0) {
@@ -154,7 +152,7 @@ public class ParticleStudio extends Studio<Scene> {
       model.chanceRange.set(last.chanceRange.getTo(), 1f);
     }
 
-    model.rcBmp.set(lstRect.get(0));
+    model.rcBmp.set(bmpRect.lstRect.get(0));
     model.size.width = model.rcBmp.width();
     model.size.height = model.rcBmp.height();
 

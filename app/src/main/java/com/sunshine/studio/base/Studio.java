@@ -4,15 +4,13 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.widget.SeekBar;
 
 import com.sunshine.engine.base.AnimView;
 import com.sunshine.engine.base.Entity;
 import com.sunshine.studio.R;
-
-import java.util.List;
+import com.sunshine.studio.bone.logic.BmpRect;
 
 import static com.sunshine.studio.base.StudioTool.getFilePath;
 
@@ -100,7 +98,7 @@ public abstract class Studio<T extends Entity> {
 
   public abstract XmlWriter.Callback getWriter(T entity);
 
-  public abstract void onGetPicRect(List<Rect> lstRect, boolean isExternal);
+  public abstract void onGetPicRect(BmpRect bmpRect, boolean isExternal);
 
   public abstract void updateAnimLv();
 

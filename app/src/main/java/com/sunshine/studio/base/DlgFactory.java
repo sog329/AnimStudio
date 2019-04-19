@@ -2,7 +2,6 @@ package com.sunshine.studio.base;
 
 import android.app.Dialog;
 import android.graphics.Bitmap;
-import android.graphics.Rect;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +10,8 @@ import android.widget.FrameLayout;
 
 import com.sunshine.engine.base.LayoutHelper;
 import com.sunshine.studio.R;
+import com.sunshine.studio.bone.logic.BmpRect;
 import com.sunshine.studio.bone.logic.ProjectLv;
-
-import java.util.List;
 
 /** Created by songxiaoguang on 2017/12/2. */
 public class DlgFactory {
@@ -62,8 +60,8 @@ public class DlgFactory {
         new PicGv.BoneAdapter(
             new PicGv.BoneAdapter.Callback() {
               @Override
-              public void onClick(List<Rect> lstRect, boolean isExternal) {
-                studio.onGetPicRect(lstRect, isExternal);
+              public void onClick(BmpRect bmpRect, boolean isExternal) {
+                studio.onGetPicRect(bmpRect, isExternal);
                 dialog.dismiss();
               }
 

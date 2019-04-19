@@ -11,6 +11,7 @@ import java.util.List;
 public class BmpRect {
   public List<Rect> lstRect = new ArrayList<>();
   public String name = null;
+  public Integer extendY = null;
 
   public Rect getRect(int index) {
     if (index != lstRect.size() - 1) {

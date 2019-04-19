@@ -51,6 +51,9 @@ public class StageWriter implements XmlWriter.Callback {
                   + ","
                   + bone.lstRect.get(0).height());
         }
+        if (bone.extendY != null) {
+          addTag(xml, StageParser.EXTEND_Y, bone.extendY.toString());
+        }
         // anim
         for (Anim anim : bone.lstAnim) {
           xml.startTag(null, StageParser.ANIM);

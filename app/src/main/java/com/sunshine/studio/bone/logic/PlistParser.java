@@ -73,6 +73,8 @@ public class PlistParser extends XmlParser {
               type = Type.w;
             } else if ("h".equals(ary[0]) || "height".equals(ary[0])) {
               type = Type.h;
+            } else if ("extendY".equals(ary[0])) {
+              type = Type.extendY;
             } else {
               type = Type.none;
             }
@@ -88,21 +90,20 @@ public class PlistParser extends XmlParser {
                 int left = Integer.parseInt(ary[0]);
                 rc.right = left + rc.width();
                 rc.left = left;
-                Tool.log(name + "_x: " + rc.toString());
                 break;
               case y:
                 int top = Integer.parseInt(ary[0]);
                 rc.bottom = top + rc.height();
                 rc.top = top;
-                Tool.log(name + "_y: " + rc.toString());
                 break;
               case w:
                 rc.right = rc.left + Integer.parseInt(ary[0]);
-                Tool.log(name + "_w: " + rc.toString());
                 break;
               case h:
                 rc.bottom = rc.top + Integer.parseInt(ary[0]);
-                Tool.log(name + "_h: " + rc.toString());
+                break;
+              case extendY:
+                bmpRect.extendY = Integer.parseInt(ary[0]);
                 break;
               default:
                 break;
@@ -120,6 +121,7 @@ public class PlistParser extends XmlParser {
     x,
     y,
     w,
-    h
+    h,
+    extendY
   }
 }

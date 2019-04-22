@@ -17,6 +17,8 @@ public class Bone {
   public List<Anim> lstAnim = new ArrayList<>();
   public Anim animJump = null;
   public Integer extendY = null;
+  private static Rect RECT_BMP = new Rect();
+  private static Rect RECT_TMP = new Rect();
 
   public void draw(Stage stage, Canvas can) {
     Bitmap bmp = stage.bmp;
@@ -44,31 +46,32 @@ public class Bone {
           if (extendY == null) {
             Render2D.draw(can, bmp, rect, stage.drawInfo);
           } else {
-            Rect rcBmp = new Rect(rect);
-            Rect rcDst = new Rect(stage.drawInfo.rcDst);
+            RECT_BMP.set(rect);
+            RECT_TMP.set(stage.drawInfo.rcDst);
             if (0 < extendY && extendY <= rect.height()) {
               int topH = 0;
               int bottomH = 0;
               // up
               if (extendY > 1) {
-                rcBmp.set(rect.left, rect.top, rect.right, rect.top + extendY - 1);
-                topH = stage.drawInfo.rcDst.width() * rcBmp.height() / rcBmp.width();
-                stage.drawInfo.rcDst.set(rcDst.left, rcDst.top, rcDst.right, rcDst.top + topH);
-                Render2D.draw(can, bmp, rcBmp, stage.drawInfo);
+                RECT_BMP.set(rect.left, rect.top, rect.right, rect.top + extendY - 1);
+                topH = stage.drawInfo.rcDst.width() * RECT_BMP.height() / RECT_BMP.width();
+                stage.drawInfo.rcDst.set(
+                    RECT_TMP.left, RECT_TMP.top, RECT_TMP.right, RECT_TMP.top + topH);
+                Render2D.draw(can, bmp, RECT_BMP, stage.drawInfo);
               }
               // down
               if (extendY < rect.height()) {
-                rcBmp.set(rect.left, rect.bottom - extendY, rect.right, rect.bottom);
-                bottomH = stage.drawInfo.rcDst.width() * rcBmp.height() / rcBmp.width();
+                RECT_BMP.set(rect.left, rect.bottom - extendY, rect.right, rect.bottom);
+                bottomH = stage.drawInfo.rcDst.width() * RECT_BMP.height() / RECT_BMP.width();
                 stage.drawInfo.rcDst.set(
-                    rcDst.left, rcDst.bottom - bottomH, rcDst.right, rcDst.bottom);
-                Render2D.draw(can, bmp, rcBmp, stage.drawInfo);
+                    RECT_TMP.left, RECT_TMP.bottom - bottomH, RECT_TMP.right, RECT_TMP.bottom);
+                Render2D.draw(can, bmp, RECT_BMP, stage.drawInfo);
               }
               // middle
-              rcBmp.set(rect.left, rect.top + extendY - 1, rect.right, rect.top + extendY);
+              RECT_BMP.set(rect.left, rect.top + extendY - 1, rect.right, rect.top + extendY);
               stage.drawInfo.rcDst.set(
-                  rcDst.left, rcDst.top + topH, rcDst.right, rcDst.bottom - bottomH);
-              Render2D.draw(can, bmp, rcBmp, stage.drawInfo);
+                  RECT_TMP.left, RECT_TMP.top + topH, RECT_TMP.right, RECT_TMP.bottom - bottomH);
+              Render2D.draw(can, bmp, RECT_BMP, stage.drawInfo);
             }
           }
         }

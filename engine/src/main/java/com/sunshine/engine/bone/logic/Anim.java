@@ -49,8 +49,8 @@ public class Anim {
 
     entity.drawInfo.rt = rotate.get(percent);
 
-    entity.drawInfo.ptSrc.x = (int) (entity.drawInfo.rcSrc.left + ptRotate.x * sX);
-    entity.drawInfo.ptSrc.y = (int) (entity.drawInfo.rcSrc.top + ptRotate.y * sY);
+    entity.drawInfo.ptSrc.x = entity.drawInfo.rcSrc.left + ptRotate.x * sX;
+    entity.drawInfo.ptSrc.y = entity.drawInfo.rcSrc.top + ptRotate.y * sY;
     return true;
   }
 

@@ -45,8 +45,8 @@ public class ParticleModel {
     // move
     Point<Integer> ptFrom = areaFrom.getPoint(scene);
     Point<Integer> ptTo = areaTo.getPoint(scene, ptFrom.x, ptFrom.y);
-    p.anim.centerX.set(ptFrom.x, ptTo.x);
-    p.anim.centerY.set(ptFrom.y, ptTo.y);
+    p.anim.centerX.set((float) ptFrom.x, (float) ptTo.x);
+    p.anim.centerY.set((float) ptFrom.y, (float) ptTo.y);
     p.anim.centerX.setInterpolator(interpolatorMove[0]);
     p.anim.centerY.setInterpolator(interpolatorMove[1]);
     p.anim.halfSize.width = size.width / 2f;

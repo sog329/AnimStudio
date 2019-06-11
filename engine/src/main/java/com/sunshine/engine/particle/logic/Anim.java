@@ -7,8 +7,8 @@ import com.sunshine.engine.base.ProcessInt;
 import com.sunshine.engine.base.Size;
 
 public class Anim {
-  protected ProcessInt centerX = new ProcessInt(0, 0);
-  protected ProcessInt centerY = new ProcessInt(0, 0);
+  protected ProcessFloat centerX = new ProcessFloat(0f, 0f);
+  protected ProcessFloat centerY = new ProcessFloat(0f, 0f);
   public Size<Float> halfSize = new Size(0f, 0f);
   protected Point<Float> ptRotate = new Point(0f, 0f);
   protected ProcessInt rotate = new ProcessInt(0, 0);
@@ -21,12 +21,12 @@ public class Anim {
     } else if (percent > 1) {
       percent = 1;
     }
-    int x = centerX.get(percent);
-    int y = centerY.get(percent);
+    float x = centerX.get(percent);
+    float y = centerY.get(percent);
     float sX = scale.get(percent);
     float sY = sX;
-    int w = (int) (sX * halfSize.width);
-    int h = (int) (sY * halfSize.height);
+    float w = sX * halfSize.width;
+    float h = sY * halfSize.height;
 
     drawInfo.rcSrc.left = x - w;
     drawInfo.rcSrc.top = y - h;
@@ -35,8 +35,8 @@ public class Anim {
 
     drawInfo.rt = rotate.get(percent);
 
-    drawInfo.ptSrc.x = drawInfo.rcSrc.left + (int) (ptRotate.x * sX);
-    drawInfo.ptSrc.y = drawInfo.rcSrc.top + (int) (ptRotate.y * sY);
+    drawInfo.ptSrc.x = drawInfo.rcSrc.left + ptRotate.x * sX;
+    drawInfo.ptSrc.y = drawInfo.rcSrc.top + ptRotate.y * sY;
 
     drawInfo.alpha = alpha.get(percent);
   }

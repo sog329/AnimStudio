@@ -87,8 +87,8 @@ public class StageParser extends XmlParser {
           break;
         case MOVE:
           anim = stage.getLastActor().getLastBone().getLastAnim();
-          anim.centerX.set(Integer.parseInt(ary[0]), Integer.parseInt(ary[2]));
-          anim.centerY.set(Integer.parseInt(ary[1]), Integer.parseInt(ary[3]));
+          anim.centerX.set(Float.parseFloat(ary[0]), Float.parseFloat(ary[2]));
+          anim.centerY.set(Float.parseFloat(ary[1]), Float.parseFloat(ary[3]));
           break;
         case MOVE_INTERPOLATOR:
           anim = stage.getLastActor().getLastBone().getLastAnim();

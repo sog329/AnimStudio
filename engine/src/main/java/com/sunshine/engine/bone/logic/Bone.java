@@ -3,6 +3,7 @@ package com.sunshine.engine.bone.logic;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.graphics.RectF;
 
 import com.sunshine.engine.base.Render2D;
 import com.sunshine.engine.base.Tool;
@@ -18,7 +19,7 @@ public class Bone {
   public Anim animJump = null;
   public Integer extendY = null;
   private static Rect RECT_BMP = new Rect();
-  private static Rect RECT_TMP = new Rect();
+  private static RectF RECT_TMP = new RectF();
 
   public void draw(Stage stage, Canvas can) {
     Bitmap bmp = stage.bmp;
@@ -49,8 +50,8 @@ public class Bone {
             RECT_BMP.set(rect);
             RECT_TMP.set(stage.drawInfo.rcDst);
             if (0 < extendY && extendY <= rect.height()) {
-              int topH = 0;
-              int bottomH = 0;
+              float topH = 0;
+              float bottomH = 0;
               // up
               if (extendY > 1) {
                 RECT_BMP.set(rect.left, rect.top, rect.right, rect.top + extendY - 1);
@@ -70,7 +71,10 @@ public class Bone {
               // middle
               RECT_BMP.set(rect.left, rect.top + extendY - 1, rect.right, rect.top + extendY);
               stage.drawInfo.rcDst.set(
-                  RECT_TMP.left, RECT_TMP.top + topH, RECT_TMP.right, RECT_TMP.bottom - bottomH);
+                  RECT_TMP.left,
+                  RECT_TMP.top + topH - 1,
+                  RECT_TMP.right,
+                  RECT_TMP.bottom - bottomH + 1);
               Render2D.draw(can, bmp, RECT_BMP, stage.drawInfo);
             }
           }
@@ -136,9 +140,9 @@ public class Bone {
     Anim anim = new Anim();
     if (last == null) {
       anim.duration.set(0, 1);
-      int centerX = stage.scriptSize.width / 2;
+      float centerX = stage.scriptSize.width / 2f;
       anim.centerX.set(centerX, centerX);
-      int centerY = stage.scriptSize.height / 2;
+      float centerY = stage.scriptSize.height / 2f;
       anim.centerY.set(centerY, centerY);
       anim.halfSize.width = lstRect.get(0).width() / 2f;
       anim.halfSize.height = lstRect.get(0).height() / 2f;

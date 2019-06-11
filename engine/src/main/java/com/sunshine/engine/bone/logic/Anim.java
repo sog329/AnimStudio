@@ -10,8 +10,8 @@ import com.sunshine.engine.base.Size;
 public class Anim {
   public Duration duration = new Duration();
 
-  public ProcessInt centerX = new ProcessInt(0, 0);
-  public ProcessInt centerY = new ProcessInt(0, 0);
+  public ProcessFloat centerX = new ProcessFloat(0f, 0f);
+  public ProcessFloat centerY = new ProcessFloat(0f, 0f);
   public Size<Float> halfSize = new Size(0f, 0f);
 
   public ProcessFloat scaleX = new ProcessFloat(1f, 1f);
@@ -32,12 +32,12 @@ public class Anim {
     if (entity.drawInfo.alpha == 0 && !entity.inStudio) {
       return false;
     }
-    int x = centerX.get(percent);
-    int y = centerY.get(percent);
+    float x = centerX.get(percent);
+    float y = centerY.get(percent);
     float sX = scaleX.get(percent);
     float sY = scaleY.get(percent);
-    int w = (int) (sX * halfSize.width);
-    int h = (int) (sY * halfSize.height);
+    float w = sX * halfSize.width;
+    float h = sY * halfSize.height;
     if (w == 0 || h == 0) {
       return false;
     }
@@ -49,8 +49,8 @@ public class Anim {
 
     entity.drawInfo.rt = rotate.get(percent);
 
-    entity.drawInfo.ptSrc.x = entity.drawInfo.rcSrc.left + (int) (ptRotate.x * sX);
-    entity.drawInfo.ptSrc.y = entity.drawInfo.rcSrc.top + (int) (ptRotate.y * sY);
+    entity.drawInfo.ptSrc.x = (int) (entity.drawInfo.rcSrc.left + ptRotate.x * sX);
+    entity.drawInfo.ptSrc.y = (int) (entity.drawInfo.rcSrc.top + ptRotate.y * sY);
     return true;
   }
 

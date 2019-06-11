@@ -2,8 +2,6 @@ package com.sunshine.studio.bone.logic;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
 import android.view.View;
@@ -48,15 +46,15 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
   private BoneStudio studio = null;
   private Anim anim = null;
 
-  public AnimEditorView(@NonNull Context context) {
+  public AnimEditorView(Context context) {
     super(context);
   }
 
-  public AnimEditorView(@NonNull Context context, @Nullable AttributeSet attrs) {
+  public AnimEditorView(Context context, AttributeSet attrs) {
     super(context, attrs);
   }
 
-  public AnimEditorView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+  public AnimEditorView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
   }
 
@@ -244,9 +242,9 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
                 ((EditText) findViewById(R.id.edit_rotate_to))
                     .setText(((EditText) findViewById(R.id.edit_rotate_from)).getText()));
     // from
-    ((StudioEt<Integer>) findViewById(R.id.edit_move_from_x))
+    ((StudioEt<Float>) findViewById(R.id.edit_move_from_x))
         .mapValue(anim.centerX.getFrom(), n -> anim.centerX.setFrom(n));
-    ((StudioEt<Integer>) findViewById(R.id.edit_move_from_y))
+    ((StudioEt<Float>) findViewById(R.id.edit_move_from_y))
         .mapValue(anim.centerY.getFrom(), n -> anim.centerY.setFrom(n));
     findViewById(R.id.edit_move_from_copy)
         .setOnClickListener(
@@ -265,9 +263,9 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
               ((StudioEt) findViewById(R.id.edit_move_from_y))
                   .setText(((StudioEt) findViewById(R.id.edit_move_to_y)).getText());
             });
-    ((StudioEt<Integer>) findViewById(R.id.edit_move_to_x))
+    ((StudioEt<Float>) findViewById(R.id.edit_move_to_x))
         .mapValue(anim.centerX.getTo(), n -> anim.centerX.setTo(n));
-    ((StudioEt<Integer>) findViewById(R.id.edit_move_to_y))
+    ((StudioEt<Float>) findViewById(R.id.edit_move_to_y))
         .mapValue(anim.centerY.getTo(), n -> anim.centerY.setTo(n));
     ((InterpolatorSpinner) findViewById(R.id.edit_move_interpolator_x))
         .interpolator(anim.centerX.getInterpolatorName(), s -> anim.centerX.setInterpolator(s));

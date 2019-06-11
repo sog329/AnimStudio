@@ -2,7 +2,7 @@ package com.sunshine.studio.bone.logic;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Point;
+import android.graphics.PointF;
 
 import com.sunshine.engine.base.Entity;
 import com.sunshine.engine.base.Tool;
@@ -34,7 +34,7 @@ public class StudioRender2D {
     can.restoreToCount(cs);
   }
 
-  public static void draw(Canvas can, Point pt, int color) {
+  public static void draw(Canvas can, PointF pt, int color) {
     paint.setColor(color);
     paint.setAlpha(255);
     int len = StudioTool.getBtnHeight() / 2;

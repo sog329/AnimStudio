@@ -1,16 +1,16 @@
 package com.sunshine.engine.base;
 
-import android.graphics.Point;
-import android.graphics.Rect;
+import android.graphics.PointF;
+import android.graphics.RectF;
 
 public class DrawInfo {
   // 初始值
-  public Rect rcSrc = new Rect();
-  public Point ptSrc = new Point();
+  public RectF rcSrc = new RectF();
+  public PointF ptSrc = new PointF();
   // 最终值
-  public Rect rcDst = new Rect();
+  public RectF rcDst = new RectF();
   public float rt = 0;
-  public Point ptDst = new Point();
+  public PointF ptDst = new PointF();
 
   public int alpha = 0;
 }

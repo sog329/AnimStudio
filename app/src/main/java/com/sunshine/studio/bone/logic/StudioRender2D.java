@@ -44,7 +44,6 @@ public class StudioRender2D {
 
   public static void draw(Canvas can, float x, float h, int color) {
     paint.setColor(color);
-    paint.setAlpha(255);
     can.drawLine(x, 0, x, h, paint);
   }
 }

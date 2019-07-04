@@ -42,18 +42,21 @@
                 android:id="@+id/size_w"
                 android:layout_width="0px"
                 android:layout_height="match_parent"
-                android:layout_weight=".5"/>
+                android:layout_weight=".5"
+                android:theme="@style/Purple"/>
 
             <android.support.v7.widget.AppCompatSeekBar
                 android:id="@+id/size_h"
                 android:layout_width="0px"
                 android:layout_height="match_parent"
-                android:layout_weight=".5"/>
+                android:layout_weight=".5"
+                android:theme="@style/Purple"/>
 
             <com.sunshine.studio.base.StudioCb
                 android:id="@+id/cb_bg"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:theme="@style/Purple"/>
 
         </LinearLayout>
     </RelativeLayout>
@@ -134,15 +137,16 @@
                     android:layout_width="0px"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:max="100"/>
+                    android:max="100"
+                    android:theme="@style/Purple"/>
 
                 <com.sunshine.studio.base.StudioImageBtn
                     android:id="@+id/open"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="5px"
                     android:layout_marginLeft="5px"
                     android:layout_marginTop="5px"
+                    android:layout_marginBottom="5px"
                     android:background="@drawable/bg_btn"
                     android:gravity="center"
                     android:maxLines="1"

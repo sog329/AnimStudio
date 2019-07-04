@@ -12,7 +12,7 @@ import com.sunshine.studio.base.StudioTool;
 
 /** Created by Jack on 2018/3/5. */
 public class PercentMask extends View {
-  private final int color = Color.parseColor("#75c4bc");
+  private final int color = Color.parseColor("#55FFFFFF");
   private final int start = StudioTool.getBtnHeight() * 3 + 100;
 
   private float percent = 0;

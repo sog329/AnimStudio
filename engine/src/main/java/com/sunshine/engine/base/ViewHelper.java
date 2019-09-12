@@ -1,6 +1,8 @@
 package com.sunshine.engine.base;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.DrawFilter;
@@ -11,7 +13,7 @@ import android.os.Looper;
 import android.view.View;
 
 /** Created by songxiaoguang on 2017/12/1. */
-public abstract class ViewHelper<T extends Entity> {
+public abstract class ViewHelper<T extends Entity> extends LifeCycle {
 
   public static final Handler handler = new Handler(Looper.getMainLooper());
   public static final PaintFlagsDrawFilter DRAW_FILTER =
@@ -25,6 +27,7 @@ public abstract class ViewHelper<T extends Entity> {
     this.view = view;
     boolean play = false;
     if (entity == null) {
+      register(true);
       entity = buildEntity(this, configPath, picPath, soundPath);
       resize();
       play = true;
@@ -41,6 +44,18 @@ public abstract class ViewHelper<T extends Entity> {
       context = view.getContext();
     }
     return context;
+  }
+
+  @Override
+  protected Activity getActivity() {
+    Context context = getContext();
+    while (context instanceof ContextWrapper) {
+      if (context instanceof Activity) {
+        return (Activity) context;
+      }
+      context = ((ContextWrapper) context).getBaseContext();
+    }
+    return null;
   }
 
   public void stopAsync(final Entity obj) {
@@ -70,17 +85,25 @@ public abstract class ViewHelper<T extends Entity> {
     }
   }
 
+  @Override
   public void stop() {
     if (entity != null) {
       entity.destroy();
       entity = null;
     }
+    register(false);
     view = null;
   }
 
+  @Override
   public void invalidate() {
     if (view != null) {
-      view.invalidate();
+      long now = Tool.getTime();
+      if (now - resumeTime < 160) {
+        view.postInvalidateDelayed(40);
+      } else {
+        view.postInvalidate();
+      }
     }
   }
 
@@ -90,7 +113,7 @@ public abstract class ViewHelper<T extends Entity> {
       can.setDrawFilter(DRAW_FILTER);
       long drawTime = Tool.getTime();
       boolean needRender = entity.draw(can, drawTime);
-      if (needRender) {
+      if (needRender && isResume) {
         invalidate();
       }
       can.setDrawFilter(drawFilter);

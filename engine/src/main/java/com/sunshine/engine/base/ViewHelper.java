@@ -99,7 +99,7 @@ public abstract class ViewHelper<T extends Entity> extends LifeCycle {
   public void invalidate() {
     if (view != null) {
       long now = Tool.getTime();
-      if (now - resumeTime < 160) {
+      if (now - resumeTime < 250) {
         view.postInvalidateDelayed(40);
       } else {
         view.postInvalidate();

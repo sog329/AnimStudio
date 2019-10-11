@@ -1,6 +1,7 @@
 package com.sunshine.studio;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
@@ -79,6 +80,22 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener {
         break;
       default:
         break;
+    }
+  }
+
+  @Override
+  public void onRequestPermissionsResult(
+      int requestCode, String[] permissions, int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    boolean needRequest = false;
+    for (int result : grantResults) {
+      if (result != PackageManager.PERMISSION_GRANTED) {
+        needRequest = true;
+        break;
+      }
+    }
+    if (needRequest) {
+      StudioTool.initPermission(this);
     }
   }
 }

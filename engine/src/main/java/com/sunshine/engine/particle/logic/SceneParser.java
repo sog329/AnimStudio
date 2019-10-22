@@ -14,6 +14,7 @@ public class SceneParser extends XmlParser {
 
   public static final String MOVE_FROM = "move_from";
   public static final String MOVE_TO = "move_to";
+  public static final String MOVE_ROTATE_TO = "move_rotate_to";
   public static final String MOVE_INTERPOLATOR = "move_interpolator";
   public static final String MATCH_PARENT = "match_parent";
   public static final String OFFSET = "offset:";
@@ -80,6 +81,9 @@ public class SceneParser extends XmlParser {
           }
           pm.areaFrom.h = Integer.parseInt(ary[3]);
           break;
+        case MOVE_ROTATE_TO:
+          pm = scene.getLastParticleModel();
+          pm.areaTo.isRotate = true;
         case MOVE_TO:
           pm = scene.getLastParticleModel();
           if (ary[0].contains(OFFSET)) {

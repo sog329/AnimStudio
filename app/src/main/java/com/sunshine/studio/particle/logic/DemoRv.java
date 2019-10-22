@@ -40,6 +40,7 @@ public class DemoRv extends RecyclerView {
 
     setAdapter(
         new Adapter()
+            .add("arrow")
             .add("note")
             .add("heart")
             .add("welcome_omi_bg")

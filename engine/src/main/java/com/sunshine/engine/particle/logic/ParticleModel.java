@@ -57,8 +57,26 @@ public class ParticleModel {
     p.anim.scale.set(scaleFrom, scaleTo);
     p.anim.scale.setInterpolator(interpolatorScale);
     // rotate
-    int rotate = rotateBegin.random();
-    p.anim.rotate.set(rotate, rotateEnd == null ? rotate : rotateEnd.random());
+    int rtFrom = rotateBegin.random();
+    int rtEnd = rotateEnd == null ? rtFrom : rotateEnd.random();
+    if (areaTo.isRotate) {
+      int rt = 0;
+      if (Tool.equalsZero(p.anim.centerY.getDelta())) {
+        if (p.anim.centerX.getDelta() > 0) {
+          rt = 90;
+        } else {
+          rt = 270;
+        }
+      } else {
+        rt = (int) (Math.atan(-p.anim.centerX.getDelta() / p.anim.centerY.getDelta()) / Math.PI * 180);
+        if (p.anim.centerY.getDelta() > 0) {
+          rt += 180;
+        }
+      }
+      rtFrom += rt;
+      rtEnd += rt;
+    }
+    p.anim.rotate.set(rtFrom, rtEnd);
     p.anim.rotate.setInterpolator(interpolatorRotate);
     p.anim.ptRotate.set(ptRotate.x, ptRotate.y);
   }

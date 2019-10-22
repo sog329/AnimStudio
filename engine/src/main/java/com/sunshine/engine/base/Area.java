@@ -6,6 +6,7 @@ import com.sunshine.engine.particle.logic.SceneParser;
 /** Created by songxiaoguang on 2017/9/13. */
 public class Area {
   public static final int MATCH_PARENT = -1;
+  public boolean isRotate = false;
   public int l = 0;
   public boolean isOffsetLeft = false;
   public int t = 0;

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+===================================================================
+
+Sprite sheet file created for UIKit using TexturePacker
+http://www.codeandweb.com/texturepacker
+
+===================================================================
+$TexturePacker:SmartUpdate:1c7ac818cf45dc9751cae1ed4fa76785:5f0d16b0207780b16dfa87db1660d634:dc7c43c5769890130c5735e5eb1b3415$
+-->
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+
+                        <key>bg</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>1</real>
+				<key>w</key><real>240</real>
+				<key>h</key><real>240</real>
+				
+				
+			</dict>
+                        <key>ear1</key>
+			<dict>
+				<key>x</key><real>87</real>
+				<key>y</key><real>429</real>
+				<key>w</key><real>57</real>
+				<key>h</key><real>62</real>
+				<key>oX</key><real>0</real>
+				<key>oY</key><real>0</real>
+				<key>oW</key><real>57</real>
+				<key>oH</key><real>63</real>
+				
+			</dict>
+                        <key>ear2</key>
+			<dict>
+				<key>x</key><real>147</real>
+				<key>y</key><real>393</real>
+				<key>w</key><real>57</real>
+				<key>h</key><real>62</real>
+				<key>oX</key><real>0</real>
+				<key>oY</key><real>0</real>
+				<key>oW</key><real>57</real>
+				<key>oH</key><real>63</real>
+				
+			</dict>
+                        <key>eye1</key>
+			<dict>
+				<key>x</key><real>190</real>
+				<key>y</key><real>457</real>
+				<key>w</key><real>41</real>
+				<key>h</key><real>41</real>
+				<key>oX</key><real>1</real>
+				<key>oY</key><real>1</real>
+				<key>oW</key><real>42</real>
+				<key>oH</key><real>42</real>
+				
+			</dict>
+                        <key>eye2</key>
+			<dict>
+				<key>x</key><real>146</real>
+				<key>y</key><real>457</real>
+				<key>w</key><real>42</real>
+				<key>h</key><real>41</real>
+				<key>oX</key><real>0</real>
+				<key>oY</key><real>1</real>
+				<key>oW</key><real>42</real>
+				<key>oH</key><real>42</real>
+				
+			</dict>
+                        <key>head</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>243</real>
+				<key>w</key><real>146</real>
+				<key>h</key><real>129</real>
+				<key>oX</key><real>0</real>
+				<key>oY</key><real>0</real>
+				<key>oW</key><real>147</real>
+				<key>oH</key><real>129</real>
+				
+			</dict>
+                        <key>nose</key>
+			<dict>
+				<key>x</key><real>206</real>
+				<key>y</key><real>393</real>
+				<key>w</key><real>23</real>
+				<key>h</key><real>18</real>
+				<key>oX</key><real>0</real>
+				<key>oY</key><real>0</real>
+				<key>oW</key><real>24</real>
+				<key>oH</key><real>18</real>
+				
+			</dict>
+                        <key>Oval Copy 6</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>374</real>
+				<key>w</key><real>144</real>
+				<key>h</key><real>53</real>
+				<key>oX</key><real>0</real>
+				<key>oY</key><real>1</real>
+				<key>oW</key><real>144</real>
+				<key>oH</key><real>54</real>
+				
+			</dict>
+                        <key>Oval Copy 7</key>
+			<dict>
+				<key>x</key><real>149</real>
+				<key>y</key><real>243</real>
+				<key>w</key><real>92</real>
+				<key>h</key><real>68</real>
+				<key>oX</key><real>0</real>
+				<key>oY</key><real>0</real>
+				<key>oW</key><real>93</real>
+				<key>oH</key><real>69</real>
+				
+			</dict>
+                        <key>Oval Copy 8</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>429</real>
+				<key>w</key><real>84</real>
+				<key>h</key><real>68</real>
+				<key>oX</key><real>0</real>
+				<key>oY</key><real>0</real>
+				<key>oW</key><real>84</real>
+				<key>oH</key><real>69</real>
+				
+			</dict>
+                        <key>Z</key>
+			<dict>
+				<key>x</key><real>149</real>
+				<key>y</key><real>313</real>
+				<key>w</key><real>72</real>
+				<key>h</key><real>78</real>
+				
+				
+			</dict>
+		</dict>
+		<key>meta</key>
+		<dict>
+			<key>image</key>
+			<string>pass.png</string>
+			<key>width</key>
+			<integer>242</integer>
+			<key>height</key>
+			<integer>499</integer>
+		</dict>
+	</dict>
+</plist>

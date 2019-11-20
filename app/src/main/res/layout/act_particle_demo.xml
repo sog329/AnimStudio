@@ -7,7 +7,7 @@
     android:background="@android:color/black"
     tools:context=".particle.ParticleDemoAct">
 
-    <com.sunshine.studio.particle.logic.DemoRv
+    <com.sunshine.studio.particle.logic.ParticleRv
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

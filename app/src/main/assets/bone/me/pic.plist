@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+===================================================================
+
+Sprite sheet file created for UIKit using TexturePacker
+https://www.codeandweb.com/texturepacker
+
+===================================================================
+$TexturePacker:SmartUpdate:cb15d641a6607c8263ae916485a4cae2:3257313b3b3608dd3c878f8fee9d94f9:5a68db2578f8887afe1d9f5ae1318a9a$
+-->
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+
+                        <key>in</key>
+			<dict>
+				<key>x</key><real>113</real>
+				<key>y</key><real>1</real>
+				<key>w</key><real>96</real>
+				<key>h</key><real>96</real>
+				
+				
+			</dict>
+                        <key>out</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>1</real>
+				<key>w</key><real>110</real>
+				<key>h</key><real>110</real>
+				<key>oX</key><real>1</real>
+				<key>oY</key><real>1</real>
+				<key>oW</key><real>112</real>
+				<key>oH</key><real>112</real>
+				
+			</dict>
+		</dict>
+		<key>meta</key>
+		<dict>
+			<key>image</key>
+			<string>me.png</string>
+			<key>width</key>
+			<integer>210</integer>
+			<key>height</key>
+			<integer>112</integer>
+		</dict>
+	</dict>
+</plist>

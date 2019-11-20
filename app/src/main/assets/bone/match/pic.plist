@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+===================================================================
+
+Sprite sheet file created for UIKit using TexturePacker
+http://www.codeandweb.com/texturepacker
+
+===================================================================
+$TexturePacker:SmartUpdate:d51d9dbb4d93929ca7162b9fe78bb1c3:ca7152eaf5d015b03317c0079f488169:2f7983b4c14cf09938dfa44df99367f8$
+-->
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+
+                        <key>balloon1</key>
+			<dict>
+				<key>x</key><real>182</real>
+				<key>y</key><real>770</real>
+				<key>w</key><real>126</real>
+				<key>h</key><real>365</real>
+				
+				
+			</dict>
+                        <key>balloon2</key>
+			<dict>
+				<key>x</key><real>182</real>
+				<key>y</key><real>1137</real>
+				<key>w</key><real>141</real>
+				<key>h</key><real>305</real>
+				
+				
+			</dict>
+                        <key>balloon3</key>
+			<dict>
+				<key>x</key><real>310</real>
+				<key>y</key><real>770</real>
+				<key>w</key><real>122</real>
+				<key>h</key><real>339</real>
+				
+				
+			</dict>
+                        <key>balloon4</key>
+			<dict>
+				<key>x</key><real>325</real>
+				<key>y</key><real>1111</real>
+				<key>w</key><real>114</real>
+				<key>h</key><real>323</real>
+				
+				
+			</dict>
+                        <key>balloon5</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>760</real>
+				<key>w</key><real>179</real>
+				<key>h</key><real>324</real>
+				
+				
+			</dict>
+                        <key>balloon6</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>1086</real>
+				<key>w</key><real>179</real>
+				<key>h</key><real>279</real>
+				
+				
+			</dict>
+                        <key>Group 2</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>321</real>
+				<key>w</key><real>233</real>
+				<key>h</key><real>437</real>
+				
+				
+			</dict>
+                        <key>Group1</key>
+			<dict>
+				<key>x</key><real>236</real>
+				<key>y</key><real>321</real>
+				<key>w</key><real>204</real>
+				<key>h</key><real>447</real>
+				
+				
+			</dict>
+                        <key>omi</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>1</real>
+				<key>w</key><real>375</real>
+				<key>h</key><real>318</real>
+				
+				
+			</dict>
+		</dict>
+		<key>meta</key>
+		<dict>
+			<key>image</key>
+			<string>1.png</string>
+			<key>width</key>
+			<integer>441</integer>
+			<key>height</key>
+			<integer>1443</integer>
+		</dict>
+	</dict>
+</plist>

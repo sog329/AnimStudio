@@ -4,17 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ECF5F3"
-    tools:context=".particle.ParticleDemoAct">
+    android:background="@android:color/black"
+    tools:context=".bone.BoneDemoAct">
 
-    <com.sunshine.engine.particle.SceneView
-        android:layout_gravity="bottom|center_horizontal"
-        android:id="@+id/scene"
-        android:layout_width="200dp"
-        android:layout_height="250dp"/>
-
-    <com.sunshine.engine.bone.StageView
-        android:id="@+id/stage"
+    <com.sunshine.studio.bone.logic.BoneRv
+        android:id="@+id/rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:scrollbars="horizontal" />
 </FrameLayout>

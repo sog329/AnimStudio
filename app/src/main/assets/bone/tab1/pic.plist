@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+===================================================================
+
+Sprite sheet file created for UIKit using TexturePacker
+http://www.codeandweb.com/texturepacker
+
+===================================================================
+$TexturePacker:SmartUpdate:c6449b4293816daf07978c62ca3ef7f8:478936ff30aa0cc0db80412767df6f12:547a173945240f76b2f7a3dc2303cd12$
+-->
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+
+                        <key>gray</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>1</real>
+				<key>w</key><real>64</real>
+				<key>h</key><real>92</real>
+				
+				
+			</dict>
+                        <key>red</key>
+			<dict>
+				<key>x</key><real>67</real>
+				<key>y</key><real>1</real>
+				<key>w</key><real>64</real>
+				<key>h</key><real>92</real>
+				
+				
+			</dict>
+		</dict>
+		<key>meta</key>
+		<dict>
+			<key>image</key>
+			<string>tab1.png</string>
+			<key>width</key>
+			<integer>132</integer>
+			<key>height</key>
+			<integer>94</integer>
+		</dict>
+	</dict>
+</plist>

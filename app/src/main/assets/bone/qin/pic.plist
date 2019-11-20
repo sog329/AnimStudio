@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+===================================================================
+
+Sprite sheet file created for UIKit using TexturePacker
+https://www.codeandweb.com/texturepacker
+
+===================================================================
+$TexturePacker:SmartUpdate:940e7b7bf9a9bacd0fc29888f034dec0:fad444ea054f11f832b3d9d931066b68:59d5bf4ee1827edbf3ab97b3b7b80413$
+-->
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+
+                        <key>Group 2</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>1</real>
+				<key>w</key><real>360</real>
+				<key>h</key><real>360</real>
+				
+				
+			</dict>
+                        <key>Group 11 Copy 2</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>363</real>
+				<key>w</key><real>280</real>
+				<key>h</key><real>246</real>
+				
+				
+			</dict>
+                        <key>Oval 4</key>
+			<dict>
+				<key>x</key><real>283</real>
+				<key>y</key><real>387</real>
+				<key>w</key><real>54</real>
+				<key>h</key><real>54</real>
+				
+				
+			</dict>
+                        <key>Path 2</key>
+			<dict>
+				<key>x</key><real>283</real>
+				<key>y</key><real>363</real>
+				<key>w</key><real>70</real>
+				<key>h</key><real>22</real>
+				
+				
+			</dict>
+                        <key>Path 6</key>
+			<dict>
+				<key>x</key><real>283</real>
+				<key>y</key><real>443</real>
+				<key>w</key><real>52</real>
+				<key>h</key><real>76</real>
+				
+				
+			</dict>
+		</dict>
+		<key>meta</key>
+		<dict>
+			<key>image</key>
+			<string>pic.png</string>
+			<key>width</key>
+			<integer>362</integer>
+			<key>height</key>
+			<integer>610</integer>
+		</dict>
+	</dict>
+</plist>

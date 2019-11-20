@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+===================================================================
+
+Sprite sheet file created for UIKit using TexturePacker
+https://www.codeandweb.com/texturepacker
+
+===================================================================
+$TexturePacker:SmartUpdate:add21956b168c3ce666995d761634912:082d833cb33ebd8db2a94324faabf991:1b5e44a731be29645e44c731e9e0c6d8$
+-->
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+
+                        <key>copy</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>1</real>
+				<key>w</key><real>24</real>
+				<key>h</key><real>42</real>
+				
+				
+			</dict>
+		</dict>
+		<key>meta</key>
+		<dict>
+			<key>image</key>
+			<string>voice.png</string>
+			<key>width</key>
+			<integer>26</integer>
+			<key>height</key>
+			<integer>44</integer>
+		</dict>
+	</dict>
+</plist>

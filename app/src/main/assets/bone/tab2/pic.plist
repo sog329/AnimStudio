@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+===================================================================
+
+Sprite sheet file created for UIKit using TexturePacker
+http://www.codeandweb.com/texturepacker
+
+===================================================================
+$TexturePacker:SmartUpdate:e68ac12ed47546b2452196a9a11c8852:56c59ee3558da6839cd62b7c4c47d3fc:7c465dfdb1c8da4f3e25d1027b4adf05$
+-->
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+
+                        <key>eye</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>172</real>
+				<key>w</key><real>30</real>
+				<key>h</key><real>9</real>
+				
+				
+			</dict>
+                        <key>face_1</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>1</real>
+				<key>w</key><real>69</real>
+				<key>h</key><real>69</real>
+				
+				
+			</dict>
+                        <key>face_2</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>72</real>
+				<key>w</key><real>69</real>
+				<key>h</key><real>69</real>
+				
+				
+			</dict>
+                        <key>rect</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>143</real>
+				<key>w</key><real>27</real>
+				<key>h</key><real>27</real>
+				
+				
+			</dict>
+                        <key>rect_1</key>
+			<dict>
+				<key>x</key><real>30</real>
+				<key>y</key><real>143</real>
+				<key>w</key><real>27</real>
+				<key>h</key><real>27</real>
+				
+				
+			</dict>
+                        <key>smile</key>
+			<dict>
+				<key>x</key><real>33</real>
+				<key>y</key><real>172</real>
+				<key>w</key><real>24</real>
+				<key>h</key><real>12</real>
+				
+				
+			</dict>
+		</dict>
+		<key>meta</key>
+		<dict>
+			<key>image</key>
+			<string>tab2.png</string>
+			<key>width</key>
+			<integer>71</integer>
+			<key>height</key>
+			<integer>185</integer>
+		</dict>
+	</dict>
+</plist>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+===================================================================
+
+Sprite sheet file created for UIKit using TexturePacker
+http://www.codeandweb.com/texturepacker
+
+===================================================================
+$TexturePacker:SmartUpdate:ada5a4bab989b0d88bcc4544b40c86ad:ac47912017f53aa4020de7079a2bd990:daea7dca7241a51d73d3a385fb4b17a9$
+-->
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+
+                        <key>bg</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>1</real>
+				<key>w</key><real>240</real>
+				<key>h</key><real>240</real>
+				
+				
+			</dict>
+                        <key>ear1</key>
+			<dict>
+				<key>x</key><real>87</real>
+				<key>y</key><real>429</real>
+				<key>w</key><real>63</real>
+				<key>h</key><real>54</real>
+				
+				
+			</dict>
+                        <key>ear2</key>
+			<dict>
+				<key>x</key><real>172</real>
+				<key>y</key><real>407</real>
+				<key>w</key><real>63</real>
+				<key>h</key><real>54</real>
+				
+				
+			</dict>
+                        <key>eye1</key>
+			<dict>
+				<key>x</key><real>196</real>
+				<key>y</key><real>463</real>
+				<key>w</key><real>41</real>
+				<key>h</key><real>41</real>
+				<key>oX</key><real>1</real>
+				<key>oY</key><real>1</real>
+				<key>oW</key><real>42</real>
+				<key>oH</key><real>42</real>
+				
+			</dict>
+                        <key>eye2</key>
+			<dict>
+				<key>x</key><real>152</real>
+				<key>y</key><real>463</real>
+				<key>w</key><real>42</real>
+				<key>h</key><real>41</real>
+				<key>oX</key><real>0</real>
+				<key>oY</key><real>1</real>
+				<key>oW</key><real>42</real>
+				<key>oH</key><real>42</real>
+				
+			</dict>
+                        <key>head</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>243</real>
+				<key>w</key><real>146</real>
+				<key>h</key><real>129</real>
+				<key>oX</key><real>0</real>
+				<key>oY</key><real>0</real>
+				<key>oW</key><real>147</real>
+				<key>oH</key><real>129</real>
+				
+			</dict>
+                        <key>heart</key>
+			<dict>
+				<key>x</key><real>149</real>
+				<key>y</key><real>243</real>
+				<key>w</key><real>98</real>
+				<key>h</key><real>92</real>
+				<key>oX</key><real>2</real>
+				<key>oY</key><real>1</real>
+				<key>oW</key><real>102</real>
+				<key>oH</key><real>93</real>
+				
+			</dict>
+                        <key>nose</key>
+			<dict>
+				<key>x</key><real>147</real>
+				<key>y</key><real>407</real>
+				<key>w</key><real>23</real>
+				<key>h</key><real>18</real>
+				<key>oX</key><real>0</real>
+				<key>oY</key><real>0</real>
+				<key>oW</key><real>24</real>
+				<key>oH</key><real>18</real>
+				
+			</dict>
+                        <key>Oval Copy 6</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>374</real>
+				<key>w</key><real>144</real>
+				<key>h</key><real>53</real>
+				<key>oX</key><real>0</real>
+				<key>oY</key><real>1</real>
+				<key>oW</key><real>144</real>
+				<key>oH</key><real>54</real>
+				
+			</dict>
+                        <key>Oval Copy 7</key>
+			<dict>
+				<key>x</key><real>149</real>
+				<key>y</key><real>337</real>
+				<key>w</key><real>92</real>
+				<key>h</key><real>68</real>
+				<key>oX</key><real>0</real>
+				<key>oY</key><real>0</real>
+				<key>oW</key><real>93</real>
+				<key>oH</key><real>69</real>
+				
+			</dict>
+                        <key>Oval Copy 8</key>
+			<dict>
+				<key>x</key><real>1</real>
+				<key>y</key><real>429</real>
+				<key>w</key><real>84</real>
+				<key>h</key><real>68</real>
+				<key>oX</key><real>0</real>
+				<key>oY</key><real>0</real>
+				<key>oW</key><real>84</real>
+				<key>oH</key><real>69</real>
+				
+			</dict>
+		</dict>
+		<key>meta</key>
+		<dict>
+			<key>image</key>
+			<string>like.png</string>
+			<key>width</key>
+			<integer>248</integer>
+			<key>height</key>
+			<integer>505</integer>
+		</dict>
+	</dict>
+</plist>

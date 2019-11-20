@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sunshine.studio.base.ItemContainer
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10px"
+    android:background="@drawable/bg_item2">
+
+    <com.sunshine.engine.bone.StageView
+        android:id="@+id/anim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.sunshine.studio.base.StudioTv
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/btn_bg"
+        android:gravity="center"
+        android:textColor="@color/tv_color"/>
+</com.sunshine.studio.base.ItemContainer>

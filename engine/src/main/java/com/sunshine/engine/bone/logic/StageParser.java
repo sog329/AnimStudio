@@ -63,6 +63,10 @@ public class StageParser extends XmlParser {
         case LAYOUT_TYPE:
           stage.layoutType = ary[0];
           break;
+        case NAME:
+          bone = stage.getLastActor().getLastBone();
+          bone.name = ary[0];
+          break;
         case SRC_LTWH:
           bone = stage.getLastActor().getLastBone();
           int left = Integer.parseInt(ary[0]);

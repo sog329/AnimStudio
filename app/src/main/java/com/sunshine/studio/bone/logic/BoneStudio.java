@@ -94,6 +94,7 @@ public class BoneStudio extends Studio<Stage> {
   @Override
   public void onGetPicRect(BmpRect bmpRect, boolean isExternal) {
     Bone bone = new Bone();
+    bone.name = bmpRect.name;
     bone.lstRect = bmpRect.lstRect;
     bone.extendY = bmpRect.extendY;
     bone.checkAnim(entity);

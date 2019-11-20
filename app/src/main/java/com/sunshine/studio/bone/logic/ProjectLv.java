@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.sunshine.studio.R;
+import com.sunshine.studio.base.Packer;
 import com.sunshine.studio.base.StudioTool;
 import com.sunshine.studio.base.XmlWriter;
 
@@ -53,6 +54,13 @@ public class ProjectLv extends ListView {
       FilenameFilter filterPlist = (file, name) -> "pic.plist".equals(name);
       for (File file : ary) {
         if (file.isDirectory()) {
+          if (file.listFiles(filterPic).length != 1 || file.listFiles(filterPlist).length != 1) {
+            List<Packer.Cell> lst = Packer.getLstBmpRc(file.getPath());
+            if (lst.size() > 0) {
+              lst = Packer.packer(lst);
+              Packer.saveFiles(lst, file.getPath());
+            }
+          }
           if (file.listFiles(filterPic).length == 1 && file.listFiles(filterPlist).length == 1) {
             String name = file.getName();
             if (file.listFiles(filterConfig).length == 0) {

@@ -125,8 +125,8 @@ public abstract class Studio<T extends Entity> {
     entity.mapBmp.put("external", bmp);
   }
 
-  public String getPlistPath() {
-    return getFilePath(getProjectFolderName(), projectName, "pic.plist");
+  public String getPath(String str) {
+    return getFilePath(getProjectFolderName(), projectName, str);
   }
 
   public void onDestroy() {

@@ -10,6 +10,7 @@ public abstract class XmlParser extends DefaultHandler {
   public static final String WIDTH_HEIGHT = "width_height";
   public static final String LAYOUT_TYPE = "layout_type";
   public static final String DURATION = "duration";
+  public static final String NAME = "name";
   public static final String SRC_LTWH = "src_ltwh";
   public static final String EXTEND_Y = "extend_y";
 

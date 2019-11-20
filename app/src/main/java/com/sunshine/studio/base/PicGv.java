@@ -14,7 +14,6 @@ import android.widget.GridView;
 import com.sunshine.studio.R;
 import com.sunshine.studio.bone.logic.BmpRect;
 import com.sunshine.studio.bone.logic.BoneIv;
-import com.sunshine.studio.bone.logic.PlistParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,8 +43,7 @@ public class PicGv extends GridView {
     }
 
     public void loadData() {
-      lstData.clear();
-      new PlistParser().parse(callback.getPlistPath(), lstData);
+      callback.buildLstBmpRc(lstData);
       BmpRect externalRect = new BmpRect();
       externalRect.lstRect.add(new Rect(0, 0, 1, 1));
       externalRect.name = "external";
@@ -97,7 +95,7 @@ public class PicGv extends GridView {
     public interface Callback {
       void onClick(BmpRect bmpRect, boolean isExternal);
 
-      String getPlistPath();
+      void buildLstBmpRc(List<BmpRect> lst);
 
       Bitmap getBmp(boolean isExternal);
     }

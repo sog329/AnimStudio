@@ -1,9 +1,10 @@
-package com.sunshine.studio.bone.logic;
+package com.sunshine.studio.base;
 
 import android.graphics.Rect;
 
 import com.sunshine.engine.base.Tool;
 import com.sunshine.engine.base.XmlParser;
+import com.sunshine.studio.bone.logic.BmpRect;
 
 import java.io.File;
 import java.io.FileInputStream;

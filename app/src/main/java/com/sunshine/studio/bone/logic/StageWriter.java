@@ -34,6 +34,12 @@ public class StageWriter implements XmlWriter.Callback {
       // bone
       for (Bone bone : actor.lstBone) {
         xml.startTag(null, StageParser.BONE);
+        if (bone.name != null && !bone.name.isEmpty()) {
+          addTag(
+              xml,
+              StageParser.NAME,
+              bone.name);
+        }
         if (bone.externalBmpId == null) {
           for (Rect rc : bone.lstRect) {
             addTag(

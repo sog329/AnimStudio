@@ -13,6 +13,8 @@ import com.sunshine.studio.R;
 import com.sunshine.studio.bone.logic.BmpRect;
 import com.sunshine.studio.bone.logic.ProjectLv;
 
+import java.util.List;
+
 /** Created by songxiaoguang on 2017/12/2. */
 public class DlgFactory {
   public static Dialog project(final Studio studio) {
@@ -66,8 +68,9 @@ public class DlgFactory {
               }
 
               @Override
-              public String getPlistPath() {
-                return studio.getPlistPath();
+              public void buildLstBmpRc(List<BmpRect> lst) {
+                lst.clear();
+                new PlistParser().parse(studio.getPath("pic.plist"), lst);
               }
 
               @Override

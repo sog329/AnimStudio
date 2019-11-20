@@ -6,8 +6,6 @@ import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.DrawFilter;
-import android.graphics.Paint;
-import android.graphics.PaintFlagsDrawFilter;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
@@ -16,8 +14,6 @@ import android.view.View;
 public abstract class ViewHelper<T extends Entity> extends LifeCycle {
 
   public static final Handler handler = new Handler(Looper.getMainLooper());
-  public static final PaintFlagsDrawFilter DRAW_FILTER =
-      new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
 
   protected View view = null;
   protected Area viewArea = new Area();
@@ -90,6 +86,7 @@ public abstract class ViewHelper<T extends Entity> extends LifeCycle {
     if (entity != null) {
       entity.destroy();
       entity = null;
+      invalidate();
     }
     register(false);
     view = null;
@@ -110,7 +107,7 @@ public abstract class ViewHelper<T extends Entity> extends LifeCycle {
   public void draw(Canvas can) {
     if (entity != null && view != null) {
       DrawFilter drawFilter = can.getDrawFilter();
-      can.setDrawFilter(DRAW_FILTER);
+      Render2D.setDrawFilter(can);
       long drawTime = Tool.getTime();
       boolean needRender = entity.draw(can, drawTime);
       if (needRender && isResume) {

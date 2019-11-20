@@ -20,6 +20,7 @@ public class Bone {
   public Integer extendY = null;
   private static Rect RECT_BMP = new Rect();
   private static RectF RECT_TMP = new RectF();
+  public String name = null;
 
   public void draw(Stage stage, Canvas can) {
     Bitmap bmp = stage.bmp;

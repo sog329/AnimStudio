@@ -32,7 +32,7 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener {
     bDemoTv.setOnClickListener(this);
     bDemoTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
     StageView bDemoSv = findViewById(R.id.bone_demo_sv);
-    bDemoSv.play("bone/welcome");
+    bDemoSv.play("bone/sunglasses");
     bDemoSv.isRepeat(true);
     // bone studio
     StudioTv bStudioTv = findViewById(R.id.bone_studio_tv);

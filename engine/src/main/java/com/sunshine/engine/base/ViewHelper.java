@@ -10,6 +10,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 
+import java.io.File;
+
 /** Created by songxiaoguang on 2017/12/1. */
 public abstract class ViewHelper<T extends Entity> extends LifeCycle {
 
@@ -19,7 +21,30 @@ public abstract class ViewHelper<T extends Entity> extends LifeCycle {
   protected Area viewArea = new Area();
   public T entity = null;
 
-  public boolean play(View view, String configPath, String picPath, String soundPath) {
+  public boolean play(View v, String... ary) {
+    switch (ary.length) {
+      case 1:
+        String folderPath = ary[0];
+        if (folderPath == null) {
+          return false;
+        } else {
+          if (!folderPath.endsWith(File.separator)) {
+            folderPath += File.separator;
+          }
+          String configPath = folderPath + "config.xml";
+          String picPath = folderPath + "pic";
+          return play(v, configPath, picPath, null);
+        }
+      case 2:
+        return play(v, ary[0], ary[1], null);
+      case 3:
+        return play(v, ary[0], ary[1], ary[2]);
+      default:
+        return false;
+    }
+  }
+
+  private boolean play(View view, String configPath, String picPath, String soundPath) {
     this.view = view;
     boolean play = false;
     if (entity == null) {
@@ -123,6 +148,7 @@ public abstract class ViewHelper<T extends Entity> extends LifeCycle {
         entity.mapBmp.remove(id);
       } else {
         entity.mapBmp.put(id, bmp);
+        invalidate();
       }
       return true;
     } else {

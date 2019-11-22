@@ -302,7 +302,7 @@ public class Packer {
 					break;
 				}
 			}
-			rcPic.bottom = y;
+			rcPic.bottom = y + 1;
 			// 从左往右记录有颜色的起始点
 			for (x = 0; x < bmp.getWidth(); x++) {
 				for (y = rcPic.top; y < rcPic.bottom; y++) {
@@ -330,7 +330,7 @@ public class Packer {
 					break;
 				}
 			}
-			rcPic.right = x;
+			rcPic.right = x + 1;
 		}
 
 		public Rect getDst() {

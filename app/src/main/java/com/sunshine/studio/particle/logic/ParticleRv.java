@@ -27,21 +27,21 @@ public class ParticleRv extends DemoRv<SceneView> {
 	}
 
 	@Override
-	protected void loadData(List<String> lst) {
-		lst.add("note");
-		lst.add("heart");
-		lst.add("welcome_omi_bg");
-		lst.add("match_bg");
-		lst.add("cry");
-		lst.add("hi");
-		lst.add("no");
-		lst.add("smile");
-		lst.add("what");
-		lst.add("yeah");
-		lst.add("singleDog");
-		lst.add("snow");
-		lst.add("christmas");
-		lst.add("bell");
+	protected void loadData(List<String> data, List<String> bg) {
+		data.add("note");
+		data.add("heart");
+		data.add("welcome_omi_bg");
+		data.add("match_bg");
+		data.add("cry");
+		data.add("hi");
+		data.add("no");
+		data.add("smile");
+		data.add("what");
+		data.add("yeah");
+		data.add("singleDog");
+		data.add("snow");
+		data.add("christmas");
+		data.add("bell");
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package com.sunshine.studio.base;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -37,12 +38,13 @@ public abstract class DemoRv<T extends AnimView> extends RecyclerView {
     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
     linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
     setLayoutManager(linearLayoutManager);
-    List<String> lst = new ArrayList<>();
-    loadData(lst);
-    setAdapter(new Adapter(lst));
+    List<String> data = new ArrayList<>();
+    List<String> bg = new ArrayList<>();
+    loadData(data, bg);
+    setAdapter(new Adapter(data, bg));
   }
 
-  protected abstract void loadData(List<String> lst);
+  protected abstract void loadData(List<String> data, List<String> bg);
 
   protected abstract int layoutId();
 
@@ -50,9 +52,11 @@ public abstract class DemoRv<T extends AnimView> extends RecyclerView {
 
   private class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
     private List<String> lstData = new ArrayList<>();
+    private List<String> lstBg = new ArrayList<>();
 
-    public Adapter(List<String> lst) {
-      lstData.addAll(lst);
+    public Adapter(List<String> data, List<String> bg) {
+      lstData.addAll(data);
+      lstBg.addAll(bg);
     }
 
     @Override
@@ -70,6 +74,11 @@ public abstract class DemoRv<T extends AnimView> extends RecyclerView {
       holder.animView.play(getFolderName() + File.separator + name);
       holder.animView.autoStop(false);
       holder.animView.isRepeat(true);
+      if (lstBg.contains(name)) {
+        holder.animView.setBackgroundColor(Color.WHITE);
+      } else {
+        holder.animView.setBackgroundDrawable(null);
+      }
     }
 
     @Override

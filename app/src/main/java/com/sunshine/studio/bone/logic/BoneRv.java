@@ -27,23 +27,27 @@ public class BoneRv extends DemoRv<StageView> {
 	}
 
 	@Override
-	protected void loadData(List<String> lst) {
-		lst.add("welcome_omi");
-		lst.add("welcomeDemo");
-		lst.add("qin");
-		lst.add("sunglasses");
-		lst.add("gear");
-		lst.add("pass");
-		lst.add("like");
-		lst.add("match");
-		lst.add("me");
-		lst.add("set");
-		lst.add("tab1");
-		lst.add("tab2");
-		lst.add("tab3");
-		lst.add("tab4");
-		lst.add("voice2");
-		lst.add("arrow");
+	protected void loadData(List<String> data, List<String> bg) {
+		data.add("welcome_omi");
+		data.add("card");
+		data.add("welcomeDemo");
+		data.add("qin");
+		data.add("sunglasses");
+		data.add("gear");
+		data.add("pass");
+		data.add("like");
+		data.add("match");
+		data.add("me");
+		data.add("set");
+		data.add("tab1");
+		data.add("tab2");
+		data.add("tab3");
+		data.add("tab4");
+		data.add("voice2");
+		data.add("arrow");
+
+		bg.add("card");
+		bg.add("welcomeDemo");
 	}
 
 	@Override

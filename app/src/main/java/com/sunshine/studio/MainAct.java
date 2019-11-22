@@ -70,6 +70,13 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
     SceneView pDemoSv = findViewById(R.id.particle_demo_sv);
     pDemoSv.play("particle/singleDog");
     pDemoSv.isRepeat(true);
+    // demo
+    StageView demo = findViewById(R.id.demo);
+    demo.play("bone/tab2");
+    demo.setPercent(0);
+    demo.autoStop(false);
+    demo.canJump(true);
+    demo.setOnClickListener(this);
   }
 
   @Override
@@ -103,6 +110,9 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
       case R.id.particle_studio_tv:
         startActivity(new Intent(this, ParticleStudioAct.class));
         break;
+      case R.id.demo:
+        startActivity(new Intent(this, DemoAct.class));
+        break;
       default:
         break;
     }
@@ -111,9 +121,11 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
   @Override
   public boolean onHover(View v, MotionEvent event) {
     int a = event.getAction();
+    StageView demo = findViewById(R.id.demo);
     switch (v.getId()) {
       case R.id.bone_demo_tv:
         if (a == MotionEvent.ACTION_HOVER_ENTER) {
+          demo.setPercent(0, 200);
           findViewById(R.id.bone_demo_sv).bringToFront();
         } else if (a == MotionEvent.ACTION_HOVER_EXIT) {
           v.bringToFront();
@@ -121,6 +133,7 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
         break;
       case R.id.bone_studio_tv:
         if (a == MotionEvent.ACTION_HOVER_ENTER) {
+          demo.setPercent(0.5f, 200);
           findViewById(R.id.bone_studio_sv).bringToFront();
         } else if (a == MotionEvent.ACTION_HOVER_EXIT) {
           v.bringToFront();
@@ -128,6 +141,7 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
         break;
       case R.id.particle_demo_tv:
         if (a == MotionEvent.ACTION_HOVER_ENTER) {
+          demo.setPercent(1f, 200);
           findViewById(R.id.particle_demo_sv).bringToFront();
         } else if (a == MotionEvent.ACTION_HOVER_EXIT) {
           v.bringToFront();
@@ -135,6 +149,7 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
         break;
       case R.id.particle_studio_tv:
         if (a == MotionEvent.ACTION_HOVER_ENTER) {
+          demo.setPercent(0.5f, 200);
           findViewById(R.id.particle_studio_sv).bringToFront();
         } else if (a == MotionEvent.ACTION_HOVER_EXIT) {
           v.bringToFront();
@@ -148,10 +163,12 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
 
   @Override
   public boolean onTouch(View v, MotionEvent event) {
+    StageView demo = findViewById(R.id.demo);
     int a = event.getAction();
     switch (v.getId()) {
       case R.id.bone_demo_tv:
         if (a == MotionEvent.ACTION_DOWN) {
+          demo.setPercent(0, 200);
           findViewById(R.id.bone_demo_sv).bringToFront();
         } else if (a == MotionEvent.ACTION_UP || a == MotionEvent.ACTION_CANCEL) {
           v.bringToFront();
@@ -159,6 +176,7 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
         break;
       case R.id.bone_studio_tv:
         if (a == MotionEvent.ACTION_DOWN) {
+          demo.setPercent(0.5f, 200);
           findViewById(R.id.bone_studio_sv).bringToFront();
         } else if (a == MotionEvent.ACTION_UP || a == MotionEvent.ACTION_CANCEL) {
           v.bringToFront();
@@ -166,6 +184,7 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
         break;
       case R.id.particle_demo_tv:
         if (a == MotionEvent.ACTION_DOWN) {
+          demo.setPercent(1, 200);
           findViewById(R.id.particle_demo_sv).bringToFront();
         } else if (a == MotionEvent.ACTION_UP || a == MotionEvent.ACTION_CANCEL) {
           v.bringToFront();
@@ -173,6 +192,7 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
         break;
       case R.id.particle_studio_tv:
         if (a == MotionEvent.ACTION_DOWN) {
+          demo.setPercent(0.5f, 200);
           findViewById(R.id.particle_studio_sv).bringToFront();
         } else if (a == MotionEvent.ACTION_UP || a == MotionEvent.ACTION_CANCEL) {
           v.bringToFront();

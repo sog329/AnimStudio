@@ -50,7 +50,7 @@ public class ProjectLv extends ListView {
       lstData.clear();
       File[] ary = new File(getFilePath(callback.getFolderName())).listFiles();
       FilenameFilter filterConfig = (file, name) -> "config.xml".equals(name);
-      FilenameFilter filterPic = (file, name) -> "pic".equals(name);
+      FilenameFilter filterPic = (file, name) -> "studio/pic".equals(name);
       FilenameFilter filterPlist = (file, name) -> "pic.plist".equals(name);
       for (File file : ary) {
         if (file.isDirectory()) {

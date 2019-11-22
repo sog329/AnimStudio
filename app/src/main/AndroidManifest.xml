@@ -19,10 +19,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".DemoAct"
+            android:configChanges="orientation|screenSize|keyboardHidden|navigation"
+            android:screenOrientation="landscape"></activity>
+        <activity
             android:name=".bone.BoneStudioAct"
             android:configChanges="orientation|screenSize|keyboardHidden|navigation"
-            android:screenOrientation="landscape">
-        </activity>
+            android:screenOrientation="landscape"></activity>
         <activity
             android:name=".particle.ParticleStudioAct"
             android:configChanges="orientation|screenSize|keyboardHidden|navigation"

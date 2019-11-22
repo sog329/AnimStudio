@@ -71,7 +71,7 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
     pDemoSv.play("particle/singleDog");
     pDemoSv.isRepeat(true);
     // demo
-    StageView demo = findViewById(R.id.demo);
+    StageView demo = findViewById(R.id.test);
     demo.play("bone/tab2");
     demo.setPercent(0);
     demo.autoStop(false);
@@ -110,8 +110,8 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
       case R.id.particle_studio_tv:
         startActivity(new Intent(this, ParticleStudioAct.class));
         break;
-      case R.id.demo:
-        startActivity(new Intent(this, DemoAct.class));
+      case R.id.test:
+        startActivity(new Intent(this, TestAct.class));
         break;
       default:
         break;
@@ -121,7 +121,7 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
   @Override
   public boolean onHover(View v, MotionEvent event) {
     int a = event.getAction();
-    StageView demo = findViewById(R.id.demo);
+    StageView demo = findViewById(R.id.test);
     switch (v.getId()) {
       case R.id.bone_demo_tv:
         if (a == MotionEvent.ACTION_HOVER_ENTER) {
@@ -163,7 +163,7 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
 
   @Override
   public boolean onTouch(View v, MotionEvent event) {
-    StageView demo = findViewById(R.id.demo);
+    StageView demo = findViewById(R.id.test);
     int a = event.getAction();
     switch (v.getId()) {
       case R.id.bone_demo_tv:

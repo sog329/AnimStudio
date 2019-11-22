@@ -64,8 +64,7 @@
         </FrameLayout>
 
         <com.sunshine.engine.bone.StageView
-            android:background="#55FFFFFF"
-            android:id="@+id/demo"
+            android:id="@+id/test"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".3"

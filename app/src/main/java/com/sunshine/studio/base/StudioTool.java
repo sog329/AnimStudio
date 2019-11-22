@@ -43,10 +43,10 @@ public class StudioTool {
     prepareFolder(getFilePath("bone"));
     prepareFolder(getFilePath("particle"));
 
-    prepareResource("bone", act, "welcomeDemo", "config.xml", "studio/pic", "pic.plist");
-    prepareResource("bone", act, "welcome", "studio/pic", "pic.plist");
+    prepareResource("bone", act, "welcomeDemo", "config.xml", "pic", "pic.plist");
+    prepareResource("bone", act, "welcome", "pic", "pic.plist");
 
-    prepareResource("particle", act, "welcomeDemo", "studio/pic", "pic.plist");
+    prepareResource("particle", act, "welcomeDemo", "pic", "pic.plist");
   }
 
   private static String getSdPath() {

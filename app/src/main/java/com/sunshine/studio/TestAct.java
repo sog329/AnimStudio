@@ -11,7 +11,7 @@ import com.sunshine.engine.particle.SceneView;
 /**
  * Created by Jack on 2019-11-23.
  */
-public class DemoAct extends AppCompatActivity {
+public class TestAct extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +23,8 @@ public class DemoAct extends AppCompatActivity {
 					stage.stop();
 					stage.play("bone/dlg_match");
 					stage.autoStop(false);
-					stage.setExternalBmp("left", Tool.getBmpByAssets(this, "studio/pic/she.png"));
-					stage.setExternalBmp("right", Tool.getBmpByAssets(this, "studio/pic/he.png"));
+					stage.setExternalBmp("left", Tool.getBmpByAssets(this, "pic/she.png"));
+					stage.setExternalBmp("right", Tool.getBmpByAssets(this, "pic/he.png"));
 					SceneView scene = findViewById(R.id.scene);
 					scene.postDelayed(() -> {
 						scene.stop();

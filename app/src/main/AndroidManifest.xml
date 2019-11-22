@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DemoAct"
+            android:name=".TestAct"
             android:configChanges="orientation|screenSize|keyboardHidden|navigation"
             android:screenOrientation="landscape"></activity>
         <activity

@@ -60,7 +60,7 @@ public class Packer {
 	public static void saveFiles(List<Cell> lstRc, String folderPath) {
 		// file
 		File file;
-		String picPath = folderPath + File.separator + "studio/pic";
+		String picPath = folderPath + File.separator + "pic";
 		String plistPath = folderPath + File.separator + "pic.plist";
 		// build pic
 		int[] ary = Packer.getWH(lstRc);

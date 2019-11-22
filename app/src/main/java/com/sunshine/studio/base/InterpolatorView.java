@@ -78,6 +78,10 @@ public class InterpolatorView extends StudioTv {
       // x轴
       paint.setColor(Color.DKGRAY);
       can.drawLine(0, h2, w, h2, paint);
+      // y=1
+      int h6 = getHeight() / 6;
+      paint.setColor(Color.DKGRAY);
+      can.drawLine(0, h6, w, h6, paint);
       // 曲线
       paint.setColor(Color.WHITE);
       can.drawPath(path, paint);

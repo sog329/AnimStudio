@@ -31,12 +31,13 @@ public class BoneRv extends DemoRv<StageView> {
 		data.add("welcome_omi");
 		data.add("card");
 		data.add("welcomeDemo");
+		data.add("dlg_match");
 		data.add("qin");
 		data.add("sunglasses");
 		data.add("gear");
+		data.add("match");
 		data.add("pass");
 		data.add("like");
-		data.add("match");
 		data.add("me");
 		data.add("set");
 		data.add("tab1");
@@ -48,6 +49,7 @@ public class BoneRv extends DemoRv<StageView> {
 
 		bg.add("card");
 		bg.add("welcomeDemo");
+		bg.add("dlg_match");
 	}
 
 	@Override

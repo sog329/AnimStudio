@@ -5,14 +5,19 @@ import android.view.animation.BounceInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
-import android.view.animation.OvershootInterpolator;
 
 /** Created by songxiaoguang on 2018/1/5. */
 public enum InterpolatorType {
   linear("linear", s -> new LinearInterpolator()),
   accelerate("accelerate", s -> new AccelerateInterpolator()),
   decelerate("decelerate", s -> new DecelerateInterpolator()),
-  overshoot("overshoot", s -> new OvershootInterpolator()),
+  overshoot(
+      "overshoot",
+      s ->
+          p -> {
+            p -= 1.0f;
+            return p * p * ((s + 1) * p + s) + 1.0f;
+          }),
   bounce("bounce", s -> new BounceInterpolator()),
   spring("spring", s -> p -> 4 * p * (1 - p)),
   shake("shake", s -> p -> (float) Math.pow(1 - p, 2) * (float) Math.sin(2 * Math.PI * s / 2 * p)),

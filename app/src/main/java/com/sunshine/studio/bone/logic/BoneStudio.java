@@ -50,8 +50,8 @@ public class BoneStudio extends Studio<Stage> {
     stageView.setCallback(
         new RenderHelper.Callback() {
           @Override
-          public void onMove(int x, int y) {
-            editor.onMove(x, y);
+          public boolean onMove(int x, int y) {
+            return editor.onMove(x, y);
           }
 
           @Override
@@ -68,6 +68,13 @@ public class BoneStudio extends Studio<Stage> {
           public void onPercent(float percent) {
             sbProgress.setProgress((int) (100 * percent));
             mask.setPercent(percent);
+          }
+
+          @Override
+          public void onClickBone(int index) {
+            AnimLv animLv = act.findViewById(R.id.lv_anim);
+            animLv.selectBone(index);
+            animLv.setSelection(index);
           }
         });
   }

@@ -51,12 +51,14 @@ public class RenderHelper {
   }
 
   public interface Callback {
-    void onMove(int x, int y);
+    boolean onMove(int x, int y);
 
     void draw(Canvas can);
 
     void onLoad();
 
     void onPercent(float percent);
+
+    void onClickBone(int index);
   }
 }

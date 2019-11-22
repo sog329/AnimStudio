@@ -47,6 +47,11 @@ public class AnimLv extends ListView {
     adapter.loadData(studio);
   }
 
+  public void selectBone(int index){
+    adapter.select = index;
+    adapter.notifyDataSetChanged();
+  }
+
   private static class AnimAdapter extends BaseAdapter {
 
     private BoneStudio studio = null;
@@ -180,9 +185,9 @@ public class AnimLv extends ListView {
         // alpha
         if (anim.alpha.getFrom() != 0 || anim.alpha.getTo() != 0) {
           if (i % 2 == 0) {
-            view.setAlpha(1f);
+            view.setAlpha(.8f);
           } else {
-            view.setAlpha(.75f);
+            view.setAlpha(.6f);
           }
         } else {
           view.setAlpha(.3f);

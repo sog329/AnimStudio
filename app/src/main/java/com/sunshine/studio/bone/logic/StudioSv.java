@@ -6,6 +6,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 import com.sunshine.engine.bone.StageView;
+import com.sunshine.engine.bone.logic.Anim;
+import com.sunshine.engine.bone.logic.Bone;
 import com.sunshine.engine.bone.logic.Stage;
 import com.sunshine.studio.base.RenderHelper;
 import com.sunshine.studio.base.Studio;
@@ -44,7 +46,25 @@ public class StudioSv extends StageView implements Studio.Callback<Stage> {
 
   @Override
   public boolean onTouchEvent(MotionEvent me) {
-    render.callback.onMove((int) me.getX(), (int) me.getY());
+    if (!render.callback.onMove((int) me.getX(), (int) me.getY())) {
+      if (me.getAction() == MotionEvent.ACTION_DOWN) {
+        if (helper.entity != null) {
+          for (int i = helper.entity.getLastActor().lstBone.size() - 1; i > -1; i--) {
+            Bone b = helper.entity.getLastActor().lstBone.get(i);
+            Anim anim = b.getAnim(helper.entity.getPercent());
+            if (anim.run(getEntity().getPercent(), getEntity())) {
+              getEntity().mergeDrawInfo();
+              if (getEntity().drawInfo.rcDst.contains(me.getX(), me.getY())) {
+                render.callback.onClickBone(i);
+                break;
+              }
+            } else {
+              continue;
+            }
+          }
+        }
+      }
+    }
     return true;
   }
 

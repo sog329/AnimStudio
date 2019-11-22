@@ -310,7 +310,7 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
     return findViewById(id).getVisibility() == VISIBLE;
   }
 
-  public void onMove(int x, int y) {
+  public boolean onMove(int x, int y) {
     if (getVisibility() == VISIBLE) {
       x = (int) ((x - studio.entity.drawArea.l) / studio.entity.scale);
       y = (int) ((y - studio.entity.drawArea.t) / studio.entity.scale);
@@ -326,6 +326,9 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
         ((StudioEt) findViewById(R.id.edit_rotate_x)).setText(String.valueOf(ptX));
         ((StudioEt) findViewById(R.id.edit_rotate_y)).setText(String.valueOf(ptY));
       }
+      return true;
+    } else {
+      return false;
     }
   }
 

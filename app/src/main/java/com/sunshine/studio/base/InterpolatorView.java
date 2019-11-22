@@ -46,14 +46,14 @@ public class InterpolatorView extends StudioTv {
   }
 
   private void updatePath() {
+    if (path == null) {
+      path = new Path();
+    } else {
+      path.reset();
+    }
     if (name != null) {
       int h2 = getHeight() / 2;
       int h3 = getHeight() / 3;
-      if (path == null) {
-        path = new Path();
-      } else {
-        path.reset();
-      }
       final int n = 200;
       for (int i = 0; i < n; i++) {
         float percent = 1f * i / (n - 1);
@@ -65,8 +65,8 @@ public class InterpolatorView extends StudioTv {
           path.lineTo(x, y);
         }
       }
-      invalidate();
     }
+    invalidate();
   }
 
   @Override

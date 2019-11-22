@@ -15,8 +15,8 @@ import com.sunshine.engine.bone.logic.Actor;
 import com.sunshine.engine.bone.logic.Anim;
 import com.sunshine.engine.bone.logic.Bone;
 import com.sunshine.studio.R;
-import com.sunshine.studio.base.StudioTv;
 import com.sunshine.studio.base.StudioTool;
+import com.sunshine.studio.base.StudioTv;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +53,8 @@ public class AnimLv extends ListView {
 
     private List<Bone> lstData = new ArrayList<>();
 
+    private int select = -1;
+
     public void loadData(BoneStudio studio) {
       this.studio = studio;
       if (studio.entity != null) {
@@ -63,6 +65,7 @@ public class AnimLv extends ListView {
           lstData.clear();
         }
       }
+      select = -1;
       notifyDataSetChanged();
     }
 
@@ -88,6 +91,12 @@ public class AnimLv extends ListView {
             LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_bone_studio_anim_lv, null);
       }
+      // change bg
+      if (position == select) {
+        convertView.setBackgroundColor(convertView.getResources().getColor(R.color.btn_bg2));
+      } else {
+        convertView.setBackgroundDrawable(null);
+      }
       Bone bone = lstData.get(position);
       // iv
       BoneIv iv = convertView.findViewById(R.id.iv);
@@ -108,6 +117,7 @@ public class AnimLv extends ListView {
             v -> {
               lstData.remove(bone);
               lstData.add(position - 1, bone);
+              select = position - 1;
               notifyDataSetChanged();
             });
       }
@@ -123,6 +133,7 @@ public class AnimLv extends ListView {
             v -> {
               lstData.remove(bone);
               lstData.add(position + 1, bone);
+              select = position + 1;
               notifyDataSetChanged();
             });
       }
@@ -133,15 +144,16 @@ public class AnimLv extends ListView {
           v -> {
             lstData.remove(bone);
             notifyDataSetChanged();
+            select = -1;
           });
       del.setMinimumWidth((int) (StudioTool.getBtnHeight() * 1.2f));
       // duration
       LinearLayout ln = convertView.findViewById(R.id.ln);
-      addView(ln, bone);
+      addView(ln, bone, position);
       return convertView;
     }
 
-    private void addView(LinearLayout ln, Bone bone) {
+    private void addView(LinearLayout ln, Bone bone, int position) {
       while (ln.getChildCount() > bone.lstAnim.size()) {
         ln.removeViewAt(0);
       }
@@ -176,7 +188,11 @@ public class AnimLv extends ListView {
           view.setAlpha(.3f);
         }
         // click
-        view.setOnClickListener(v -> studio.onEditAnim(bone, anim));
+        view.setOnClickListener(v -> {
+          select = position;
+          studio.onEditAnim(bone, anim);
+          notifyDataSetChanged();
+        });
       }
     }
   }

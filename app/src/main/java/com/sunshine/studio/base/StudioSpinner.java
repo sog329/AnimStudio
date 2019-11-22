@@ -108,7 +108,7 @@ public class StudioSpinner extends AppCompatSpinner {
       if (isInterpolator) {
         tv.setInterpolator(name);
         tv.setTextColor(convertView.getResources().getColor(R.color.tv_color2));
-        StudioTv.initSize(tv, .6f);
+        StudioTv.initSize(tv, .7f);
       } else {
         tv.setInterpolator(null);
       }

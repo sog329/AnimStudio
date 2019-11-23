@@ -63,12 +63,32 @@
                 android:text="Bone\nStudio"/>
         </FrameLayout>
 
-        <com.sunshine.engine.bone.StageView
-            android:id="@+id/test"
+        <LinearLayout
+            android:id="@+id/test_btn"
+            android:layout_marginLeft="20px"
             android:layout_width="match_parent"
+            android:layout_marginRight="20px"
+            android:layout_weight=".25"
+            android:gravity="center"
             android:layout_height="0dp"
-            android:layout_weight=".25" />
+            android:orientation="horizontal">
 
+            <com.sunshine.studio.base.StudioBoneBtn
+                android:id="@+id/test"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="-20px"
+                android:layout_marginBottom="-20px" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_marginLeft="-20px"
+                android:id="@+id/test_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Test"
+                android:textStyle="bold" />
+        </LinearLayout>
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"

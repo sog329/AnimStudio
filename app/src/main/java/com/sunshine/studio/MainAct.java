@@ -76,7 +76,9 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
     demo.setPercent(0);
     demo.autoStop(false);
     demo.canJump(true);
-    demo.setOnClickListener(this);
+    StudioTv testTv = findViewById(R.id.test_tv);
+    testTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize / 2);
+    findViewById(R.id.test_btn).setOnClickListener(this);
   }
 
   @Override
@@ -110,7 +112,7 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
       case R.id.particle_studio_tv:
         startActivity(new Intent(this, ParticleStudioAct.class));
         break;
-      case R.id.test:
+      case R.id.test_btn:
         startActivity(new Intent(this, TestAct.class));
         break;
       default:

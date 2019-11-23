@@ -8,6 +8,8 @@ import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.sunshine.engine.base.Tool;
 
@@ -171,5 +173,18 @@ public class StudioTool {
   public static float format(float f) {
     BigDecimal b = new BigDecimal(f);
     return b.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
+  }
+
+  public static void square(View v, int w, int h, int size) {
+    if (w != size || w != h) {
+      v.post(
+          () -> {
+            ViewGroup.LayoutParams lp = v.getLayoutParams();
+            lp.width = size;
+            lp.height = size;
+            v.setLayoutParams(lp);
+            v.setPadding(size / 5, size / 5, size / 5, size / 5);
+          });
+    }
   }
 }

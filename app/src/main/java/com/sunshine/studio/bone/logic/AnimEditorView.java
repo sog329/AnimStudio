@@ -84,6 +84,56 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
     onClick(findViewById(R.id.tv_base));
 
     // base
+    View left = findViewById(R.id.edit_base_left);
+    if (anim.duration.getFrom() <= .01f) {
+      left.setVisibility(INVISIBLE);
+      left.setOnClickListener(null);
+    } else {
+      left.setVisibility(VISIBLE);
+      left.setOnClickListener(
+          v -> {
+            int index = bone.lstAnim.indexOf(anim);
+            Anim last = bone.lstAnim.get(index - 1);
+            float nowFrom = StudioTool.format(anim.duration.getFrom() - .01f);
+            if (last.duration.getFrom() < nowFrom) {
+              last.duration.setTo(nowFrom);
+              anim.duration.setFrom(nowFrom);
+              ((StudioEt<Float>) findViewById(R.id.edit_base_from)).setText(String.valueOf(nowFrom));
+              if (last.duration.getFrom() >= StudioTool.format(nowFrom - .01f)) {
+                v.setVisibility(INVISIBLE);
+                v.setOnClickListener(null);
+              }
+            } else {
+              v.setVisibility(INVISIBLE);
+              v.setOnClickListener(null);
+            }
+          });
+    }
+    View right = findViewById(R.id.edit_base_right);
+    if (anim.duration.getTo() >= .99f) {
+      right.setVisibility(INVISIBLE);
+      right.setOnClickListener(null);
+    } else {
+      right.setVisibility(VISIBLE);
+      right.setOnClickListener(
+          v -> {
+            int index = bone.lstAnim.indexOf(anim);
+            Anim next = bone.lstAnim.get(index + 1);
+            float nowTo = StudioTool.format(anim.duration.getTo() + .01f);
+            if (next.duration.getTo() > nowTo) {
+              next.duration.setFrom(nowTo);
+              anim.duration.setTo(nowTo);
+              ((StudioEt<Float>) findViewById(R.id.edit_base_to)).setText(String.valueOf(nowTo));
+              if (next.duration.getTo() <= StudioTool.format(nowTo + .01f)) {
+                v.setVisibility(INVISIBLE);
+                v.setOnClickListener(null);
+              }
+            } else {
+              v.setVisibility(INVISIBLE);
+              v.setOnClickListener(null);
+            }
+          });
+    }
     ((StudioEt<Float>) findViewById(R.id.edit_base_from))
         .mapValue(
             anim.duration.getFrom(),

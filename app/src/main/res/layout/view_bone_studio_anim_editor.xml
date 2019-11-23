@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.sunshine.studio.bone.logic.AnimEditorView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:attrs="http://schemas.android.com/apk/res-auto"
+<com.sunshine.studio.bone.logic.AnimEditorView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/win_editor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -71,8 +69,18 @@
             android:id="@+id/edit_base"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:orientation="horizontal">
+
+            <com.sunshine.studio.base.StudioImageBtn
+                android:id="@+id/edit_base_left"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5px"
+                android:background="@drawable/bg_btn"
+                android:gravity="center"
+                android:rotation="-90"
+                android:src="@drawable/up" />
 
             <com.sunshine.studio.base.StudioEt
                 android:id="@+id/edit_base_from"
@@ -102,6 +110,16 @@
                 android:maxLines="1"
                 android:textColor="@color/tv_color"/>
 
+            <com.sunshine.studio.base.StudioImageBtn
+                android:id="@+id/edit_base_right"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5px"
+                android:background="@drawable/bg_btn"
+                android:gravity="center"
+                android:rotation="90"
+                android:src="@drawable/up" />
 
             <com.sunshine.studio.base.StudioImageBtn
                 android:id="@+id/edit_base_add"

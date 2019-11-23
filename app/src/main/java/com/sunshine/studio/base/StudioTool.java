@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -165,5 +166,10 @@ public class StudioTool {
       ActivityCompat.requestPermissions(act, aryRequest, 1);
     }
     return result;
+  }
+
+  public static float format(float f) {
+    BigDecimal b = new BigDecimal(f);
+    return b.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
   }
 }

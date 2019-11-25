@@ -9,6 +9,10 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.sunshine.engine.base.LayoutHelper;
+import com.sunshine.engine.bone.logic.Actor;
+import com.sunshine.engine.bone.logic.Anim;
+import com.sunshine.engine.bone.logic.Bone;
+import com.sunshine.engine.bone.logic.Stage;
 import com.sunshine.studio.R;
 import com.sunshine.studio.bone.logic.BmpRect;
 import com.sunshine.studio.bone.logic.ProjectLv;
@@ -102,6 +106,17 @@ public class DlgFactory {
               .mapValue(
                   studio.entity.scriptSize.width,
                   n -> {
+                    float dif = (n - studio.entity.scriptSize.width) / 2f;
+                    if (studio.entity instanceof Stage) {
+                      Stage s = (Stage) studio.entity;
+                      for (Actor a : s.lstActor) {
+                        for (Bone b : a.lstBone) {
+                          for (Anim anim : b.lstAnim) {
+                            anim.centerX.dif(dif);
+                          }
+                        }
+                      }
+                    }
                     studio.entity.scriptSize.width = n;
                     LayoutHelper.resize(studio.entity);
                   });
@@ -110,6 +125,17 @@ public class DlgFactory {
               .mapValue(
                   studio.entity.scriptSize.height,
                   n -> {
+                    float dif = (n - studio.entity.scriptSize.height) / 2f;
+                    if (studio.entity instanceof Stage) {
+                      Stage s = (Stage) studio.entity;
+                      for (Actor a : s.lstActor) {
+                        for (Bone b : a.lstBone) {
+                          for (Anim anim : b.lstAnim) {
+                            anim.centerY.dif(dif);
+                          }
+                        }
+                      }
+                    }
                     studio.entity.scriptSize.height = n;
                     LayoutHelper.resize(studio.entity);
                   });

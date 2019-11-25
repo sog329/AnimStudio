@@ -23,4 +23,10 @@ public class ProcessFloat extends ProcessObj<Float> {
   public Float get(float percent) {
     return from + delta * getInterpolation(percent);
   }
+
+  @Override
+  public void dif(Float dif) {
+    from += dif;
+    to += dif;
+  }
 }

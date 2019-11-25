@@ -40,6 +40,8 @@ public abstract class ProcessObj<T> {
     return delta;
   }
 
+  public abstract void dif(T dif);
+
   public ProcessObj<T> setFrom(T from) {
     this.from = from;
     set(from, to);

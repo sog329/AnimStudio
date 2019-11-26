@@ -49,7 +49,10 @@ public class StageParser extends XmlParser {
           stage.getLastActor().lstBone.add(new Bone(stage.getLastActor()));
           break;
         case ANIM:
-          if (!inActor) {
+          if (inActor) {
+            Actor actor = stage.getLastActor();
+            actor.lstAnim.add(actor.buildAnim());
+          } else {
             Bone bone = stage.getLastActor().getLastBone();
             bone.lstAnim.add(bone.buildAnim());
           }

@@ -21,7 +21,12 @@ public class BoneStudio extends Studio<Stage> {
   protected void initBtn() {
     super.initBtn();
 		act.findViewById(R.id.add).setOnClickListener(v -> {
-			entity.lstActor.add(new Actor(entity));
+			Actor actor = new Actor(entity);
+			Anim anim = actor.buildAnim();
+			anim.duration.set(0f, 1f);
+			anim.alpha.set(255, 255);
+			actor.lstAnim.add(anim);
+			entity.lstActor.add(actor);
 			updateAnimLv();
 		});
     StudioSv studioSv = act.findViewById(R.id.sv);
@@ -105,10 +110,6 @@ public class BoneStudio extends Studio<Stage> {
 
   @Override
   public void onGetPicRect(BmpRect bmpRect, boolean isExternal) {
-		if (entity.lstActor.size() == 0) {
-			actor = new Actor(entity);
-			entity.lstActor.add(actor);
-		}
 		if (actor != null) {
 			Bone bone = new Bone(actor);
 			bone.name = bmpRect.name;

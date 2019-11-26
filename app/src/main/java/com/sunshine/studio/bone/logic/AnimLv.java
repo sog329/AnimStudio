@@ -120,6 +120,7 @@ public class AnimLv extends ListView {
 //      }
       Object obj = getItem(position);
       if (obj instanceof Actor) {
+        convertView.setBackgroundColor(convertView.getResources().getColor(R.color.btn_bg2));
         Actor actor = (Actor) obj;
         // add
         View add = convertView.findViewById(R.id.add);
@@ -180,6 +181,7 @@ public class AnimLv extends ListView {
         LinearLayout ln = convertView.findViewById(R.id.ln);
         addView(ln, actor, position);
       } else {
+        convertView.setBackgroundDrawable(null);
         Bone bone = (Bone) obj;
         // add
         convertView.findViewById(R.id.add).setVisibility(GONE);

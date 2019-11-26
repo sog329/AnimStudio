@@ -12,10 +12,6 @@ public class Actor extends Anim.Helper {
 
   public Actor(Stage stage) {
     this.stage = stage;
-    Anim anim = buildAnim();
-    anim.duration.set(0f, 1f);
-    anim.alpha.set(255, 255);
-    lstAnim.add(anim);
   }
 
   public Bone getLastBone() {
@@ -61,7 +57,7 @@ public class Actor extends Anim.Helper {
   }
 
   @Override
-  protected Anim buildAnim() {
+  public Anim buildAnim() {
     Anim anim = new Anim();
     float x = stage.scriptSize.width / 2f;
     float y = stage.scriptSize.height / 2f;

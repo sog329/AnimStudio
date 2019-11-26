@@ -89,7 +89,7 @@ public class Bone extends Anim.Helper {
   }
 
   @Override
-  protected Anim buildAnim() {
+  public Anim buildAnim() {
     Anim anim = new Anim();
     anim.halfSize.width = lstRect.get(0).width() / 2f;
     anim.halfSize.height = lstRect.get(0).height() / 2f;

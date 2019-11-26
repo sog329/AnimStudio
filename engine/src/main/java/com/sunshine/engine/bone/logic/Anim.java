@@ -163,6 +163,6 @@ public class Anim {
       return anim;
     }
 
-    protected abstract Anim buildAnim();
+    public abstract Anim buildAnim();
   }
 }

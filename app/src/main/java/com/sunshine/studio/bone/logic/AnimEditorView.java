@@ -11,7 +11,6 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 
 import com.sunshine.engine.bone.logic.Anim;
-import com.sunshine.engine.bone.logic.Bone;
 import com.sunshine.engine.bone.logic.Duration;
 import com.sunshine.studio.R;
 import com.sunshine.studio.base.InterpolatorSpinner;
@@ -77,7 +76,7 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
     setOnClickListener(v -> setVisibility(GONE));
   }
 
-  public void edit(BoneStudio studio, Bone bone, Anim anim) {
+  public void edit(BoneStudio studio, Anim.Helper helper, Anim anim) {
     setVisibility(VISIBLE);
     this.anim = anim;
     this.studio = studio;
@@ -92,8 +91,8 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
       left.setVisibility(VISIBLE);
       left.setOnClickListener(
           v -> {
-            int index = bone.lstAnim.indexOf(anim);
-            Anim last = bone.lstAnim.get(index - 1);
+            int index = helper.lstAnim.indexOf(anim);
+            Anim last = helper.lstAnim.get(index - 1);
             float nowFrom = StudioTool.format(anim.duration.getFrom() - .01f);
             if (last.duration.getFrom() < nowFrom) {
               last.duration.setTo(nowFrom);
@@ -117,8 +116,8 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
       right.setVisibility(VISIBLE);
       right.setOnClickListener(
           v -> {
-            int index = bone.lstAnim.indexOf(anim);
-            Anim next = bone.lstAnim.get(index + 1);
+            int index = helper.lstAnim.indexOf(anim);
+            Anim next = helper.lstAnim.get(index + 1);
             float nowTo = StudioTool.format(anim.duration.getTo() + .01f);
             if (next.duration.getTo() > nowTo) {
               next.duration.setFrom(nowTo);
@@ -139,7 +138,7 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
             anim.duration.getFrom(),
             f -> {
               anim.duration.setFrom(f);
-              bone.checkAnim(studio.entity);
+              helper.checkAnim(studio.entity);
               studio.updateAnimLv();
             })
         .setOnFocusChangeListener(
@@ -151,7 +150,7 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
             anim.duration.getTo(),
             f -> {
               anim.duration.setTo(f);
-              bone.checkAnim(studio.entity);
+              helper.checkAnim(studio.entity);
               studio.updateAnimLv();
             })
         .setOnFocusChangeListener(
@@ -161,27 +160,27 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
     findViewById(R.id.edit_base_add)
         .setOnClickListener(
             v -> {
-              int index = bone.lstAnim.indexOf(anim);
+              int index = helper.lstAnim.indexOf(anim);
               float delta = anim.duration.getDelta();
               anim.duration.setTo(anim.duration.getFrom() + delta / 2);
-              Anim nextAnim = bone.buildAnim(studio.entity, anim);
+              Anim nextAnim = helper.buildAnim(studio.entity, anim);
               nextAnim.duration.setTo(anim.duration.getFrom() + delta);
-              bone.lstAnim.remove(anim);
-              bone.lstAnim.add(index, nextAnim);
-              bone.lstAnim.add(index, anim);
-              bone.checkAnim(studio.entity);
+              helper.lstAnim.remove(anim);
+              helper.lstAnim.add(index, nextAnim);
+              helper.lstAnim.add(index, anim);
+              helper.checkAnim(studio.entity);
               studio.updateAnimLv();
               setVisibility(GONE);
             });
     findViewById(R.id.edit_base_delete)
         .setOnClickListener(
             v -> {
-              int index = bone.lstAnim.indexOf(anim);
+              int index = helper.lstAnim.indexOf(anim);
               if (index > 0) {
-                bone.lstAnim.get(index - 1).duration.setTo(anim.duration.getTo());
+                helper.lstAnim.get(index - 1).duration.setTo(anim.duration.getTo());
               }
-              bone.lstAnim.remove(anim);
-              bone.checkAnim(studio.entity);
+              helper.lstAnim.remove(anim);
+              helper.checkAnim(studio.entity);
               studio.updateAnimLv();
               setVisibility(GONE);
             });
@@ -340,12 +339,15 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
     if (getVisibility() == VISIBLE) {
       boolean drawLine = isShow(R.id.edit_rotate_anchor) || isShow(R.id.edit_rotate_range);
       if (isShow(R.id.edit_move_from) || isShow(R.id.edit_move_to) || drawLine) {
-        anim.run(anim.duration.getPercent(studio.entity.getPercent()), studio.entity);
-        studio.entity.mergeDrawInfo();
-        int color = getResources().getColor(R.color.btn_bg);
-        StudioRender2D.draw(studio.entity, can, color);
-        if (drawLine) {
-          StudioRender2D.draw(can, studio.entity.drawInfo.ptDst, color);
+
+        if (anim.run(anim.duration.getPercent(studio.entity.getPercent()), studio.entity)) {
+          anim.updateDrawInfo(studio.entity);
+          studio.entity.mergeDrawInfo();
+          int color = getResources().getColor(R.color.btn_bg);
+          StudioRender2D.draw(studio.entity, can, color);
+          if (drawLine) {
+            StudioRender2D.draw(can, studio.entity.drawInfo.ptDst, color);
+          }
         }
       }
     }

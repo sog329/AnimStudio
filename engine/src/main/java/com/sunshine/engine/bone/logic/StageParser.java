@@ -22,9 +22,18 @@ public class StageParser extends XmlParser {
   public static final String ALPHA_INTERPOLATOR = "alpha_interpolator";
 
   private Stage stage = null;
+  private boolean inActor = false;
 
   public StageParser(Stage stage) {
     this.stage = stage;
+  }
+
+  private Anim getAnim() {
+    if (inActor) {
+      return stage.getLastActor().getLastAnim();
+    } else {
+      return stage.getLastActor().getLastBone().getLastAnim();
+    }
   }
 
   @Override
@@ -32,17 +41,18 @@ public class StageParser extends XmlParser {
     if (start) {
       switch (tag) {
         case ACTOR:
-          stage.lstActor.add(new Actor());
+          inActor = true;
+          stage.lstActor.add(new Actor(stage));
           break;
         case BONE:
-          stage.getLastActor().lstBone.add(new Bone());
+          inActor = false;
+          stage.getLastActor().lstBone.add(new Bone(stage.getLastActor()));
           break;
         case ANIM:
-          Bone bone = stage.getLastActor().getLastBone();
-          bone.lstAnim.add(new Anim());
-          Anim anim = bone.getLastAnim();
-          anim.halfSize.width = bone.lstRect.get(0).width() / 2f;
-          anim.halfSize.height = bone.lstRect.get(0).height() / 2f;
+          if (!inActor) {
+            Bone bone = stage.getLastActor().getLastBone();
+            bone.lstAnim.add(bone.buildAnim());
+          }
           break;
         default:
           break;
@@ -85,45 +95,46 @@ public class StageParser extends XmlParser {
           bone.externalBmpId = ary[0];
           bone.lstRect.add(new Rect(0, 0, Integer.parseInt(ary[1]), Integer.parseInt(ary[2])));
           break;
+        // Actor & Bone 复用的key
         case RANGE:
-          anim = stage.getLastActor().getLastBone().getLastAnim();
+          anim = getAnim();
           anim.duration.set(Float.parseFloat(ary[0]), Float.parseFloat(ary[1]));
           break;
         case MOVE:
-          anim = stage.getLastActor().getLastBone().getLastAnim();
+          anim = getAnim();
           anim.centerX.set(Float.parseFloat(ary[0]), Float.parseFloat(ary[2]));
           anim.centerY.set(Float.parseFloat(ary[1]), Float.parseFloat(ary[3]));
           break;
         case MOVE_INTERPOLATOR:
-          anim = stage.getLastActor().getLastBone().getLastAnim();
+          anim = getAnim();
           anim.centerX.setInterpolator(ary[0]);
           anim.centerY.setInterpolator(ary[1]);
           break;
         case SCALE:
-          anim = stage.getLastActor().getLastBone().getLastAnim();
+          anim = getAnim();
           anim.scaleX.set(Float.parseFloat(ary[0]), Float.parseFloat(ary[2]));
           anim.scaleY.set(Float.parseFloat(ary[1]), Float.parseFloat(ary[3]));
           break;
         case SCALE_INTERPOLATOR:
-          anim = stage.getLastActor().getLastBone().getLastAnim();
+          anim = getAnim();
           anim.scaleX.setInterpolator(ary[0]);
           anim.scaleY.setInterpolator(ary[1]);
           break;
         case ROTATE:
-          anim = stage.getLastActor().getLastBone().getLastAnim();
+          anim = getAnim();
           anim.rotate.set(Integer.parseInt(ary[0]), Integer.parseInt(ary[1]));
           anim.ptRotate.set(Float.parseFloat(ary[2]), Float.parseFloat(ary[3]));
           break;
         case ROTATE_INTERPOLATOR:
-          stage.getLastActor().getLastBone().getLastAnim().rotate.setInterpolator(ary[0]);
+          getAnim().rotate.setInterpolator(ary[0]);
           break;
         case ALPHA:
-          anim = stage.getLastActor().getLastBone().getLastAnim();
-          anim.alpha.set(Integer.parseInt(ary[0]), Integer.parseInt(ary[1]));
+          getAnim().alpha.set(Integer.parseInt(ary[0]), Integer.parseInt(ary[1]));
           break;
         case ALPHA_INTERPOLATOR:
-          stage.getLastActor().getLastBone().getLastAnim().alpha.setInterpolator(ary[0]);
+          getAnim().alpha.setInterpolator(ary[0]);
           break;
+        // end
         default:
           break;
       }

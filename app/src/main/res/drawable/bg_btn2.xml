@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
+            <solid android:color="@color/btn_bg"/>
+            <corners android:radius="200px"/>
+        </shape>
+    </item>
+    <item android:drawable="@drawable/ripple_btn"/>
+</layer-list>
+

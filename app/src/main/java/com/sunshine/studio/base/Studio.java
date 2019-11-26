@@ -19,7 +19,7 @@ public abstract class Studio<T extends Entity> {
   public Activity act = null;
   protected String projectName = null;
   protected Dialog dlgProject = null;
-  protected Dialog dlgPic = null;
+  public Dialog dlgPic = null;
   protected Dialog dlgEntity = null;
 
   public T entity = null;

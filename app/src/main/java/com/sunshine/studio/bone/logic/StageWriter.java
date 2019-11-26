@@ -11,6 +11,8 @@ import com.sunshine.studio.base.XmlWriter;
 
 import org.xmlpull.v1.XmlSerializer;
 
+import java.util.List;
+
 import static com.sunshine.studio.base.XmlWriter.addTag;
 
 /** Created by songxiaoguang on 2017/12/3. */
@@ -31,6 +33,7 @@ public class StageWriter implements XmlWriter.Callback {
     // actor
     for (Actor actor : stage.lstActor) {
       xml.startTag(null, StageParser.ACTOR);
+      writeAnim(xml, actor.lstAnim);
       // bone
       for (Bone bone : actor.lstBone) {
         xml.startTag(null, StageParser.BONE);
@@ -60,51 +63,55 @@ public class StageWriter implements XmlWriter.Callback {
         if (bone.extendY != null) {
           addTag(xml, StageParser.EXTEND_Y, bone.extendY.toString());
         }
-        // anim
-        for (Anim anim : bone.lstAnim) {
-          xml.startTag(null, StageParser.ANIM);
-          addTag(xml, StageParser.RANGE, anim.duration.toString());
-          addTag(
-              xml,
-              StageParser.MOVE,
-              anim.centerX.getFrom()
-                  + ","
-                  + anim.centerY.getFrom()
-                  + ","
-                  + anim.centerX.getTo()
-                  + ","
-                  + anim.centerY.getTo());
-          addTag(
-              xml,
-              StageParser.MOVE_INTERPOLATOR,
-              anim.centerX.getInterpolatorName() + "," + anim.centerY.getInterpolatorName());
-          addTag(
-              xml,
-              StageParser.SCALE,
-              anim.scaleX.getFrom()
-                  + ","
-                  + anim.scaleY.getFrom()
-                  + ","
-                  + anim.scaleX.getTo()
-                  + ","
-                  + anim.scaleY.getTo());
-          addTag(
-              xml,
-              StageParser.SCALE_INTERPOLATOR,
-              anim.scaleX.getInterpolatorName() + "," + anim.scaleY.getInterpolatorName());
-          addTag(
-              xml,
-              StageParser.ROTATE,
-              anim.rotate.toString() + "," + anim.ptRotate.x + "," + anim.ptRotate.y);
-          addTag(xml, StageParser.ROTATE_INTERPOLATOR, anim.rotate.getInterpolatorName());
-          addTag(xml, StageParser.ALPHA, anim.alpha.toString());
-          addTag(xml, StageParser.ALPHA_INTERPOLATOR, anim.alpha.getInterpolatorName());
-          xml.endTag(null, StageParser.ANIM);
-        }
+        writeAnim(xml, bone.lstAnim);
         xml.endTag(null, StageParser.BONE);
       }
       xml.endTag(null, StageParser.ACTOR);
     }
     stage = null;
+  }
+
+  private void writeAnim(XmlSerializer xml, List<Anim> lstAnim) throws Exception {
+    // anim
+    for (Anim anim : lstAnim) {
+      xml.startTag(null, StageParser.ANIM);
+      addTag(xml, StageParser.RANGE, anim.duration.toString());
+      addTag(
+          xml,
+          StageParser.MOVE,
+          anim.centerX.getFrom()
+              + ","
+              + anim.centerY.getFrom()
+              + ","
+              + anim.centerX.getTo()
+              + ","
+              + anim.centerY.getTo());
+      addTag(
+          xml,
+          StageParser.MOVE_INTERPOLATOR,
+          anim.centerX.getInterpolatorName() + "," + anim.centerY.getInterpolatorName());
+      addTag(
+          xml,
+          StageParser.SCALE,
+          anim.scaleX.getFrom()
+              + ","
+              + anim.scaleY.getFrom()
+              + ","
+              + anim.scaleX.getTo()
+              + ","
+              + anim.scaleY.getTo());
+      addTag(
+          xml,
+          StageParser.SCALE_INTERPOLATOR,
+          anim.scaleX.getInterpolatorName() + "," + anim.scaleY.getInterpolatorName());
+      addTag(
+          xml,
+          StageParser.ROTATE,
+          anim.rotate.toString() + "," + anim.ptRotate.x + "," + anim.ptRotate.y);
+      addTag(xml, StageParser.ROTATE_INTERPOLATOR, anim.rotate.getInterpolatorName());
+      addTag(xml, StageParser.ALPHA, anim.alpha.toString());
+      addTag(xml, StageParser.ALPHA_INTERPOLATOR, anim.alpha.getInterpolatorName());
+      xml.endTag(null, StageParser.ANIM);
+    }
   }
 }

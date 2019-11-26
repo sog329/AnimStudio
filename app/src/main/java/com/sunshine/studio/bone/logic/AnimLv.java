@@ -48,7 +48,7 @@ public class AnimLv extends ListView {
   }
 
   public void selectBone(int index){
-    adapter.select = index;
+//    adapter.select = index;
     adapter.notifyDataSetChanged();
   }
 
@@ -56,32 +56,48 @@ public class AnimLv extends ListView {
 
     private BoneStudio studio = null;
 
-    private List<Bone> lstData = new ArrayList<>();
+    private List<Actor> lstData = new ArrayList<>();
 
-    private int select = -1;
+    private Anim animSelect = null;
 
     public void loadData(BoneStudio studio) {
       this.studio = studio;
       if (studio.entity != null) {
-        Actor actor = studio.entity.getLastActor();
-        if (actor != null) {
-          lstData = actor.lstBone;
+        lstData = studio.entity.lstActor;
         } else {
           lstData.clear();
-        }
       }
-      select = -1;
+//      select = -1;
       notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-      return lstData.size();
+      int total = 0;
+      for (Actor a : lstData) {
+        total += a.lstBone.size() + 1;
+      }
+      return total;
     }
 
     @Override
     public Object getItem(int position) {
-      return lstData.get(position);
+      int p = 0;
+      for (Actor a : lstData) {
+        if (p == position) {
+          return a;
+        } else {
+          p++;
+          for (Bone b : a.lstBone) {
+            if (p == position) {
+              return b;
+            } else {
+              p++;
+            }
+          }
+        }
+      }
+      return null;
     }
 
     @Override
@@ -97,79 +113,149 @@ public class AnimLv extends ListView {
                 .inflate(R.layout.item_bone_studio_anim_lv, null);
       }
       // change bg
-      if (position == select) {
-        convertView.setBackgroundColor(convertView.getResources().getColor(R.color.btn_bg2));
-      } else {
-        convertView.setBackgroundDrawable(null);
-      }
-      Bone bone = lstData.get(position);
-      // iv
-      BoneIv iv = convertView.findViewById(R.id.iv);
-      Rect rect = new Rect(lstData.get(position).lstRect.get(0));
-      iv.setBmp(
-          bone.externalBmpId == null
-              ? studio.entity.bmp
-              : studio.entity.mapBmp.get(bone.externalBmpId),
-          rect);
-      // up
-      View up = convertView.findViewById(R.id.up);
-      if (position == 0) {
-        up.setVisibility(INVISIBLE);
-        up.setOnClickListener(null);
-      } else {
-        up.setVisibility(VISIBLE);
-        up.setOnClickListener(
+//      if (position == select) {
+//        convertView.setBackgroundColor(convertView.getResources().getColor(R.color.btn_bg2));
+//      } else {
+//        convertView.setBackgroundDrawable(null);
+//      }
+      Object obj = getItem(position);
+      if (obj instanceof Actor) {
+        Actor actor = (Actor) obj;
+        // add
+        View add = convertView.findViewById(R.id.add);
+        add.setVisibility(VISIBLE);
+        add.setBackgroundResource(R.drawable.bg_btn2);
+        add.setOnClickListener(v -> {
+          studio.actor = actor;
+          studio.dlgPic.show();
+        });
+        // iv
+        convertView.findViewById(R.id.iv).setVisibility(GONE);
+        // up
+        int index = studio.entity.lstActor.indexOf(actor);
+        View up = convertView.findViewById(R.id.up);
+        up.setBackgroundResource(R.drawable.bg_btn);
+        if (index == 0) {
+          up.setVisibility(INVISIBLE);
+          up.setOnClickListener(null);
+        } else {
+          up.setVisibility(VISIBLE);
+          up.setOnClickListener(
+              v -> {
+                studio.entity.lstActor.remove(actor);
+                studio.entity.lstActor.add(index - 1, actor);
+//                select = position - 1;
+                notifyDataSetChanged();
+              });
+        }
+        up.setMinimumWidth((int) (StudioTool.getBtnHeight() * 1.2f));
+        // down
+        View down = convertView.findViewById(R.id.down);
+        down.setBackgroundResource(R.drawable.bg_btn);
+        if (index == studio.entity.lstActor.size() - 1) {
+          down.setVisibility(INVISIBLE);
+          down.setOnClickListener(null);
+        } else {
+          down.setVisibility(VISIBLE);
+          down.setOnClickListener(
+              v -> {
+                studio.entity.lstActor.remove(actor);
+                studio.entity.lstActor.add(index + 1, actor);
+//                select = position + 1;
+                notifyDataSetChanged();
+              });
+        }
+        down.setMinimumWidth((int) (StudioTool.getBtnHeight() * 1.2f));
+        // del
+        View del = convertView.findViewById(R.id.del);
+        del.setBackgroundResource(R.drawable.bg_btn);
+        del.setOnClickListener(
             v -> {
-              lstData.remove(bone);
-              lstData.add(position - 1, bone);
-              select = position - 1;
+              studio.entity.lstActor.remove(actor);
               notifyDataSetChanged();
+//              select = -1;
             });
-      }
-      up.setMinimumWidth((int) (StudioTool.getBtnHeight() * 1.2f));
-      // down
-      View down = convertView.findViewById(R.id.down);
-      if (position == getCount() - 1) {
-        down.setVisibility(INVISIBLE);
-        down.setOnClickListener(null);
+        del.setMinimumWidth((int) (StudioTool.getBtnHeight() * 1.2f));
+        // duration
+        LinearLayout ln = convertView.findViewById(R.id.ln);
+        addView(ln, actor, position);
       } else {
-        down.setVisibility(VISIBLE);
-        down.setOnClickListener(
+        Bone bone = (Bone) obj;
+        // add
+        convertView.findViewById(R.id.add).setVisibility(GONE);
+        // iv
+        BoneIv iv = convertView.findViewById(R.id.iv);
+        iv.setVisibility(VISIBLE);
+        Rect rect = new Rect(bone.lstRect.get(0));
+        iv.setBmp(
+            bone.externalBmpId == null
+                ? studio.entity.bmp
+                : studio.entity.mapBmp.get(bone.externalBmpId),
+            rect);
+        // up
+        int index = bone.actor.lstBone.indexOf(bone);
+        View up = convertView.findViewById(R.id.up);
+        up.setBackgroundResource(R.drawable.bg_btn2);
+        if (index == 0) {
+          up.setVisibility(INVISIBLE);
+          up.setOnClickListener(null);
+        } else {
+          up.setVisibility(VISIBLE);
+          up.setOnClickListener(
+              v -> {
+                bone.actor.lstBone.remove(bone);
+                bone.actor.lstBone.add(index - 1, bone);
+//                select = position - 1;
+                notifyDataSetChanged();
+              });
+        }
+        up.setMinimumWidth((int) (StudioTool.getBtnHeight() * 1.2f));
+        // down
+        View down = convertView.findViewById(R.id.down);
+        down.setBackgroundResource(R.drawable.bg_btn2);
+        if (index == bone.actor.lstBone.size() - 1) {
+          down.setVisibility(INVISIBLE);
+          down.setOnClickListener(null);
+        } else {
+          down.setVisibility(VISIBLE);
+          down.setOnClickListener(
+              v -> {
+                bone.actor.lstBone.remove(bone);
+                bone.actor.lstBone.add(index + 1, bone);
+//                select = position + 1;
+                notifyDataSetChanged();
+              });
+        }
+        down.setMinimumWidth((int) (StudioTool.getBtnHeight() * 1.2f));
+        // del
+        View del = convertView.findViewById(R.id.del);
+        del.setBackgroundResource(R.drawable.bg_btn2);
+        del.setOnClickListener(
             v -> {
-              lstData.remove(bone);
-              lstData.add(position + 1, bone);
-              select = position + 1;
+              bone.actor.lstBone.remove(bone);
               notifyDataSetChanged();
+//              select = -1;
             });
+        del.setMinimumWidth((int) (StudioTool.getBtnHeight() * 1.2f));
+        // duration
+        LinearLayout ln = convertView.findViewById(R.id.ln);
+        addView(ln, bone, position);
       }
-      down.setMinimumWidth((int) (StudioTool.getBtnHeight() * 1.2f));
-      // del
-      View del = convertView.findViewById(R.id.del);
-      del.setOnClickListener(
-          v -> {
-            lstData.remove(bone);
-            notifyDataSetChanged();
-            select = -1;
-          });
-      del.setMinimumWidth((int) (StudioTool.getBtnHeight() * 1.2f));
-      // duration
-      LinearLayout ln = convertView.findViewById(R.id.ln);
-      addView(ln, bone, position);
       return convertView;
     }
 
-    private void addView(LinearLayout ln, Bone bone, int position) {
-      while (ln.getChildCount() > bone.lstAnim.size()) {
+    private void addView(LinearLayout ln, Anim.Helper helper, int position) {
+      while (ln.getChildCount() > helper.lstAnim.size()) {
         ln.removeViewAt(0);
       }
-      while (ln.getChildCount() < bone.lstAnim.size()) {
+      while (ln.getChildCount() < helper.lstAnim.size()) {
         ln.addView(
             LayoutInflater.from(ln.getContext())
                 .inflate(R.layout.item_bone_studio_anim_duration, null));
       }
-      for (int i = 0; i < bone.lstAnim.size(); i++) {
+      for (int i = 0; i < helper.lstAnim.size(); i++) {
         View view = ln.getChildAt(i);
-        Anim anim = bone.lstAnim.get(i);
+        Anim anim = helper.lstAnim.get(i);
         // from
         StudioTv from = view.findViewById(R.id.from);
         from.setText(String.valueOf(anim.duration.getFrom()));
@@ -194,8 +280,8 @@ public class AnimLv extends ListView {
         }
         // click
         view.setOnClickListener(v -> {
-          select = position;
-          studio.onEditAnim(bone, anim);
+//          select = position;
+          studio.onEditAnim(helper, anim);
           notifyDataSetChanged();
         });
       }

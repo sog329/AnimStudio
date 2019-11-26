@@ -16,12 +16,14 @@ public class ProcessInt extends ProcessObj<Integer> {
     this.from = from;
     this.to = to;
     delta = to - from;
+    now = from;
     return this;
   }
 
   @Override
   public Integer get(float percent) {
-    return from + (int) (delta * getInterpolation(percent));
+    now = from + (int) (delta * getInterpolation(percent));
+    return now;
   }
 
   @Override

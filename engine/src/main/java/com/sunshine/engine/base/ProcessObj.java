@@ -5,6 +5,7 @@ public abstract class ProcessObj<T> {
   protected T from;
   protected T to;
   protected T delta;
+  protected T now;
   private InterpolatorHelper interpolatorHelper = new InterpolatorHelper();
 
   public ProcessObj(T from, T to) {
@@ -30,6 +31,10 @@ public abstract class ProcessObj<T> {
 
   public T getFrom() {
     return from;
+  }
+
+  public T getNow() {
+    return now;
   }
 
   public T getTo() {

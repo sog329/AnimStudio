@@ -5,13 +5,27 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
+    <com.sunshine.studio.base.StudioImageBtn
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10px"
+        android:layout_marginTop="5px"
+        android:layout_marginRight="5px"
+        android:layout_marginBottom="5px"
+        android:background="@drawable/bg_btn"
+        android:gravity="center"
+        android:src="@drawable/add" />
+
     <com.sunshine.studio.bone.logic.BoneIv
         android:id="@+id/iv"
+        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginLeft="10px"
-        android:layout_marginRight="5px"/>
+        android:layout_marginTop="5px"
+        android:layout_marginRight="5px"
+        android:layout_marginBottom="5px" />
 
     <com.sunshine.studio.base.StudioImageBtn
         android:id="@+id/up"

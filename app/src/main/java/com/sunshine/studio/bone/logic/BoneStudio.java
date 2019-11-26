@@ -16,9 +16,14 @@ import com.sunshine.studio.base.XmlWriter;
 
 /** Created by songxiaoguang on 2017/12/2. */
 public class BoneStudio extends Studio<Stage> {
+	protected Actor actor = null;
   @Override
   protected void initBtn() {
     super.initBtn();
+		act.findViewById(R.id.add).setOnClickListener(v -> {
+			entity.lstActor.add(new Actor(entity));
+			updateAnimLv();
+		});
     StudioSv studioSv = act.findViewById(R.id.sv);
     // play
     act.findViewById(R.id.play).setOnClickListener(v -> studioSv.setPercent(0, 1, 0));
@@ -100,21 +105,24 @@ public class BoneStudio extends Studio<Stage> {
 
   @Override
   public void onGetPicRect(BmpRect bmpRect, boolean isExternal) {
-    Bone bone = new Bone();
-    bone.name = bmpRect.name;
-    bone.lstRect = bmpRect.lstRect;
-    bone.extendY = bmpRect.extendY;
-    bone.checkAnim(entity);
-    if (entity.lstActor.size() == 0) {
-      entity.lstActor.add(new Actor());
-    }
-    entity.getLastActor().lstBone.add(bone);
-    if (isExternal) {
-      bone.externalBmpId = "external";
-      bone.getLastAnim().scaleX.set(50f, 50f);
-      bone.getLastAnim().scaleY.set(50f, 50f);
-    }
-    updateAnimLv();
+		if (entity.lstActor.size() == 0) {
+			actor = new Actor(entity);
+			entity.lstActor.add(actor);
+		}
+		if (actor != null) {
+			Bone bone = new Bone(actor);
+			bone.name = bmpRect.name;
+			bone.lstRect = bmpRect.lstRect;
+			bone.extendY = bmpRect.extendY;
+			bone.checkAnim(entity);
+			actor.lstBone.add(bone);
+			if (isExternal) {
+				bone.externalBmpId = "external";
+				bone.getLastAnim().scaleX.set(50f, 50f);
+				bone.getLastAnim().scaleY.set(50f, 50f);
+			}
+			updateAnimLv();
+		}
   }
 
   @Override
@@ -123,8 +131,8 @@ public class BoneStudio extends Studio<Stage> {
     ((StageView) act.findViewById(R.id.sv)).setPercent(0);
   }
 
-  public void onEditAnim(Bone bone, Anim anim) {
+	public void onEditAnim(Anim.Helper helper, Anim anim) {
     AnimEditorView editor = act.findViewById(R.id.win_editor);
-    editor.edit(this, bone, anim);
+		editor.edit(this, helper, anim);
   }
 }

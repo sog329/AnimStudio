@@ -20,14 +20,20 @@ public class Render2D {
     can.setDrawFilter(DRAW_FILTER);
   }
 
-  public static void draw(Canvas can, Bitmap bmp, Rect rcBmp, DrawInfo drawInfo) {
-    int cs = can.save();
-    if (!Tool.equalsZero(drawInfo.rt)) {
-      can.rotate(drawInfo.rt, drawInfo.ptDst.x, drawInfo.ptDst.y);
-    }
+  private static void drawBmp(Canvas can, Bitmap bmp, Rect rcBmp, DrawInfo drawInfo) {
     PAINT.setAlpha(drawInfo.alpha);
     can.drawBitmap(bmp, rcBmp, drawInfo.rcDst, PAINT);
-    can.restoreToCount(cs);
     PAINT.setAlpha(255);
+  }
+
+  public static void draw(Canvas can, Bitmap bmp, Rect rcBmp, DrawInfo drawInfo) {
+    if (!Tool.equalsZero(drawInfo.rt)) {
+      int cs = can.save();
+      can.rotate(drawInfo.rt, drawInfo.ptDst.x, drawInfo.ptDst.y);
+      drawBmp(can, bmp, rcBmp, drawInfo);
+      can.restoreToCount(cs);
+    } else {
+      drawBmp(can, bmp, rcBmp, drawInfo);
+    }
   }
 }

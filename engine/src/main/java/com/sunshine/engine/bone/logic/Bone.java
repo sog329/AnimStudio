@@ -16,6 +16,7 @@ public class Bone extends Anim.Helper {
   public String externalBmpId = null;
   public Anim animJump = null;
   public Integer extendY = null;
+  public RectF rcBone = new RectF();
   private static Rect RECT_BMP = new Rect();
   private static RectF RECT_TMP = new RectF();
   public String name = null;
@@ -26,6 +27,8 @@ public class Bone extends Anim.Helper {
   }
 
   public void draw(Stage stage, Canvas can) {
+    m.reset();
+    rcBone.set(0,0,0,0);
     Bitmap bmp = stage.bmp;
     Rect rect = lstRect.get(0);
     if (externalBmpId != null) {
@@ -45,7 +48,8 @@ public class Bone extends Anim.Helper {
         float percent = anim.duration.getPercent(stage.getPercent());
         if (anim.run(percent, stage)) {
           anim.updateDrawInfo(stage);
-          stage.mergeDrawInfo();
+          rcBone.set(stage.drawInfo.rcSrc);
+          stage.mergeDrawInfo(m);
           if (lstRect.size() > 1) {
             rect = lstRect.get((int) (percent * (lstRect.size() - 1)));
           }

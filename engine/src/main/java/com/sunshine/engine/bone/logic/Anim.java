@@ -1,5 +1,7 @@
 package com.sunshine.engine.bone.logic;
 
+import android.graphics.Matrix;
+
 import com.sunshine.engine.base.Entity;
 import com.sunshine.engine.base.Point;
 import com.sunshine.engine.base.ProcessFloat;
@@ -85,6 +87,7 @@ public class Anim {
   }
 
   public static abstract class Helper {
+    public Matrix m = new Matrix();
     public List<Anim> lstAnim = new ArrayList<>();
 
     public Anim getAnim(float percent) {

@@ -2,6 +2,7 @@ package com.sunshine.studio.bone.logic;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
@@ -50,6 +51,7 @@ public class StudioSv extends StageView implements Studio.Callback<Stage> {
     if (!render.callback.onMove((int) me.getX(), (int) me.getY())) {
       if (me.getAction() == MotionEvent.ACTION_DOWN) {
         if (helper.entity != null) {
+          RectF rc = new RectF();
           for (int i = helper.entity.lstActor.size() - 1; i > -1; i--) {
             Actor a = helper.entity.lstActor.get(i);
             boolean out = false;
@@ -57,17 +59,10 @@ public class StudioSv extends StageView implements Studio.Callback<Stage> {
               Bone b = a.lstBone.get(j);
               Anim anim = b.getAnim(helper.entity.getPercent());
               if (anim.run(getEntity().getPercent(), getEntity())) {
-                getEntity().mergeDrawInfo();
-                if (getEntity().drawInfo.rcDst.contains(me.getX(), me.getY())) {
-                  int index = j;
-                  for (Actor actor : helper.entity.lstActor) {
-                    if (a == actor) {
-                      break;
-                    } else {
-                      index += actor.lstBone.size();
-                    }
-                  }
-                  render.callback.onClickBone(index);
+                a.m.mapRect(rc, b.rcBone);
+                b.m.mapRect(rc);
+                if (rc.contains(me.getX(), me.getY())) {
+                  render.callback.onClickBone(b);
                   out = true;
                   break;
                 }

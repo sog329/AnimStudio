@@ -2,6 +2,7 @@ package com.sunshine.engine.base;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.media.MediaPlayer;
 
 import org.xml.sax.helpers.DefaultHandler;
@@ -131,6 +132,17 @@ public abstract class Entity {
     // rotate
     drawInfo.ptDst.x = drawInfo.ptSrc.x * scale + drawArea.l;
     drawInfo.ptDst.y = drawInfo.ptSrc.y * scale + drawArea.t;
+  }
+
+  public void mergeDrawInfo(Matrix m) {
+    // move
+    m.preTranslate(drawArea.l, drawArea.t);
+    m.preScale(scale,scale);
+    m.mapRect(drawInfo.rcDst, drawInfo.rcSrc);
+    // rotate
+    drawInfo.ptDst.x = drawInfo.ptSrc.x * scale + drawArea.l;
+    drawInfo.ptDst.y = drawInfo.ptSrc.y * scale + drawArea.t;
+    m.preRotate(drawInfo.rt, drawInfo.ptSrc.x, drawInfo.ptSrc.y);
   }
 
   public void isMute(boolean mute) {

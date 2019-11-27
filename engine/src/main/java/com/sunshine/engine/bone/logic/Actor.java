@@ -23,6 +23,7 @@ public class Actor extends Anim.Helper {
   }
 
   public void draw(Stage stage, Canvas can) {
+    m.reset();
     if (lstBone.size() > 0) {
       Anim anim = getAnim(stage.getPercent());
       if (anim != null) {
@@ -31,16 +32,19 @@ public class Actor extends Anim.Helper {
           anim.updateDrawInfo(stage);
           stage.mergeDrawInfo();
           int cs = can.save();
-
-          can.rotate(anim.rotate.getNow() - anim.rotate.getFrom(), stage.drawInfo.ptDst.x, stage.drawInfo.ptDst.y);
-
-          can.scale(anim.scaleX.getNow(), anim.scaleY.getNow(), stage.drawInfo.rcDst.centerX(),
+          m.preRotate(
+              anim.rotate.getNow() - anim.rotate.getFrom(),
+              stage.drawInfo.ptDst.x,
+              stage.drawInfo.ptDst.y);
+          m.preScale(
+              anim.scaleX.getNow(),
+              anim.scaleY.getNow(),
+              stage.drawInfo.rcDst.centerX(),
               stage.drawInfo.rcDst.centerY());
-
-          can.translate(
+          m.preTranslate(
               (anim.centerX.getNow() - anim.centerX.getFrom()) * stage.scale,
               (anim.centerY.getNow() - anim.centerY.getFrom()) * stage.scale);
-
+          can.concat(m);
           drawBone(stage, can);
           can.restoreToCount(cs);
         }

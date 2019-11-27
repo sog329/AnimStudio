@@ -81,10 +81,9 @@ public class BoneStudio extends Studio<Stage> {
           }
 
           @Override
-          public void onClickBone(int index) {
+          public void onClickBone(Bone bone) {
             AnimLv animLv = act.findViewById(R.id.lv_anim);
-            animLv.selectBone(index);
-            animLv.setSelection(index);
+            animLv.selectBone(bone);
           }
         });
   }

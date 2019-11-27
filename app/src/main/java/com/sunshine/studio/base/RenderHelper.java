@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import android.view.View;
 
 import com.sunshine.engine.base.Entity;
+import com.sunshine.engine.bone.logic.Bone;
 import com.sunshine.studio.R;
 
 /** Created by Jack on 2018/4/12. */
@@ -59,6 +60,6 @@ public class RenderHelper {
 
     void onPercent(float percent);
 
-    void onClickBone(int index);
+    void onClickBone(Bone bone);
   }
 }

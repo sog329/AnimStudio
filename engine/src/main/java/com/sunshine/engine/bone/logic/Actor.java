@@ -23,12 +23,13 @@ public class Actor extends Anim.Helper {
   }
 
   public void draw(Stage stage, Canvas can) {
-    m.reset();
+    onDraw();
     if (lstBone.size() > 0) {
       Anim anim = getAnim(stage.getPercent());
       if (anim != null) {
         float percent = anim.duration.getPercent(stage.getPercent());
         if (anim.run(percent, stage)) {
+          showing = true;
           anim.updateDrawInfo(stage);
           stage.mergeDrawInfo();
           int cs = can.save();
@@ -49,6 +50,7 @@ public class Actor extends Anim.Helper {
           can.restoreToCount(cs);
         }
       } else {
+        showing = true;
         drawBone(stage, can);
       }
     }

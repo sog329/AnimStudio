@@ -88,7 +88,14 @@ public class Anim {
 
   public static abstract class Helper {
     public Matrix m = new Matrix();
+    public boolean showing = false;
     public List<Anim> lstAnim = new ArrayList<>();
+
+
+    protected void onDraw() {
+      m.reset();
+      showing = false;
+    }
 
     public Anim getAnim(float percent) {
       Anim anim = null;

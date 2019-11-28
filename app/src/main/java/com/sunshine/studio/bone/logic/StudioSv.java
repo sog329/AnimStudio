@@ -8,7 +8,6 @@ import android.view.MotionEvent;
 
 import com.sunshine.engine.bone.StageView;
 import com.sunshine.engine.bone.logic.Actor;
-import com.sunshine.engine.bone.logic.Anim;
 import com.sunshine.engine.bone.logic.Bone;
 import com.sunshine.engine.bone.logic.Stage;
 import com.sunshine.studio.base.RenderHelper;
@@ -54,24 +53,25 @@ public class StudioSv extends StageView implements Studio.Callback<Stage> {
           RectF rc = new RectF();
           for (int i = helper.entity.lstActor.size() - 1; i > -1; i--) {
             Actor a = helper.entity.lstActor.get(i);
-            boolean out = false;
-            for (int j = a.lstBone.size() - 1; j > -1; j--) {
-              Bone b = a.lstBone.get(j);
-              Anim anim = b.getAnim(helper.entity.getPercent());
-              if (anim.run(getEntity().getPercent(), getEntity())) {
-                a.m.mapRect(rc, b.rcBone);
-                b.m.mapRect(rc);
-                if (rc.contains(me.getX(), me.getY())) {
-                  render.callback.onClickBone(b);
-                  out = true;
-                  break;
+            if (a.showing) {
+              boolean out = false;
+              for (int j = a.lstBone.size() - 1; j > -1; j--) {
+                Bone b = a.lstBone.get(j);
+                if (b.showing) {
+                  a.m.mapRect(rc, b.rcBone);
+                  b.m.mapRect(rc);
+                  if (rc.contains(me.getX(), me.getY())) {
+                    render.callback.onClickBone(b);
+                    out = true;
+                    break;
+                  }
+                } else {
+                  continue;
                 }
-              } else {
-                continue;
               }
-            }
-            if (out) {
-              break;
+              if (out) {
+                break;
+              }
             }
           }
         }

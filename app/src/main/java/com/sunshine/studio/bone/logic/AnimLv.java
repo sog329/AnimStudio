@@ -305,6 +305,8 @@ public class AnimLv extends ListView {
             v -> {
               if(helper instanceof Bone){
                 selectBone = (Bone)helper;
+              } else {
+                selectBone = null;
               }
               studio.onEditAnim(helper, anim);
               notifyDataSetChanged();

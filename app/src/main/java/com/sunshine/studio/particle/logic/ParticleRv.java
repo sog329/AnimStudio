@@ -28,6 +28,7 @@ public class ParticleRv extends DemoRv<SceneView> {
 
 	@Override
 	protected void loadData(List<String> data, List<String> bg) {
+		data.add("fireworks");
 		data.add("send_heart");
 		data.add("note");
 		data.add("heart");

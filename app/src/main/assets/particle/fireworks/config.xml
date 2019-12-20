@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<scene>
+  <width_height>1080,1080</width_height>
+  <layout_type>bottom</layout_type>
+  <duration>7000</duration>
+  <max>6</max>
+  <model>
+    <chance_range>0,.6</chance_range>
+    <active_time>1400,1600</active_time>
+    <src_ltwh>0,0,221,214</src_ltwh>
+    <move_from>120,120,840,840</move_from>
+    <move_to>offset:0,offset:-100,0,0</move_to>
+    <move_interpolator>linear,spring</move_interpolator>
+    <rotate>0,0,20,60,110,107</rotate>
+    <rotate_interpolator>accelerate</rotate_interpolator>
+    <alpha>0,0,255,255</alpha>
+    <alpha_interpolator>spring</alpha_interpolator>
+    <scale>.1,.4,.8,1.6</scale>
+    <scale_interpolator>overshoot_8</scale_interpolator>
+  </model>
+  <model>
+    <chance_range>.6,1</chance_range>
+    <active_time>1400,1600</active_time>
+    <src_ltwh>222,0,164,163</src_ltwh>
+    <move_from>120,120,840,840</move_from>
+    <move_to>offset:0,offset:-100,0,0</move_to>
+    <move_interpolator>linear,spring</move_interpolator>
+    <rotate>0,0,20,60,110,107</rotate>
+    <rotate_interpolator>accelerate</rotate_interpolator>
+    <alpha>0,0,255,255</alpha>
+    <alpha_interpolator>spring</alpha_interpolator>
+    <scale>.1,.4,.8,1.6</scale>
+    <scale_interpolator>overshoot_8</scale_interpolator>
+  </model>
+</scene>

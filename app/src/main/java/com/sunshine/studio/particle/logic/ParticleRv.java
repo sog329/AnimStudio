@@ -45,6 +45,7 @@ public class ParticleRv extends DemoRv<SceneView> {
 		data.add("christmas");
 		data.add("bell");
 		data.add("gift");
+		data.add("star");
 	}
 
 	@Override

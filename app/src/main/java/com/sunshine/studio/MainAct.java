@@ -79,6 +79,8 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
     StudioTv testTv = findViewById(R.id.test_tv);
     testTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize / 2);
     findViewById(R.id.test_btn).setOnClickListener(this);
+
+//    startActivity(new Intent(this, TestAct.class));
   }
 
   @Override

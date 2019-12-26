@@ -47,18 +47,21 @@ public class Area {
       sb.append(":");
     }
     sb.append(l);
+    sb.append(",");
     // top
     if (isOffsetTop) {
       sb.append(SceneParser.OFFSET);
       sb.append(":");
     }
     sb.append(t);
+    sb.append(",");
     // w
     if (w == MATCH_PARENT) {
       sb.append(SceneParser.MATCH_PARENT);
     } else {
       sb.append(w);
     }
+    sb.append(",");
     // h
     sb.append(h);
     return sb.toString();

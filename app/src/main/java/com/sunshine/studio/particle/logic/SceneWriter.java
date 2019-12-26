@@ -46,7 +46,7 @@ public class SceneWriter implements XmlWriter.Callback {
       addTag(
           xml,
           SceneParser.MOVE_INTERPOLATOR,
-          model.interpolatorMove[0] + model.interpolatorMove[1]);
+          model.interpolatorMove[0] + "," + model.interpolatorMove[1]);
       // rotate
       addTag(
           xml,

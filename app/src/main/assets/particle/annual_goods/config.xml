@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<stage>
+    <width_height>720,600</width_height>
+    <layout_type>bottom</layout_type>
+    <duration>6000</duration>
+    <max>7</max>
+    <!--right-->
+    <model>
+        <chance_range>0,.5</chance_range>
+        <active_time>1700,2100</active_time>
+        <src_ltwh>0,0,81,99</src_ltwh>
+        <move_from>240,600,240,50</move_from>
+        <move_to>480,-300,440,300</move_to>
+        <move_interpolator>linear,spring</move_interpolator>
+        <rotate>0,20,130,180,26,26</rotate>
+        <alpha>0,0,255,255</alpha>∂final
+        <alpha_interpolator>spring</alpha_interpolator>
+        <scale>.8,1</scale>
+    </model>
+    <!--left-->
+    <model>
+        <chance_range>0.5,1</chance_range>
+        <active_time>1700,2100</active_time>
+        <src_ltwh>0,0,81,99</src_ltwh>
+        <move_from>240,600,240,50</move_from>
+        <move_to>-200,-300,440,300</move_to>
+        <move_interpolator>linear,spring</move_interpolator>
+        <rotate>-20,0,-180,-130,26,26</rotate>
+        <alpha>0,0,255,255</alpha>
+        <alpha_interpolator>spring</alpha_interpolator>
+        <scale>.8,1</scale>
+    </model>
+</stage>

@@ -11,6 +11,7 @@ import com.sunshine.engine.base.Size;
 import com.sunshine.engine.base.Tool;
 
 public class ParticleModel {
+  public String name = null;
   public Size<Integer> size = new Size(0, 0);
   public Rect rcBmp = new Rect(0, 0, 0, 0);
   public ProcessFloat chanceRange = new ProcessFloat(0f, 1f);

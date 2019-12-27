@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<scene>
+    <duration>6000</duration>
+    <width_height>720,720</width_height>
+    <layout_type>center</layout_type>
+    <max>6</max>
+    <model>
+        <chance_range>0,.4</chance_range>
+        <active_time>2000,3000</active_time>
+        <src_ltwh>0,0,62,77</src_ltwh>
+        <move_from>20,30,match_parent,600</move_from>
+        <move_to>offset:0,offset:0,0,0</move_to>
+        <rotate>0,0,0,0,13,39</rotate>
+        <alpha>0,0,255,255</alpha>
+        <alpha_interpolator>spring</alpha_interpolator>
+        <scale>.7,.7,.9,1</scale>
+        <scale_interpolator>sin_6</scale_interpolator>
+    </model>
+    <model>
+        <chance_range>.4,.9</chance_range>
+        <active_time>2000,3000</active_time>
+        <src_ltwh>63,0,62,77</src_ltwh>
+        <move_from>20,30,match_parent,600</move_from>
+        <move_to>offset:0,offset:0,0,0</move_to>
+        <rotate>0,0,0,0,13,39</rotate>
+        <alpha>0,0,255,255</alpha>
+        <alpha_interpolator>spring</alpha_interpolator>
+        <scale>.7,.7,.9,1</scale>
+        <scale_interpolator>sin_6</scale_interpolator>
+    </model>
+    <model>
+        <chance_range>.9,1</chance_range>
+        <active_time>2000,3000</active_time>
+        <src_ltwh>126,0,60,75</src_ltwh>
+        <move_from>20,30,match_parent,600</move_from>
+        <move_to>offset:0,offset:0,0,0</move_to>
+        <rotate>0,0,0,0,13,39</rotate>
+        <alpha>0,0,255,255</alpha>
+        <alpha_interpolator>spring</alpha_interpolator>
+        <scale>.7,.7,.9,1</scale>
+        <scale_interpolator>sin_6</scale_interpolator>
+    </model>
+</scene>

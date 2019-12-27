@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<scene>
+    <duration>6000</duration>
+    <width_height>720,720</width_height>
+    <layout_type>center</layout_type>
+    <max>6</max>
+    <model>
+        <chance_range>0.0,1.0</chance_range>
+        <active_time>1500,2000</active_time>
+        <src_ltwh>0,0,58,72</src_ltwh>
+        <move_from>30,30,match_parent,720</move_from>
+        <move_to>offset:0,offset:20,0,0</move_to>
+        <move_interpolator>linear,linear</move_interpolator>
+        <rotate>20,20,50,60,42,69</rotate>
+        <rotate_interpolator>shake_12</rotate_interpolator>
+        <alpha>30,70,255,255</alpha>
+        <alpha_interpolator>spring</alpha_interpolator>
+        <scale>1.0,1.2,1.0,1.0</scale>
+        <scale_interpolator>linear</scale_interpolator>
+    </model>
+</scene>

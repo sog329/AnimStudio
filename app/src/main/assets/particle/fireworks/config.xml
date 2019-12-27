@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8' ?>
-<stage>
+<scene>
     <duration>6000</duration>
     <width_height>1000,1000</width_height>
     <layout_type>center</layout_type>
@@ -144,4 +144,4 @@
         <scale>.1,.4,.8,1.6</scale>
         <scale_interpolator>overshoot_8</scale_interpolator>
     </model>
-</stage>
+</scene>

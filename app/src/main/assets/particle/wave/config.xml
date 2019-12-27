@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<scene>
+    <duration>6000</duration>
+    <width_height>720,720</width_height>
+    <layout_type>center</layout_type>
+    <max>5</max>
+    <model>
+        <chance_range>0,.3</chance_range>
+        <active_time>800,1200</active_time>
+        <src_ltwh>0,0,130,124</src_ltwh>
+        <move_from>360,30,320,660</move_from>
+        <move_to>offset:-400,offset:-30,0,0</move_to>
+        <move_interpolator>accelerate,sin_8</move_interpolator>
+        <rotate>0,0,-10,-10,65,62</rotate>
+        <rotate_interpolator>sin_8</rotate_interpolator>
+        <alpha>0,0,255,255</alpha>
+        <alpha_interpolator>spring</alpha_interpolator>
+        <scale>.7,.8</scale>
+    </model>
+    <model>
+        <chance_range>.3,1</chance_range>
+        <active_time>1200,1700</active_time>
+        <src_ltwh>0,0,130,124</src_ltwh>
+        <move_from>360,30,320,660</move_from>
+        <move_to>offset:-400,offset:-30,0,0</move_to>
+        <move_interpolator>accelerate,sin_8</move_interpolator>
+        <rotate>0,0,-10,-10,65,62</rotate>
+        <rotate_interpolator>sin_8</rotate_interpolator>
+        <alpha>0,0,255,255</alpha>
+        <alpha_interpolator>spring</alpha_interpolator>
+        <scale>.7,.9</scale>
+    </model>
+</scene>

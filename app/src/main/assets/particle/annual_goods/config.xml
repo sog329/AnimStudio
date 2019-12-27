@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8' ?>
-<stage>
+<scene>
     <width_height>720,600</width_height>
     <layout_type>bottom</layout_type>
     <duration>6000</duration>
@@ -30,4 +30,4 @@
         <alpha_interpolator>spring</alpha_interpolator>
         <scale>.8,1</scale>
     </model>
-</stage>
+</scene>

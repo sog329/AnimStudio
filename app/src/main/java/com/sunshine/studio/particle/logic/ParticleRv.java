@@ -28,10 +28,20 @@ public class ParticleRv extends DemoRv<SceneView> {
 
 	@Override
 	protected void loadData(List<String> data, List<String> bg) {
+		data.add("snowing");
+		data.add("tangyuan");
+		data.add("dinner");
+		data.add("mahjong");
+		data.add("dumplings");
+		data.add("home");
+		data.add("mic");
+		data.add("lantern");
+		data.add("wave");
 		data.add("blessing");
 		data.add("annual_goods");
 		data.add("fireworks");
 		data.add("miss");
+		data.add("missu");
 		data.add("send_heart");
 		data.add("note");
 		data.add("heart");

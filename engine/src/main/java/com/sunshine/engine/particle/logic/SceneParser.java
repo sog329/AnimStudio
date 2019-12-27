@@ -6,7 +6,7 @@ import com.sunshine.engine.base.XmlParser;
 public class SceneParser extends XmlParser {
   private Scene scene = null;
 
-  public static final String SCENE = "stage";
+  public static final String SCENE = "scene";
   public static final String MAX = "max";
   public static final String MODEL = "model";
   public static final String CHANCE_RANGE = "chance_range";

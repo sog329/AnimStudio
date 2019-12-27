@@ -1,19 +1,21 @@
-<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<?xml version='1.0' encoding='utf-8' ?>
 <scene>
-    <width_height>720,1280</width_height>
-    <src_scale>1.0,1.0</src_scale>
     <duration>6000</duration>
-    <max>7</max>
+    <width_height>720,1280</width_height>
+    <layout_type>center</layout_type>
+    <max>6</max>
     <model>
         <chance_range>0,1</chance_range>
         <active_time>2000,3000</active_time>
-        <src_ltwh>0,0,60,62</src_ltwh>
+        <src_ltwh>0,0,67,68</src_ltwh>
         <move_from>30,200,660,680</move_from>
         <move_to>offset:0,offset:0,0,0</move_to>
+        <move_interpolator>linear,linear</move_interpolator>
         <rotate>0,0,0,0,0,0</rotate>
+        <rotate_interpolator>linear</rotate_interpolator>
         <alpha>0,0,255,255</alpha>
         <alpha_interpolator>spring</alpha_interpolator>
-        <scale>1,1,1.1,1.2</scale>
+        <scale>.9,1,1,1.1</scale>
         <scale_interpolator>sin_6</scale_interpolator>
     </model>
 </scene>

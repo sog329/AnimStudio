@@ -153,10 +153,12 @@ public class StudioTool {
   }
 
   public static boolean initPermission(@NonNull Activity act) {
-    String[] aryPermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    String[] aryPermission =
+        new String[] {Manifest.permission.INTERNET, Manifest.permission.WRITE_EXTERNAL_STORAGE};
     List<String> lstRequest = new ArrayList<>();
     for (int i = 0; i < aryPermission.length; i++) {
-      if (ContextCompat.checkSelfPermission(act, aryPermission[i]) != PackageManager.PERMISSION_GRANTED) {
+      if (ContextCompat.checkSelfPermission(act, aryPermission[i])
+          != PackageManager.PERMISSION_GRANTED) {
         lstRequest.add(aryPermission[i]);
       }
     }

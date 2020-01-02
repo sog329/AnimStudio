@@ -65,7 +65,7 @@ public class ProjectLv extends ListView {
             String name = file.getName();
             if (file.listFiles(filterConfig).length == 0) {
               XmlWriter.save(
-                  getFilePath(callback.getFolderName(), name, "config.xml"), callback.getWriter());
+                  getFilePath(callback.getFolderName(), name, "config.xml"), callback.getWriter(name));
             }
             lstData.add(name);
           }
@@ -117,7 +117,7 @@ public class ProjectLv extends ListView {
 
       String getFolderName();
 
-      XmlWriter.Callback getWriter();
+      XmlWriter.Callback getWriter(String name);
     }
   }
 }

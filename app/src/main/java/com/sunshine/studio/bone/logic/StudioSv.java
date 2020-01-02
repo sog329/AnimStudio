@@ -15,7 +15,7 @@ import com.sunshine.studio.base.Studio;
 
 /** Created by songxiaoguang on 2017/12/4. */
 public class StudioSv extends StageView implements Studio.Callback<Stage> {
-  private RenderHelper render = new RenderHelper();
+  private StageRender render = new StageRender();
 
   public StudioSv(Context context) {
     super(context);
@@ -29,7 +29,7 @@ public class StudioSv extends StageView implements Studio.Callback<Stage> {
     super(context, attrs, defStyle);
   }
 
-  public void setCallback(RenderHelper.Callback callback) {
+  public void setCallback(StageRender.Callback callback) {
     render.callback = callback;
   }
 

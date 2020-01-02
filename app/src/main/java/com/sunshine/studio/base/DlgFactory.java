@@ -45,8 +45,8 @@ public class DlgFactory {
               }
 
               @Override
-              public XmlWriter.Callback getWriter() {
-                return studio.getWriter(null);
+              public XmlWriter.Callback getWriter(String name) {
+                return studio.getWriter(null, name);
               }
             });
     lv.setAdapter(adapter);
@@ -62,9 +62,9 @@ public class DlgFactory {
         new FrameLayout.LayoutParams(StudioTool.getDlgWidth() * 2, StudioTool.getDlgHeight()));
     builder.setView(view);
     final Dialog dialog = builder.create();
-    PicGv.BoneAdapter adapter =
-        new PicGv.BoneAdapter(
-            new PicGv.BoneAdapter.Callback() {
+    PicGv.PicAdapter adapter =
+        new PicGv.PicAdapter(
+            new PicGv.PicAdapter.Callback() {
               @Override
               public void onClick(BmpRect bmpRect, boolean isExternal) {
                 studio.onGetPicRect(bmpRect, isExternal);

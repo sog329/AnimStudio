@@ -33,12 +33,12 @@ public class PicGv extends GridView {
     super(context, attrs, defStyle);
   }
 
-  public static class BoneAdapter extends BaseAdapter {
+  public static class PicAdapter extends BaseAdapter {
 
     private List<BmpRect> lstData = new ArrayList<>();
     private Callback callback = null;
 
-    public BoneAdapter(Callback callback) {
+    public PicAdapter(Callback callback) {
       this.callback = callback;
     }
 
@@ -70,8 +70,7 @@ public class PicGv extends GridView {
     public View getView(int position, View convertView, ViewGroup parent) {
       if (convertView == null) {
         convertView =
-            LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.gv_item_studio_pic, null);
+            LayoutInflater.from(parent.getContext()).inflate(R.layout.gv_item_studio_pic, null);
       }
       BoneIv iv = convertView.findViewById(R.id.iv);
       iv.autoSize = false;

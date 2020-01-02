@@ -16,19 +16,22 @@ import com.sunshine.studio.base.XmlWriter;
 
 /** Created by songxiaoguang on 2017/12/2. */
 public class BoneStudio extends Studio<Stage> {
-	protected Actor actor = null;
+  protected Actor actor = null;
+
   @Override
   protected void initBtn() {
     super.initBtn();
-		act.findViewById(R.id.add).setOnClickListener(v -> {
-			Actor actor = new Actor(entity);
-			Anim anim = actor.buildAnim();
-			anim.duration.set(0f, 1f);
-			anim.alpha.set(255, 255);
-			actor.lstAnim.add(anim);
-			entity.lstActor.add(actor);
-			updateAnimLv();
-		});
+    act.findViewById(R.id.add)
+        .setOnClickListener(
+            v -> {
+              Actor actor = new Actor(entity);
+              Anim anim = actor.buildAnim();
+              anim.duration.set(0f, 1f);
+              anim.alpha.set(255, 255);
+              actor.lstAnim.add(anim);
+              entity.lstActor.add(actor);
+              updateAnimLv();
+            });
     StudioSv studioSv = act.findViewById(R.id.sv);
     // play
     act.findViewById(R.id.play).setOnClickListener(v -> studioSv.setPercent(0, 1, 0));
@@ -58,7 +61,7 @@ public class BoneStudio extends Studio<Stage> {
     AppCompatSeekBar sbProgress = act.findViewById(R.id.progress);
     PercentMask mask = act.findViewById(R.id.mask);
     stageView.setCallback(
-        new RenderHelper.Callback() {
+        new StageRender.Callback() {
           @Override
           public boolean onMove(int x, int y) {
             return editor.onMove(x, y);
@@ -94,7 +97,7 @@ public class BoneStudio extends Studio<Stage> {
   }
 
   @Override
-  public XmlWriter.Callback getWriter(Stage stage) {
+  public XmlWriter.Callback getWriter(Stage stage, String name) {
     if (stage == null) {
       stage = new Stage(null, null, null, null);
     }
@@ -109,20 +112,20 @@ public class BoneStudio extends Studio<Stage> {
 
   @Override
   public void onGetPicRect(BmpRect bmpRect, boolean isExternal) {
-		if (actor != null) {
-			Bone bone = new Bone(actor);
-			bone.name = bmpRect.name;
-			bone.lstRect = bmpRect.lstRect;
-			bone.extendY = bmpRect.extendY;
-			bone.checkAnim(entity);
-			actor.lstBone.add(bone);
-			if (isExternal) {
-				bone.externalBmpId = "external";
-				bone.getLastAnim().scaleX.set(50f, 50f);
-				bone.getLastAnim().scaleY.set(50f, 50f);
-			}
-			updateAnimLv();
-		}
+    if (actor != null) {
+      Bone bone = new Bone(actor);
+      bone.name = bmpRect.name;
+      bone.lstRect = bmpRect.lstRect;
+      bone.extendY = bmpRect.extendY;
+      bone.checkAnim(entity);
+      actor.lstBone.add(bone);
+      if (isExternal) {
+        bone.externalBmpId = "external";
+        bone.getLastAnim().scaleX.set(50f, 50f);
+        bone.getLastAnim().scaleY.set(50f, 50f);
+      }
+      updateAnimLv();
+    }
   }
 
   @Override
@@ -131,8 +134,8 @@ public class BoneStudio extends Studio<Stage> {
     ((StageView) act.findViewById(R.id.sv)).setPercent(0);
   }
 
-	public void onEditAnim(Anim.Helper helper, Anim anim) {
+  public void onEditAnim(Anim.Helper helper, Anim anim) {
     AnimEditorView editor = act.findViewById(R.id.win_editor);
-		editor.edit(this, helper, anim);
+    editor.edit(this, helper, anim);
   }
 }

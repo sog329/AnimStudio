@@ -13,6 +13,7 @@ import com.sunshine.engine.particle.SceneView;
 import com.sunshine.engine.particle.logic.ParticleModel;
 import com.sunshine.engine.particle.logic.Scene;
 import com.sunshine.studio.R;
+import com.sunshine.studio.base.PlistParser;
 import com.sunshine.studio.base.Studio;
 import com.sunshine.studio.base.StudioCb;
 import com.sunshine.studio.base.StudioEt;
@@ -21,7 +22,11 @@ import com.sunshine.studio.base.XmlWriter;
 import com.sunshine.studio.bone.logic.BmpRect;
 import com.sunshine.studio.bone.logic.BoneIv;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static com.sunshine.studio.base.StudioTool.getFilePath;
 
 /** Created by songxiaoguang on 2017/12/2. */
 public class ParticleStudio extends Studio<Scene> {
@@ -127,7 +132,10 @@ public class ParticleStudio extends Studio<Scene> {
   }
 
   @Override
-  protected void initView() {}
+  protected void initView() {
+    StudioSv sceneView = act.findViewById(R.id.sv);
+    sceneView.setCallback(() -> updateAnimLv());
+  }
 
   @Override
   public String getProjectFolderName() {
@@ -135,15 +143,19 @@ public class ParticleStudio extends Studio<Scene> {
   }
 
   @Override
-  public XmlWriter.Callback getWriter(Scene entity) {
+  public XmlWriter.Callback getWriter(Scene entity, String name) {
     if (entity == null) {
       entity = new Scene(null, null, null, null);
+      List<BmpRect> lst = new ArrayList<>();
+      new PlistParser().parse(getFilePath(getProjectFolderName(), name, "pic.plist"), lst);
+      for (BmpRect bmpRect : lst) {
+        entity.lstParticleModel.add(buildModel(entity, bmpRect));
+      }
     }
     return new SceneWriter(entity);
   }
 
-  @Override
-  public void onGetPicRect(BmpRect bmpRect, boolean isExternal) {
+  private ParticleModel buildModel(Scene entity, BmpRect bmpRect) {
     ParticleModel model = new ParticleModel();
 
     if (entity.lstParticleModel.size() > 0) {
@@ -169,9 +181,12 @@ public class ParticleStudio extends Studio<Scene> {
 
     model.ptRotate.x = model.size.width / 2f;
     model.ptRotate.x = model.size.height / 2f;
+    return model;
+  }
 
-    entity.lstParticleModel.add(model);
-
+  @Override
+  public void onGetPicRect(BmpRect bmpRect, boolean isExternal) {
+    entity.lstParticleModel.add(buildModel(entity, bmpRect));
     updateAnimLv();
   }
 

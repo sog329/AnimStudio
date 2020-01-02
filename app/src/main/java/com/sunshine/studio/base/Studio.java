@@ -44,7 +44,7 @@ public abstract class Studio<T extends Entity> {
             v ->
                 XmlWriter.save(
                     getFilePath(getProjectFolderName(), projectName, "config.xml"),
-                    getWriter(entity)));
+                    getWriter(entity, null)));
     // set
     act.findViewById(R.id.set).setOnClickListener(v -> dlgEntity.show());
     // stage bg color
@@ -96,7 +96,7 @@ public abstract class Studio<T extends Entity> {
 
   public abstract String getProjectFolderName();
 
-  public abstract XmlWriter.Callback getWriter(T entity);
+  public abstract XmlWriter.Callback getWriter(T entity, String name);
 
   public abstract void onGetPicRect(BmpRect bmpRect, boolean isExternal);
 

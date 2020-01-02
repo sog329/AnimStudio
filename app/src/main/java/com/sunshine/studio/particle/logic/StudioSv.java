@@ -12,7 +12,7 @@ import com.sunshine.studio.base.Studio;
 
 /** Created by songxiaoguang on 2017/12/4. */
 public class StudioSv extends SceneView implements Studio.Callback<Scene> {
-  private RenderHelper render = new RenderHelper();
+  private SceneRender render = new SceneRender();
 
   public StudioSv(Context context) {
     super(context);
@@ -26,7 +26,7 @@ public class StudioSv extends SceneView implements Studio.Callback<Scene> {
     super(context, attrs, defStyle);
   }
 
-  public void setCallback(RenderHelper.Callback callback) {
+  public void setCallback(SceneRender.Callback callback) {
     render.callback = callback;
   }
 
@@ -44,7 +44,6 @@ public class StudioSv extends SceneView implements Studio.Callback<Scene> {
 
   @Override
   public boolean onTouchEvent(MotionEvent me) {
-    render.callback.onMove((int) me.getX(), (int) me.getY());
     return true;
   }
 

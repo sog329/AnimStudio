@@ -9,10 +9,9 @@ import com.sunshine.engine.bone.logic.Bone;
 import com.sunshine.studio.R;
 
 /** Created by Jack on 2018/4/12. */
-public class RenderHelper {
+public abstract class RenderHelper {
   private Paint paint = new Paint();
-	public boolean load = false;
-  public Callback callback = null;
+  public boolean load = false;
 
   {
     paint.setStyle(Paint.Style.STROKE);
@@ -23,9 +22,7 @@ public class RenderHelper {
     if (entity != null && entity.bmp != null) {
       if (!load) {
         load = true;
-        if (callback != null) {
-          callback.onLoad();
-        }
+        onLoad();
       }
       paint.setColor(v.getResources().getColor(R.color.btn_bg));
       can.drawRect(
@@ -41,25 +38,14 @@ public class RenderHelper {
           entity.drawArea.l + entity.drawArea.w,
           entity.drawArea.t + entity.drawArea.h,
           paint);
-      if (callback != null) {
-        callback.draw(can);
-        callback.onPercent(entity.getPercent());
-      }
+      onDraw(can, entity);
       v.invalidate();
     } else {
       load = false;
     }
   }
 
-  public interface Callback {
-    boolean onMove(int x, int y);
+  public abstract void onLoad();
 
-    void draw(Canvas can);
-
-    void onLoad();
-
-    void onPercent(float percent);
-
-    void onClickBone(Bone bone);
-  }
+  public abstract void onDraw(Canvas can, Entity entity);
 }

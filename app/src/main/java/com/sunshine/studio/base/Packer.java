@@ -100,7 +100,9 @@ public class Packer {
       return;
     } finally {
       try {
-        bos.close();
+        if (bos != null) {
+          bos.close();
+        }
       } catch (IOException e) {
         Tool.log(e.toString());
       }

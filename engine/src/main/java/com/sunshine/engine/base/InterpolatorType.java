@@ -1,16 +1,12 @@
 package com.sunshine.engine.base;
 
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.BounceInterpolator;
-import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
-import android.view.animation.LinearInterpolator;
-
 /** Created by songxiaoguang on 2018/1/5. */
 public enum InterpolatorType {
-  linear("linear", s -> new LinearInterpolator()),
-  accelerate("accelerate", s -> new AccelerateInterpolator()),
-  decelerate("decelerate", s -> new DecelerateInterpolator()),
+  linear("linear", s -> p -> p),
+  accelerate("accelerate", s -> p -> (float) Math.pow(p, s < 2 ? 2 : s)),
+  decelerate("decelerate", s -> p -> 1.0f - (float) Math.pow((1.0f - p), s < 2 ? 2 : s)),
   overshoot(
       "overshoot",
       s ->

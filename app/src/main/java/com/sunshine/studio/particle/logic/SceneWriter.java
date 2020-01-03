@@ -1,5 +1,6 @@
 package com.sunshine.studio.particle.logic;
 
+import com.sunshine.engine.base.XmlParser;
 import com.sunshine.engine.particle.logic.ParticleModel;
 import com.sunshine.engine.particle.logic.Scene;
 import com.sunshine.engine.particle.logic.SceneParser;
@@ -28,6 +29,9 @@ public class SceneWriter implements XmlWriter.Callback {
     // model
     for (ParticleModel model : scene.lstParticleModel) {
       xml.startTag(null, SceneParser.MODEL);
+      if (model.name != null && !model.name.isEmpty()) {
+        addTag(xml, XmlParser.NAME, model.name);
+      }
       addTag(xml, SceneParser.CHANCE_RANGE, model.chanceRange.toString());
       addTag(xml, SceneParser.ACTIVE_TIME, model.activeTime.toString());
       addTag(

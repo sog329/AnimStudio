@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sunshine.engine.base.Area;
+import com.sunshine.engine.base.InterpolatorType;
 import com.sunshine.engine.particle.SceneView;
 import com.sunshine.engine.particle.logic.ParticleModel;
 import com.sunshine.engine.particle.logic.Scene;
@@ -149,7 +150,9 @@ public class ParticleStudio extends Studio<Scene> {
       List<BmpRect> lst = new ArrayList<>();
       new PlistParser().parse(getFilePath(getProjectFolderName(), name, "pic.plist"), lst);
       for (BmpRect bmpRect : lst) {
-        entity.lstParticleModel.add(buildModel(entity, bmpRect));
+        ParticleModel model = buildModel(entity, bmpRect);
+        model.interpolatorAlpha = InterpolatorType.spring.toString();
+        entity.lstParticleModel.add(model);
       }
     }
     return new SceneWriter(entity);
@@ -157,6 +160,8 @@ public class ParticleStudio extends Studio<Scene> {
 
   private ParticleModel buildModel(Scene entity, BmpRect bmpRect) {
     ParticleModel model = new ParticleModel();
+
+    model.name = bmpRect.name;
 
     if (entity.lstParticleModel.size() > 0) {
       ParticleModel last = entity.lstParticleModel.get(entity.lstParticleModel.size() - 1);
@@ -170,12 +175,12 @@ public class ParticleStudio extends Studio<Scene> {
 
     int h = entity.scriptSize.height / 20;
     model.areaFrom.l = 0;
-    model.areaFrom.t = 0;
+    model.areaFrom.t = -model.size.height - h;
     model.areaFrom.w = entity.scriptSize.width;
     model.areaFrom.h = h;
 
     model.areaTo.l = 0;
-    model.areaTo.t = entity.scriptSize.height - h;
+    model.areaTo.t = entity.scriptSize.height + model.size.height;
     model.areaTo.w = entity.scriptSize.width;
     model.areaTo.h = h;
 

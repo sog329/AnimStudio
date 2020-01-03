@@ -53,6 +53,10 @@ public class SceneParser extends XmlParser {
         case LAYOUT_TYPE:
           scene.layoutType = ary[0];
           break;
+        case NAME:
+          pm = scene.getLastParticleModel();
+          pm.name = ary[0];
+          break;
         case CHANCE_RANGE:
           pm = scene.getLastParticleModel();
           pm.chanceRange.set(Float.parseFloat(ary[0]), Float.parseFloat(ary[1]));

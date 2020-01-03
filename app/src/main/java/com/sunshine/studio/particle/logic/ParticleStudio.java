@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sunshine.engine.base.Area;
-import com.sunshine.engine.base.InterpolatorType;
 import com.sunshine.engine.particle.SceneView;
 import com.sunshine.engine.particle.logic.ParticleModel;
 import com.sunshine.engine.particle.logic.Scene;
@@ -150,9 +149,7 @@ public class ParticleStudio extends Studio<Scene> {
       List<BmpRect> lst = new ArrayList<>();
       new PlistParser().parse(getFilePath(getProjectFolderName(), name, "pic.plist"), lst);
       for (BmpRect bmpRect : lst) {
-        ParticleModel model = buildModel(entity, bmpRect);
-        model.interpolatorAlpha = InterpolatorType.spring.toString();
-        entity.lstParticleModel.add(model);
+        entity.lstParticleModel.add(buildModel(entity, bmpRect));
       }
     }
     return new SceneWriter(entity);
@@ -185,7 +182,6 @@ public class ParticleStudio extends Studio<Scene> {
     model.areaTo.h = h;
 
     model.ptRotate.x = model.size.width / 2f;
-    model.ptRotate.x = model.size.height / 2f;
     return model;
   }
 

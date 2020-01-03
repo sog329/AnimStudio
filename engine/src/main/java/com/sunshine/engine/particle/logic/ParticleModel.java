@@ -24,9 +24,9 @@ public class ParticleModel {
   public ProcessInt rotateBegin = new ProcessInt(0, 100);
   public ProcessInt rotateEnd = new ProcessInt(200, 300);
   public String interpolatorRotate = InterpolatorType.linear.toString();
-  public ProcessInt alphaBegin = new ProcessInt(150, 255);
-  public ProcessInt alphaEnd = new ProcessInt(150, 255);
-  public String interpolatorAlpha = InterpolatorType.linear.toString();
+  public ProcessInt alphaBegin = new ProcessInt(0, 0);
+  public ProcessInt alphaEnd = new ProcessInt(255, 255);
+  public String interpolatorAlpha = InterpolatorType.spring.toString();
   public ProcessFloat scaleBegin = new ProcessFloat(1f, 1.2f);
   public ProcessFloat scaleEnd = new ProcessFloat(1f, 1f);
   //  public ProcessFloat scaleBeginY = new ProcessFloat(1f, 2f);

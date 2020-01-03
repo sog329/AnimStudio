@@ -2,11 +2,11 @@ package com.sunshine.studio.bone.logic;
 
 import android.graphics.Canvas;
 
-import com.sunshine.engine.base.Entity;
 import com.sunshine.engine.bone.logic.Bone;
+import com.sunshine.engine.bone.logic.Stage;
 import com.sunshine.studio.base.RenderHelper;
 
-public class StageRender extends RenderHelper {
+public class StageRender extends RenderHelper<Stage> {
   public Callback callback = null;
 
   @Override
@@ -17,7 +17,7 @@ public class StageRender extends RenderHelper {
   }
 
   @Override
-  public void onDraw(Canvas can, Entity entity) {
+  public void onDraw(Canvas can, Stage entity) {
     if (callback != null) {
       callback.draw(can);
       callback.onPercent(entity.getPercent());

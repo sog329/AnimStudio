@@ -105,7 +105,7 @@ public class ProjectLv extends ListView {
       View del = convertView.findViewById(R.id.del);
       del.setOnClickListener(
           v -> {
-            StudioTool.deleteFile(new File(StudioTool.getFilePath("bone", name)));
+            StudioTool.deleteFile(new File(StudioTool.getFilePath(callback.getFolderName(), name)));
             loadData();
           });
 

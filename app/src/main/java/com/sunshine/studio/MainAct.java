@@ -17,7 +17,7 @@ import com.sunshine.studio.bone.BoneStudioAct;
 import com.sunshine.studio.particle.ParticleDemoAct;
 import com.sunshine.studio.particle.ParticleStudioAct;
 
-public class MainAct extends AppCompatActivity implements View.OnClickListener, View.OnHoverListener, View.OnTouchListener {
+public class MainAct extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener, View.OnHoverListener, View.OnTouchListener {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +30,7 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
     // bone demo
     StudioTv bDemoTv = findViewById(R.id.bone_demo_tv);
     bDemoTv.getBackground().setAlpha(128);
-    bDemoTv.setOnClickListener(this);
-    bDemoTv.setOnHoverListener(this);
-    bDemoTv.setOnTouchListener(this);
+    setListener(bDemoTv);
     bDemoTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
     StageView bDemoSv = findViewById(R.id.bone_demo_sv);
     bDemoSv.play("bone/sunglasses_main");
@@ -40,9 +38,7 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
     // bone studio
     StudioTv bStudioTv = findViewById(R.id.bone_studio_tv);
     bStudioTv.getBackground().setAlpha(128);
-    bStudioTv.setOnClickListener(this);
-    bStudioTv.setOnHoverListener(this);
-    bStudioTv.setOnTouchListener(this);
+    setListener(bStudioTv);
     bStudioTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize / 2);
     StageView bStudioSv = findViewById(R.id.bone_studio_sv);
     bStudioSv.play("bone/gear");
@@ -51,9 +47,7 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
     // particle demo
     StudioTv particleDemoTv = findViewById(R.id.particle_demo_tv);
     particleDemoTv.getBackground().setAlpha(128);
-    particleDemoTv.setOnClickListener(this);
-    particleDemoTv.setOnHoverListener(this);
-    particleDemoTv.setOnTouchListener(this);
+    setListener(particleDemoTv);
     particleDemoTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
     StageView pStudioSv = findViewById(R.id.particle_studio_sv);
     pStudioSv.play("bone/gear");
@@ -63,9 +57,7 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
     // particle studio
     StudioTv particleStudioTv = findViewById(R.id.particle_studio_tv);
     particleStudioTv.getBackground().setAlpha(128);
-    particleStudioTv.setOnClickListener(this);
-    particleStudioTv.setOnHoverListener(this);
-    particleStudioTv.setOnTouchListener(this);
+    setListener(particleStudioTv);
     particleStudioTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize / 2);
     SceneView pDemoSv = findViewById(R.id.particle_demo_sv);
     pDemoSv.play("particle/singleDog");
@@ -206,5 +198,17 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
         break;
     }
     return false;
+  }
+
+  @Override
+  public boolean onLongClick(View v) {
+    return true;
+  }
+
+  private void setListener(View v) {
+    v.setOnClickListener(this);
+    v.setOnLongClickListener(this);
+    v.setOnHoverListener(this);
+    v.setOnTouchListener(this);
   }
 }

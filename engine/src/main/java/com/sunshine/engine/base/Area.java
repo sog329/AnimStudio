@@ -16,15 +16,27 @@ public class Area {
   private Point<Integer> pt = new Point(0, 0);
 
   public Point<Integer> getPoint(Scene scene) {
-    int width = w;
-    int left = l;
-    if (w == MATCH_PARENT) {
-      left = (int) (l - scene.drawArea.l / scene.scale);
-      width = (int) (scene.viewArea.w / scene.scale) - left;
-    }
+    int left = getScriptLeft(scene);
+    int width = getScriptWidth(scene, left);
     pt.x = left + (int) (width * Math.random());
     pt.y = t + (int) (h * Math.random());
     return pt;
+  }
+
+  public int getScriptLeft(Scene scene) {
+    if (w == MATCH_PARENT) {
+      return (int) (l - scene.drawArea.l / scene.scale);
+    } else {
+      return l;
+    }
+  }
+
+  public int getScriptWidth(Scene scene, int left) {
+    if (w == MATCH_PARENT) {
+      return (int) (scene.viewArea.w / scene.scale) - left;
+    } else {
+      return w;
+    }
   }
 
   public Point<Integer> getPoint(Scene sc, int fromX, int fromY) {

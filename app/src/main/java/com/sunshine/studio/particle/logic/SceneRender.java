@@ -20,21 +20,41 @@ public class SceneRender extends RenderHelper<Scene> {
   @Override
   public void onDraw(Canvas can, Scene entity) {
     for (ParticleModel model : entity.lstParticleModel) {
+      // start
+      int fromLeft = model.areaFrom.getScriptLeft(entity);
+      int fromWidth = model.areaFrom.getScriptWidth(entity, fromLeft);
+      int fromTop = model.areaFrom.t;
+      int fromHeight = model.areaFrom.h;
       drawRect(
           can,
           true,
-          entity.drawArea.l + entity.scale * model.areaFrom.l,
-          entity.drawArea.t + entity.scale * model.areaFrom.t,
-          entity.drawArea.l + entity.scale * (model.areaFrom.l + model.areaFrom.w),
-          entity.drawArea.t + entity.scale * (model.areaFrom.t + model.areaFrom.h),
+          entity.drawArea.l + entity.scale * fromLeft,
+          entity.drawArea.t + entity.scale * fromTop,
+          entity.drawArea.l + entity.scale * (fromLeft + fromWidth),
+          entity.drawArea.t + entity.scale * (fromTop + fromHeight),
           Color.parseColor("#66521a4c"));
+      // end
+      if (model.areaTo.isOffsetLeft) {
+        fromLeft += model.areaTo.l;
+        fromWidth += model.areaTo.w;
+      } else {
+        fromLeft = model.areaTo.getScriptLeft(entity);
+        fromWidth = model.areaTo.getScriptWidth(entity, fromLeft);
+      }
+      if (model.areaTo.isOffsetTop) {
+        fromTop += model.areaTo.t;
+        fromHeight += model.areaTo.h;
+      } else {
+        fromTop = model.areaTo.t;
+        fromHeight = model.areaTo.h;
+      }
       drawRect(
           can,
           true,
-          entity.drawArea.l + entity.scale * model.areaTo.l,
-          entity.drawArea.t + entity.scale * model.areaTo.t,
-          entity.drawArea.l + entity.scale * (model.areaTo.l + model.areaTo.w),
-          entity.drawArea.t + entity.scale * (model.areaTo.t + model.areaTo.h),
+          entity.drawArea.l + entity.scale * fromLeft,
+          entity.drawArea.t + entity.scale * fromTop,
+          entity.drawArea.l + entity.scale * (fromLeft + fromWidth),
+          entity.drawArea.t + entity.scale * (fromTop + fromHeight),
           Color.parseColor("#66521a4c"));
     }
   }

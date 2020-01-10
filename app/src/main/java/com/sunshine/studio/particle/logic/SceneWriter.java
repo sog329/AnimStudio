@@ -46,7 +46,11 @@ public class SceneWriter implements XmlWriter.Callback {
               + model.rcBmp.height());
       // move
       addTag(xml, SceneParser.MOVE_FROM, model.areaFrom.toString());
-      addTag(xml, SceneParser.MOVE_TO, model.areaTo.toString());
+      if (model.areaTo.isRotate) {
+        addTag(xml, SceneParser.MOVE_ROTATE_TO, model.areaTo.toString());
+      } else {
+        addTag(xml, SceneParser.MOVE_TO, model.areaTo.toString());
+      }
       addTag(
           xml,
           SceneParser.MOVE_INTERPOLATOR,

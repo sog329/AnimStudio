@@ -22,7 +22,8 @@ public class StudioCb extends android.support.v7.widget.AppCompatCheckBox {
   }
 
   public void mapValue(boolean b, Studio.MapValue<Boolean> mapValue) {
-    setOnCheckedChangeListener((btn, checked) -> mapValue.update(checked));
+    setOnCheckedChangeListener(null);
     setChecked(b);
+    setOnCheckedChangeListener((btn, checked) -> mapValue.update(checked));
   }
 }

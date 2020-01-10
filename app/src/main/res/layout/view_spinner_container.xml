@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.sunshine.studio.base.InterpolatorSpinner
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.sunshine.studio.base.InterpolatorSpinner xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:attrs="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="wrap_content">
 
     <com.sunshine.studio.base.StudioEt
         android:id="@+id/num"
@@ -14,7 +12,7 @@
         android:gravity="center"
         android:maxLines="1"
         android:textColor="@color/tv_color"
-        attrs:scale=".8"/>
+        attrs:scale=".8" />
 
     <com.sunshine.studio.base.StudioSpinner
         android:id="@+id/type"
@@ -22,6 +20,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:gravity="center"/>
-
+        android:gravity="center" />
 </com.sunshine.studio.base.InterpolatorSpinner>

@@ -1,9 +1,9 @@
 package com.sunshine.studio.particle.logic;
 
-import android.app.Dialog;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,13 +34,66 @@ import static com.sunshine.studio.base.StudioTool.getFilePath;
 
 /** Created by songxiaoguang on 2017/12/2. */
 public class ParticleStudio extends Studio<Scene> {
-  private Dialog dlgModel = null;
+  private ParticleModel model = null;
 
-  public void showModelDlg(ParticleModel pm) {
-    dlgModel.show();
+  private void checkRange() {
+    boolean changed = false;
+    for (int i = 0; i < entity.lstParticleModel.size(); i++) {
+      ParticleModel m = entity.lstParticleModel.get(i);
+      // self
+      if (i == 0 && m.chanceRange.getFrom() != 0f) {
+        m.chanceRange.setFrom(0f);
+        changed = true;
+      }
+      if (i == entity.lstActiveParticle.size() - 1 && m.chanceRange.getTo() != 1f) {
+        m.chanceRange.setTo(1f);
+        changed = true;
+      }
+      if (m.chanceRange.getFrom() < 0) {
+        m.chanceRange.setFrom(0f);
+        changed = true;
+      }
+      if (m.chanceRange.getTo() > 1) {
+        m.chanceRange.setTo(1f);
+        changed = true;
+      }
+      // has last
+      if (i > 0) {
+        float lastTo = entity.lstParticleModel.get(i - 1).chanceRange.getTo();
+        if (lastTo == 1f) {
+          List<ParticleModel> lst = new ArrayList<>();
+          for (int j = 0; j < i; j++) {
+            lst.add(entity.lstParticleModel.get(j));
+          }
+          entity.lstParticleModel = lst;
+          changed = true;
+          break;
+        }
+        if (lastTo < m.chanceRange.getFrom()) {
+          m.chanceRange.setFrom(lastTo);
+          changed = true;
+        }
+        if (lastTo < m.chanceRange.getFrom()) {
+          m.chanceRange.setFrom(lastTo);
+          if (m.chanceRange.getTo() < lastTo) {
+            float t = lastTo + .1f;
+            m.chanceRange.setTo(t > 1f ? 1f : t);
+          }
+          changed = true;
+        }
+      }
+    }
+    if (changed) {
+      updateAnimLv();
+    }
+  }
 
+  private void renderEditor(View editor, ParticleModel pm) {
+    model = pm;
+    editor.setVisibility(View.VISIBLE);
     // chance_range_from
     mapFloat(
+        editor,
         R.id.chance_range_from,
         pm.chanceRange.getFrom(),
         v -> {
@@ -49,6 +102,7 @@ public class ParticleStudio extends Studio<Scene> {
         });
     // chance_range_to
     mapFloat(
+        editor,
         R.id.chance_range_to,
         pm.chanceRange.getTo(),
         v -> {
@@ -57,6 +111,7 @@ public class ParticleStudio extends Studio<Scene> {
         });
     // activeTime_from
     mapInt(
+        editor,
         R.id.active_time_from,
         pm.activeTime.getFrom(),
         v -> {
@@ -65,6 +120,7 @@ public class ParticleStudio extends Studio<Scene> {
         });
     // activeTime_to
     mapInt(
+        editor,
         R.id.active_time_to,
         pm.activeTime.getTo(),
         v -> {
@@ -73,6 +129,7 @@ public class ParticleStudio extends Studio<Scene> {
         });
     // move_from_left
     mapInt(
+        editor,
         R.id.move_from_left,
         pm.areaFrom.l,
         v -> {
@@ -81,6 +138,7 @@ public class ParticleStudio extends Studio<Scene> {
         });
     // move_from_top
     mapInt(
+        editor,
         R.id.move_from_top,
         pm.areaFrom.t,
         v -> {
@@ -89,15 +147,17 @@ public class ParticleStudio extends Studio<Scene> {
         });
     // move_from_width_match
     mapCheckBox(
+        editor,
         R.id.move_from_width_match,
         pm.areaFrom.w == Area.MATCH_PARENT,
         b -> {
-          TextView tv = dlgModel.findViewById(R.id.move_from_width);
+          TextView tv = editor.findViewById(R.id.move_from_width);
           tv.setEnabled(!b);
           tv.setText(String.valueOf(b ? Area.MATCH_PARENT : entity.scriptSize.width));
         });
     // move_from_width
     mapInt(
+        editor,
         R.id.move_from_width,
         pm.areaFrom.w,
         v -> {
@@ -106,6 +166,7 @@ public class ParticleStudio extends Studio<Scene> {
         });
     // move_from_height
     mapInt(
+        editor,
         R.id.move_from_height,
         pm.areaFrom.h,
         v -> {
@@ -115,6 +176,7 @@ public class ParticleStudio extends Studio<Scene> {
 
     // move_rotate_to
     mapCheckBox(
+        editor,
         R.id.move_rotate_to,
         pm.areaTo.isRotate,
         b -> {
@@ -123,6 +185,7 @@ public class ParticleStudio extends Studio<Scene> {
         });
     // move_to_left_offset
     mapCheckBox(
+        editor,
         R.id.move_to_left_offset,
         pm.areaTo.isOffsetLeft,
         b -> {
@@ -131,6 +194,7 @@ public class ParticleStudio extends Studio<Scene> {
         });
     // move_to_left
     mapInt(
+        editor,
         R.id.move_to_left,
         pm.areaTo.l,
         v -> {
@@ -139,6 +203,7 @@ public class ParticleStudio extends Studio<Scene> {
         });
     // move_to_top_offset
     mapCheckBox(
+        editor,
         R.id.move_to_top_offset,
         pm.areaTo.isOffsetTop,
         b -> {
@@ -147,6 +212,7 @@ public class ParticleStudio extends Studio<Scene> {
         });
     // move_to_top
     mapInt(
+        editor,
         R.id.move_to_top,
         pm.areaTo.t,
         v -> {
@@ -155,6 +221,7 @@ public class ParticleStudio extends Studio<Scene> {
         });
     // move_to_width
     mapInt(
+        editor,
         R.id.move_to_width,
         pm.areaTo.w,
         v -> {
@@ -163,6 +230,7 @@ public class ParticleStudio extends Studio<Scene> {
         });
     // move_to_height
     mapInt(
+        editor,
         R.id.move_to_height,
         pm.areaTo.h,
         v -> {
@@ -170,18 +238,21 @@ public class ParticleStudio extends Studio<Scene> {
           entity.setMaxParticle(entity.maxParticle);
         });
     // move_interpolator_x
-    mapSpinner(R.id.move_interpolator_x, pm.interpolatorMove[0], s -> pm.interpolatorMove[0] = s);
+    mapSpinner(
+        editor, R.id.move_interpolator_x, pm.interpolatorMove[0], s -> pm.interpolatorMove[0] = s);
     // move_interpolator_y
-    mapSpinner(R.id.move_interpolator_y, pm.interpolatorMove[1], s -> pm.interpolatorMove[1] = s);
+    mapSpinner(
+        editor, R.id.move_interpolator_y, pm.interpolatorMove[1], s -> pm.interpolatorMove[1] = s);
     // rotate
-    mapInt(R.id.rotate_from_from, pm.rotateBegin.getFrom(), v -> pm.rotateBegin.setFrom(v));
-    mapInt(R.id.rotate_from_to, pm.rotateBegin.getTo(), v -> pm.rotateBegin.setTo(v));
+    mapInt(editor, R.id.rotate_from_from, pm.rotateBegin.getFrom(), v -> pm.rotateBegin.setFrom(v));
+    mapInt(editor, R.id.rotate_from_to, pm.rotateBegin.getTo(), v -> pm.rotateBegin.setTo(v));
     mapCheckBox(
+        editor,
         R.id.rotate_to,
         pm.rotateEnd != null,
         b -> {
-          TextView tvFrom = dlgModel.findViewById(R.id.rotate_to_from);
-          TextView tvTo = dlgModel.findViewById(R.id.rotate_to_to);
+          TextView tvFrom = editor.findViewById(R.id.rotate_to_from);
+          TextView tvTo = editor.findViewById(R.id.rotate_to_to);
           tvFrom.setEnabled(b);
           tvTo.setEnabled(b);
           if (b) {
@@ -195,31 +266,36 @@ public class ParticleStudio extends Studio<Scene> {
           }
         });
     mapInt(
+        editor,
         R.id.rotate_to_from,
         pm.rotateEnd == null ? 0 : pm.rotateEnd.getFrom(),
         v -> pm.rotateEnd.setFrom(v));
     mapInt(
+        editor,
         R.id.rotate_to_to,
         pm.rotateEnd == null ? 0 : pm.rotateEnd.getTo(),
         v -> pm.rotateEnd.setTo(v));
-    mapFloat(R.id.rotate_x, pm.ptRotate.x, v -> pm.ptRotate.x = v);
-    mapFloat(R.id.rotate_y, pm.ptRotate.y, v -> pm.ptRotate.y = v);
-    mapSpinner(R.id.rotate_interpolator, pm.interpolatorRotate, s -> pm.interpolatorRotate = s);
+    mapFloat(editor, R.id.rotate_x, pm.ptRotate.x, v -> pm.ptRotate.x = v);
+    mapFloat(editor, R.id.rotate_y, pm.ptRotate.y, v -> pm.ptRotate.y = v);
+    mapSpinner(
+        editor, R.id.rotate_interpolator, pm.interpolatorRotate, s -> pm.interpolatorRotate = s);
     // alpha
-    mapInt(R.id.alpha_from_from, pm.alphaBegin.getFrom(), v -> pm.alphaBegin.setFrom(v));
-    mapInt(R.id.alpha_from_to, pm.alphaBegin.getTo(), v -> pm.alphaBegin.setTo(v));
-    mapInt(R.id.alpha_to_from, pm.alphaEnd.getFrom(), v -> pm.alphaEnd.setFrom(v));
-    mapInt(R.id.alpha_to_to, pm.alphaEnd.getTo(), v -> pm.alphaEnd.setTo(v));
-    mapSpinner(R.id.alpha_interpolator, pm.interpolatorAlpha, s -> pm.interpolatorAlpha = s);
+    mapInt(editor, R.id.alpha_from_from, pm.alphaBegin.getFrom(), v -> pm.alphaBegin.setFrom(v));
+    mapInt(editor, R.id.alpha_from_to, pm.alphaBegin.getTo(), v -> pm.alphaBegin.setTo(v));
+    mapInt(editor, R.id.alpha_to_from, pm.alphaEnd.getFrom(), v -> pm.alphaEnd.setFrom(v));
+    mapInt(editor, R.id.alpha_to_to, pm.alphaEnd.getTo(), v -> pm.alphaEnd.setTo(v));
+    mapSpinner(
+        editor, R.id.alpha_interpolator, pm.interpolatorAlpha, s -> pm.interpolatorAlpha = s);
     // scale
-    mapFloat(R.id.scale_from_from, pm.scaleBegin.getFrom(), v -> pm.scaleBegin.setFrom(v));
-    mapFloat(R.id.scale_from_to, pm.scaleBegin.getTo(), v -> pm.scaleBegin.setTo(v));
+    mapFloat(editor, R.id.scale_from_from, pm.scaleBegin.getFrom(), v -> pm.scaleBegin.setFrom(v));
+    mapFloat(editor, R.id.scale_from_to, pm.scaleBegin.getTo(), v -> pm.scaleBegin.setTo(v));
     mapCheckBox(
+        editor,
         R.id.scale_to,
         pm.scaleEnd != null,
         b -> {
-          TextView tvFrom = dlgModel.findViewById(R.id.scale_to_from);
-          TextView tvTo = dlgModel.findViewById(R.id.scale_to_to);
+          TextView tvFrom = editor.findViewById(R.id.scale_to_from);
+          TextView tvTo = editor.findViewById(R.id.scale_to_to);
           tvFrom.setEnabled(b);
           tvTo.setEnabled(b);
           if (b) {
@@ -233,30 +309,33 @@ public class ParticleStudio extends Studio<Scene> {
           }
         });
     mapFloat(
+        editor,
         R.id.scale_to_from,
         pm.scaleEnd == null ? 0f : pm.scaleEnd.getFrom(),
         v -> pm.scaleEnd.setFrom(v));
     mapFloat(
+        editor,
         R.id.scale_to_to,
         pm.scaleEnd == null ? 0f : pm.scaleEnd.getTo(),
         v -> pm.scaleEnd.setTo(v));
-    mapSpinner(R.id.scale_interpolator, pm.interpolatorScale, s -> pm.interpolatorScale = s);
+    mapSpinner(
+        editor, R.id.scale_interpolator, pm.interpolatorScale, s -> pm.interpolatorScale = s);
   }
 
-  private void mapFloat(int id, float v, MapValue<Float> mapValue) {
-    ((StudioEt) dlgModel.findViewById(id)).mapValue(v, mapValue);
+  private void mapFloat(View editor, int id, float v, MapValue<Float> mapValue) {
+    ((StudioEt) editor.findViewById(id)).mapValue(v, mapValue);
   }
 
-  private void mapInt(int id, int v, MapValue<Integer> mapValue) {
-    ((StudioEt) dlgModel.findViewById(id)).mapValue(v, mapValue);
+  private void mapInt(View editor, int id, int v, MapValue<Integer> mapValue) {
+    ((StudioEt) editor.findViewById(id)).mapValue(v, mapValue);
   }
 
-  private void mapSpinner(int id, String now, StudioSpinner.Callback cb) {
-    ((InterpolatorSpinner) dlgModel.findViewById(id)).interpolator(now, cb);
+  private void mapSpinner(View editor, int id, String now, StudioSpinner.Callback cb) {
+    ((InterpolatorSpinner) editor.findViewById(id)).interpolator(now, cb);
   }
 
-  private void mapCheckBox(int id, boolean b, Studio.MapValue<Boolean> mapValue) {
-    ((StudioCb) dlgModel.findViewById(id)).mapValue(b, mapValue);
+  private void mapCheckBox(View editor, int id, boolean b, Studio.MapValue<Boolean> mapValue) {
+    ((StudioCb) editor.findViewById(id)).mapValue(b, mapValue);
   }
 
   @Override
@@ -269,13 +348,29 @@ public class ParticleStudio extends Studio<Scene> {
     sv.setLayoutParams(
         new FrameLayout.LayoutParams(StudioTool.getDlgWidth() * 2, StudioTool.getDlgHeight()));
     builder.setView(view);
-    dlgModel = builder.create();
   }
 
   @Override
   protected void initView() {
     StudioSv sceneView = act.findViewById(R.id.sv);
-    sceneView.setCallback(() -> updateAnimLv());
+    sceneView.setCallback(
+        new SceneRender.Callback() {
+          @Override
+          public void onLoad() {
+            if (entity.lstParticleModel.size() > 0) {
+              model = entity.lstParticleModel.get(0);
+              renderEditor(act.findViewById(R.id.anim_editor), model);
+            } else {
+              model = null;
+            }
+            updateAnimLv();
+          }
+
+          @Override
+          public ParticleModel getModel() {
+            return model;
+          }
+        });
   }
 
   @Override
@@ -339,7 +434,7 @@ public class ParticleStudio extends Studio<Scene> {
     for (ParticleModel pm : entity.lstParticleModel) {
       View v = LayoutInflater.from(act).inflate(R.layout.item_particle_studio_anim_lv, null);
       LinearLayout.LayoutParams lp =
-          new LinearLayout.LayoutParams(MATCH_PARENT, 0, pm.chanceRange.getDelta());
+          new LinearLayout.LayoutParams(0, MATCH_PARENT, pm.chanceRange.getDelta());
       lp.setMargins(10, 5, 10, 5);
       v.setLayoutParams(lp);
       TextView tvFrom = v.findViewById(R.id.from);
@@ -348,9 +443,31 @@ public class ParticleStudio extends Studio<Scene> {
       tvTo.setText(String.valueOf(pm.chanceRange.getTo()));
       BoneIv iv = v.findViewById(R.id.iv);
       iv.setBmp(entity.bmp, pm.rcBmp);
-      v.setOnClickListener(c -> showModelDlg(pm));
-      v.setAlpha(animLv.getChildCount() % 2 == 0 ? 1f : .75f);
+      v.setTag(pm);
+      v.setOnClickListener(
+          c -> {
+            checkRange();
+            renderEditor(act.findViewById(R.id.anim_editor), pm);
+            onSelectModel(animLv);
+          });
+      changeBg(v, pm);
       animLv.addView(v);
+    }
+  }
+
+  private void onSelectModel(ViewGroup vg) {
+    for (int i = 0; i < vg.getChildCount(); i++) {
+      View v = vg.getChildAt(i);
+      ParticleModel m = (ParticleModel) v.getTag();
+      changeBg(v, m);
+    }
+  }
+
+  private void changeBg(View v, ParticleModel pm) {
+    if (pm == model) {
+      v.setBackgroundResource(R.drawable.bg_anim2);
+    } else {
+      v.setBackgroundResource(R.drawable.bg_anim);
     }
   }
 
@@ -359,5 +476,6 @@ public class ParticleStudio extends Studio<Scene> {
     super.onGetProject(name);
     SceneView sceneView = act.findViewById(R.id.sv);
     sceneView.isRepeat(true);
+    act.findViewById(R.id.anim_editor).setVisibility(View.INVISIBLE);
   }
 }

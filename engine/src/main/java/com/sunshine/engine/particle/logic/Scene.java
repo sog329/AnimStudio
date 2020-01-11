@@ -120,8 +120,6 @@ public class Scene extends Entity {
   }
 
   private void renderActiveParticle(Canvas can) {
-//    int cs = can.save();
-//    can.translate(-viewArea.l, -viewArea.t);
     Iterator<Particle> it = lstActiveParticle.iterator();
     while (it.hasNext()) {
       Particle particle = it.next();
@@ -130,7 +128,6 @@ public class Scene extends Entity {
         lstIdleParticle.add(particle);
       }
     }
-//    can.restoreToCount(cs);
   }
 
   private boolean judgeBorn(int n) {

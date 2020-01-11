@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="5dp"
-    android:background="@drawable/bg_anim"
+    android:background="@drawable/bg_anim2"
     android:orientation="horizontal">
 
     <com.sunshine.studio.bone.logic.BoneIv

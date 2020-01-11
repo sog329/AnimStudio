@@ -39,17 +39,10 @@ public class AnimLoader {
     }
   }
 
-  private static boolean parse(InputStream is, Entity entity) {
-    boolean success = false;
-    try {
-      SAXParserFactory sf = SAXParserFactory.newInstance();
-      SAXParser sp = sf.newSAXParser();
-      sp.parse(is, entity.getParser());
-      success = true;
-    } catch (Exception e) {
-      Tool.log(e);
-    }
-    return success;
+  private static void parse(InputStream is, Entity entity) throws Exception {
+    SAXParserFactory sf = SAXParserFactory.newInstance();
+    SAXParser sp = sf.newSAXParser();
+    sp.parse(is, entity.getParser());
   }
 
   private static class ParseRunnable implements Runnable {
@@ -61,7 +54,6 @@ public class AnimLoader {
         InputStream is = null;
         boolean success = false;
         try {
-          boolean readXml;
           boolean inAsset = !new File(entity.configPath).exists();
           if (inAsset) {
             Context context = entity.helper.getContext();
@@ -70,39 +62,37 @@ public class AnimLoader {
             File f = new File(entity.configPath);
             is = new FileInputStream(f);
           }
-          readXml = parse(is, entity);
-          if (readXml) {
-            entity.parsed = true;
-            LayoutHelper.resize(entity);
-            Bitmap bmp = null;
+          parse(is, entity);
+          entity.parsed = true;
+          LayoutHelper.resize(entity);
+          Bitmap bmp = null;
+          if (inAsset) {
+            bmp = Tool.getBmpByAssets(entity.helper.getContext(), entity.picPath);
+          } else {
+            bmp = BitmapFactory.decodeFile(entity.picPath);
+          }
+          MediaPlayer sound = null;
+          if (entity.soundPath != null) {
             if (inAsset) {
-              bmp = Tool.getBmpByAssets(entity.helper.getContext(), entity.picPath);
-            } else {
-              bmp = BitmapFactory.decodeFile(entity.picPath);
-            }
-            MediaPlayer sound = null;
-            if (entity.soundPath != null) {
-              if (inAsset) {
-                AssetFileDescriptor fd =
-                    Tool.getAssetFileDescriptor(entity.helper.getContext(), entity.soundPath);
-                if (fd != null) {
-                  sound = new MediaPlayer();
-                  sound.reset();
-                  sound.setDataSource(fd.getFileDescriptor(), fd.getStartOffset(), fd.getLength());
-                }
-              } else {
+              AssetFileDescriptor fd =
+                  Tool.getAssetFileDescriptor(entity.helper.getContext(), entity.soundPath);
+              if (fd != null) {
                 sound = new MediaPlayer();
                 sound.reset();
-                sound.setDataSource(entity.soundPath);
+                sound.setDataSource(fd.getFileDescriptor(), fd.getStartOffset(), fd.getLength());
               }
+            } else {
+              sound = new MediaPlayer();
+              sound.reset();
+              sound.setDataSource(entity.soundPath);
             }
-            if (bmp != null) {
-              if (sound != null) {
-                sound.prepare();
-              }
-              entity.setSrcAsync(bmp, sound);
-              success = true;
+          }
+          if (bmp != null) {
+            if (sound != null) {
+              sound.prepare();
             }
+            entity.setSrcAsync(bmp, sound);
+            success = true;
           }
         } catch (Exception e) {
           Tool.log(e);

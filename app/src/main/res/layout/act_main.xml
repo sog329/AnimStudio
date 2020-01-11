@@ -1,76 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
+    android:background="@android:color/white"
     android:orientation="horizontal"
     tools:context=".MainAct">
 
-    <FrameLayout
+    <android.support.v7.widget.CardView
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="16dp"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:padding="20px">
+        android:layout_weight="1">
 
         <com.sunshine.engine.bone.StageView
             android:id="@+id/bone_demo_sv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
         <com.sunshine.studio.base.StudioTv
             android:id="@+id/bone_demo_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textStyle="bold"
             android:background="@drawable/bg_btn"
             android:gravity="top|center_horizontal"
-            android:text="Bone\nDemo"/>
-    </FrameLayout>
+            android:text="Bone\nDemo"
+            android:textStyle="bold" />
+    </android.support.v7.widget.CardView>
 
     <LinearLayout
+        android:clipChildren="false"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight=".5"
-        android:orientation="vertical"
-        android:paddingLeft="0px"
-        android:paddingRight="0px"
-        android:paddingTop="10px"
-        android:paddingBottom="10px">
+        android:orientation="vertical">
 
-        <FrameLayout
+        <android.support.v7.widget.CardView
+            android:layout_margin="10dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:paddingLeft="20px"
-            android:paddingRight="20px"
-            android:paddingTop="10px"
-            android:paddingBottom="10px">
+            android:layout_weight="1">
 
             <com.sunshine.engine.bone.StageView
                 android:id="@+id/bone_studio_sv"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
             <com.sunshine.studio.base.StudioTv
                 android:id="@+id/bone_studio_tv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textStyle="bold"
                 android:background="@drawable/bg_btn"
                 android:gravity="top|center_horizontal"
-                android:text="Bone\nStudio"/>
-        </FrameLayout>
+                android:text="Bone\nStudio"
+                android:textStyle="bold" />
+        </android.support.v7.widget.CardView>
 
         <LinearLayout
             android:id="@+id/test_btn"
-            android:layout_marginLeft="20px"
             android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="20px"
             android:layout_marginRight="20px"
             android:layout_weight=".25"
             android:gravity="center"
-            android:layout_height="0dp"
             android:orientation="horizontal">
 
             <com.sunshine.studio.base.StudioBoneBtn
@@ -81,59 +81,64 @@
                 android:layout_marginBottom="-20px" />
 
             <com.sunshine.studio.base.StudioTv
-                android:layout_marginLeft="-20px"
                 android:id="@+id/test_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="-20px"
                 android:gravity="center"
                 android:text="Test"
+                android:textColor="@android:color/darker_gray"
                 android:textStyle="bold" />
         </LinearLayout>
-        <FrameLayout
+
+        <android.support.v7.widget.CardView
+            android:layout_margin="10dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="16dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:paddingLeft="20px"
-            android:paddingRight="20px"
-            android:paddingTop="10px"
-            android:paddingBottom="10px">
+            android:layout_weight="1">
 
 
             <com.sunshine.engine.bone.StageView
                 android:id="@+id/particle_studio_sv"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
             <com.sunshine.studio.base.StudioTv
                 android:id="@+id/particle_studio_tv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textStyle="bold"
                 android:background="@drawable/bg_btn_p"
                 android:gravity="top|center_horizontal"
-                android:text="Particle\nStudio"/>
-        </FrameLayout>
+                android:text="Particle\nStudio"
+                android:textStyle="bold" />
+        </android.support.v7.widget.CardView>
     </LinearLayout>
 
 
-    <FrameLayout
+    <android.support.v7.widget.CardView
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:padding="20px">
+        android:layout_weight="1">
 
         <com.sunshine.engine.particle.SceneView
             android:id="@+id/particle_demo_sv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
         <com.sunshine.studio.base.StudioTv
             android:id="@+id/particle_demo_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textStyle="bold"
             android:background="@drawable/bg_btn_p"
             android:gravity="top|center_horizontal"
-            android:text="Particle\nDemo"/>
-    </FrameLayout>
+            android:text="Particle\nDemo"
+            android:textStyle="bold" />
+    </android.support.v7.widget.CardView>
 </LinearLayout>

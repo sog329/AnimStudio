@@ -29,40 +29,36 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
     int textSize = StudioTool.screenHeight / 7;
     // bone demo
     StudioTv bDemoTv = findViewById(R.id.bone_demo_tv);
-    bDemoTv.getBackground().setAlpha(128);
-    setListener(bDemoTv);
     bDemoTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
     StageView bDemoSv = findViewById(R.id.bone_demo_sv);
     bDemoSv.play("bone/sunglasses_main");
     bDemoSv.isRepeat(true);
+    setListener(findViewById(R.id.bone_demo));
     // bone studio
     StudioTv bStudioTv = findViewById(R.id.bone_studio_tv);
-    bStudioTv.getBackground().setAlpha(128);
-    setListener(bStudioTv);
     bStudioTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize / 2);
     StageView bStudioSv = findViewById(R.id.bone_studio_sv);
     bStudioSv.play("bone/gear");
     bStudioSv.autoStop(false);
     bStudioSv.isRepeat(true);
+    setListener(findViewById(R.id.bone_studio));
     // particle demo
     StudioTv particleDemoTv = findViewById(R.id.particle_demo_tv);
-    particleDemoTv.getBackground().setAlpha(128);
-    setListener(particleDemoTv);
     particleDemoTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
     StageView pStudioSv = findViewById(R.id.particle_studio_sv);
     pStudioSv.play("bone/gear");
     pStudioSv.autoStop(false);
     pStudioSv.isRepeat(true);
     pStudioSv.setPercent(.5f, 1f, 9000);
+    setListener(findViewById(R.id.particle_studio));
     // particle studio
     StudioTv particleStudioTv = findViewById(R.id.particle_studio_tv);
-    particleStudioTv.getBackground().setAlpha(128);
-    setListener(particleStudioTv);
     particleStudioTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize / 2);
     SceneView pDemoSv = findViewById(R.id.particle_demo_sv);
     pDemoSv.play("particle/singleDog");
     pDemoSv.isRepeat(true);
-    // demo
+    setListener(findViewById(R.id.particle_demo));
+    // test
     StageView demo = findViewById(R.id.test);
     demo.play("bone/tab2");
     demo.setPercent(0);
@@ -94,16 +90,16 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
   @Override
   public void onClick(View v) {
     switch (v.getId()) {
-      case R.id.bone_demo_tv:
+      case R.id.bone_demo:
         startActivity(new Intent(this, BoneDemoAct.class));
         break;
-      case R.id.bone_studio_tv:
+      case R.id.bone_studio:
         startActivity(new Intent(this, BoneStudioAct.class));
         break;
-      case R.id.particle_demo_tv:
+      case R.id.particle_demo:
         startActivity(new Intent(this, ParticleDemoAct.class));
         break;
-      case R.id.particle_studio_tv:
+      case R.id.particle_studio:
         startActivity(new Intent(this, ParticleStudioAct.class));
         break;
       case R.id.test_btn:
@@ -122,33 +118,17 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
       case R.id.bone_demo_tv:
         if (a == MotionEvent.ACTION_HOVER_ENTER) {
           demo.setPercent(0, 200);
-          findViewById(R.id.bone_demo_sv).bringToFront();
-        } else if (a == MotionEvent.ACTION_HOVER_EXIT) {
-          v.bringToFront();
         }
         break;
       case R.id.bone_studio_tv:
+      case R.id.particle_studio_tv:
         if (a == MotionEvent.ACTION_HOVER_ENTER) {
           demo.setPercent(0.5f, 200);
-          findViewById(R.id.bone_studio_sv).bringToFront();
-        } else if (a == MotionEvent.ACTION_HOVER_EXIT) {
-          v.bringToFront();
         }
         break;
       case R.id.particle_demo_tv:
         if (a == MotionEvent.ACTION_HOVER_ENTER) {
           demo.setPercent(1f, 200);
-          findViewById(R.id.particle_demo_sv).bringToFront();
-        } else if (a == MotionEvent.ACTION_HOVER_EXIT) {
-          v.bringToFront();
-        }
-        break;
-      case R.id.particle_studio_tv:
-        if (a == MotionEvent.ACTION_HOVER_ENTER) {
-          demo.setPercent(0.5f, 200);
-          findViewById(R.id.particle_studio_sv).bringToFront();
-        } else if (a == MotionEvent.ACTION_HOVER_EXIT) {
-          v.bringToFront();
         }
         break;
       default:
@@ -165,33 +145,17 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
       case R.id.bone_demo_tv:
         if (a == MotionEvent.ACTION_DOWN) {
           demo.setPercent(0, 200);
-          findViewById(R.id.bone_demo_sv).bringToFront();
-        } else if (a == MotionEvent.ACTION_UP || a == MotionEvent.ACTION_CANCEL) {
-          v.bringToFront();
         }
         break;
       case R.id.bone_studio_tv:
+      case R.id.particle_studio_tv:
         if (a == MotionEvent.ACTION_DOWN) {
           demo.setPercent(0.5f, 200);
-          findViewById(R.id.bone_studio_sv).bringToFront();
-        } else if (a == MotionEvent.ACTION_UP || a == MotionEvent.ACTION_CANCEL) {
-          v.bringToFront();
         }
         break;
       case R.id.particle_demo_tv:
         if (a == MotionEvent.ACTION_DOWN) {
           demo.setPercent(1, 200);
-          findViewById(R.id.particle_demo_sv).bringToFront();
-        } else if (a == MotionEvent.ACTION_UP || a == MotionEvent.ACTION_CANCEL) {
-          v.bringToFront();
-        }
-        break;
-      case R.id.particle_studio_tv:
-        if (a == MotionEvent.ACTION_DOWN) {
-          demo.setPercent(0.5f, 200);
-          findViewById(R.id.particle_studio_sv).bringToFront();
-        } else if (a == MotionEvent.ACTION_UP || a == MotionEvent.ACTION_CANCEL) {
-          v.bringToFront();
         }
         break;
       default:

@@ -62,8 +62,7 @@ public abstract class DemoRv<T extends AnimView> extends RecyclerView {
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
       return new Holder(
-          LayoutInflater.from(parent.getContext())
-              .inflate(layoutId(), parent, false));
+          LayoutInflater.from(parent.getContext()).inflate(layoutId(), parent, false));
     }
 
     @Override
@@ -94,6 +93,7 @@ public abstract class DemoRv<T extends AnimView> extends RecyclerView {
         super(itemView);
         animView = itemView.findViewById(R.id.anim);
         tv = itemView.findViewById(R.id.tv);
+        itemView.setOnClickListener(v -> {});
       }
     }
   }

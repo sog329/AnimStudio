@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
-    app:cardBackgroundColor="@android:color/white"
+    android:foreground="@drawable/ripple_card"
     app:cardCornerRadius="16dp"
     app:cardElevation="16dp">
 
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/btn_bg"
+        android:background="@color/tv_card_bg"
         android:gravity="center"
-        android:textColor="@color/tv_color" />
+        android:textColor="@android:color/white" />
 </com.sunshine.studio.base.ItemContainer>

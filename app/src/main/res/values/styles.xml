@@ -1,8 +1,6 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
@@ -22,5 +20,4 @@
         <item name="colorControlNormal">@color/tv_color2</item>
         <item name="colorControlActivated">@color/btn_bg2</item>
     </style>
-
 </resources>

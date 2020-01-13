@@ -49,7 +49,7 @@ public class StudioTool {
     prepareResource("bone", act, "welcomeDemo", "config.xml", "pic", "pic.plist");
     prepareResource("bone", act, "welcome", "pic", "pic.plist");
 
-    prepareResource("particle", act, "welcomeDemo", "pic", "pic.plist");
+    prepareResource("particle", act, "tangyuan", "config.xml", "pic", "pic.plist");
   }
 
   private static String getSdPath() {

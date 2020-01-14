@@ -12,7 +12,7 @@
         android:gravity="center"
         android:maxLines="1"
         android:textColor="@color/tv_color"
-        attrs:scale=".8" />
+        attrs:scale=".5" />
 
     <com.sunshine.studio.base.StudioSpinner
         android:id="@+id/type"

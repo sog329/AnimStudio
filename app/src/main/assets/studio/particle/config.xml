@@ -5,6 +5,7 @@
     <layout_type>center</layout_type>
     <max>6</max>
     <model>
+        <name>汤圆白</name>
         <chance_range>0.0,0.6</chance_range>
         <active_time>1800,2000</active_time>
         <src_ltwh>0,0,61,61</src_ltwh>
@@ -19,6 +20,7 @@
         <scale_interpolator>decelerate</scale_interpolator>
     </model>
     <model>
+        <name>汤圆黑</name>
         <chance_range>0.6,1.0</chance_range>
         <active_time>1800,2000</active_time>
         <src_ltwh>62,0,61,61</src_ltwh>

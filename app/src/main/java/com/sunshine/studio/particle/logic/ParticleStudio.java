@@ -219,6 +219,16 @@ public class ParticleStudio extends Studio<Scene> {
           pm.areaTo.t = v;
           entity.setMaxParticle(entity.maxParticle);
         });
+    // move_to_width_match
+    mapCheckBox(
+        editor,
+        R.id.move_to_width_match,
+        pm.areaTo.w == Area.MATCH_PARENT,
+        b -> {
+          TextView tv = editor.findViewById(R.id.move_to_width);
+          tv.setEnabled(!b);
+          tv.setText(String.valueOf(b ? Area.MATCH_PARENT : entity.scriptSize.width));
+        });
     // move_to_width
     mapInt(
         editor,

@@ -12,7 +12,7 @@
     </style>
 
     <style name="label">
-        <item name="android:layout_margin">3dp</item>
+        <item name="android:gravity">center_vertical</item>
         <item name="android:background">@drawable/bg_label</item>
     </style>
 

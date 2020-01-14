@@ -1,1 +1,29 @@
-<?xml version='1.0' encoding='utf-8' ?><plist><dict><dict><key>汤圆白</key><dict><key>x</key><real>0</real><key>y</key><real>0</real><key>w</key><real>180</real><key>h</key><real>180</real></dict><key>汤圆黑</key><dict><key>x</key><real>181</real><key>y</key><real>0</real><key>w</key><real>180</real><key>h</key><real>180</real></dict></dict></dict></plist>
+<?xml version='1.0' encoding='utf-8' ?>
+<plist>
+    <dict>
+        <dict>
+            <key>汤圆白</key>
+            <dict>
+                <key>x</key>
+                <real>0</real>
+                <key>y</key>
+                <real>0</real>
+                <key>w</key>
+                <real>61</real>
+                <key>h</key>
+                <real>61</real>
+            </dict>
+            <key>汤圆黑</key>
+            <dict>
+                <key>x</key>
+                <real>62</real>
+                <key>y</key>
+                <real>0</real>
+                <key>w</key>
+                <real>61</real>
+                <key>h</key>
+                <real>61</real>
+            </dict>
+        </dict>
+    </dict>
+</plist>

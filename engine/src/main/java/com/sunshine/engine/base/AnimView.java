@@ -72,4 +72,8 @@ public abstract class AnimView<T extends ViewHelper> extends View {
   public boolean setExternalBmp(String id, Bitmap bmp) {
     return helper.setExternalBmp(id, bmp);
   }
+
+  public void setCallback(ViewHelper.Callback cb) {
+    helper.setCallback(cb);
+  }
 }

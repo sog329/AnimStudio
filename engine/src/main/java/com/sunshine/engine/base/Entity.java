@@ -7,7 +7,9 @@ import android.media.MediaPlayer;
 
 import org.xml.sax.helpers.DefaultHandler;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /** Created by songxiaoguang on 2017/12/1. */
@@ -102,6 +104,13 @@ public abstract class Entity {
     }
     if (bmp == null) {
       return false;
+    } else if (bmp.isRecycled()) {
+      addLog("bmp.isRecycled() before draw")
+          .addLog("entity.configPath=" + configPath)
+          .addLog("entity.picPath=" + picPath)
+          .onError();
+      bmp = null;
+      return false;
     } else {
       if (firstDrawTime == Tool.NONE) {
         firstDrawTime = dt;
@@ -112,7 +121,17 @@ public abstract class Entity {
         percent = percentRange.getTo();
       }
       percent = Tool.checkPercent(percent, percentRange.getFrom(), percentRange.getTo());
-      draw(can);
+      try {
+        draw(can);
+      } catch (Throwable e) {
+        addLog("bmp.isRecycled() in draw")
+            .addLog("exp=" + e.toString())
+            .addLog("entity.configPath=" + configPath)
+            .addLog("entity.picPath=" + picPath)
+            .onError();
+        bmp = null;
+        return false;
+      }
       if (sound != null && Tool.equalsZero(percent) && duration > 0) {
         if (sound.isPlaying()) {
           sound.stop();
@@ -160,4 +179,17 @@ public abstract class Entity {
   public abstract DefaultHandler getParser();
 
   public abstract boolean needDraw(float percent);
+
+  private List<String> lstLog = new ArrayList<>();
+
+  public Entity addLog(String log) {
+    Tool.addLog(lstLog, log);
+    return this;
+  }
+
+  public void onError() {
+    Tool.addDeviceLog(lstLog);
+    helper.onError(lstLog.toString());
+    lstLog.clear();
+  }
 }

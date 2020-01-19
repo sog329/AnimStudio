@@ -5,11 +5,12 @@ import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.SystemClock;
 import android.util.Log;
-
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 public class Tool {
   public static boolean DEBUG = false;
@@ -108,5 +109,21 @@ public class Tool {
     if (DEBUG) {
       Log.d("____", str);
     }
+  }
+
+  public static void addLog(List<String> lst, String log) {
+    if (lst.size() == 0) {
+      lst.add(log);
+    } else {
+      lst.add("\n" + log);
+    }
+  }
+
+  public static void addDeviceLog(List<String> lst) {
+    addLog(lst, "Build.BRAND=" + Build.BRAND);
+    addLog(lst, "Build.MODEL=" + Build.MODEL);
+    addLog(lst, "Build.VERSION.SDK_INT=" + Build.VERSION.SDK_INT);
+    addLog(lst, "Build.VERSION.RELEASE=" + Build.VERSION.RELEASE);
+    addLog(lst, "Build.VERSION.CODENAME=" + Build.VERSION.CODENAME);
   }
 }

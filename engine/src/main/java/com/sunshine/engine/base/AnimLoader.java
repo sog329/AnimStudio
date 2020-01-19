@@ -88,11 +88,20 @@ public class AnimLoader {
             }
           }
           if (bmp != null) {
-            if (sound != null) {
-              sound.prepare();
+            if (bmp.isRecycled()) {
+              entity
+                  .addLog("bmp.isRecycled() in parse")
+                  .addLog("entity.configPath=" + entity.configPath)
+                  .addLog("entity.picPath=" + entity.picPath)
+                  .addLog("entity.inAsset=" + inAsset)
+                  .onError();
+            } else {
+              if (sound != null) {
+                sound.prepare();
+              }
+              entity.setSrcAsync(bmp, sound);
+              success = true;
             }
-            entity.setSrcAsync(bmp, sound);
-            success = true;
           }
         } catch (Exception e) {
           Tool.log(e);

@@ -155,4 +155,22 @@ public abstract class ViewHelper<T extends Entity> extends LifeCycle {
       return false;
     }
   }
+
+  private Callback callback = null;
+
+  public void setCallback(Callback callback) {
+    this.callback = callback;
+  }
+
+  public void onError(String log) {
+    Callback cb = callback;
+    if (cb != null) {
+      cb.onError(log);
+    }
+  }
+
+  public interface Callback {
+
+    void onError(String log);
+  }
 }

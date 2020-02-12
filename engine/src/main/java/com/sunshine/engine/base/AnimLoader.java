@@ -17,8 +17,8 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 public class AnimLoader {
-  protected static List<Entity> queue = new ArrayList<>();
-  protected static boolean isRun = false;
+  private static List<Entity> queue = new ArrayList<>();
+  private static boolean isRun = false;
 
   public static synchronized void load(Entity entity) {
     if (entity != null) {

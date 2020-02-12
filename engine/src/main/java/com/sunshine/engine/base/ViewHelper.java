@@ -181,10 +181,15 @@ public abstract class ViewHelper<T extends Entity> extends LifeCycle {
   }
 
   public ViewHelper addLog(String log) {
-    Tool.addLog(lstLog, log);
     if (lstLog.size() > 100) {
       lstLog.clear();
     }
+    Tool.addLog(
+        lstLog,
+        log
+            + (Looper.myLooper() == Looper.getMainLooper()
+                ? ""
+                : " in [" + Thread.currentThread().getName() + "]"));
     return this;
   }
 

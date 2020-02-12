@@ -72,16 +72,16 @@ public abstract class Entity {
             helper.invalidate();
             helper
                 .addLog("in setSrcAsync set bmp")
-                .addLog("this.hashCode()=" + this.hashCode())
-                .addLog("helper.entity.hashCode()=" + helper.entity.hashCode())
-                .addLog("bmp.hashCode()=" + bitmap.hashCode());
+                .addLog("   this.hashCode()=" + this.hashCode())
+                .addLog("   helper.entity.hashCode()=" + helper.entity.hashCode())
+                .addLog("   bmp.hashCode()=" + bitmap.hashCode());
           } else {
             if (bitmap != null && !bitmap.isRecycled()) {
               helper
                   .addLog("in setSrcAsync recycle bmp")
-                  .addLog("this.hashCode()=" + this.hashCode())
-                  .addLog("helper.entity.hashCode()=" + helper.entity.hashCode())
-                  .addLog("bmp.hashCode()=" + bitmap.hashCode());
+                  .addLog("   this.hashCode()=" + this.hashCode())
+                  .addLog("   helper.entity.hashCode()=" + helper.entity.hashCode())
+                  .addLog("   bmp.hashCode()=" + bitmap.hashCode());
               bitmap.recycle();
             }
             if (soundPlayer != null) {
@@ -117,9 +117,12 @@ public abstract class Entity {
       return false;
     } else if (bmp.isRecycled()) {
       helper
-          .addLog("bmp.isRecycled() before draw")
-          .addLog("entity.configPath=" + configPath)
-          .addLog("entity.picPath=" + picPath)
+          .addLog("before draw")
+          .addLog("   bmp.isRecycled()")
+          .addLog("   entity.configPath=" + configPath)
+          .addLog("   entity.picPath=" + picPath)
+          .addLog("   entity.hashCode()=" + hashCode())
+          .addLog("   bmp.hashCode()=" + bmp.hashCode())
           .onError();
       bmp = null;
       return false;
@@ -137,10 +140,13 @@ public abstract class Entity {
         draw(can);
       } catch (Throwable e) {
         helper
-            .addLog("bmp.isRecycled() in draw")
-            .addLog("exp=" + e.toString())
-            .addLog("entity.configPath=" + configPath)
-            .addLog("entity.picPath=" + picPath)
+            .addLog("in draw")
+            .addLog("   bmp.isRecycled()")
+            .addLog("   exp=" + e.toString())
+            .addLog("   entity.configPath=" + configPath)
+            .addLog("   entity.picPath=" + picPath)
+            .addLog("   entity.hashCode()=" + hashCode())
+            .addLog("   bmp.hashCode()=" + bmp.hashCode())
             .onError();
         bmp = null;
         return false;

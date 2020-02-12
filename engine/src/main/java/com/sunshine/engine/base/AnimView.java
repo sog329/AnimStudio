@@ -80,6 +80,4 @@ public abstract class AnimView<T extends ViewHelper> extends View {
   public void setCallback(ViewHelper.Callback cb) {
     helper.setCallback(cb);
   }
-
-
 }

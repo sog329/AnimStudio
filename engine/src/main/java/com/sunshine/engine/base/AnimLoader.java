@@ -30,6 +30,10 @@ public class AnimLoader {
     }
   }
 
+  public static synchronized void stop(Entity entity) {
+    queue.remove(entity);
+  }
+
   private static synchronized Entity getEntity() {
     if (queue.size() > 0) {
       return queue.remove(0);
@@ -88,13 +92,15 @@ public class AnimLoader {
             }
           }
           if (bmp != null) {
+            entity
+                .helper
+                .addLog("entity.hashCode()=" + entity.hashCode())
+                .addLog("bmp.hashCode()=" + bmp.hashCode())
+                .addLog("entity.configPath=" + entity.configPath)
+                .addLog("entity.picPath=" + entity.picPath)
+                .addLog("entity.inAsset=" + inAsset);
             if (bmp.isRecycled()) {
-              entity
-                  .addLog("bmp.isRecycled() in parse")
-                  .addLog("entity.configPath=" + entity.configPath)
-                  .addLog("entity.picPath=" + entity.picPath)
-                  .addLog("entity.inAsset=" + inAsset)
-                  .onError();
+              entity.helper.addLog("bmp.isRecycled() in parse").onError();
             } else {
               if (sound != null) {
                 sound.prepare();

@@ -11,6 +11,8 @@ import android.os.Looper;
 import android.view.View;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /** Created by songxiaoguang on 2017/12/1. */
 public abstract class ViewHelper<T extends Entity> extends LifeCycle {
@@ -20,6 +22,7 @@ public abstract class ViewHelper<T extends Entity> extends LifeCycle {
   protected View view = null;
   protected Area viewArea = new Area();
   public T entity = null;
+  private List<String> lstLog = new ArrayList<>();
 
   public boolean play(View v, String... ary) {
     switch (ary.length) {
@@ -50,6 +53,7 @@ public abstract class ViewHelper<T extends Entity> extends LifeCycle {
     if (entity == null) {
       register(true);
       entity = buildEntity(this, configPath, picPath, soundPath);
+      addLog("buildEntity entity.hashCode()=" + entity.hashCode());
       resize();
       play = true;
     }
@@ -109,6 +113,8 @@ public abstract class ViewHelper<T extends Entity> extends LifeCycle {
   @Override
   public void stop() {
     if (entity != null) {
+      addLog("stop entity.hashCode()=" + entity.hashCode());
+      AnimLoader.stop(entity);
       entity.destroy();
       entity = null;
       invalidate();
@@ -172,5 +178,19 @@ public abstract class ViewHelper<T extends Entity> extends LifeCycle {
   public interface Callback {
 
     void onError(String log);
+  }
+
+  public ViewHelper addLog(String log) {
+    Tool.addLog(lstLog, log);
+    if (lstLog.size() > 100) {
+      lstLog.clear();
+    }
+    return this;
+  }
+
+  public void onError() {
+    Tool.addDeviceLog(lstLog);
+    onError(lstLog.toString());
+    lstLog.clear();
   }
 }

@@ -6,8 +6,12 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /** Created by songxiaoguang on 2017/12/1. */
 public abstract class AnimView<T extends ViewHelper> extends View {
+
   protected T helper = buildHelper();
 
   public AnimView(Context context) {
@@ -76,4 +80,6 @@ public abstract class AnimView<T extends ViewHelper> extends View {
   public void setCallback(ViewHelper.Callback cb) {
     helper.setCallback(cb);
   }
+
+
 }

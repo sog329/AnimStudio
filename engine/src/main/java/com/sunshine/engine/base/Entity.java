@@ -46,6 +46,7 @@ public abstract class Entity {
 
   public void destroy() {
     if (bmp != null) {
+      helper.addLog("destroy bmp.hashCode()=" + bmp.hashCode());
       bmp.recycle();
       bmp = null;
     }
@@ -69,8 +70,18 @@ public abstract class Entity {
             bmp = bitmap;
             sound = soundPlayer;
             helper.invalidate();
+            helper
+                .addLog("in setSrcAsync set bmp")
+                .addLog("this.hashCode()=" + this.hashCode())
+                .addLog("helper.entity.hashCode()=" + helper.entity.hashCode())
+                .addLog("bmp.hashCode()=" + bitmap.hashCode());
           } else {
             if (bitmap != null && !bitmap.isRecycled()) {
+              helper
+                  .addLog("in setSrcAsync recycle bmp")
+                  .addLog("this.hashCode()=" + this.hashCode())
+                  .addLog("helper.entity.hashCode()=" + helper.entity.hashCode())
+                  .addLog("bmp.hashCode()=" + bitmap.hashCode());
               bitmap.recycle();
             }
             if (soundPlayer != null) {
@@ -105,7 +116,8 @@ public abstract class Entity {
     if (bmp == null) {
       return false;
     } else if (bmp.isRecycled()) {
-      addLog("bmp.isRecycled() before draw")
+      helper
+          .addLog("bmp.isRecycled() before draw")
           .addLog("entity.configPath=" + configPath)
           .addLog("entity.picPath=" + picPath)
           .onError();
@@ -124,7 +136,8 @@ public abstract class Entity {
       try {
         draw(can);
       } catch (Throwable e) {
-        addLog("bmp.isRecycled() in draw")
+        helper
+            .addLog("bmp.isRecycled() in draw")
             .addLog("exp=" + e.toString())
             .addLog("entity.configPath=" + configPath)
             .addLog("entity.picPath=" + picPath)
@@ -156,7 +169,7 @@ public abstract class Entity {
   public void mergeDrawInfo(Matrix m) {
     // move
     m.preTranslate(drawArea.l, drawArea.t);
-    m.preScale(scale,scale);
+    m.preScale(scale, scale);
     m.mapRect(drawInfo.rcDst, drawInfo.rcSrc);
     // rotate
     drawInfo.ptDst.x = drawInfo.ptSrc.x * scale + drawArea.l;
@@ -179,17 +192,4 @@ public abstract class Entity {
   public abstract DefaultHandler getParser();
 
   public abstract boolean needDraw(float percent);
-
-  private List<String> lstLog = new ArrayList<>();
-
-  public Entity addLog(String log) {
-    Tool.addLog(lstLog, log);
-    return this;
-  }
-
-  public void onError() {
-    Tool.addDeviceLog(lstLog);
-    helper.onError(lstLog.toString());
-    lstLog.clear();
-  }
 }

@@ -7,9 +7,7 @@ import android.media.MediaPlayer;
 
 import org.xml.sax.helpers.DefaultHandler;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /** Created by songxiaoguang on 2017/12/1. */
@@ -77,10 +75,12 @@ public abstract class Entity {
                 .addLog("   bmp.hashCode()=" + bitmap.hashCode());
           } else {
             if (bitmap != null && !bitmap.isRecycled()) {
+              Entity hEntity = helper.entity;
               helper
                   .addLog("in setSrcAsync recycle bmp")
                   .addLog("   this.hashCode()=" + this.hashCode())
-                  .addLog("   helper.entity.hashCode()=" + helper.entity.hashCode())
+                  .addLog(
+                      "   helper.entity.hashCode()=" + (hEntity == null ? -1 : hEntity.hashCode()))
                   .addLog("   bmp.hashCode()=" + bitmap.hashCode());
               bitmap.recycle();
             }

@@ -181,16 +181,18 @@ public abstract class ViewHelper<T extends Entity> extends LifeCycle {
   }
 
   public ViewHelper addLog(String log) {
-    if (lstLog.size() > 100) {
-      lstLog.clear();
+    synchronized (lstLog) {
+      if (lstLog.size() > 100) {
+        lstLog.clear();
+      }
+      Tool.addLog(
+          lstLog,
+          log
+              + (Looper.myLooper() == Looper.getMainLooper()
+              ? ""
+              : " in [" + Thread.currentThread().getName() + "]"));
+      return this;
     }
-    Tool.addLog(
-        lstLog,
-        log
-            + (Looper.myLooper() == Looper.getMainLooper()
-                ? ""
-                : " in [" + Thread.currentThread().getName() + "]"));
-    return this;
   }
 
   public void onError() {

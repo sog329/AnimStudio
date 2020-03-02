@@ -70,7 +70,7 @@ public class ParticleStudio extends Studio<Scene> {
           changed = true;
           break;
         }
-        if (lastTo < m.chanceRange.getFrom()) {
+        if (lastTo != m.chanceRange.getFrom()) {
           m.chanceRange.setFrom(lastTo);
           changed = true;
         }
@@ -104,22 +104,27 @@ public class ParticleStudio extends Studio<Scene> {
       editor.setVisibility(View.VISIBLE);
       // chance_range_from
       mapFloat(
-          editor,
-          R.id.chance_range_from,
-          pm.chanceRange.getFrom(),
-          v -> {
-            pm.chanceRange.setFrom(v);
-            updateAnimLv();
-          });
+              editor,
+              R.id.chance_range_from,
+              pm.chanceRange.getFrom(),
+              v -> pm.chanceRange.setFrom(v))
+          .setOnFocusChangeListener(
+              (v, b) -> {
+                if (!b) {
+                  updateAnimLv();
+                  checkRange();
+                }
+              });
+
       // chance_range_to
-      mapFloat(
-          editor,
-          R.id.chance_range_to,
-          pm.chanceRange.getTo(),
-          v -> {
-            pm.chanceRange.setTo(v);
-            updateAnimLv();
-          });
+      mapFloat(editor, R.id.chance_range_to, pm.chanceRange.getTo(), v -> pm.chanceRange.setTo(v))
+          .setOnFocusChangeListener(
+              (v, b) -> {
+                if (!b) {
+                  updateAnimLv();
+                  checkRange();
+                }
+              });
       // activeTime_from
       mapInt(
           editor,
@@ -157,6 +162,7 @@ public class ParticleStudio extends Studio<Scene> {
             entity.setMaxParticle(entity.maxParticle);
           });
       // move_from_width_match
+      editor.findViewById(R.id.move_from_width).setEnabled(pm.areaFrom.w != Area.MATCH_PARENT);
       mapCheckBox(
           editor,
           R.id.move_from_width_match,
@@ -231,6 +237,7 @@ public class ParticleStudio extends Studio<Scene> {
             entity.setMaxParticle(entity.maxParticle);
           });
       // move_to_width_match
+      editor.findViewById(R.id.move_to_width).setEnabled(pm.areaTo.w != Area.MATCH_PARENT);
       mapCheckBox(
           editor,
           R.id.move_to_width_match,
@@ -274,6 +281,8 @@ public class ParticleStudio extends Studio<Scene> {
       mapInt(
           editor, R.id.rotate_from_from, pm.rotateBegin.getFrom(), v -> pm.rotateBegin.setFrom(v));
       mapInt(editor, R.id.rotate_from_to, pm.rotateBegin.getTo(), v -> pm.rotateBegin.setTo(v));
+      editor.findViewById(R.id.rotate_to_from).setEnabled(pm.rotateEnd != null);
+      editor.findViewById(R.id.rotate_to_to).setEnabled(pm.rotateEnd != null);
       mapCheckBox(
           editor,
           R.id.rotate_to,
@@ -318,6 +327,8 @@ public class ParticleStudio extends Studio<Scene> {
       mapFloat(
           editor, R.id.scale_from_from, pm.scaleBegin.getFrom(), v -> pm.scaleBegin.setFrom(v));
       mapFloat(editor, R.id.scale_from_to, pm.scaleBegin.getTo(), v -> pm.scaleBegin.setTo(v));
+      editor.findViewById(R.id.scale_to_from).setEnabled(pm.scaleEnd != null);
+      editor.findViewById(R.id.scale_to_to).setEnabled(pm.scaleEnd != null);
       mapCheckBox(
           editor,
           R.id.scale_to,
@@ -352,12 +363,12 @@ public class ParticleStudio extends Studio<Scene> {
     }
   }
 
-  private void mapFloat(View editor, int id, float v, MapValue<Float> mapValue) {
-    ((StudioEt) editor.findViewById(id)).mapValue(v, mapValue);
+  private StudioEt mapFloat(View editor, int id, float v, MapValue<Float> mapValue) {
+    return ((StudioEt) editor.findViewById(id)).mapValue(v, mapValue);
   }
 
-  private void mapInt(View editor, int id, int v, MapValue<Integer> mapValue) {
-    ((StudioEt) editor.findViewById(id)).mapValue(v, mapValue);
+  private StudioEt mapInt(View editor, int id, int v, MapValue<Integer> mapValue) {
+    return ((StudioEt) editor.findViewById(id)).mapValue(v, mapValue);
   }
 
   private void mapSpinner(View editor, int id, String now, StudioSpinner.Callback cb) {

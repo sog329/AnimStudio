@@ -20,6 +20,7 @@ import com.sunshine.studio.base.PlistParser;
 import com.sunshine.studio.base.Studio;
 import com.sunshine.studio.base.StudioCb;
 import com.sunshine.studio.base.StudioEt;
+import com.sunshine.studio.base.StudioImageBtn;
 import com.sunshine.studio.base.StudioSpinner;
 import com.sunshine.studio.base.StudioTool;
 import com.sunshine.studio.base.XmlWriter;
@@ -83,253 +84,265 @@ public class ParticleStudio extends Studio<Scene> {
         }
       }
     }
-    if (changed) {
+    if (changed || entity.lstParticleModel.size() == 0) {
       updateAnimLv();
     }
   }
 
   private void renderEditor(View editor, ParticleModel pm) {
     model = pm;
-    editor.setVisibility(View.VISIBLE);
-    // chance_range_from
-    mapFloat(
-        editor,
-        R.id.chance_range_from,
-        pm.chanceRange.getFrom(),
-        v -> {
-          pm.chanceRange.setFrom(v);
-          updateAnimLv();
-        });
-    // chance_range_to
-    mapFloat(
-        editor,
-        R.id.chance_range_to,
-        pm.chanceRange.getTo(),
-        v -> {
-          pm.chanceRange.setTo(v);
-          updateAnimLv();
-        });
-    // activeTime_from
-    mapInt(
-        editor,
-        R.id.active_time_from,
-        pm.activeTime.getFrom(),
-        v -> {
-          pm.activeTime.setFrom(v);
-          updateAnimLv();
-        });
-    // activeTime_to
-    mapInt(
-        editor,
-        R.id.active_time_to,
-        pm.activeTime.getTo(),
-        v -> {
-          pm.activeTime.setTo(v);
-          updateAnimLv();
-        });
-    // move_from_left
-    mapInt(
-        editor,
-        R.id.move_from_left,
-        pm.areaFrom.l,
-        v -> {
-          pm.areaFrom.l = v;
-          entity.setMaxParticle(entity.maxParticle);
-        });
-    // move_from_top
-    mapInt(
-        editor,
-        R.id.move_from_top,
-        pm.areaFrom.t,
-        v -> {
-          pm.areaFrom.t = v;
-          entity.setMaxParticle(entity.maxParticle);
-        });
-    // move_from_width_match
-    mapCheckBox(
-        editor,
-        R.id.move_from_width_match,
-        pm.areaFrom.w == Area.MATCH_PARENT,
-        b -> {
-          TextView tv = editor.findViewById(R.id.move_from_width);
-          tv.setEnabled(!b);
-          tv.setText(String.valueOf(b ? Area.MATCH_PARENT : entity.scriptSize.width));
-        });
-    // move_from_width
-    mapInt(
-        editor,
-        R.id.move_from_width,
-        pm.areaFrom.w,
-        v -> {
-          pm.areaFrom.w = v;
-          entity.setMaxParticle(entity.maxParticle);
-        });
-    // move_from_height
-    mapInt(
-        editor,
-        R.id.move_from_height,
-        pm.areaFrom.h,
-        v -> {
-          pm.areaFrom.h = v;
-          entity.setMaxParticle(entity.maxParticle);
-        });
+    if (model == null) {
+      editor.setVisibility(View.INVISIBLE);
+    } else {
+      editor.setVisibility(View.VISIBLE);
+      // chance_range_from
+      mapFloat(
+          editor,
+          R.id.chance_range_from,
+          pm.chanceRange.getFrom(),
+          v -> {
+            pm.chanceRange.setFrom(v);
+            updateAnimLv();
+          });
+      // chance_range_to
+      mapFloat(
+          editor,
+          R.id.chance_range_to,
+          pm.chanceRange.getTo(),
+          v -> {
+            pm.chanceRange.setTo(v);
+            updateAnimLv();
+          });
+      // activeTime_from
+      mapInt(
+          editor,
+          R.id.active_time_from,
+          pm.activeTime.getFrom(),
+          v -> {
+            pm.activeTime.setFrom(v);
+            updateAnimLv();
+          });
+      // activeTime_to
+      mapInt(
+          editor,
+          R.id.active_time_to,
+          pm.activeTime.getTo(),
+          v -> {
+            pm.activeTime.setTo(v);
+            updateAnimLv();
+          });
+      // move_from_left
+      mapInt(
+          editor,
+          R.id.move_from_left,
+          pm.areaFrom.l,
+          v -> {
+            pm.areaFrom.l = v;
+            entity.setMaxParticle(entity.maxParticle);
+          });
+      // move_from_top
+      mapInt(
+          editor,
+          R.id.move_from_top,
+          pm.areaFrom.t,
+          v -> {
+            pm.areaFrom.t = v;
+            entity.setMaxParticle(entity.maxParticle);
+          });
+      // move_from_width_match
+      mapCheckBox(
+          editor,
+          R.id.move_from_width_match,
+          pm.areaFrom.w == Area.MATCH_PARENT,
+          b -> {
+            TextView tv = editor.findViewById(R.id.move_from_width);
+            tv.setEnabled(!b);
+            tv.setText(String.valueOf(b ? Area.MATCH_PARENT : entity.scriptSize.width));
+          });
+      // move_from_width
+      mapInt(
+          editor,
+          R.id.move_from_width,
+          pm.areaFrom.w,
+          v -> {
+            pm.areaFrom.w = v;
+            entity.setMaxParticle(entity.maxParticle);
+          });
+      // move_from_height
+      mapInt(
+          editor,
+          R.id.move_from_height,
+          pm.areaFrom.h,
+          v -> {
+            pm.areaFrom.h = v;
+            entity.setMaxParticle(entity.maxParticle);
+          });
 
-    // move_rotate_to
-    mapCheckBox(
-        editor,
-        R.id.move_rotate_to,
-        pm.areaTo.isRotate,
-        b -> {
-          pm.areaTo.isRotate = b;
-          entity.setMaxParticle(entity.maxParticle);
-        });
-    // move_to_left_offset
-    mapCheckBox(
-        editor,
-        R.id.move_to_left_offset,
-        pm.areaTo.isOffsetLeft,
-        b -> {
-          pm.areaTo.isOffsetLeft = b;
-          entity.setMaxParticle(entity.maxParticle);
-        });
-    // move_to_left
-    mapInt(
-        editor,
-        R.id.move_to_left,
-        pm.areaTo.l,
-        v -> {
-          pm.areaTo.l = v;
-          entity.setMaxParticle(entity.maxParticle);
-        });
-    // move_to_top_offset
-    mapCheckBox(
-        editor,
-        R.id.move_to_top_offset,
-        pm.areaTo.isOffsetTop,
-        b -> {
-          pm.areaTo.isOffsetTop = b;
-          entity.setMaxParticle(entity.maxParticle);
-        });
-    // move_to_top
-    mapInt(
-        editor,
-        R.id.move_to_top,
-        pm.areaTo.t,
-        v -> {
-          pm.areaTo.t = v;
-          entity.setMaxParticle(entity.maxParticle);
-        });
-    // move_to_width_match
-    mapCheckBox(
-        editor,
-        R.id.move_to_width_match,
-        pm.areaTo.w == Area.MATCH_PARENT,
-        b -> {
-          TextView tv = editor.findViewById(R.id.move_to_width);
-          tv.setEnabled(!b);
-          tv.setText(String.valueOf(b ? Area.MATCH_PARENT : entity.scriptSize.width));
-        });
-    // move_to_width
-    mapInt(
-        editor,
-        R.id.move_to_width,
-        pm.areaTo.w,
-        v -> {
-          pm.areaTo.w = v;
-          entity.setMaxParticle(entity.maxParticle);
-        });
-    // move_to_height
-    mapInt(
-        editor,
-        R.id.move_to_height,
-        pm.areaTo.h,
-        v -> {
-          pm.areaTo.h = v;
-          entity.setMaxParticle(entity.maxParticle);
-        });
-    // move_interpolator_x
-    mapSpinner(
-        editor, R.id.move_interpolator_x, pm.interpolatorMove[0], s -> pm.interpolatorMove[0] = s);
-    // move_interpolator_y
-    mapSpinner(
-        editor, R.id.move_interpolator_y, pm.interpolatorMove[1], s -> pm.interpolatorMove[1] = s);
-    // rotate
-    mapInt(editor, R.id.rotate_from_from, pm.rotateBegin.getFrom(), v -> pm.rotateBegin.setFrom(v));
-    mapInt(editor, R.id.rotate_from_to, pm.rotateBegin.getTo(), v -> pm.rotateBegin.setTo(v));
-    mapCheckBox(
-        editor,
-        R.id.rotate_to,
-        pm.rotateEnd != null,
-        b -> {
-          TextView tvFrom = editor.findViewById(R.id.rotate_to_from);
-          TextView tvTo = editor.findViewById(R.id.rotate_to_to);
-          tvFrom.setEnabled(b);
-          tvTo.setEnabled(b);
-          if (b) {
-            pm.rotateEnd = new ProcessInt(200, 300);
-            tvFrom.setText(String.valueOf(pm.rotateEnd.getFrom()));
-            tvTo.setText(String.valueOf(pm.rotateEnd.getTo()));
-          } else {
-            pm.rotateEnd = null;
-            tvFrom.setText(String.valueOf(0));
-            tvTo.setText(String.valueOf(0));
-          }
-        });
-    mapInt(
-        editor,
-        R.id.rotate_to_from,
-        pm.rotateEnd == null ? 0 : pm.rotateEnd.getFrom(),
-        v -> pm.rotateEnd.setFrom(v));
-    mapInt(
-        editor,
-        R.id.rotate_to_to,
-        pm.rotateEnd == null ? 0 : pm.rotateEnd.getTo(),
-        v -> pm.rotateEnd.setTo(v));
-    mapFloat(editor, R.id.rotate_x, pm.ptRotate.x, v -> pm.ptRotate.x = v);
-    mapFloat(editor, R.id.rotate_y, pm.ptRotate.y, v -> pm.ptRotate.y = v);
-    mapSpinner(
-        editor, R.id.rotate_interpolator, pm.interpolatorRotate, s -> pm.interpolatorRotate = s);
-    // alpha
-    mapInt(editor, R.id.alpha_from_from, pm.alphaBegin.getFrom(), v -> pm.alphaBegin.setFrom(v));
-    mapInt(editor, R.id.alpha_from_to, pm.alphaBegin.getTo(), v -> pm.alphaBegin.setTo(v));
-    mapInt(editor, R.id.alpha_to_from, pm.alphaEnd.getFrom(), v -> pm.alphaEnd.setFrom(v));
-    mapInt(editor, R.id.alpha_to_to, pm.alphaEnd.getTo(), v -> pm.alphaEnd.setTo(v));
-    mapSpinner(
-        editor, R.id.alpha_interpolator, pm.interpolatorAlpha, s -> pm.interpolatorAlpha = s);
-    // scale
-    mapFloat(editor, R.id.scale_from_from, pm.scaleBegin.getFrom(), v -> pm.scaleBegin.setFrom(v));
-    mapFloat(editor, R.id.scale_from_to, pm.scaleBegin.getTo(), v -> pm.scaleBegin.setTo(v));
-    mapCheckBox(
-        editor,
-        R.id.scale_to,
-        pm.scaleEnd != null,
-        b -> {
-          TextView tvFrom = editor.findViewById(R.id.scale_to_from);
-          TextView tvTo = editor.findViewById(R.id.scale_to_to);
-          tvFrom.setEnabled(b);
-          tvTo.setEnabled(b);
-          if (b) {
-            pm.scaleEnd = new ProcessFloat(1f, 1f);
-            tvFrom.setText(String.valueOf(pm.scaleEnd.getFrom()));
-            tvTo.setText(String.valueOf(pm.scaleEnd.getTo()));
-          } else {
-            pm.scaleEnd = null;
-            tvFrom.setText(String.valueOf(0));
-            tvTo.setText(String.valueOf(0));
-          }
-        });
-    mapFloat(
-        editor,
-        R.id.scale_to_from,
-        pm.scaleEnd == null ? 0f : pm.scaleEnd.getFrom(),
-        v -> pm.scaleEnd.setFrom(v));
-    mapFloat(
-        editor,
-        R.id.scale_to_to,
-        pm.scaleEnd == null ? 0f : pm.scaleEnd.getTo(),
-        v -> pm.scaleEnd.setTo(v));
-    mapSpinner(
-        editor, R.id.scale_interpolator, pm.interpolatorScale, s -> pm.interpolatorScale = s);
+      // move_rotate_to
+      mapCheckBox(
+          editor,
+          R.id.move_rotate_to,
+          pm.areaTo.isRotate,
+          b -> {
+            pm.areaTo.isRotate = b;
+            entity.setMaxParticle(entity.maxParticle);
+          });
+      // move_to_left_offset
+      mapCheckBox(
+          editor,
+          R.id.move_to_left_offset,
+          pm.areaTo.isOffsetLeft,
+          b -> {
+            pm.areaTo.isOffsetLeft = b;
+            entity.setMaxParticle(entity.maxParticle);
+          });
+      // move_to_left
+      mapInt(
+          editor,
+          R.id.move_to_left,
+          pm.areaTo.l,
+          v -> {
+            pm.areaTo.l = v;
+            entity.setMaxParticle(entity.maxParticle);
+          });
+      // move_to_top_offset
+      mapCheckBox(
+          editor,
+          R.id.move_to_top_offset,
+          pm.areaTo.isOffsetTop,
+          b -> {
+            pm.areaTo.isOffsetTop = b;
+            entity.setMaxParticle(entity.maxParticle);
+          });
+      // move_to_top
+      mapInt(
+          editor,
+          R.id.move_to_top,
+          pm.areaTo.t,
+          v -> {
+            pm.areaTo.t = v;
+            entity.setMaxParticle(entity.maxParticle);
+          });
+      // move_to_width_match
+      mapCheckBox(
+          editor,
+          R.id.move_to_width_match,
+          pm.areaTo.w == Area.MATCH_PARENT,
+          b -> {
+            TextView tv = editor.findViewById(R.id.move_to_width);
+            tv.setEnabled(!b);
+            tv.setText(String.valueOf(b ? Area.MATCH_PARENT : entity.scriptSize.width));
+          });
+      // move_to_width
+      mapInt(
+          editor,
+          R.id.move_to_width,
+          pm.areaTo.w,
+          v -> {
+            pm.areaTo.w = v;
+            entity.setMaxParticle(entity.maxParticle);
+          });
+      // move_to_height
+      mapInt(
+          editor,
+          R.id.move_to_height,
+          pm.areaTo.h,
+          v -> {
+            pm.areaTo.h = v;
+            entity.setMaxParticle(entity.maxParticle);
+          });
+      // move_interpolator_x
+      mapSpinner(
+          editor,
+          R.id.move_interpolator_x,
+          pm.interpolatorMove[0],
+          s -> pm.interpolatorMove[0] = s);
+      // move_interpolator_y
+      mapSpinner(
+          editor,
+          R.id.move_interpolator_y,
+          pm.interpolatorMove[1],
+          s -> pm.interpolatorMove[1] = s);
+      // rotate
+      mapInt(
+          editor, R.id.rotate_from_from, pm.rotateBegin.getFrom(), v -> pm.rotateBegin.setFrom(v));
+      mapInt(editor, R.id.rotate_from_to, pm.rotateBegin.getTo(), v -> pm.rotateBegin.setTo(v));
+      mapCheckBox(
+          editor,
+          R.id.rotate_to,
+          pm.rotateEnd != null,
+          b -> {
+            TextView tvFrom = editor.findViewById(R.id.rotate_to_from);
+            TextView tvTo = editor.findViewById(R.id.rotate_to_to);
+            tvFrom.setEnabled(b);
+            tvTo.setEnabled(b);
+            if (b) {
+              pm.rotateEnd = new ProcessInt(200, 300);
+              tvFrom.setText(String.valueOf(pm.rotateEnd.getFrom()));
+              tvTo.setText(String.valueOf(pm.rotateEnd.getTo()));
+            } else {
+              pm.rotateEnd = null;
+              tvFrom.setText(String.valueOf(0));
+              tvTo.setText(String.valueOf(0));
+            }
+          });
+      mapInt(
+          editor,
+          R.id.rotate_to_from,
+          pm.rotateEnd == null ? 0 : pm.rotateEnd.getFrom(),
+          v -> pm.rotateEnd.setFrom(v));
+      mapInt(
+          editor,
+          R.id.rotate_to_to,
+          pm.rotateEnd == null ? 0 : pm.rotateEnd.getTo(),
+          v -> pm.rotateEnd.setTo(v));
+      mapFloat(editor, R.id.rotate_x, pm.ptRotate.x, v -> pm.ptRotate.x = v);
+      mapFloat(editor, R.id.rotate_y, pm.ptRotate.y, v -> pm.ptRotate.y = v);
+      mapSpinner(
+          editor, R.id.rotate_interpolator, pm.interpolatorRotate, s -> pm.interpolatorRotate = s);
+      // alpha
+      mapInt(editor, R.id.alpha_from_from, pm.alphaBegin.getFrom(), v -> pm.alphaBegin.setFrom(v));
+      mapInt(editor, R.id.alpha_from_to, pm.alphaBegin.getTo(), v -> pm.alphaBegin.setTo(v));
+      mapInt(editor, R.id.alpha_to_from, pm.alphaEnd.getFrom(), v -> pm.alphaEnd.setFrom(v));
+      mapInt(editor, R.id.alpha_to_to, pm.alphaEnd.getTo(), v -> pm.alphaEnd.setTo(v));
+      mapSpinner(
+          editor, R.id.alpha_interpolator, pm.interpolatorAlpha, s -> pm.interpolatorAlpha = s);
+      // scale
+      mapFloat(
+          editor, R.id.scale_from_from, pm.scaleBegin.getFrom(), v -> pm.scaleBegin.setFrom(v));
+      mapFloat(editor, R.id.scale_from_to, pm.scaleBegin.getTo(), v -> pm.scaleBegin.setTo(v));
+      mapCheckBox(
+          editor,
+          R.id.scale_to,
+          pm.scaleEnd != null,
+          b -> {
+            TextView tvFrom = editor.findViewById(R.id.scale_to_from);
+            TextView tvTo = editor.findViewById(R.id.scale_to_to);
+            tvFrom.setEnabled(b);
+            tvTo.setEnabled(b);
+            if (b) {
+              pm.scaleEnd = new ProcessFloat(1f, 1f);
+              tvFrom.setText(String.valueOf(pm.scaleEnd.getFrom()));
+              tvTo.setText(String.valueOf(pm.scaleEnd.getTo()));
+            } else {
+              pm.scaleEnd = null;
+              tvFrom.setText(String.valueOf(0));
+              tvTo.setText(String.valueOf(0));
+            }
+          });
+      mapFloat(
+          editor,
+          R.id.scale_to_from,
+          pm.scaleEnd == null ? 0f : pm.scaleEnd.getFrom(),
+          v -> pm.scaleEnd.setFrom(v));
+      mapFloat(
+          editor,
+          R.id.scale_to_to,
+          pm.scaleEnd == null ? 0f : pm.scaleEnd.getTo(),
+          v -> pm.scaleEnd.setTo(v));
+      mapSpinner(
+          editor, R.id.scale_interpolator, pm.interpolatorScale, s -> pm.interpolatorScale = s);
+    }
   }
 
   private void mapFloat(View editor, int id, float v, MapValue<Float> mapValue) {
@@ -458,6 +471,20 @@ public class ParticleStudio extends Studio<Scene> {
           c -> {
             checkRange();
             renderEditor(act.findViewById(R.id.anim_editor), pm);
+            onSelectModel(animLv);
+          });
+      StudioImageBtn btn = v.findViewById(R.id.del);
+      btn.setOnClickListener(
+          b -> {
+            entity.lstParticleModel.remove(pm);
+            if (model == pm) {
+              if (entity.lstParticleModel.size() == 0) {
+                renderEditor(act.findViewById(R.id.anim_editor), null);
+              } else {
+                renderEditor(act.findViewById(R.id.anim_editor), entity.lstParticleModel.get(0));
+              }
+            }
+            checkRange();
             onSelectModel(animLv);
           });
       changeBg(v, pm);

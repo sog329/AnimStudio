@@ -83,6 +83,13 @@ public class ParticleStudio extends Studio<Scene> {
           changed = true;
         }
       }
+      // is last
+      if (i == entity.lstParticleModel.size() - 1) {
+        if (m.chanceRange.getTo() < 1) {
+          m.chanceRange.setTo(1f);
+          changed = true;
+        }
+      }
     }
     if (changed || entity.lstParticleModel.size() == 0) {
       updateAnimLv();

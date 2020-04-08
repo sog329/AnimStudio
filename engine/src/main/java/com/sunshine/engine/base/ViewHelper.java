@@ -14,6 +14,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.sunshine.engine.base.Tool.DEBUG;
+
 /** Created by songxiaoguang on 2017/12/1. */
 public abstract class ViewHelper<T extends Entity> extends LifeCycle {
 
@@ -181,23 +183,27 @@ public abstract class ViewHelper<T extends Entity> extends LifeCycle {
   }
 
   public ViewHelper addLog(String log) {
-    synchronized (lstLog) {
-      if (lstLog.size() > 100) {
-        lstLog.clear();
+    if (DEBUG) {
+      synchronized (lstLog) {
+        if (lstLog.size() > 100) {
+          lstLog.clear();
+        }
+        Tool.addLog(
+            lstLog,
+            log
+                + (Looper.myLooper() == Looper.getMainLooper()
+                    ? ""
+                    : " in [" + Thread.currentThread().getName() + "]"));
       }
-      Tool.addLog(
-          lstLog,
-          log
-              + (Looper.myLooper() == Looper.getMainLooper()
-              ? ""
-              : " in [" + Thread.currentThread().getName() + "]"));
-      return this;
     }
+    return this;
   }
 
   public void onError() {
-    Tool.addDeviceLog(lstLog);
-    onError(lstLog.toString());
-    lstLog.clear();
+    if (DEBUG) {
+      Tool.addDeviceLog(lstLog);
+      onError(lstLog.toString());
+      lstLog.clear();
+    }
   }
 }

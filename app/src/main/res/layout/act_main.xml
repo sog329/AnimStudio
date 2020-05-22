@@ -7,7 +7,7 @@
     android:orientation="horizontal"
     tools:context=".MainAct">
 
-    <android.support.v7.widget.CardView
+    <com.sunshine.studio.base.ShimmerView
         android:id="@+id/bone_demo"
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -30,7 +30,7 @@
             android:textColor="@android:color/white"
             android:text="Bone\nDemo"
             android:textStyle="bold" />
-    </android.support.v7.widget.CardView>
+    </com.sunshine.studio.base.ShimmerView>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -39,7 +39,7 @@
 
         android:orientation="vertical">
 
-        <android.support.v7.widget.CardView
+        <com.sunshine.studio.base.ShimmerView
             android:id="@+id/bone_studio"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -62,7 +62,7 @@
                 android:textColor="@android:color/white"
                 android:text="Bone\nStudio"
                 android:textStyle="bold" />
-        </android.support.v7.widget.CardView>
+        </com.sunshine.studio.base.ShimmerView>
 
         <LinearLayout
             android:id="@+id/test_btn"
@@ -92,7 +92,7 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <android.support.v7.widget.CardView
+        <com.sunshine.studio.base.ShimmerView
             android:id="@+id/particle_studio"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -116,11 +116,11 @@
                 android:textColor="@android:color/white"
                 android:text="Particle\nStudio"
                 android:textStyle="bold" />
-        </android.support.v7.widget.CardView>
+        </com.sunshine.studio.base.ShimmerView>
     </LinearLayout>
 
 
-    <android.support.v7.widget.CardView
+    <com.sunshine.studio.base.ShimmerView
         android:id="@+id/particle_demo"
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -133,8 +133,7 @@
         <com.sunshine.engine.particle.SceneView
             android:id="@+id/particle_demo_sv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
+            android:layout_height="match_parent"/>
         <com.sunshine.studio.base.StudioTv
             android:id="@+id/particle_demo_tv"
             android:layout_width="match_parent"
@@ -143,5 +142,5 @@
             android:text="Particle\nDemo"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
-    </android.support.v7.widget.CardView>
+    </com.sunshine.studio.base.ShimmerView>
 </LinearLayout>

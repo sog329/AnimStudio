@@ -5,17 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:clipChildren="false"
+    android:background="@android:color/black"
     tools:context=".MainAct">
 
     <com.sunshine.studio.base.ShimmerView
         android:id="@+id/bone_demo"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:layout_weight="1"
-        android:foreground="@drawable/ripple_card"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="10dp">
+        android:foreground="@drawable/ripple_card">
 
         <com.sunshine.engine.bone.StageView
             android:id="@+id/bone_demo_sv"
@@ -36,14 +36,14 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight=".5"
-
+        android:clipChildren="false"
         android:orientation="vertical">
 
         <com.sunshine.studio.base.ShimmerView
             android:id="@+id/bone_studio"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             android:foreground="@drawable/ripple_card"
             app:cardCornerRadius="10dp"
@@ -96,7 +96,7 @@
             android:id="@+id/particle_studio"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             android:foreground="@drawable/ripple_card"
             app:cardCornerRadius="10dp"
@@ -124,11 +124,9 @@
         android:id="@+id/particle_demo"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:layout_weight="1"
-        android:foreground="@drawable/ripple_card"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="10dp">
+        android:foreground="@drawable/ripple_card">
 
         <com.sunshine.engine.particle.SceneView
             android:id="@+id/particle_demo_sv"

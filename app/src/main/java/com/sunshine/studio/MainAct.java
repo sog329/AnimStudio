@@ -2,6 +2,7 @@ package com.sunshine.studio;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
@@ -10,6 +11,7 @@ import android.view.View;
 
 import com.sunshine.engine.bone.StageView;
 import com.sunshine.engine.particle.SceneView;
+import com.sunshine.studio.base.CardView;
 import com.sunshine.studio.base.StudioTool;
 import com.sunshine.studio.base.StudioTv;
 import com.sunshine.studio.bone.BoneDemoAct;
@@ -17,7 +19,11 @@ import com.sunshine.studio.bone.BoneStudioAct;
 import com.sunshine.studio.particle.ParticleDemoAct;
 import com.sunshine.studio.particle.ParticleStudioAct;
 
-public class MainAct extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener, View.OnHoverListener, View.OnTouchListener {
+public class MainAct extends AppCompatActivity
+    implements View.OnClickListener,
+        View.OnLongClickListener,
+        View.OnHoverListener,
+        View.OnTouchListener {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +39,11 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
     StageView bDemoSv = findViewById(R.id.bone_demo_sv);
     bDemoSv.play("bone/sunglasses_main");
     bDemoSv.isRepeat(true);
-    setListener(findViewById(R.id.bone_demo));
+    setListener(
+        ((CardView) findViewById(R.id.bone_demo))
+            .setBgColor(Color.parseColor("#521a4c"))
+            .setSdColor(Color.GRAY));
+
     // bone studio
     StudioTv bStudioTv = findViewById(R.id.bone_studio_tv);
     bStudioTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize / 2);
@@ -41,7 +51,10 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
     bStudioSv.play("bone/gear");
     bStudioSv.autoStop(false);
     bStudioSv.isRepeat(true);
-    setListener(findViewById(R.id.bone_studio));
+    setListener(
+        ((CardView) findViewById(R.id.bone_studio))
+            .setBgColor(Color.parseColor("#521a4c"))
+            .setSdColor(Color.GRAY));
     // particle demo
     StudioTv particleDemoTv = findViewById(R.id.particle_demo_tv);
     particleDemoTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
@@ -50,14 +63,20 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
     pStudioSv.autoStop(false);
     pStudioSv.isRepeat(true);
     pStudioSv.setPercent(.5f, 1f, 9000);
-    setListener(findViewById(R.id.particle_studio));
+    setListener(
+        ((CardView) findViewById(R.id.particle_studio))
+            .setBgColor(Color.parseColor("#1b294a"))
+            .setSdColor(Color.GRAY));
     // particle studio
     StudioTv particleStudioTv = findViewById(R.id.particle_studio_tv);
     particleStudioTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize / 2);
     SceneView pDemoSv = findViewById(R.id.particle_demo_sv);
     pDemoSv.play("particle/singleDog");
     pDemoSv.isRepeat(true);
-    setListener(findViewById(R.id.particle_demo));
+    setListener(
+        ((CardView) findViewById(R.id.particle_demo))
+            .setBgColor(Color.parseColor("#1b294a"))
+            .setSdColor(Color.GRAY));
     // test
     StageView demo = findViewById(R.id.test);
     demo.play("bone/tab2");
@@ -68,7 +87,7 @@ public class MainAct extends AppCompatActivity implements View.OnClickListener, 
     testTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize / 2);
     findViewById(R.id.test_btn).setOnClickListener(this);
 
-//    startActivity(new Intent(this, TestAct.class));
+    //    startActivity(new Intent(this, TestAct.class));
   }
 
   @Override

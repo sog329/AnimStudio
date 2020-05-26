@@ -23,7 +23,7 @@ public class ShimmerView extends CardView {
           .setLength(2)
           .setRight(false);
   private final DrawHelper hpDraw =
-      new DrawHelper().setColor(Color.argb(30, 255, 255, 255)).setRotate(-1f);
+      new DrawHelper().setColor(Color.argb(70, 255, 255, 255)).setRotate(-1f);
 
   {
     cb = () -> show(false);

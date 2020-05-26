@@ -4,36 +4,36 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Camera;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
+import android.widget.FrameLayout;
 
 /** Created by Jack on 2020/5/22. */
-public class CardView extends android.support.v7.widget.CardView {
-  private final CameraHelper helper = new CameraHelper();
+public class CardView extends FrameLayout {
+  private final CameraHelper hpCamera = new CameraHelper();
+  private final CardHelper hpCard = new CardHelper();
   protected Callback cb = null;
 
   public CardView(@NonNull Context context) {
     super(context);
-    init();
   }
 
   public CardView(@NonNull Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
-    init();
   }
 
   public CardView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-    init();
-  }
-
-  private void init() {
-    helper.init(this);
   }
 
   @Override
@@ -44,12 +44,12 @@ public class CardView extends android.support.v7.widget.CardView {
           cb.onTouchDown();
         }
       case MotionEvent.ACTION_MOVE:
-        helper.rotateCamera(event, getWidth() / 2, getHeight() / 2);
+        hpCamera.rotateCamera(event, getWidth() / 2, getHeight() / 2);
         postInvalidate();
         break;
       case MotionEvent.ACTION_UP:
       case MotionEvent.ACTION_CANCEL:
-        helper.toBalance();
+        hpCamera.toBalance();
         postInvalidate();
         break;
     }
@@ -57,10 +57,20 @@ public class CardView extends android.support.v7.widget.CardView {
   }
 
   @Override
+  protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    hpCard.resizePath(w, h);
+  }
+
+  @Override
   public void draw(Canvas can) {
-    helper.loadMatrix(this, can, getWidth() / 2, getHeight() / 2);
+    // 3D
+    hpCamera.loadMatrix(this, can, getWidth() / 2, getHeight() / 2);
+    // 阴影
+    can.drawRoundRect(hpCard.rc, hpCard.radius, hpCard.radius, hpCard.pt);
+    // 圆角
+    can.clipPath(hpCard.path);
     super.draw(can);
-    if (helper.inAnim()) {
+    if (hpCamera.inAnim()) {
       postInvalidate();
     }
   }
@@ -73,11 +83,6 @@ public class CardView extends android.support.v7.widget.CardView {
     private float rotateY;
     private ValueAnimator animX = null;
     private ValueAnimator animY = null;
-    private float elevation = 0;
-
-    private void init(CardView v) {
-      elevation = v.getCardElevation();
-    }
 
     private boolean inAnim() {
       return animX != null && animX.isRunning() && animY != null && animY.isRunning();
@@ -139,7 +144,6 @@ public class CardView extends android.support.v7.widget.CardView {
       camera.rotateY(rotateY);
       camera.getMatrix(matrix);
       float rt = Math.max(Math.abs(rotateX), Math.abs(rotateY));
-      v.setCardElevation(rt < 1 ? elevation : 0);
       float scale = (100 - 2f * rt) / 100f;
       matrix.postScale(scale, scale);
       camera.restore();
@@ -149,7 +153,81 @@ public class CardView extends android.support.v7.widget.CardView {
     }
   }
 
+  public CardView setBgColor(int bgColor) {
+    hpCard.setBgColor(bgColor);
+    invalidate();
+    return this;
+  }
+
+  public CardView setSdColor(int sdColor) {
+    hpCard.setSdColor(sdColor);
+    invalidate();
+    return this;
+  }
+
+  public CardView setShadow(int px) {
+    hpCard.setShadow(px, getWidth(), getHeight());
+    invalidate();
+    return this;
+  }
+
+  public CardView setRadius(int px) {
+    hpCard.setRadius(px, getWidth(), getHeight());
+    invalidate();
+    return this;
+  }
+
+  private static class CardHelper {
+    private final Path path = new Path();
+    private final RectF rc = new RectF();
+    private final Paint pt = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+    private int shadow = 20;
+    private int sdColor = Color.BLACK;
+    private int radius = 50;
+
+    public CardHelper() {
+      setSdColor(Color.BLACK);
+      setBgColor(Color.WHITE);
+    }
+
+    private void resizePath(int w, int h) {
+      rc.set(shadow, shadow, w - shadow, h - shadow);
+      path.reset();
+      path.addRoundRect(rc, radius, radius, Path.Direction.CCW);
+    }
+
+    public void setBgColor(int bgColor) {
+      pt.setColor(bgColor);
+    }
+
+    public void setSdColor(int sdColor) {
+      this.sdColor = sdColor;
+      resetShadow(shadow, sdColor);
+    }
+
+    public void setShadow(int px, int w, int h) {
+      shadow = px;
+      resetShadow(px, sdColor);
+      resizePath(w, h);
+    }
+
+    private void resetShadow(int px, int sdColor) {
+      pt.setShadowLayer(px, 0, 0, sdColor);
+    }
+
+    public void setRadius(int px, int w, int h) {
+      radius = px;
+      resizePath(w, h);
+    }
+  }
+
   public interface Callback {
     void onTouchDown();
   }
+
+  @Deprecated
+  public void setElevation(float elevation) {}
+
+  @Deprecated
+  public void setBackgroundDrawable(Drawable background) {}
 }

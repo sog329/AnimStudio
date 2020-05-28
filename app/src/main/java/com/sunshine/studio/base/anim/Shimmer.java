@@ -1,6 +1,5 @@
-package com.sunshine.studio.base;
+package com.sunshine.studio.base.anim;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -8,71 +7,30 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Xfermode;
 import android.os.SystemClock;
-import android.support.annotation.Nullable;
-import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 
-/** Created by Jack on 2020/5/9. */
-public class ShimmerView extends CardView {
+import com.sunshine.studio.base.AnimLayout;
+
+/** Created by Jack on 2020/5/28. */
+public class Shimmer implements AnimLayout.Anim {
+  private final DrawHelper hpDraw =
+      new DrawHelper().setColor(Color.argb(70, 255, 255, 255)).setRotate(-1f);
   private final OffsetHelper hpOffset =
       new OffsetHelper()
           .setDuration(500, new DecelerateInterpolator())
           .setTimes(0)
           .setLength(2)
           .setRight(false);
-  private final DrawHelper hpDraw =
-      new DrawHelper().setColor(Color.argb(70, 255, 255, 255)).setRotate(-1f);
-
-  {
-    cb = () -> show(false);
-  }
-
-  public ShimmerView(Context context) {
-    super(context);
-  }
-
-  public ShimmerView(Context context, @Nullable AttributeSet attrs) {
-    super(context, attrs);
-  }
-
-  public ShimmerView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-    super(context, attrs, defStyleAttr);
-  }
-
-  @Override
-  public void draw(Canvas can) {
-    int offset = hpOffset.getOffset(getWidth());
-    if (hpOffset.isShowing()) {
-      int saveCount = can.saveLayer(null, hpDraw.paint, Canvas.ALL_SAVE_FLAG);
-      super.draw(can);
-      hpDraw.draw(can, offset, getWidth() / hpOffset.length, getHeight());
-      can.restoreToCount(saveCount);
-      postInvalidate();
-    } else {
-      super.draw(can);
-    }
-  }
-
-  /**
-   * 手动展示扫光
-   *
-   * @param force 强制重新显示扫光
-   */
-  public void show(boolean force) {
-    hpOffset.show(force);
-  }
 
   private static class DrawHelper {
     private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
     private final Xfermode mode = new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP);
     private float rotate = 1f;
     private int color = Color.argb(200, 255, 255, 255);
-
-    public DrawHelper() {
-      paint.setAntiAlias(true);
-    }
 
     /**
      * 设置扫光的颜色
@@ -184,6 +142,11 @@ public class ShimmerView extends CardView {
       return showing;
     }
 
+    /**
+     * 手动展示扫光
+     *
+     * @param force 强制重新显示扫光
+     */
     private void show(boolean force) {
       if (times == 0) {
         times = 1;
@@ -241,4 +204,30 @@ public class ShimmerView extends CardView {
       }
     }
   }
+
+  @Override
+  public void draw(View v, Canvas can) {
+    int offset = hpOffset.getOffset(v.getWidth());
+    if (hpOffset.isShowing()) {
+      int saveCount = can.saveLayer(null, hpDraw.paint, Canvas.ALL_SAVE_FLAG);
+      v.draw(can);
+      hpDraw.draw(can, offset, v.getWidth() / hpOffset.length, v.getHeight());
+      can.restoreToCount(saveCount);
+      v.postInvalidate();
+    } else {
+      v.draw(can);
+    }
+  }
+
+  @Override
+  public void dispatchTouchEvent(View v, MotionEvent event) {
+    switch (event.getAction()) {
+      case MotionEvent.ACTION_DOWN:
+        hpOffset.show(false);
+        break;
+    }
+  }
+
+  @Override
+  public void onSizeChanged(View v, int w, int h) {}
 }

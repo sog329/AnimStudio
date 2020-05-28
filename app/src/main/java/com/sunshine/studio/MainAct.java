@@ -11,9 +11,12 @@ import android.view.View;
 
 import com.sunshine.engine.bone.StageView;
 import com.sunshine.engine.particle.SceneView;
-import com.sunshine.studio.base.CardView;
+import com.sunshine.studio.base.AnimLayout;
 import com.sunshine.studio.base.StudioTool;
 import com.sunshine.studio.base.StudioTv;
+import com.sunshine.studio.base.anim.Geometry;
+import com.sunshine.studio.base.anim.Shimmer;
+import com.sunshine.studio.base.anim.Wave;
 import com.sunshine.studio.bone.BoneDemoAct;
 import com.sunshine.studio.bone.BoneStudioAct;
 import com.sunshine.studio.particle.ParticleDemoAct;
@@ -40,9 +43,10 @@ public class MainAct extends AppCompatActivity
     bDemoSv.play("bone/sunglasses_main");
     bDemoSv.isRepeat(true);
     setListener(
-        ((CardView) findViewById(R.id.bone_demo))
-            .setBgColor(Color.parseColor("#521a4c"))
-            .setSdColor(Color.GRAY));
+        ((AnimLayout) findViewById(R.id.bone_demo))
+            .addAnim(new Geometry())
+            .addAnim(new Shimmer())
+            .addAnim(new Wave().setColor(Color.argb(90, 82, 26, 76), Color.argb(180, 82, 26, 76))));
 
     // bone studio
     StudioTv bStudioTv = findViewById(R.id.bone_studio_tv);
@@ -52,9 +56,10 @@ public class MainAct extends AppCompatActivity
     bStudioSv.autoStop(false);
     bStudioSv.isRepeat(true);
     setListener(
-        ((CardView) findViewById(R.id.bone_studio))
-            .setBgColor(Color.parseColor("#521a4c"))
-            .setSdColor(Color.GRAY));
+        ((AnimLayout) findViewById(R.id.bone_studio))
+            .addAnim(new Geometry())
+            .addAnim(new Shimmer())
+            .addAnim(new Wave().setColor(Color.argb(90, 82, 26, 76), Color.argb(180, 82, 26, 76))));
     // particle demo
     StudioTv particleDemoTv = findViewById(R.id.particle_demo_tv);
     particleDemoTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
@@ -64,9 +69,11 @@ public class MainAct extends AppCompatActivity
     pStudioSv.isRepeat(true);
     pStudioSv.setPercent(.5f, 1f, 9000);
     setListener(
-        ((CardView) findViewById(R.id.particle_studio))
-            .setBgColor(Color.parseColor("#1b294a"))
-            .setSdColor(Color.GRAY));
+        ((AnimLayout) findViewById(R.id.particle_studio))
+            .addAnim(new Geometry())
+            .addAnim(new Shimmer())
+            .addAnim(
+                new Wave().setColor(Color.argb(90, 42, 63, 103), Color.argb(180, 42, 63, 103))));
     // particle studio
     StudioTv particleStudioTv = findViewById(R.id.particle_studio_tv);
     particleStudioTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize / 2);
@@ -74,9 +81,11 @@ public class MainAct extends AppCompatActivity
     pDemoSv.play("particle/singleDog");
     pDemoSv.isRepeat(true);
     setListener(
-        ((CardView) findViewById(R.id.particle_demo))
-            .setBgColor(Color.parseColor("#1b294a"))
-            .setSdColor(Color.GRAY));
+        ((AnimLayout) findViewById(R.id.particle_demo))
+            .addAnim(new Geometry())
+            .addAnim(new Shimmer())
+            .addAnim(
+                new Wave().setColor(Color.argb(90, 42, 63, 103), Color.argb(180, 42, 63, 103))));
     // test
     StageView demo = findViewById(R.id.test);
     demo.play("bone/tab2");

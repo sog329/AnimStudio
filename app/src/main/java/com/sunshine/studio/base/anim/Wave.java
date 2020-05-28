@@ -24,6 +24,7 @@ public class Wave implements Anim {
   private float percent = .03f;
   private long lastDrawTime = 0;
   private int[] aryColor = new int[] {Color.argb(30, 255, 146, 146), Color.argb(70, 252, 97, 97)};
+  private int times = 1;
 
   public Wave() {
     paint.setStyle(Paint.Style.FILL);
@@ -69,7 +70,7 @@ public class Wave implements Anim {
       lastDrawTime = SystemClock.elapsedRealtime();
     }
     if (w != 0) {
-      return -(int) ((SystemClock.elapsedRealtime() - lastDrawTime) / 8 % w);
+      return -(int) ((SystemClock.elapsedRealtime() - lastDrawTime) / 5 % w);
     } else {
       return 0;
     }
@@ -97,14 +98,13 @@ public class Wave implements Anim {
     path.lineTo(w * 2, h); // right bottom
     path.lineTo(0, h); // left bottom
     path.lineTo(0, height); // left top
-    path.quadTo(w * 1 / 8, height - offsetY, w * 1 / 4, height);
-    path.quadTo(w * 3 / 8, height + offsetY, w * 2 / 4, height);
-    path.quadTo(w * 5 / 8, height - offsetY, w * 3 / 4, height);
-    path.quadTo(w * 7 / 8, height + offsetY, w * 4 / 4, height);
-    path.quadTo(w * 9 / 8, height - offsetY, w * 5 / 4, height);
-    path.quadTo(w * 11 / 8, height + offsetY, w * 6 / 4, height);
-    path.quadTo(w * 13 / 8, height - offsetY, w * 7 / 4, height);
-    path.quadTo(w * 15 / 8, height + offsetY, w * 8 / 4, height);
+    for (int i = 0; i < 4 * times; i++) {
+      path.quadTo(
+          w * (1 + 2 * i) / 4 / times,
+          height + (i % 2 == 0 ? -1 : 1) * offsetY,
+          w * (1 + i) / 2 / times,
+          height);
+    }
     path.close();
   }
 }

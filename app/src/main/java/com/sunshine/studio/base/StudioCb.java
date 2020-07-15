@@ -8,16 +8,20 @@ import android.util.AttributeSet;
 public class StudioCb extends android.support.v7.widget.AppCompatCheckBox {
   public StudioCb(Context context) {
     super(context);
-    StudioTv.initSize(this, 1);
+    init();
   }
 
   public StudioCb(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
-    StudioTv.initSize(this, 1);
+    init();
   }
 
   public StudioCb(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
+    init();
+  }
+
+  private void init() {
     StudioTv.initSize(this, 1);
   }
 

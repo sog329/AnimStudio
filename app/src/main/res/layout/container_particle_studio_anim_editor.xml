@@ -42,6 +42,7 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:textColor="@color/tv_color"
+                    android:tooltipText="出生概率范围，From"
                     attrs:scale=".5" />
 
                 <com.sunshine.studio.base.StudioTv
@@ -61,6 +62,7 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:textColor="@color/tv_color"
+                    android:tooltipText="出生概率范围，To"
                     attrs:scale=".5" />
             </LinearLayout>
             <!--active_time-->
@@ -88,6 +90,7 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:textColor="@color/tv_color"
+                    android:tooltipText="存活时间范围，From"
                     attrs:scale=".5" />
 
                 <com.sunshine.studio.base.StudioTv
@@ -107,6 +110,7 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:textColor="@color/tv_color"
+                    android:tooltipText="存活时间范围，From"
                     attrs:scale=".5" />
             </LinearLayout>
         </LinearLayout>
@@ -118,16 +122,16 @@
             android:orientation="vertical">
             <!--move_from-->
             <LinearLayout
-                android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <com.sunshine.studio.base.StudioTv
@@ -147,6 +151,7 @@
                         android:gravity="center"
                         android:maxLines="1"
                         android:textColor="@color/tv_color"
+                        android:tooltipText="发射区域范围，Left"
                         attrs:scale=".5" />
 
                     <com.sunshine.studio.base.StudioTv
@@ -166,6 +171,7 @@
                         android:gravity="center"
                         android:maxLines="1"
                         android:textColor="@color/tv_color"
+                        android:tooltipText="发射区域范围，Top"
                         attrs:scale=".5" />
 
                     <com.sunshine.studio.base.StudioTv
@@ -180,7 +186,8 @@
                     <com.sunshine.studio.base.StudioCb
                         android:id="@+id/move_from_width_match"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:tooltipText="发射区域X方向全屏" />
 
                     <com.sunshine.studio.base.StudioEt
                         android:id="@+id/move_from_width"
@@ -190,6 +197,7 @@
                         android:gravity="center"
                         android:maxLines="1"
                         android:textColor="@color/tv_color"
+                        android:tooltipText="发射区域范围，Width"
                         attrs:scale=".5" />
 
                     <com.sunshine.studio.base.StudioTv
@@ -209,6 +217,7 @@
                         android:gravity="center"
                         android:maxLines="1"
                         android:textColor="@color/tv_color"
+                        android:tooltipText="发射区域范围，Height"
                         attrs:scale=".5" />
                 </LinearLayout>
 
@@ -230,7 +239,7 @@
 
                     <include
                         android:id="@+id/move_interpolator_x"
-                        layout="@layout/view_spinner_container"
+                        layout="@layout/container_spinner"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
@@ -239,16 +248,16 @@
             </LinearLayout>
 
             <LinearLayout
-                android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
                     <!--move_to-->
 
@@ -264,7 +273,8 @@
                     <com.sunshine.studio.base.StudioCb
                         android:id="@+id/move_to_left_offset"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:tooltipText="终止区域X方向偏移" />
 
                     <com.sunshine.studio.base.StudioEt
                         android:id="@+id/move_to_left"
@@ -274,6 +284,7 @@
                         android:gravity="center"
                         android:maxLines="1"
                         android:textColor="@color/tv_color"
+                        android:tooltipText="终止区域范围，Left"
                         attrs:scale=".5" />
 
                     <com.sunshine.studio.base.StudioTv
@@ -288,7 +299,8 @@
                     <com.sunshine.studio.base.StudioCb
                         android:id="@+id/move_to_top_offset"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:tooltipText="终止区域Y方向偏移" />
 
                     <com.sunshine.studio.base.StudioEt
                         android:id="@+id/move_to_top"
@@ -298,6 +310,7 @@
                         android:gravity="center"
                         android:maxLines="1"
                         android:textColor="@color/tv_color"
+                        android:tooltipText="终止区域范围，Top"
                         attrs:scale=".5" />
 
                     <com.sunshine.studio.base.StudioTv
@@ -312,7 +325,8 @@
                     <com.sunshine.studio.base.StudioCb
                         android:id="@+id/move_to_width_match"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:tooltipText="终止区域X方向全屏" />
 
                     <com.sunshine.studio.base.StudioEt
                         android:id="@+id/move_to_width"
@@ -322,6 +336,7 @@
                         android:gravity="center"
                         android:maxLines="1"
                         android:textColor="@color/tv_color"
+                        android:tooltipText="终止区域范围，Width"
                         attrs:scale=".5" />
 
                     <com.sunshine.studio.base.StudioTv
@@ -341,6 +356,7 @@
                         android:gravity="center"
                         android:maxLines="1"
                         android:textColor="@color/tv_color"
+                        android:tooltipText="终止区域范围，Height"
                         attrs:scale=".5" />
                 </LinearLayout>
 
@@ -362,7 +378,7 @@
 
                     <include
                         android:id="@+id/move_interpolator_y"
-                        layout="@layout/view_spinner_container"
+                        layout="@layout/container_spinner"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
@@ -380,7 +396,8 @@
             <com.sunshine.studio.base.StudioCb
                 android:id="@+id/move_rotate_to"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:tooltipText="根据运动方向设置初始角度" />
 
             <com.sunshine.studio.base.StudioTv
                 android:layout_width="wrap_content"
@@ -399,6 +416,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/tv_color"
+                android:tooltipText="发射角度范围，From"
                 attrs:scale=".5" />
 
             <com.sunshine.studio.base.StudioTv
@@ -418,6 +436,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/tv_color"
+                android:tooltipText="发射角度范围，To"
                 attrs:scale=".5" />
 
             <com.sunshine.studio.base.StudioTv
@@ -432,7 +451,8 @@
             <com.sunshine.studio.base.StudioCb
                 android:id="@+id/rotate_to"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:tooltipText="✅：右侧为终止角度范围\n❌：保持初始角度不变" />
 
             <com.sunshine.studio.base.StudioEt
                 android:id="@+id/rotate_to_from"
@@ -442,6 +462,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/tv_color"
+                android:tooltipText="终止角度范围，From"
                 attrs:scale=".5" />
 
             <com.sunshine.studio.base.StudioTv
@@ -461,6 +482,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/tv_color"
+                android:tooltipText="终止角度范围，To"
                 attrs:scale=".5" />
 
             <com.sunshine.studio.base.StudioTv
@@ -480,6 +502,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/tv_color"
+                android:tooltipText="旋转圆心坐标，X"
                 attrs:scale=".5" />
 
             <com.sunshine.studio.base.StudioTv
@@ -499,11 +522,12 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/tv_color"
+                android:tooltipText="旋转圆心坐标，Y"
                 attrs:scale=".5" />
 
             <include
                 android:id="@+id/rotate_interpolator"
-                layout="@layout/view_spinner_container"
+                layout="@layout/container_spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
@@ -533,6 +557,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/tv_color"
+                android:tooltipText="发射透明范围，From"
                 attrs:scale=".5" />
 
             <com.sunshine.studio.base.StudioTv
@@ -552,6 +577,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/tv_color"
+                android:tooltipText="发射透明范围，To"
                 attrs:scale=".5" />
 
             <com.sunshine.studio.base.StudioTv
@@ -571,6 +597,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/tv_color"
+                android:tooltipText="终止透明范围，From"
                 attrs:scale=".5" />
 
             <com.sunshine.studio.base.StudioTv
@@ -590,11 +617,12 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/tv_color"
+                android:tooltipText="终止透明范围，To"
                 attrs:scale=".5" />
 
             <include
                 android:id="@+id/alpha_interpolator"
-                layout="@layout/view_spinner_container"
+                layout="@layout/container_spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
@@ -624,6 +652,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/tv_color"
+                android:tooltipText="发射缩放范围，From"
                 attrs:scale=".5" />
 
             <com.sunshine.studio.base.StudioTv
@@ -643,6 +672,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/tv_color"
+                android:tooltipText="发射缩放范围，To"
                 attrs:scale=".5" />
 
             <com.sunshine.studio.base.StudioTv
@@ -657,7 +687,8 @@
             <com.sunshine.studio.base.StudioCb
                 android:id="@+id/scale_to"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:tooltipText="✅：右侧为终止缩放范围\n❌：保持初始缩放不变" />
 
             <com.sunshine.studio.base.StudioEt
                 android:id="@+id/scale_to_from"
@@ -667,6 +698,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/tv_color"
+                android:tooltipText="终止缩放范围，From"
                 attrs:scale=".5" />
 
             <com.sunshine.studio.base.StudioTv
@@ -686,11 +718,12 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/tv_color"
+                android:tooltipText="终止缩放范围，To"
                 attrs:scale=".5" />
 
             <include
                 android:id="@+id/scale_interpolator"
-                layout="@layout/view_spinner_container"
+                layout="@layout/container_spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"

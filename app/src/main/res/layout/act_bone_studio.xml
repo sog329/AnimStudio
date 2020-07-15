@@ -158,7 +158,7 @@
         </LinearLayout>
 
         <include
-            layout="@layout/view_bone_studio_anim_editor"
+            layout="@layout/container_bone_studio_anim_editor"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"/>

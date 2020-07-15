@@ -26,7 +26,7 @@
 
         <include
             android:id="@+id/anim_editor"
-            layout="@layout/view_particle_studio_anim_editor"
+            layout="@layout/container_particle_studio_anim_editor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="invisible" />

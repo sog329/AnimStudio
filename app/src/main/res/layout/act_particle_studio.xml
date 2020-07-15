@@ -56,24 +56,28 @@
                 android:maxLines="1"
                 android:padding="10px"
                 android:src="@drawable/set"
-                android:textColor="@color/tv_color" />
+                android:textColor="@color/tv_color"
+                android:tooltipText="设置时长、画布尺寸、布局方式" />
 
             <android.support.v7.widget.AppCompatSeekBar
                 android:id="@+id/size_w"
                 android:layout_width="0px"
                 android:layout_height="match_parent"
-                android:layout_weight=".5" />
+                android:layout_weight=".5"
+                android:tooltipText="x方向缩放画布显示区域" />
 
             <android.support.v7.widget.AppCompatSeekBar
                 android:id="@+id/size_h"
                 android:layout_width="0px"
                 android:layout_height="match_parent"
-                android:layout_weight=".5" />
+                android:layout_weight=".5"
+                android:tooltipText="y方向缩放画布显示区域" />
 
             <com.sunshine.studio.base.StudioCb
                 android:id="@+id/cb_bg"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:tooltipText="✅：黑色背景\n❌：白色背景" />
 
             <com.sunshine.studio.base.StudioImageBtn
                 android:id="@+id/save"
@@ -84,7 +88,8 @@
                 android:maxLines="1"
                 android:padding="10px"
                 android:src="@drawable/save"
-                android:textColor="@color/tv_color" />
+                android:textColor="@color/tv_color"
+                android:tooltipText="保存" />
 
             <com.sunshine.studio.base.StudioImageBtn
                 android:id="@+id/open"
@@ -95,7 +100,8 @@
                 android:maxLines="1"
                 android:padding="10px"
                 android:src="@drawable/open"
-                android:textColor="@color/tv_color" />
+                android:textColor="@color/tv_color"
+                android:tooltipText="打开项目" />
 
             <com.sunshine.studio.base.StudioImageBtn
                 android:id="@+id/add"
@@ -106,7 +112,8 @@
                 android:maxLines="1"
                 android:padding="10px"
                 android:src="@drawable/add"
-                android:textColor="@color/tv_color" />
+                android:textColor="@color/tv_color"
+                android:tooltipText="增加粒子模型" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -67,12 +67,12 @@ public class AnimLv extends ListView {
       if (selectBone != null) {
         for (Actor a : lstData) {
           index++;
-            for (Bone b : a.lstBone) {
-              if (b == selectBone) {
-                break;
-              } else {
-                index++;
-              }
+          for (Bone b : a.lstBone) {
+            if (b == selectBone) {
+              break;
+            } else {
+              index++;
+            }
           }
         }
       }
@@ -303,8 +303,8 @@ public class AnimLv extends ListView {
         // click
         view.setOnClickListener(
             v -> {
-              if(helper instanceof Bone){
-                selectBone = (Bone)helper;
+              if (helper instanceof Bone) {
+                selectBone = (Bone) helper;
               } else {
                 selectBone = null;
               }

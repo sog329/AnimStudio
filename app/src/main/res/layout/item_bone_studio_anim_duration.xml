@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_anim">
+    android:background="@drawable/bg_anim"
+    android:tooltipText="修改当前生命周期的BoneAnim属性">
 
     <com.sunshine.studio.base.StudioTv
         android:id="@+id/from"
@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top|left"
         android:maxLines="1"
-        android:textColor="@color/tv_color"/>
+        android:textColor="@color/tv_color" />
 
     <com.sunshine.studio.base.StudioTv
         android:id="@+id/to"
@@ -19,5 +19,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:maxLines="1"
-        android:textColor="@color/tv_color"/>
+        android:textColor="@color/tv_color" />
 </FrameLayout>

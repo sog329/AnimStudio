@@ -187,6 +187,7 @@
                         android:id="@+id/move_from_width_match"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:theme="@style/Indigo"
                         android:tooltipText="发射区域X方向全屏" />
 
                     <com.sunshine.studio.base.StudioEt
@@ -274,6 +275,7 @@
                         android:id="@+id/move_to_left_offset"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:theme="@style/Indigo"
                         android:tooltipText="终止区域X方向偏移" />
 
                     <com.sunshine.studio.base.StudioEt
@@ -300,6 +302,7 @@
                         android:id="@+id/move_to_top_offset"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:theme="@style/Indigo"
                         android:tooltipText="终止区域Y方向偏移" />
 
                     <com.sunshine.studio.base.StudioEt
@@ -326,6 +329,7 @@
                         android:id="@+id/move_to_width_match"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:theme="@style/Indigo"
                         android:tooltipText="终止区域X方向全屏" />
 
                     <com.sunshine.studio.base.StudioEt
@@ -397,6 +401,7 @@
                 android:id="@+id/move_rotate_to"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:theme="@style/Indigo"
                 android:tooltipText="根据运动方向设置初始角度" />
 
             <com.sunshine.studio.base.StudioTv
@@ -452,6 +457,7 @@
                 android:id="@+id/rotate_to"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:theme="@style/Indigo"
                 android:tooltipText="✅：右侧为终止角度范围\n❌：保持初始角度不变" />
 
             <com.sunshine.studio.base.StudioEt
@@ -688,6 +694,7 @@
                 android:id="@+id/scale_to"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:theme="@style/Indigo"
                 android:tooltipText="✅：右侧为终止缩放范围\n❌：保持初始缩放不变" />
 
             <com.sunshine.studio.base.StudioEt

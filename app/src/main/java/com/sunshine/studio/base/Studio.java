@@ -105,6 +105,8 @@ public abstract class Studio<T extends Entity> {
 
   public abstract void updateAnimLv();
 
+  public abstract int getColor();
+
   protected void initDlg() {
     dlgProject = DlgFactory.project(this);
     dlgPic = DlgFactory.pic(this);

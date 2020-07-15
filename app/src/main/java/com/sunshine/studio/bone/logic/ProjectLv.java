@@ -65,7 +65,8 @@ public class ProjectLv extends ListView {
             String name = file.getName();
             if (file.listFiles(filterConfig).length == 0) {
               XmlWriter.save(
-                  getFilePath(callback.getFolderName(), name, "config.xml"), callback.getWriter(name));
+                  getFilePath(callback.getFolderName(), name, "config.xml"),
+                  callback.getWriter(name));
             }
             lstData.add(name);
           }
@@ -96,13 +97,14 @@ public class ProjectLv extends ListView {
             LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_bone_studio_project_lv, null);
       }
-
       TextView tv = convertView.findViewById(R.id.tv);
       final String name = lstData.get(position);
       tv.setText(name);
       tv.setOnClickListener(v -> callback.onClick(name));
+      tv.setBackgroundColor(callback.getColor());
 
       View del = convertView.findViewById(R.id.del);
+      del.setBackgroundColor(callback.getColor());
       del.setOnClickListener(
           v -> {
             StudioTool.deleteFile(new File(StudioTool.getFilePath(callback.getFolderName(), name)));
@@ -118,6 +120,8 @@ public class ProjectLv extends ListView {
       String getFolderName();
 
       XmlWriter.Callback getWriter(String name);
+
+      int getColor();
     }
   }
 }

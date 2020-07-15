@@ -48,6 +48,11 @@ public class DlgFactory {
               public XmlWriter.Callback getWriter(String name) {
                 return studio.getWriter(null, name);
               }
+
+              @Override
+              public int getColor() {
+                return studio.getColor();
+              }
             });
     lv.setAdapter(adapter);
     dialog.setOnShowListener(d -> adapter.loadData());

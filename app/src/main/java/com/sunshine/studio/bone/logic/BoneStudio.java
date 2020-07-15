@@ -10,7 +10,6 @@ import com.sunshine.engine.bone.logic.Anim;
 import com.sunshine.engine.bone.logic.Bone;
 import com.sunshine.engine.bone.logic.Stage;
 import com.sunshine.studio.R;
-import com.sunshine.studio.base.RenderHelper;
 import com.sunshine.studio.base.Studio;
 import com.sunshine.studio.base.XmlWriter;
 
@@ -108,6 +107,11 @@ public class BoneStudio extends Studio<Stage> {
   public void updateAnimLv() {
     AnimLv animLv = act.findViewById(R.id.lv_anim);
     animLv.loadData(this);
+  }
+
+  @Override
+  public int getColor() {
+    return act.getResources().getColor(R.color.btn_bg);
   }
 
   @Override

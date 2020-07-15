@@ -533,4 +533,9 @@ public class ParticleStudio extends Studio<Scene> {
     sceneView.isRepeat(true);
     act.findViewById(R.id.anim_editor).setVisibility(View.INVISIBLE);
   }
+
+  @Override
+  public int getColor() {
+    return act.getResources().getColor(R.color.btn_bg_p);
+  }
 }

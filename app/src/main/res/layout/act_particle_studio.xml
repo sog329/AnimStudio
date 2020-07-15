@@ -52,6 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="5px"
+                android:background="@drawable/bg_btn_p"
                 android:gravity="center"
                 android:maxLines="1"
                 android:padding="10px"
@@ -64,6 +65,7 @@
                 android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_weight=".5"
+                android:theme="@style/Indigo"
                 android:tooltipText="x方向缩放画布显示区域" />
 
             <android.support.v7.widget.AppCompatSeekBar
@@ -71,12 +73,14 @@
                 android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_weight=".5"
+                android:theme="@style/Indigo"
                 android:tooltipText="y方向缩放画布显示区域" />
 
             <com.sunshine.studio.base.StudioCb
                 android:id="@+id/cb_bg"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:theme="@style/Indigo"
                 android:tooltipText="✅：黑色背景\n❌：白色背景" />
 
             <com.sunshine.studio.base.StudioImageBtn
@@ -84,6 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="5px"
+                android:background="@drawable/bg_btn_p"
                 android:gravity="center"
                 android:maxLines="1"
                 android:padding="10px"
@@ -96,6 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="5px"
+                android:background="@drawable/bg_btn_p"
                 android:gravity="center"
                 android:maxLines="1"
                 android:padding="10px"
@@ -108,6 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="5px"
+                android:background="@drawable/bg_btn_p"
                 android:gravity="center"
                 android:maxLines="1"
                 android:padding="10px"

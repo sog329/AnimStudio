@@ -29,7 +29,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="base"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color" />
 
             <com.sunshine.studio.base.StudioTv
                 android:id="@+id/tv_scale"
@@ -40,7 +40,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="scale"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color" />
 
             <com.sunshine.studio.base.StudioTv
                 android:id="@+id/tv_alpha"
@@ -51,7 +51,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="alpha"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color" />
 
             <com.sunshine.studio.base.StudioTv
                 android:id="@+id/tv_rotate_range"
@@ -62,7 +62,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="rotate"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color" />
         </LinearLayout>
         <!--base-->
         <LinearLayout
@@ -80,7 +80,8 @@
                 android:background="@drawable/bg_btn"
                 android:gravity="center"
                 android:rotation="-90"
-                android:src="@drawable/up" />
+                android:src="@drawable/up"
+                android:tooltipText="将当前动画提前%1的时间线开始" />
 
             <com.sunshine.studio.base.StudioEt
                 android:id="@+id/edit_base_from"
@@ -90,7 +91,8 @@
                 android:gravity="center"
                 android:hint="from"
                 android:maxLines="1"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color"
+                android:tooltipText="当前动画开始的时间线" />
 
             <com.sunshine.studio.base.StudioTv
                 android:layout_width="wrap_content"
@@ -98,7 +100,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="->"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color" />
 
             <com.sunshine.studio.base.StudioEt
                 android:id="@+id/edit_base_to"
@@ -108,7 +110,8 @@
                 android:gravity="center"
                 android:hint="to"
                 android:maxLines="1"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color"
+                android:tooltipText="当前动画结束的时间线" />
 
             <com.sunshine.studio.base.StudioImageBtn
                 android:id="@+id/edit_base_right"
@@ -119,7 +122,8 @@
                 android:background="@drawable/bg_btn"
                 android:gravity="center"
                 android:rotation="90"
-                android:src="@drawable/up" />
+                android:src="@drawable/up"
+                android:tooltipText="将当前动画延长%1的时间线结束" />
 
             <com.sunshine.studio.base.StudioImageBtn
                 android:id="@+id/edit_base_add"
@@ -132,7 +136,8 @@
                 android:maxLines="1"
                 android:padding="10px"
                 android:src="@drawable/add"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color"
+                android:tooltipText="当前动画后插入新动画" />
 
             <com.sunshine.studio.base.StudioImageBtn
                 android:id="@+id/edit_base_delete"
@@ -146,7 +151,8 @@
                 android:padding="10px"
                 android:rotation="90"
                 android:src="@drawable/del"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color"
+                android:tooltipText="删除当前动画" />
         </LinearLayout>
         <!--move_from-->
         <LinearLayout
@@ -163,7 +169,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="("
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color" />
 
             <com.sunshine.studio.base.StudioEt
                 android:id="@+id/edit_move_from_x"
@@ -173,7 +179,8 @@
                 android:gravity="center"
                 android:hint="fromX"
                 android:maxLines="1"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color"
+                android:tooltipText="当前动画位移起始中心点坐标，X" />
 
             <com.sunshine.studio.base.StudioEt
                 android:id="@+id/edit_move_from_y"
@@ -183,7 +190,8 @@
                 android:gravity="center"
                 android:hint="fromY"
                 android:maxLines="1"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color"
+                android:tooltipText="当前动画位移起始中心点坐标，Y" />
 
             <com.sunshine.studio.base.StudioTv
                 android:layout_width="wrap_content"
@@ -191,7 +199,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:text=")"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color" />
 
             <com.sunshine.studio.base.StudioImageBtn
                 android:id="@+id/edit_move_from_copy"
@@ -205,7 +213,8 @@
                 android:padding="10px"
                 android:rotation="90"
                 android:src="@drawable/up"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color"
+                android:tooltipText="当前动画位移保持起始位置不变" />
         </LinearLayout>
         <!--move_to-->
         <LinearLayout
@@ -233,7 +242,8 @@
                     android:padding="10px"
                     android:rotation="-90"
                     android:src="@drawable/up"
-                    android:textColor="@color/tv_color"/>
+                    android:textColor="@color/tv_color"
+                    android:tooltipText="当前动画位移保持终止位置不变" />
 
                 <com.sunshine.studio.base.StudioTv
                     android:layout_width="wrap_content"
@@ -241,7 +251,7 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:text="("
-                    android:textColor="@color/tv_color"/>
+                    android:textColor="@color/tv_color" />
 
                 <com.sunshine.studio.base.StudioEt
                     android:id="@+id/edit_move_to_x"
@@ -250,7 +260,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:textColor="@color/tv_color"/>
+                    android:textColor="@color/tv_color"
+                    android:tooltipText="当前动画位移终止中心点坐标，X" />
 
                 <com.sunshine.studio.base.StudioEt
                     android:id="@+id/edit_move_to_y"
@@ -259,7 +270,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:textColor="@color/tv_color"/>
+                    android:textColor="@color/tv_color"
+                    android:tooltipText="当前动画位移终止中心点坐标，Y" />
 
                 <com.sunshine.studio.base.StudioTv
                     android:layout_width="wrap_content"
@@ -267,7 +279,7 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:text=")"
-                    android:textColor="@color/tv_color"/>
+                    android:textColor="@color/tv_color" />
             </LinearLayout>
 
             <LinearLayout
@@ -281,7 +293,7 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:text="x:"
-                    android:textColor="@color/tv_color"/>
+                    android:textColor="@color/tv_color" />
 
 
                 <include
@@ -291,7 +303,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:gravity="center"/>
+                    android:gravity="center" />
 
                 <com.sunshine.studio.base.StudioTv
                     android:layout_width="wrap_content"
@@ -299,7 +311,7 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:text="y:"
-                    android:textColor="@color/tv_color"/>
+                    android:textColor="@color/tv_color" />
 
                 <include
                     android:id="@+id/edit_move_interpolator_y"
@@ -308,7 +320,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:gravity="center"/>
+                    android:gravity="center" />
             </LinearLayout>
         </LinearLayout>
         <!--scale-->
@@ -332,7 +344,8 @@
                     android:gravity="center"
                     android:hint="fromX"
                     android:maxLines="1"
-                    android:textColor="@color/tv_color"/>
+                    android:textColor="@color/tv_color"
+                    android:tooltipText="当前动画起始缩放，X" />
 
                 <com.sunshine.studio.base.StudioEt
                     android:id="@+id/edit_scale_from_y"
@@ -342,7 +355,8 @@
                     android:gravity="center"
                     android:hint="fromY"
                     android:maxLines="1"
-                    android:textColor="@color/tv_color"/>
+                    android:textColor="@color/tv_color"
+                    android:tooltipText="当前动画起始缩放，Y" />
 
                 <com.sunshine.studio.base.StudioImageBtn
                     android:id="@+id/edit_scale_copy"
@@ -356,7 +370,8 @@
                     android:padding="10px"
                     android:rotation="90"
                     android:src="@drawable/up"
-                    android:textColor="@color/tv_color"/>
+                    android:textColor="@color/tv_color"
+                    android:tooltipText="当前动画缩放不变" />
 
                 <com.sunshine.studio.base.StudioEt
                     android:id="@+id/edit_scale_to_x"
@@ -365,7 +380,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:textColor="@color/tv_color"/>
+                    android:textColor="@color/tv_color"
+                    android:tooltipText="当前动画终止缩放，X" />
 
                 <com.sunshine.studio.base.StudioEt
                     android:id="@+id/edit_scale_to_y"
@@ -374,7 +390,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:textColor="@color/tv_color"/>
+                    android:textColor="@color/tv_color"
+                    android:tooltipText="当前动画终止缩放，Y" />
             </LinearLayout>
 
             <LinearLayout
@@ -388,7 +405,7 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:text="x:"
-                    android:textColor="@color/tv_color"/>
+                    android:textColor="@color/tv_color" />
 
                 <include
                     android:id="@+id/edit_scale_interpolator_x"
@@ -397,7 +414,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:gravity="center"/>
+                    android:gravity="center" />
 
                 <com.sunshine.studio.base.StudioTv
                     android:layout_width="wrap_content"
@@ -405,7 +422,7 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:text="y:"
-                    android:textColor="@color/tv_color"/>
+                    android:textColor="@color/tv_color" />
 
 
                 <include
@@ -415,7 +432,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:gravity="center"/>
+                    android:gravity="center" />
             </LinearLayout>
         </LinearLayout>
         <!--alpha-->
@@ -439,25 +456,25 @@
                     android:alpha=".5"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:textColor="@color/tv_color"/>
+                    android:textColor="@color/tv_color" />
 
                 <android.support.v7.widget.AppCompatSeekBar
                     android:id="@+id/edit_alpha_from"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:max="255"/>
+                    android:max="255" />
             </FrameLayout>
 
             <com.sunshine.studio.base.StudioTv
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15px"
                 android:layout_marginTop="15px"
+                android:layout_marginBottom="15px"
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="->"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color" />
 
             <FrameLayout
                 android:layout_width="0dp"
@@ -470,7 +487,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:max="255"
-                    android:maxLines="1"/>
+                    android:maxLines="1" />
 
                 <com.sunshine.studio.base.StudioTv
                     android:id="@+id/edit_alpha_tip_to"
@@ -479,7 +496,7 @@
                     android:alpha=".5"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:textColor="@color/tv_color"/>
+                    android:textColor="@color/tv_color" />
             </FrameLayout>
 
 
@@ -490,7 +507,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"/>
+                android:gravity="center" />
         </LinearLayout>
         <!--rotate-->
         <LinearLayout
@@ -508,7 +525,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:maxLines="1"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color"
+                android:tooltipText="当前动画起始旋转角度" />
 
             <com.sunshine.studio.base.StudioImageBtn
                 android:id="@+id/edit_rotate_copy"
@@ -522,7 +540,8 @@
                 android:padding="10px"
                 android:rotation="90"
                 android:src="@drawable/up"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color"
+                android:tooltipText="当前动画旋转角度保持初始不变" />
 
             <com.sunshine.studio.base.StudioEt
                 android:id="@+id/edit_rotate_to"
@@ -531,7 +550,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:maxLines="1"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color"
+                android:tooltipText="当前动画终止旋转角度" />
 
             <include
                 android:id="@+id/edit_rotate_interpolator"
@@ -540,7 +560,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="center"/>
+                android:gravity="center" />
 
         </LinearLayout>
         <!--anchor-->
@@ -558,7 +578,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="("
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color" />
 
             <com.sunshine.studio.base.StudioEt
                 android:id="@+id/edit_rotate_x"
@@ -568,7 +588,8 @@
                 android:gravity="center"
                 android:hint="fromX"
                 android:maxLines="1"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color"
+                android:tooltipText="当前动画旋转圆心，X" />
 
             <com.sunshine.studio.base.StudioEt
                 android:id="@+id/edit_rotate_y"
@@ -577,7 +598,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:maxLines="1"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color"
+                android:tooltipText="当前动画旋转圆心，Y" />
 
             <com.sunshine.studio.base.StudioTv
                 android:layout_width="wrap_content"
@@ -585,7 +607,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:text=")"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color" />
         </LinearLayout>
         <!--tab_bottom-->
         <LinearLayout
@@ -602,7 +624,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="from"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color" />
 
             <com.sunshine.studio.base.StudioTv
                 android:id="@+id/tv_move_to"
@@ -613,7 +635,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="to"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color" />
 
             <com.sunshine.studio.base.StudioTv
                 android:id="@+id/tv_rotate_anchor"
@@ -624,7 +646,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="anchor"
-                android:textColor="@color/tv_color"/>
+                android:textColor="@color/tv_color" />
         </LinearLayout>
     </LinearLayout>
 </com.sunshine.studio.bone.logic.AnimEditorView>

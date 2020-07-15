@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import com.sunshine.engine.base.AnimView;
 import com.sunshine.engine.base.Entity;
@@ -41,10 +42,12 @@ public abstract class Studio<T extends Entity> {
     // save
     act.findViewById(R.id.save)
         .setOnClickListener(
-            v ->
-                XmlWriter.save(
-                    getFilePath(getProjectFolderName(), projectName, "config.xml"),
-                    getWriter(entity, null)));
+            v -> {
+              Toast.makeText(act, projectName + " saved", Toast.LENGTH_SHORT).show();
+              XmlWriter.save(
+                  getFilePath(getProjectFolderName(), projectName, "config.xml"),
+                  getWriter(entity, null));
+            });
     // set
     act.findViewById(R.id.set).setOnClickListener(v -> dlgEntity.show());
     // stage bg color

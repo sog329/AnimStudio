@@ -17,6 +17,7 @@ import com.sunshine.engine.particle.logic.Scene;
 import com.sunshine.studio.R;
 import com.sunshine.studio.base.InterpolatorSpinner;
 import com.sunshine.studio.base.PlistParser;
+import com.sunshine.studio.base.RenderHelper;
 import com.sunshine.studio.base.Studio;
 import com.sunshine.studio.base.StudioCb;
 import com.sunshine.studio.base.StudioEt;
@@ -410,6 +411,17 @@ public class ParticleStudio extends Studio<Scene> {
           @Override
           public ParticleModel getModel() {
             return model;
+          }
+        },
+        new RenderHelper.Callback() {
+          @Override
+          public int colorDark() {
+            return act.getResources().getColor(R.color.btn_bg_p);
+          }
+
+          @Override
+          public int colorLight() {
+            return act.getResources().getColor(R.color.btn_bg_p2);
           }
         });
   }

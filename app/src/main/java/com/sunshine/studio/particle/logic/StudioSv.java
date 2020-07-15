@@ -26,8 +26,9 @@ public class StudioSv extends SceneView implements Studio.Callback<Scene> {
     super(context, attrs, defStyle);
   }
 
-  public void setCallback(SceneRender.Callback callback) {
+  public void setCallback(SceneRender.Callback callback, RenderHelper.Callback cb) {
     render.callback = callback;
+    render.cb = cb;
   }
 
   @Override

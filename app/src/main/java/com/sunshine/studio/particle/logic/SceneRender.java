@@ -22,6 +22,7 @@ public class SceneRender extends RenderHelper<Scene> {
     if (callback != null) {
       ParticleModel model = callback.getModel();
       if (model != null) {
+        // color
         // start
         int fromLeft = model.areaFrom.getScriptLeft(entity);
         int fromWidth = model.areaFrom.getScriptWidth(entity, fromLeft);
@@ -34,7 +35,11 @@ public class SceneRender extends RenderHelper<Scene> {
             entity.drawArea.t + entity.scale * fromTop,
             entity.drawArea.l + entity.scale * (fromLeft + fromWidth),
             entity.drawArea.t + entity.scale * (fromTop + fromHeight),
-            Color.parseColor("#66521a4c"));
+            Color.argb(
+                102,
+                Color.red(cb.colorLight()),
+                Color.green(cb.colorLight()),
+                Color.blue(cb.colorLight())));
         // end
         if (model.areaTo.isOffsetLeft) {
           fromLeft += model.areaTo.l;
@@ -57,7 +62,11 @@ public class SceneRender extends RenderHelper<Scene> {
             entity.drawArea.t + entity.scale * fromTop,
             entity.drawArea.l + entity.scale * (fromLeft + fromWidth),
             entity.drawArea.t + entity.scale * (fromTop + fromHeight),
-            Color.parseColor("#66521a4c"));
+            Color.argb(
+                187,
+                Color.red(cb.colorDark()),
+                Color.green(cb.colorDark()),
+                Color.blue(cb.colorDark())));
       }
     }
   }

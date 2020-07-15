@@ -10,6 +10,7 @@ import com.sunshine.engine.bone.logic.Anim;
 import com.sunshine.engine.bone.logic.Bone;
 import com.sunshine.engine.bone.logic.Stage;
 import com.sunshine.studio.R;
+import com.sunshine.studio.base.RenderHelper;
 import com.sunshine.studio.base.Studio;
 import com.sunshine.studio.base.XmlWriter;
 
@@ -86,6 +87,17 @@ public class BoneStudio extends Studio<Stage> {
           public void onClickBone(Bone bone) {
             AnimLv animLv = act.findViewById(R.id.lv_anim);
             animLv.selectBone(bone);
+          }
+        },
+        new RenderHelper.Callback() {
+          @Override
+          public int colorDark() {
+            return act.getResources().getColor(R.color.btn_bg);
+          }
+
+          @Override
+          public int colorLight() {
+            return act.getResources().getColor(R.color.btn_bg2);
           }
         });
   }

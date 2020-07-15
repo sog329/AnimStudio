@@ -29,8 +29,9 @@ public class StudioSv extends StageView implements Studio.Callback<Stage> {
     super(context, attrs, defStyle);
   }
 
-  public void setCallback(StageRender.Callback callback) {
+  public void setCallback(StageRender.Callback callback, RenderHelper.Callback cb) {
     render.callback = callback;
+    render.cb = cb;
   }
 
   @Override

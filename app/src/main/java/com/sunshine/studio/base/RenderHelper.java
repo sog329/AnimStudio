@@ -5,12 +5,16 @@ import android.graphics.Paint;
 import android.view.View;
 
 import com.sunshine.engine.base.Entity;
-import com.sunshine.studio.R;
 
 /** Created by Jack on 2018/4/12. */
 public abstract class RenderHelper<T extends Entity> {
   private Paint paint = new Paint();
   public boolean load = false;
+  public Callback cb = null;
+
+  public void setCallback(Callback cb) {
+    this.cb = cb;
+  }
 
   {
     paint.setStyle(Paint.Style.STROKE);
@@ -30,7 +34,7 @@ public abstract class RenderHelper<T extends Entity> {
           entity.viewArea.t,
           entity.viewArea.l + entity.viewArea.w,
           entity.viewArea.t + entity.viewArea.h,
-          v.getResources().getColor(R.color.btn_bg));
+          cb.colorDark());
       drawRect(
           can,
           false,
@@ -38,7 +42,7 @@ public abstract class RenderHelper<T extends Entity> {
           entity.drawArea.t,
           entity.drawArea.l + entity.drawArea.w,
           entity.drawArea.t + entity.drawArea.h,
-          v.getResources().getColor(R.color.btn_bg2));
+          cb.colorLight());
       onDraw(can, entity);
       v.invalidate();
     } else {
@@ -59,4 +63,10 @@ public abstract class RenderHelper<T extends Entity> {
   public abstract void onLoad();
 
   public abstract void onDraw(Canvas can, T entity);
+
+  public interface Callback {
+    int colorDark();
+
+    int colorLight();
+  }
 }

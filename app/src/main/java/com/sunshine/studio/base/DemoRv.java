@@ -9,6 +9,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.sunshine.engine.base.AnimView;
 import com.sunshine.studio.R;
@@ -67,8 +68,12 @@ public abstract class DemoRv<T extends AnimView> extends RecyclerView {
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
+      // num
+      holder.num.setText(String.valueOf(position + 1));
+      // name
       String name = lstData.get(position);
       holder.tv.setText(name);
+      // anim
       holder.animView.stop();
       holder.animView.play(getFolderName() + File.separator + name);
       holder.animView.autoStop(false);
@@ -88,11 +93,13 @@ public abstract class DemoRv<T extends AnimView> extends RecyclerView {
     class Holder extends RecyclerView.ViewHolder {
       T animView = null;
       StudioTv tv = null;
+      TextView num = null;
 
       public Holder(View itemView) {
         super(itemView);
         animView = itemView.findViewById(R.id.anim);
         tv = itemView.findViewById(R.id.tv);
+        num = itemView.findViewById(R.id.num);
         itemView.setOnClickListener(v -> {});
       }
     }

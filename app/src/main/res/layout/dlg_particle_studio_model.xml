@@ -8,5 +8,5 @@
 
     <include
         android:id="@+id/sv"
-        layout="@layout/container_particle_studio_anim_editor"/>
+        layout="@layout/layout_particle_studio_anim_editor"/>
 </FrameLayout>

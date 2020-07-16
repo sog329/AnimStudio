@@ -240,7 +240,7 @@
 
                     <include
                         android:id="@+id/move_interpolator_x"
-                        layout="@layout/container_spinner"
+                        layout="@layout/layout_spinner"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
@@ -382,7 +382,7 @@
 
                     <include
                         android:id="@+id/move_interpolator_y"
-                        layout="@layout/container_spinner"
+                        layout="@layout/layout_spinner"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
@@ -533,7 +533,7 @@
 
             <include
                 android:id="@+id/rotate_interpolator"
-                layout="@layout/container_spinner"
+                layout="@layout/layout_spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
@@ -628,7 +628,7 @@
 
             <include
                 android:id="@+id/alpha_interpolator"
-                layout="@layout/container_spinner"
+                layout="@layout/layout_spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
@@ -730,7 +730,7 @@
 
             <include
                 android:id="@+id/scale_interpolator"
-                layout="@layout/container_spinner"
+                layout="@layout/layout_spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"

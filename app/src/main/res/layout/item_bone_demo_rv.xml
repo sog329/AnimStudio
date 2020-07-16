@@ -21,4 +21,6 @@
         android:background="@color/tv_bg"
         android:gravity="center"
         android:textColor="@android:color/white" />
+
+    <include layout="@layout/layout_number" />
 </com.sunshine.studio.base.ItemContainer>

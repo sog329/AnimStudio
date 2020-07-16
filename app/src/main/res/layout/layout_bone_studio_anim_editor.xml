@@ -298,7 +298,7 @@
 
                 <include
                     android:id="@+id/edit_move_interpolator_x"
-                    layout="@layout/container_spinner"
+                    layout="@layout/layout_spinner"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -315,7 +315,7 @@
 
                 <include
                     android:id="@+id/edit_move_interpolator_y"
-                    layout="@layout/container_spinner"
+                    layout="@layout/layout_spinner"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -409,7 +409,7 @@
 
                 <include
                     android:id="@+id/edit_scale_interpolator_x"
-                    layout="@layout/container_spinner"
+                    layout="@layout/layout_spinner"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -427,7 +427,7 @@
 
                 <include
                     android:id="@+id/edit_scale_interpolator_y"
-                    layout="@layout/container_spinner"
+                    layout="@layout/layout_spinner"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -502,7 +502,7 @@
 
             <include
                 android:id="@+id/edit_alpha_interpolator"
-                layout="@layout/container_spinner"
+                layout="@layout/layout_spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -555,7 +555,7 @@
 
             <include
                 android:id="@+id/edit_rotate_interpolator"
-                layout="@layout/container_spinner"
+                layout="@layout/layout_spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

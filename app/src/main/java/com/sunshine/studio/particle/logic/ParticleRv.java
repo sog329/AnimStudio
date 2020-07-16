@@ -31,6 +31,7 @@ public class ParticleRv extends DemoRv<SceneView> {
 		data.add("snowing");
 		data.add("tangyuan");
 		data.add("dinner");
+		data.add("superlike");
 		data.add("mahjong");
 		data.add("dumplings");
 		data.add("home");

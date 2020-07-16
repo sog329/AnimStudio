@@ -65,16 +65,14 @@
                 android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_weight=".5"
-                android:theme="@style/Indigo"
-                android:tooltipText="x方向缩放画布显示区域" />
+                android:theme="@style/Indigo" />
 
             <android.support.v7.widget.AppCompatSeekBar
                 android:id="@+id/size_h"
                 android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_weight=".5"
-                android:theme="@style/Indigo"
-                android:tooltipText="y方向缩放画布显示区域" />
+                android:theme="@style/Indigo" />
 
             <com.sunshine.studio.base.StudioCb
                 android:id="@+id/cb_bg"

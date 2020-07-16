@@ -54,7 +54,7 @@ public class InterpolatorView extends StudioTv {
     if (name != null) {
       int h2 = getHeight() / 2;
       int h3 = getHeight() / 3;
-      final int n = 200;
+      final int n = getWidth() / 2;
       for (int i = 0; i < n; i++) {
         float percent = 1f * i / (n - 1);
         float x = getWidth() * percent;

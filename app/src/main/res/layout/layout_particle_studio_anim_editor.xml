@@ -113,7 +113,8 @@
             style="@style/label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="0px">
             <!--move_from-->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -135,7 +136,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:paddingTop="20px">
 
                         <com.sunshine.studio.base.StudioEt
                             android:id="@+id/move_from_left"
@@ -222,7 +224,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingTop="20px">
 
                     <com.sunshine.studio.base.StudioTv
                         android:layout_width="wrap_content"
@@ -243,128 +246,132 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <!--move_to-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <LinearLayout
+
+                <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-                    <!--move_to-->
+                    android:layout_weight="2">
 
                     <com.sunshine.studio.base.StudioTv
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:maxLines="1"
+                        style="@style/title"
                         android:text="to:"
-                        android:textColor="@color/tv_color"
                         attrs:scale=".5" />
 
-                    <com.sunshine.studio.base.StudioCb
-                        android:id="@+id/move_to_left_offset"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:theme="@style/Indigo"
-                        android:tooltipText="终止区域X方向偏移" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingTop="20px">
 
-                    <com.sunshine.studio.base.StudioEt
-                        android:id="@+id/move_to_left"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:textColor="@color/tv_color"
-                        android:tooltipText="终止区域范围，Left"
-                        attrs:scale=".5" />
+                        <com.sunshine.studio.base.StudioCb
+                            android:id="@+id/move_to_left_offset"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:theme="@style/Indigo"
+                            android:tooltipText="终止区域X方向偏移" />
 
-                    <com.sunshine.studio.base.StudioTv
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:text=","
-                        android:textColor="@color/tv_color"
-                        attrs:scale=".5" />
+                        <com.sunshine.studio.base.StudioEt
+                            android:id="@+id/move_to_left"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:textColor="@color/tv_color"
+                            android:tooltipText="终止区域范围，Left"
+                            attrs:scale=".5" />
 
-                    <com.sunshine.studio.base.StudioCb
-                        android:id="@+id/move_to_top_offset"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:theme="@style/Indigo"
-                        android:tooltipText="终止区域Y方向偏移" />
+                        <com.sunshine.studio.base.StudioTv
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text=","
+                            android:textColor="@color/tv_color"
+                            attrs:scale=".5" />
 
-                    <com.sunshine.studio.base.StudioEt
-                        android:id="@+id/move_to_top"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:textColor="@color/tv_color"
-                        android:tooltipText="终止区域范围，Top"
-                        attrs:scale=".5" />
+                        <com.sunshine.studio.base.StudioCb
+                            android:id="@+id/move_to_top_offset"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:theme="@style/Indigo"
+                            android:tooltipText="终止区域Y方向偏移" />
 
-                    <com.sunshine.studio.base.StudioTv
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:text=","
-                        android:textColor="@color/tv_color"
-                        attrs:scale=".5" />
+                        <com.sunshine.studio.base.StudioEt
+                            android:id="@+id/move_to_top"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:textColor="@color/tv_color"
+                            android:tooltipText="终止区域范围，Top"
+                            attrs:scale=".5" />
 
-                    <com.sunshine.studio.base.StudioCb
-                        android:id="@+id/move_to_width_match"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:theme="@style/Indigo"
-                        android:tooltipText="终止区域X方向全屏" />
+                        <com.sunshine.studio.base.StudioTv
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text=","
+                            android:textColor="@color/tv_color"
+                            attrs:scale=".5" />
 
-                    <com.sunshine.studio.base.StudioEt
-                        android:id="@+id/move_to_width"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:textColor="@color/tv_color"
-                        android:tooltipText="终止区域范围，Width"
-                        attrs:scale=".5" />
+                        <com.sunshine.studio.base.StudioCb
+                            android:id="@+id/move_to_width_match"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:theme="@style/Indigo"
+                            android:tooltipText="终止区域X方向全屏" />
 
-                    <com.sunshine.studio.base.StudioTv
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:text=","
-                        android:textColor="@color/tv_color"
-                        attrs:scale=".5" />
+                        <com.sunshine.studio.base.StudioEt
+                            android:id="@+id/move_to_width"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:textColor="@color/tv_color"
+                            android:tooltipText="终止区域范围，Width"
+                            attrs:scale=".5" />
 
-                    <com.sunshine.studio.base.StudioEt
-                        android:id="@+id/move_to_height"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:textColor="@color/tv_color"
-                        android:tooltipText="终止区域范围，Height"
-                        attrs:scale=".5" />
-                </LinearLayout>
+                        <com.sunshine.studio.base.StudioTv
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text=","
+                            android:textColor="@color/tv_color"
+                            attrs:scale=".5" />
+
+                        <com.sunshine.studio.base.StudioEt
+                            android:id="@+id/move_to_height"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:textColor="@color/tv_color"
+                            android:tooltipText="终止区域范围，Height"
+                            attrs:scale=".5" />
+                    </LinearLayout>
+                </FrameLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingTop="20px">
 
                     <com.sunshine.studio.base.StudioTv
                         android:layout_width="wrap_content"

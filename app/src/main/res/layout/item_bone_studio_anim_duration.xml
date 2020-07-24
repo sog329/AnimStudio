@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top|left"
         android:maxLines="1"
-        android:textColor="@color/tv_color" />
+        android:textColor="@color/tv_percent_dark" />
 
     <com.sunshine.studio.base.StudioTv
         android:id="@+id/to"
@@ -19,5 +19,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:maxLines="1"
-        android:textColor="@color/tv_color" />
+        android:textColor="@color/tv_percent_light" />
 </FrameLayout>

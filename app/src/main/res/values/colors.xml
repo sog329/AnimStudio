@@ -14,4 +14,6 @@
     <color name="anim_bg2">#777777</color>
     <color name="dlg_bg">#222222</color>
     <color name="ripple">#20000000</color>
+    <color name="tv_percent_dark">#666666</color>
+    <color name="tv_percent_light">#aaaaaa</color>
 </resources>

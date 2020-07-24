@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top|left"
         android:maxLines="1"
-        android:textColor="@color/tv_color"
+        android:textColor="@color/tv_percent_dark"
         attrs:scale=".5"/>
 
     <com.sunshine.studio.base.StudioTv
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:maxLines="1"
-        android:textColor="@color/tv_color"
+        android:textColor="@color/tv_percent_light"
         attrs:scale=".5"/>
 
     <com.sunshine.studio.base.StudioImageBtn

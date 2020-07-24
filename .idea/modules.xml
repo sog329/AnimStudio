@@ -5,7 +5,10 @@
       <module fileurl="file://$PROJECT_DIR$/AnimStudio.iml" filepath="$PROJECT_DIR$/AnimStudio.iml" group="AnimStudio" />
       <module fileurl="file://$PROJECT_DIR$/app/AnimStudio-app.iml" filepath="$PROJECT_DIR$/app/AnimStudio-app.iml" group="AnimStudio/app" />
       <module fileurl="file://$PROJECT_DIR$/engine/AnimStudio-engine.iml" filepath="$PROJECT_DIR$/engine/AnimStudio-engine.iml" group="AnimStudio/engine" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Project-Studio.iml" filepath="$PROJECT_DIR$/.idea/modules/Project-Studio.iml" group="Studio" />
       <module fileurl="file://$PROJECT_DIR$/Studio.iml" filepath="$PROJECT_DIR$/Studio.iml" group="Studio" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Studio-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Studio-app.iml" group="Studio/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/engine/Studio-engine.iml" filepath="$PROJECT_DIR$/.idea/modules/engine/Studio-engine.iml" group="Studio/engine" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="Studio/app" />
       <module fileurl="file://$PROJECT_DIR$/engine/engine.iml" filepath="$PROJECT_DIR$/engine/engine.iml" group="Studio/engine" />
     </modules>

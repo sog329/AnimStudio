@@ -491,9 +491,9 @@ public class ParticleStudio extends Studio<Scene> {
       lp.setMargins(10, 5, 10, 5);
       v.setLayoutParams(lp);
       TextView tvFrom = v.findViewById(R.id.from);
-      tvFrom.setText(String.valueOf(pm.chanceRange.getFrom()));
+      tvFrom.setText(StudioTool.getPercent(pm.chanceRange.getFrom()));
       TextView tvTo = v.findViewById(R.id.to);
-      tvTo.setText(String.valueOf(pm.chanceRange.getTo()));
+      tvTo.setText(StudioTool.getPercent(pm.chanceRange.getTo()));
       BoneIv iv = v.findViewById(R.id.iv);
       iv.setBmp(entity.bmp, pm.rcBmp);
       v.setTag(pm);

@@ -1,6 +1,7 @@
 package com.sunshine.studio.bone.logic;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -293,12 +294,14 @@ public class AnimLv extends ListView {
         // alpha
         if (anim.alpha.getFrom() != 0 || anim.alpha.getTo() != 0) {
           if (i % 2 == 0) {
-            view.setAlpha(.8f);
+            //            view.setAlpha(.8f);
+            view.setBackgroundColor(Color.parseColor("#444444"));
           } else {
-            view.setAlpha(.6f);
+            view.setBackgroundColor(Color.parseColor("#333333"));
           }
         } else {
-          view.setAlpha(.3f);
+          //          view.setAlpha(.3f);
+          view.setBackgroundColor(Color.parseColor("#191919"));
         }
         // click
         view.setOnClickListener(

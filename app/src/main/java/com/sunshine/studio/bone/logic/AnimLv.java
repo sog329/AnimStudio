@@ -280,11 +280,11 @@ public class AnimLv extends ListView {
         Anim anim = helper.lstAnim.get(i);
         // from
         StudioTv from = view.findViewById(R.id.from);
-        from.setText(String.valueOf(anim.duration.getFrom()));
+        from.setText(StudioTool.getPercent(anim.duration.getFrom()));
         StudioTv.initSize(from, .5f);
         // to
         StudioTv to = view.findViewById(R.id.to);
-        to.setText(String.valueOf(anim.duration.getTo()));
+        to.setText(StudioTool.getPercent(anim.duration.getTo()));
         StudioTv.initSize(to, .5f);
         // lp
         LinearLayout.LayoutParams lp =

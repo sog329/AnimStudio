@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.sunshine.studio.R;
 import com.sunshine.studio.base.Packer;
+import com.sunshine.studio.base.StudioImageBtn;
 import com.sunshine.studio.base.StudioTool;
 import com.sunshine.studio.base.XmlWriter;
 
@@ -103,13 +104,14 @@ public class ProjectLv extends ListView {
       tv.setOnClickListener(v -> callback.onClick(name));
       tv.setBackgroundColor(callback.getColor());
 
-      View del = convertView.findViewById(R.id.del);
+      StudioImageBtn del = convertView.findViewById(R.id.del);
       del.setBackgroundColor(callback.getColor());
       del.setOnClickListener(
           v -> {
             StudioTool.deleteFile(new File(StudioTool.getFilePath(callback.getFolderName(), name)));
             loadData();
           });
+      tv.getLayoutParams().height = del.getSize();
 
       return convertView;
     }

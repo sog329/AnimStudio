@@ -189,4 +189,8 @@ public class StudioTool {
           });
     }
   }
+
+  public static String getPercent(float percent) {
+    return (int) (percent * 100) + "%";
+  }
 }

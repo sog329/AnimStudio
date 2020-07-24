@@ -21,11 +21,15 @@ public class StudioImageBtn extends AppCompatImageView {
     super(context, attrs, defStyleAttr);
   }
 
+  public int getSize() {
+    return StudioTool.getBtnHeight() + 20;
+  }
+
   @Override
   protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
     if (autoSize) {
-      StudioTool.square(this, w, h, StudioTool.getBtnHeight() + 20);
+      StudioTool.square(this, w, h, getSize());
     }
   }
 }

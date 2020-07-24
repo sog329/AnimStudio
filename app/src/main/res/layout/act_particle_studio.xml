@@ -52,7 +52,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="5px"
-                android:background="@drawable/bg_btn_p"
                 android:gravity="center"
                 android:maxLines="1"
                 android:padding="10px"

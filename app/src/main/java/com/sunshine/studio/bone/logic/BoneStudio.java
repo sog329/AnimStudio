@@ -91,12 +91,12 @@ public class BoneStudio extends Studio<Stage> {
         },
         new RenderHelper.Callback() {
           @Override
-          public int colorDark() {
+          public int getDarkColor() {
             return act.getResources().getColor(R.color.btn_bg);
           }
 
           @Override
-          public int colorLight() {
+          public int getLightColor() {
             return act.getResources().getColor(R.color.btn_bg2);
           }
         });

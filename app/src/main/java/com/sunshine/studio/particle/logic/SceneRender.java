@@ -37,9 +37,9 @@ public class SceneRender extends RenderHelper<Scene> {
             entity.drawArea.t + entity.scale * (fromTop + fromHeight),
             Color.argb(
                 102,
-                Color.red(cb.colorLight()),
-                Color.green(cb.colorLight()),
-                Color.blue(cb.colorLight())));
+                Color.red(cb.getLightColor()),
+                Color.green(cb.getLightColor()),
+                Color.blue(cb.getLightColor())));
         // end
         if (model.areaTo.isOffsetLeft) {
           fromLeft += model.areaTo.l;
@@ -64,9 +64,9 @@ public class SceneRender extends RenderHelper<Scene> {
             entity.drawArea.t + entity.scale * (fromTop + fromHeight),
             Color.argb(
                 187,
-                Color.red(cb.colorDark()),
-                Color.green(cb.colorDark()),
-                Color.blue(cb.colorDark())));
+                Color.red(cb.getDarkColor()),
+                Color.green(cb.getDarkColor()),
+                Color.blue(cb.getDarkColor())));
       }
     }
   }

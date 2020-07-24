@@ -21,10 +21,13 @@ public class TestAct extends AppCompatActivity {
 				v -> {
 					StageView stage = findViewById(R.id.stage);
 					stage.stop();
-					stage.play("bone/dlg_match");
+					stage.play("bone/dlg_match2");
 					stage.autoStop(false);
 					stage.setExternalBmp("left", Tool.getBmpByAssets(this, "pic/she.png"));
 					stage.setExternalBmp("right", Tool.getBmpByAssets(this, "pic/he.png"));
+					stage.setExternalBmp("bgLeft", Tool.getBmpByAssets(this, "bone/dlg_match2/bg_w"));
+					stage.setExternalBmp("bgRight", Tool.getBmpByAssets(this, "bone/dlg_match2/bg_g"));
+					stage.setExternalBmp("icon", Tool.getBmpByAssets(this, "bone/dlg_match2/icon_g"));
 					SceneView scene = findViewById(R.id.scene);
 					scene.postDelayed(() -> {
 						scene.stop();

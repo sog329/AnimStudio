@@ -415,12 +415,12 @@ public class ParticleStudio extends Studio<Scene> {
         },
         new RenderHelper.Callback() {
           @Override
-          public int colorDark() {
+          public int getDarkColor() {
             return act.getResources().getColor(R.color.btn_bg_p);
           }
 
           @Override
-          public int colorLight() {
+          public int getLightColor() {
             return act.getResources().getColor(R.color.btn_bg_p2);
           }
         });

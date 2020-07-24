@@ -33,8 +33,9 @@ public class StudioSv extends SceneView implements Studio.Callback<Scene> {
 
   @Override
   public void onDraw(Canvas can) {
+    render.preOnDraw(can, helper.entity, this);
     super.onDraw(can);
-    render.onDraw(can, helper.entity, this);
+    render.afterOnDraw(can, helper.entity, this);
   }
 
   @Override

@@ -7,6 +7,7 @@
     <color name="tv_bg">#99723a7c</color>
     <color name="tv_card_bg">#99a0a0a0</color>
     <color name="btn_bg_p">#214283</color>
+    <color name="btn_bg_p_light">#66116299</color>
     <color name="btn_bg_p2">#116299</color>
     <color name="tv_bg2">#99214283</color>
     <color name="anim_bg">#555555</color>

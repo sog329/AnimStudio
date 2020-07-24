@@ -1,6 +1,7 @@
 package com.sunshine.studio.base;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 
@@ -16,25 +17,33 @@ public abstract class RenderHelper<T extends Entity> {
     this.cb = cb;
   }
 
-  {
-    paint.setStyle(Paint.Style.STROKE);
-    paint.setStrokeWidth(5);
-  }
-
-  public void onDraw(Canvas can, T entity, View v) {
+  public void preOnDraw(Canvas can, T entity, View v) {
     if (entity != null && entity.bmp != null) {
       if (!load) {
         load = true;
         onLoad();
       }
+      // 控件区域
       drawRect(
           can,
-          false,
+          true,
           entity.viewArea.l,
           entity.viewArea.t,
           entity.viewArea.l + entity.viewArea.w,
           entity.viewArea.t + entity.viewArea.h,
-          cb.colorDark());
+          Color.WHITE);
+    } else {
+      load = false;
+    }
+  }
+
+  public void afterOnDraw(Canvas can, T entity, View v) {
+    if (entity != null && entity.bmp != null) {
+      if (!load) {
+        load = true;
+        onLoad();
+      }
+      // 动画区域
       drawRect(
           can,
           false,
@@ -42,7 +51,7 @@ public abstract class RenderHelper<T extends Entity> {
           entity.drawArea.t,
           entity.drawArea.l + entity.drawArea.w,
           entity.drawArea.t + entity.drawArea.h,
-          cb.colorLight());
+          cb.getLightColor());
       onDraw(can, entity);
       v.invalidate();
     } else {
@@ -56,6 +65,7 @@ public abstract class RenderHelper<T extends Entity> {
     } else {
       paint.setStyle(Paint.Style.STROKE);
     }
+    paint.setStrokeWidth(5);
     paint.setColor(color);
     can.drawRect(l, t, r, b, paint);
   }
@@ -65,8 +75,8 @@ public abstract class RenderHelper<T extends Entity> {
   public abstract void onDraw(Canvas can, T entity);
 
   public interface Callback {
-    int colorDark();
+    int getDarkColor();
 
-    int colorLight();
+    int getLightColor();
   }
 }

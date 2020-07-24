@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <stage>
     <duration>2500</duration>
-    <width_height>960,480</width_height>
+    <width_height>760,480</width_height>
     <layout_type>center</layout_type>
     <actor>
         <bone>
             <name>bg</name>
-            <src_ltwh>0,0,270,270</src_ltwh>
+            <src_id_wh>bgLeft,1,1</src_id_wh>
             <anim>
                 <range>0.0,0.25</range>
-                <move>350.0,240.0,350.0,240.0</move>
+                <move>250.0,240.0,250.0,240.0</move>
                 <move_interpolator>linear_2,linear_2</move_interpolator>
-                <scale>0.0,0.0,0.78,0.78</scale>
+                <scale>0.0,0.0,210,210</scale>
                 <scale_interpolator>overshoot_2,overshoot_2</scale_interpolator>
                 <rotate>0,0,134.5,134.5</rotate>
                 <rotate_interpolator>linear</rotate_interpolator>
@@ -20,9 +20,9 @@
             </anim>
             <anim>
                 <range>0.25,0.35</range>
-                <move>350.0,240.0,350.0,240.0</move>
+                <move>250.0,240.0,250.0,240.0</move>
                 <move_interpolator>overshoot_2,overshoot_2</move_interpolator>
-                <scale>0.78,0.78,0.83,0.83</scale>
+                <scale>210,210,224,224</scale>
                 <scale_interpolator>spring_2,spring_2</scale_interpolator>
                 <rotate>0,0,134.5,134.5</rotate>
                 <rotate_interpolator>linear</rotate_interpolator>
@@ -31,9 +31,9 @@
             </anim>
             <anim>
                 <range>0.35,0.5</range>
-                <move>350.0,240.0,410.0,240.0</move>
+                <move>250.0,240.0,310.0,240.0</move>
                 <move_interpolator>overshoot_3,overshoot_3</move_interpolator>
-                <scale>0.78,0.78,0.78,0.78</scale>
+                <scale>210,210,210,210</scale>
                 <scale_interpolator>linear,linear</scale_interpolator>
                 <rotate>0,0,134.5,134.5</rotate>
                 <rotate_interpolator>linear</rotate_interpolator>
@@ -42,9 +42,9 @@
             </anim>
             <anim>
                 <range>0.5,0.57</range>
-                <move>410.0,240.0,405.0,240.0</move>
+                <move>310.0,240.0,305.0,240.0</move>
                 <move_interpolator>spring_2,spring_2</move_interpolator>
-                <scale>0.78,0.78,0.78,0.78</scale>
+                <scale>210,210,210,210</scale>
                 <scale_interpolator>linear,linear</scale_interpolator>
                 <rotate>0,0,134.5,134.5</rotate>
                 <rotate_interpolator>linear</rotate_interpolator>
@@ -53,9 +53,9 @@
             </anim>
             <anim>
                 <range>0.57,1.0</range>
-                <move>410.0,240.0,410.0,240.0</move>
+                <move>310.0,240.0,310.0,240.0</move>
                 <move_interpolator>linear_2,linear_2</move_interpolator>
-                <scale>0.78,0.78,0.78,0.78</scale>
+                <scale>210,210,210,210</scale>
                 <scale_interpolator>linear,linear</scale_interpolator>
                 <rotate>0,0,134.5,134.5</rotate>
                 <rotate_interpolator>linear</rotate_interpolator>
@@ -68,7 +68,7 @@
             <src_id_wh>left,1,1</src_id_wh>
             <anim>
                 <range>0.0,0.25</range>
-                <move>350.0,240.0,350.0,240.0</move>
+                <move>250.0,240.0,250.0,240.0</move>
                 <move_interpolator>linear,linear</move_interpolator>
                 <scale>0.0,0.0,160.0,160.0</scale>
                 <scale_interpolator>overshoot_2,overshoot_2</scale_interpolator>
@@ -79,7 +79,7 @@
             </anim>
             <anim>
                 <range>0.25,0.35</range>
-                <move>350.0,240.0,350.0,240.0</move>
+                <move>250.0,240.0,250.0,240.0</move>
                 <move_interpolator>linear_2,linear_2</move_interpolator>
                 <scale>160.0,160.0,170.0,170.0</scale>
                 <scale_interpolator>spring_2,spring_2</scale_interpolator>
@@ -90,7 +90,7 @@
             </anim>
             <anim>
                 <range>0.35,0.5</range>
-                <move>350.0,240.0,410.0,240.0</move>
+                <move>250.0,240.0,310.0,240.0</move>
                 <move_interpolator>overshoot_3,overshoot_3</move_interpolator>
                 <scale>160.0,160.0,160.0,160.0</scale>
                 <scale_interpolator>linear_2,linear_2</scale_interpolator>
@@ -101,7 +101,7 @@
             </anim>
             <anim>
                 <range>0.5,0.57</range>
-                <move>410.0,240.0,405.0,240.0</move>
+                <move>310.0,240.0,305.0,240.0</move>
                 <move_interpolator>spring_2,spring_2</move_interpolator>
                 <scale>160.0,160.0,160.0,160.0</scale>
                 <scale_interpolator>linear,linear</scale_interpolator>
@@ -112,7 +112,7 @@
             </anim>
             <anim>
                 <range>0.57,1.0</range>
-                <move>410.0,240.0,410.0,240.0</move>
+                <move>310.0,240.0,310.0,240.0</move>
                 <move_interpolator>linear,linear</move_interpolator>
                 <scale>160.0,160.0,160.0,160.0</scale>
                 <scale_interpolator>linear,linear</scale_interpolator>
@@ -124,12 +124,12 @@
         </bone>
         <bone>
             <name>bg</name>
-            <src_ltwh>0,0,270,270</src_ltwh>
+            <src_id_wh>bgRight,1,1</src_id_wh>
             <anim>
                 <range>0.0,0.25</range>
-                <move>610.0,240.0,610.0,240.0</move>
+                <move>510.0,240.0,510.0,240.0</move>
                 <move_interpolator>linear_2,linear_2</move_interpolator>
-                <scale>0.0,0.0,0.78,0.78</scale>
+                <scale>0.0,0.0,210,210</scale>
                 <scale_interpolator>overshoot_2,overshoot_2</scale_interpolator>
                 <rotate>0,0,134.5,134.5</rotate>
                 <rotate_interpolator>linear</rotate_interpolator>
@@ -138,9 +138,9 @@
             </anim>
             <anim>
                 <range>0.25,0.35</range>
-                <move>610.0,240.0,610.0,240.0</move>
+                <move>510.0,240.0,510.0,240.0</move>
                 <move_interpolator>overshoot_2,overshoot_2</move_interpolator>
-                <scale>0.78,0.78,0.83,0.83</scale>
+                <scale>210,210,224,224</scale>
                 <scale_interpolator>spring,spring</scale_interpolator>
                 <rotate>0,0,134.5,134.5</rotate>
                 <rotate_interpolator>linear</rotate_interpolator>
@@ -149,9 +149,9 @@
             </anim>
             <anim>
                 <range>0.35,0.5</range>
-                <move>610.0,240.0,550.0,240.0</move>
+                <move>510.0,240.0,450.0,240.0</move>
                 <move_interpolator>overshoot_3,overshoot_3</move_interpolator>
-                <scale>0.78,0.78,0.78,0.78</scale>
+                <scale>210,210,210,210</scale>
                 <scale_interpolator>linear,linear</scale_interpolator>
                 <rotate>0,0,134.5,134.5</rotate>
                 <rotate_interpolator>linear</rotate_interpolator>
@@ -160,9 +160,9 @@
             </anim>
             <anim>
                 <range>0.5,0.57</range>
-                <move>550.0,240.0,555.0,240.0</move>
+                <move>450.0,240.0,455.0,240.0</move>
                 <move_interpolator>spring_2,spring_2</move_interpolator>
-                <scale>0.78,0.78,0.78,0.78</scale>
+                <scale>210,210,210,210</scale>
                 <scale_interpolator>linear,linear</scale_interpolator>
                 <rotate>0,0,134.5,134.5</rotate>
                 <rotate_interpolator>linear</rotate_interpolator>
@@ -171,9 +171,9 @@
             </anim>
             <anim>
                 <range>0.57,1.0</range>
-                <move>550.0,240.0,550.0,240.0</move>
+                <move>450.0,240.0,450.0,240.0</move>
                 <move_interpolator>linear_2,linear_2</move_interpolator>
-                <scale>0.78,0.78,0.78,0.78</scale>
+                <scale>210,210,210,210</scale>
                 <scale_interpolator>linear,linear</scale_interpolator>
                 <rotate>0,0,134.5,134.5</rotate>
                 <rotate_interpolator>linear</rotate_interpolator>
@@ -186,7 +186,7 @@
             <src_id_wh>right,1,1</src_id_wh>
             <anim>
                 <range>0.0,0.25</range>
-                <move>610.0,240.0,610.0,240.0</move>
+                <move>510.0,240.0,510.0,240.0</move>
                 <move_interpolator>linear_2,linear_2</move_interpolator>
                 <scale>0.0,0.0,160.0,160.0</scale>
                 <scale_interpolator>overshoot_2,overshoot_2</scale_interpolator>
@@ -197,7 +197,7 @@
             </anim>
             <anim>
                 <range>0.25,0.35</range>
-                <move>610.0,240.0,610.0,240.0</move>
+                <move>510.0,240.0,510.0,240.0</move>
                 <move_interpolator>overshoot_2,overshoot_2</move_interpolator>
                 <scale>160.0,160.0,170.0,170.0</scale>
                 <scale_interpolator>spring_2,spring_2</scale_interpolator>
@@ -208,7 +208,7 @@
             </anim>
             <anim>
                 <range>0.35,0.5</range>
-                <move>610.0,240.0,550.0,240.0</move>
+                <move>510.0,240.0,450.0,240.0</move>
                 <move_interpolator>overshoot_3,overshoot_3</move_interpolator>
                 <scale>160.0,160.0,160.0,160.0</scale>
                 <scale_interpolator>linear,linear</scale_interpolator>
@@ -219,7 +219,7 @@
             </anim>
             <anim>
                 <range>0.5,0.57</range>
-                <move>550.0,240.0,555.0,240.0</move>
+                <move>450.0,240.0,455.0,240.0</move>
                 <move_interpolator>spring_2,spring_2</move_interpolator>
                 <scale>160.0,160.0,160.0,160.0</scale>
                 <scale_interpolator>linear,linear</scale_interpolator>
@@ -230,7 +230,7 @@
             </anim>
             <anim>
                 <range>0.57,1.0</range>
-                <move>550.0,240.0,550.0,240.0</move>
+                <move>450.0,240.0,450.0,240.0</move>
                 <move_interpolator>linear_2,linear_2</move_interpolator>
                 <scale>160.0,160.0,160.0,160.0</scale>
                 <scale_interpolator>linear,linear</scale_interpolator>
@@ -242,12 +242,12 @@
         </bone>
         <bone>
             <name>icon</name>
-            <src_ltwh>103,272,72,72</src_ltwh>
+            <src_id_wh>icon,1,1</src_id_wh>
             <anim>
                 <range>0.0,0.75</range>
-                <move>480.0,280.0,480.0,290.0</move>
+                <move>380.0,280.0,380.0,290.0</move>
                 <move_interpolator>linear_2,linear_2</move_interpolator>
-                <scale>1.0,1.0,1.0,1.0</scale>
+                <scale>72.0,72.0,72.0,72.0</scale>
                 <scale_interpolator>linear,linear</scale_interpolator>
                 <rotate>0,0,35.5,35.5</rotate>
                 <rotate_interpolator>linear</rotate_interpolator>
@@ -256,9 +256,9 @@
             </anim>
             <anim>
                 <range>0.75,0.9</range>
-                <move>480.0,290.0,480.0,290.0</move>
+                <move>380.0,290.0,380.0,290.0</move>
                 <move_interpolator>linear,linear</move_interpolator>
-                <scale>0.0,0.0,1.0,1.0</scale>
+                <scale>0.0,0.0,72.0,72.0</scale>
                 <scale_interpolator>overshoot_2,overshoot_2</scale_interpolator>
                 <rotate>0,0,35.5,35.5</rotate>
                 <rotate_interpolator>linear</rotate_interpolator>
@@ -267,9 +267,9 @@
             </anim>
             <anim>
                 <range>0.9,1.0</range>
-                <move>480.0,290.0,480.0,290.0</move>
+                <move>380.0,290.0,380.0,290.0</move>
                 <move_interpolator>linear,linear</move_interpolator>
-                <scale>1.0,1.0,1.0,1.0</scale>
+                <scale>72.0,72.0,72.0,72.0</scale>
                 <scale_interpolator>linear,linear</scale_interpolator>
                 <rotate>0,0,35.5,35.5</rotate>
                 <rotate_interpolator>linear</rotate_interpolator>

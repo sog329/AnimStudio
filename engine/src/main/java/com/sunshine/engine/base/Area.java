@@ -25,7 +25,8 @@ public class Area {
 
   public int getScriptLeft(Scene scene) {
     if (w == MATCH_PARENT) {
-      return (int) (l - scene.drawArea.l / scene.scale);
+      //      return (int) (l - scene.drawArea.l / scene.scale);
+      return (int) ((scene.viewArea.l - scene.drawArea.l) / scene.scale) + l;
     } else {
       return l;
     }
@@ -33,7 +34,8 @@ public class Area {
 
   public int getScriptWidth(Scene scene, int left) {
     if (w == MATCH_PARENT) {
-      return (int) (scene.viewArea.w / scene.scale) - left;
+      //      return (int) (scene.viewArea.w / scene.scale) - left;
+      return (int) (scene.viewArea.w / scene.scale);
     } else {
       return w;
     }

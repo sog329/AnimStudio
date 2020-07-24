@@ -129,6 +129,7 @@
 
                     <com.sunshine.studio.base.StudioTv
                         style="@style/title"
+                        android:paddingLeft="0px"
                         android:text="from:"
                         attrs:scale=".5" />
 
@@ -261,6 +262,7 @@
 
                     <com.sunshine.studio.base.StudioTv
                         style="@style/title"
+                        android:paddingLeft="0px"
                         android:text="to:"
                         attrs:scale=".5" />
 

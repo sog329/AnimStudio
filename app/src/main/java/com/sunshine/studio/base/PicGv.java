@@ -73,6 +73,7 @@ public class PicGv extends GridView {
             LayoutInflater.from(parent.getContext()).inflate(R.layout.gv_item_studio_pic, null);
       }
       BoneIv iv = convertView.findViewById(R.id.iv);
+      iv.setBackgroundColor(callback.getColor());
       iv.autoSize = false;
       ViewGroup.LayoutParams lp = iv.getLayoutParams();
       lp.width = (StudioTool.getDlgWidth() * 2 - 10) / 5 - 10;
@@ -97,6 +98,8 @@ public class PicGv extends GridView {
       void buildLstBmpRc(List<BmpRect> lst);
 
       Bitmap getBmp(boolean isExternal);
+
+      int getColor();
     }
   }
 }

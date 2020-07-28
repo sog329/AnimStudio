@@ -86,6 +86,11 @@ public class DlgFactory {
               public Bitmap getBmp(boolean isExternal) {
                 return isExternal ? studio.entity.mapBmp.get("external") : studio.entity.bmp;
               }
+
+              @Override
+              public int getColor() {
+                return studio.getColor();
+              }
             });
     gv.setAdapter(adapter);
     dialog.setOnShowListener(d -> adapter.loadData());

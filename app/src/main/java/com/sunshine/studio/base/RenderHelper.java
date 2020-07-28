@@ -12,6 +12,7 @@ public abstract class RenderHelper<T extends Entity> {
   private Paint paint = new Paint();
   public boolean load = false;
   public Callback cb = null;
+  private static final Byte LEN = 5;
 
   public void setCallback(Callback cb) {
     this.cb = cb;
@@ -27,6 +28,15 @@ public abstract class RenderHelper<T extends Entity> {
       drawRect(
           can,
           true,
+          entity.viewArea.l,
+          entity.viewArea.t,
+          entity.viewArea.l + entity.viewArea.w,
+          entity.viewArea.t + entity.viewArea.h,
+          cb.getAnimBgColor());
+      // 控件线框
+      drawRect(
+          can,
+          false,
           entity.viewArea.l,
           entity.viewArea.t,
           entity.viewArea.l + entity.viewArea.w,
@@ -51,7 +61,11 @@ public abstract class RenderHelper<T extends Entity> {
           entity.drawArea.t,
           entity.drawArea.l + entity.drawArea.w,
           entity.drawArea.t + entity.drawArea.h,
-          cb.getLightColor());
+          Color.argb(
+              102,
+              Color.red(cb.getLightColor()),
+              Color.green(cb.getLightColor()),
+              Color.blue(cb.getLightColor())));
       onDraw(can, entity);
       v.invalidate();
     } else {
@@ -65,7 +79,7 @@ public abstract class RenderHelper<T extends Entity> {
     } else {
       paint.setStyle(Paint.Style.STROKE);
     }
-    paint.setStrokeWidth(5);
+    paint.setStrokeWidth(LEN);
     paint.setColor(color);
     can.drawRect(l, t, r, b, paint);
   }
@@ -78,5 +92,7 @@ public abstract class RenderHelper<T extends Entity> {
     int getDarkColor();
 
     int getLightColor();
+
+    int getAnimBgColor();
   }
 }

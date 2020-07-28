@@ -50,6 +50,10 @@ public abstract class Studio<T extends Entity> {
             });
     // set
     act.findViewById(R.id.set).setOnClickListener(v -> dlgEntity.show());
+    // anim bg color
+    StudioCb cbBg = act.findViewById(R.id.cb_bg);
+    cbBg.setOnCheckedChangeListener((btn, b) -> studioSv.postInvalidate());
+    cbBg.setChecked(true);
     // stage size_w
     AppCompatSeekBar sbSizeW = act.findViewById(R.id.size_w);
     sbSizeW.setOnSeekBarChangeListener(

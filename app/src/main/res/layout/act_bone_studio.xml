@@ -43,14 +43,21 @@
                 android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_weight=".5"
-                android:theme="@style/Purple"/>
+                android:theme="@style/Purple" />
 
             <android.support.v7.widget.AppCompatSeekBar
                 android:id="@+id/size_h"
                 android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_weight=".5"
-                android:theme="@style/Purple"/>
+                android:theme="@style/Purple" />
+
+            <com.sunshine.studio.base.StudioCb
+                android:id="@+id/cb_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:theme="@style/Purple"
+                android:tooltipText="✅：黑色背景\n❌：白色背景" />
 
         </LinearLayout>
     </RelativeLayout>

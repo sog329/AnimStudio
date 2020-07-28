@@ -1,6 +1,7 @@
 package com.sunshine.studio.bone.logic;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.widget.SeekBar;
 
@@ -12,6 +13,7 @@ import com.sunshine.engine.bone.logic.Stage;
 import com.sunshine.studio.R;
 import com.sunshine.studio.base.RenderHelper;
 import com.sunshine.studio.base.Studio;
+import com.sunshine.studio.base.StudioCb;
 import com.sunshine.studio.base.XmlWriter;
 
 /** Created by songxiaoguang on 2017/12/2. */
@@ -98,6 +100,12 @@ public class BoneStudio extends Studio<Stage> {
           @Override
           public int getLightColor() {
             return act.getResources().getColor(R.color.btn_bg2);
+          }
+
+          @Override
+          public int getAnimBgColor() {
+            StudioCb cbBg = act.findViewById(R.id.cb_bg);
+            return cbBg.isChecked() ? Color.BLACK : Color.WHITE;
           }
         });
   }

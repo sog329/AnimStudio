@@ -1,5 +1,6 @@
 package com.sunshine.studio.particle.logic;
 
+import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -422,6 +423,12 @@ public class ParticleStudio extends Studio<Scene> {
           @Override
           public int getLightColor() {
             return act.getResources().getColor(R.color.btn_bg_p2);
+          }
+
+          @Override
+          public int getAnimBgColor() {
+            StudioCb cbBg = act.findViewById(R.id.cb_bg);
+            return cbBg.isChecked() ? Color.BLACK : Color.WHITE;
           }
         });
   }

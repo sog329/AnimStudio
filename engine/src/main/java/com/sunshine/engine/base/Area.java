@@ -58,14 +58,12 @@ public class Area {
     // left
     if (isOffsetLeft) {
       sb.append(SceneParser.OFFSET);
-      sb.append(":");
     }
     sb.append(l);
     sb.append(",");
     // top
     if (isOffsetTop) {
       sb.append(SceneParser.OFFSET);
-      sb.append(":");
     }
     sb.append(t);
     sb.append(",");

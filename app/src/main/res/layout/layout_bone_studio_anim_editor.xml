@@ -149,7 +149,6 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:padding="10px"
-                android:rotation="90"
                 android:src="@drawable/del"
                 android:textColor="@color/tv_color"
                 android:tooltipText="删除当前动画" />

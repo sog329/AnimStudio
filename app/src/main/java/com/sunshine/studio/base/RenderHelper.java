@@ -41,7 +41,7 @@ public abstract class RenderHelper<T extends Entity> {
           entity.viewArea.t,
           entity.viewArea.l + entity.viewArea.w,
           entity.viewArea.t + entity.viewArea.h,
-          Color.WHITE);
+          Color.argb(90, 255, 255, 255));
     } else {
       load = false;
     }

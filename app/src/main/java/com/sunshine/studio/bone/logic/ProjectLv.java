@@ -103,12 +103,19 @@ public class ProjectLv extends ListView {
       tv.setText(name);
       tv.setOnClickListener(v -> callback.onClick(name));
       tv.setBackgroundColor(callback.getColor());
+      if (name.equals(callback.getProjectName())) {
+        convertView.setAlpha(1f);
+      } else {
+        convertView.setAlpha(.6f);
+      }
 
       StudioImageBtn del = convertView.findViewById(R.id.del);
       del.setBackgroundColor(callback.getColor());
       del.setOnClickListener(
           v -> {
+            callback.onDel(name);
             StudioTool.deleteFile(new File(StudioTool.getFilePath(callback.getFolderName(), name)));
+            StudioTool.showToast(parent.getContext(), name + " deleted");
             loadData();
           });
       tv.getLayoutParams().height = del.getSize();
@@ -119,7 +126,11 @@ public class ProjectLv extends ListView {
     public interface Callback {
       void onClick(String name);
 
+      void onDel(String name);
+
       String getFolderName();
+
+      String getProjectName();
 
       XmlWriter.Callback getWriter(String name);
 

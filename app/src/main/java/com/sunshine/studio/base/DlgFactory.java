@@ -40,8 +40,21 @@ public class DlgFactory {
               }
 
               @Override
+              public void onDel(String name) {
+                if (name.equals(studio.projectName)) {
+                  dialog.dismiss();
+                  studio.act.finish();
+                }
+              }
+
+              @Override
               public String getFolderName() {
                 return studio.getProjectFolderName();
+              }
+
+              @Override
+              public String getProjectName() {
+                return studio.projectName;
               }
 
               @Override

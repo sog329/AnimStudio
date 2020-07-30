@@ -112,6 +112,8 @@ public class MainAct extends AppCompatActivity
     }
     if (needRequest) {
       StudioTool.initPermission(this);
+    } else {
+      StudioTool.prepareResource(this);
     }
   }
 

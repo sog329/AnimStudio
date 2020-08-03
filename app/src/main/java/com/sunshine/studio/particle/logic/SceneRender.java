@@ -24,17 +24,17 @@ public class SceneRender extends RenderHelper<Scene> {
       if (model != null) {
         // color
         // start
-        int fromLeft = model.areaFrom.getScriptLeft(entity);
-        int fromWidth = model.areaFrom.getScriptWidth(entity, fromLeft);
-        int fromTop = model.areaFrom.t;
-        int fromHeight = model.areaFrom.h;
+        int left = model.areaFrom.getScriptLeft(entity);
+        int width = model.areaFrom.getScriptWidth(entity, left);
+        int top = model.areaFrom.t;
+        int height = model.areaFrom.h;
         drawRect(
             can,
             true,
-            entity.drawArea.l + entity.scale * fromLeft,
-            entity.drawArea.t + entity.scale * fromTop,
-            entity.drawArea.l + entity.scale * (fromLeft + fromWidth),
-            entity.drawArea.t + entity.scale * (fromTop + fromHeight),
+            entity.drawArea.l + entity.scale * left,
+            entity.drawArea.t + entity.scale * top,
+            entity.drawArea.l + entity.scale * (left + width),
+            entity.drawArea.t + entity.scale * (top + height),
             Color.argb(
                 102,
                 Color.red(cb.getLightColor()),
@@ -42,26 +42,26 @@ public class SceneRender extends RenderHelper<Scene> {
                 Color.blue(cb.getLightColor())));
         // end
         if (model.areaTo.isOffsetLeft) {
-          fromLeft += model.areaTo.l;
-          fromWidth += model.areaTo.w;
+          left += model.areaTo.l;
+          width += model.areaTo.w;
         } else {
-          fromLeft = model.areaTo.getScriptLeft(entity);
-          fromWidth = model.areaTo.getScriptWidth(entity, fromLeft);
+          left = model.areaTo.getScriptLeft(entity);
+          width = model.areaTo.getScriptWidth(entity, left);
         }
         if (model.areaTo.isOffsetTop) {
-          fromTop += model.areaTo.t;
-          fromHeight += model.areaTo.h;
+          top += model.areaTo.t;
+          height += model.areaTo.h;
         } else {
-          fromTop = model.areaTo.t;
-          fromHeight = model.areaTo.h;
+          top = model.areaTo.t;
+          height = model.areaTo.h;
         }
         drawRect(
             can,
             true,
-            entity.drawArea.l + entity.scale * fromLeft,
-            entity.drawArea.t + entity.scale * fromTop,
-            entity.drawArea.l + entity.scale * (fromLeft + fromWidth),
-            entity.drawArea.t + entity.scale * (fromTop + fromHeight),
+            entity.drawArea.l + entity.scale * left,
+            entity.drawArea.t + entity.scale * top,
+            entity.drawArea.l + entity.scale * (left + width),
+            entity.drawArea.t + entity.scale * (top + height),
             Color.argb(
                 187,
                 Color.red(cb.getDarkColor()),

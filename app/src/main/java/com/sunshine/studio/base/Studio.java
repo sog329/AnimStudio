@@ -2,8 +2,6 @@ package com.sunshine.studio.base;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.widget.SeekBar;
 
@@ -12,6 +10,7 @@ import com.sunshine.engine.base.Entity;
 import com.sunshine.studio.R;
 import com.sunshine.studio.bone.logic.BmpRect;
 
+import static com.sunshine.studio.base.StudioTool.EXTERNAL;
 import static com.sunshine.studio.base.StudioTool.getFilePath;
 
 /** Created by Jack on 2018/4/12. */
@@ -123,9 +122,7 @@ public abstract class Studio<T extends Entity> {
     entity = ((Callback<T>) animView).getEntity();
     entity.inStudio = true;
 
-    Bitmap bmp = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
-    bmp.eraseColor(Color.parseColor("#FFFF00"));
-    entity.mapBmp.put("external", bmp);
+    entity.mapBmp.put(EXTERNAL, StudioTool.getBmp(EXTERNAL));
   }
 
   public String getPath(String str) {

@@ -16,6 +16,8 @@ import com.sunshine.studio.base.Studio;
 import com.sunshine.studio.base.StudioCb;
 import com.sunshine.studio.base.XmlWriter;
 
+import static com.sunshine.studio.base.StudioTool.EXTERNAL;
+
 /** Created by songxiaoguang on 2017/12/2. */
 public class BoneStudio extends Studio<Stage> {
   protected Actor actor = null;
@@ -144,7 +146,7 @@ public class BoneStudio extends Studio<Stage> {
       bone.checkAnim(entity);
       actor.lstBone.add(bone);
       if (isExternal) {
-        bone.externalBmpId = "external";
+        bone.externalBmpId = EXTERNAL;
         bone.getLastAnim().scaleX.set(50f, 50f);
         bone.getLastAnim().scaleY.set(50f, 50f);
       }

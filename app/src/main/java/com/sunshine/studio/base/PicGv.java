@@ -18,6 +18,8 @@ import com.sunshine.studio.bone.logic.BoneIv;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.sunshine.studio.base.StudioTool.EXTERNAL;
+
 /** Created by songxiaoguang on 2017/12/2. */
 public class PicGv extends GridView {
 
@@ -46,7 +48,7 @@ public class PicGv extends GridView {
       callback.buildLstBmpRc(lstData);
       BmpRect externalRect = new BmpRect();
       externalRect.lstRect.add(new Rect(0, 0, 1, 1));
-      externalRect.name = "external";
+      externalRect.name = EXTERNAL;
       lstData.add(externalRect);
       notifyDataSetChanged();
     }

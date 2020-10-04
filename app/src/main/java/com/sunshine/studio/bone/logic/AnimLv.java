@@ -1,6 +1,7 @@
 package com.sunshine.studio.bone.logic;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.support.annotation.Nullable;
@@ -210,11 +211,15 @@ public class AnimLv extends ListView {
         BoneIv iv = convertView.findViewById(R.id.iv);
         iv.setVisibility(VISIBLE);
         Rect rect = new Rect(bone.lstRect.get(0));
-        iv.setBmp(
-            bone.externalBmpId == null
-                ? studio.entity.bmp
-                : studio.entity.mapBmp.get(bone.externalBmpId),
-            rect);
+        Bitmap bmp = studio.entity.bmp;
+        if (bone.externalBmpId != null) {
+          bmp = studio.entity.mapBmp.get(bone.externalBmpId);
+          if (bmp == null) {
+            bmp = StudioTool.getBmp(bone.externalBmpId);
+            studio.entity.mapBmp.put(bone.externalBmpId, bmp);
+          }
+        }
+        iv.setBmp(bmp, rect);
         // up
         int index = bone.actor.lstBone.indexOf(bone);
         View up = convertView.findViewById(R.id.up);

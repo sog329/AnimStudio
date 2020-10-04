@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -27,6 +29,7 @@ import java.util.List;
 public class StudioTool {
   public static int screenWidth = 0;
   public static int screenHeight = 0;
+  public static final String EXTERNAL = "external";
 
   public static void init(Activity act) {
     Tool.DEBUG = true;
@@ -198,5 +201,14 @@ public class StudioTool {
 
   public static String getPercent(float percent) {
     return (int) (percent * 100) + "%";
+  }
+
+  public static Bitmap getBmp(String id) {
+    Bitmap bmp = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
+    int h = id.hashCode();
+    int r = h % 255;
+    int g = h / 255;
+    bmp.eraseColor(Color.rgb(r, g, 0));
+    return bmp;
   }
 }

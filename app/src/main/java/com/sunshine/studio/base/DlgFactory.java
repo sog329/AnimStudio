@@ -71,6 +71,12 @@ public class DlgFactory {
             });
     lv.setAdapter(adapter);
     dialog.setOnShowListener(d -> adapter.loadData());
+    dialog.setOnDismissListener(
+        d -> {
+          if (studio.entity == null) {
+            studio.act.finish();
+          }
+        });
     return dialog;
   }
 

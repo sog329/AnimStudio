@@ -72,11 +72,14 @@ public class Packer {
   }
 
   public static void saveFiles(List<Cell> lstRc, String folderPath) {
-    // file
-    File file;
-    String picPath = folderPath + File.separator + "pic";
-    String plistPath = folderPath + File.separator + "pic.plist";
     // build pic
+    savePic(lstRc, folderPath);
+    // build plist
+    savePlist(lstRc, folderPath);
+  }
+
+  public static void savePic(List<Cell> lstRc, String folderPath) {
+    String picPath = folderPath + File.separator + "pic";
     int[] ary = Packer.getWH(lstRc);
     Bitmap bmp = Bitmap.createBitmap(ary[0], ary[1], Bitmap.Config.ARGB_8888);
     Canvas can = new Canvas(bmp);
@@ -87,7 +90,7 @@ public class Packer {
     }
     // save pic
     BufferedOutputStream bos = null;
-    file = new File(picPath);
+    File file = new File(picPath);
     if (file.exists()) {
       file.delete();
     }
@@ -109,8 +112,11 @@ public class Packer {
       bmp.recycle();
     }
     tinyPic(picPath);
-    // save plist
-    file = new File(plistPath);
+  }
+
+  public static void savePlist(List<Cell> lstRc, String folderPath) {
+    String plistPath = folderPath + File.separator + "pic.plist";
+    File file = new File(plistPath);
     if (file.exists()) {
       file.delete();
     }
@@ -372,6 +378,10 @@ public class Packer {
       }
       bmp = BitmapFactory.decodeFile(path);
       decodeBmp();
+    }
+
+    public Cell(int left, int top, int right, int bottom) {
+      rcPic.set(left, top, right, bottom);
     }
 
     public void setXY(int x, int y) {

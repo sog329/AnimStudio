@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.sunshine.studio.R;
+import com.sunshine.studio.base.ConfigParser;
 import com.sunshine.studio.base.Packer;
 import com.sunshine.studio.base.StudioImageBtn;
 import com.sunshine.studio.base.StudioTool;
@@ -55,6 +56,7 @@ public class ProjectLv extends ListView {
       FilenameFilter filterPlist = (file, name) -> "pic.plist".equals(name);
       for (File file : ary) {
         if (file.isDirectory()) {
+          // use pics to build pic & plist
           if (file.listFiles(filterPic).length != 1 || file.listFiles(filterPlist).length != 1) {
             List<Packer.Cell> lst = Packer.getLstBmpRc(file.getPath());
             if (lst.size() > 0) {
@@ -62,6 +64,13 @@ public class ProjectLv extends ListView {
               Packer.saveFiles(lst, file.getPath());
             }
           }
+          // use config to build plist
+          if (file.listFiles(filterConfig).length == 1 && file.listFiles(filterPlist).length == 0) {
+            List<Packer.Cell> lst = new ArrayList<>();
+            new ConfigParser(lst).parse(file.getPath() + File.separator + "config.xml");
+            Packer.savePlist(lst, file.getPath());
+          }
+          // ensure pic & plist exist
           if (file.listFiles(filterPic).length == 1 && file.listFiles(filterPlist).length == 1) {
             String name = file.getName();
             if (file.listFiles(filterConfig).length == 0) {

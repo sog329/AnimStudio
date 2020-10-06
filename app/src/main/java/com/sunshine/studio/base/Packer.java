@@ -366,6 +366,7 @@ public class Packer {
     protected String name = null;
     private Rect rcPic = new Rect(); // bmp内部非alpha部分的区域
     private Point pt = new Point();
+    protected Integer extendY = null;
 
     private static final byte SPACE = 1;
 
@@ -387,6 +388,10 @@ public class Packer {
     public void setXY(int x, int y) {
       pt.x = x;
       pt.y = y;
+    }
+
+    public void setExtendY(int y) {
+      extendY = y;
     }
 
     private void decodeBmp() {

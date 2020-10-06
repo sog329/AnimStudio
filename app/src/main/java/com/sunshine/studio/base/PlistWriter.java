@@ -40,6 +40,10 @@ public class PlistWriter implements XmlWriter.Callback {
       addTag(xml, real, Integer.toString(rc.picWidth()));
       addTag(xml, key, h);
       addTag(xml, real, Integer.toString(rc.picHeight()));
+      if (rc.extendY != null) {
+        addTag(xml, key, "extendY");
+        addTag(xml, real, Integer.toString(rc.extendY));
+      }
       xml.endTag(null, dict);
     }
     xml.endTag(null, dict);

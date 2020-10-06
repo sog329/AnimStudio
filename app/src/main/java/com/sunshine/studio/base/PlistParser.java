@@ -8,6 +8,7 @@ import com.sunshine.studio.bone.logic.BmpRect;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
 
 import javax.xml.parsers.SAXParser;
@@ -22,14 +23,23 @@ public class PlistParser extends XmlParser {
 
   public void parse(String path, List<BmpRect> lst) {
     this.lst = lst;
+    FileInputStream is = null;
     try {
       File f = new File(path);
-      FileInputStream is = new FileInputStream(f);
+      is = new FileInputStream(f);
       SAXParserFactory sf = SAXParserFactory.newInstance();
       SAXParser sp = sf.newSAXParser();
       sp.parse(is, PlistParser.this);
     } catch (Exception e) {
       Tool.log(e);
+    } finally {
+      if (is != null) {
+        try {
+          is.close();
+        } catch (IOException e) {
+          Tool.log(e);
+        }
+      }
     }
   }
 

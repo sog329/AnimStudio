@@ -13,7 +13,7 @@
     </style>
 
     <style name="label">
-        <item name="android:paddingTop">20px</item>
+        <item name="android:paddingTop">15px</item>
         <item name="android:paddingLeft">10px</item>
         <item name="android:paddingRight">10px</item>
         <item name="android:gravity">center_vertical</item>

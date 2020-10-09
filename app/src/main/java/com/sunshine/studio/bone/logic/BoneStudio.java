@@ -1,5 +1,6 @@
 package com.sunshine.studio.bone.logic;
 
+import android.app.Dialog;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.support.v7.widget.AppCompatSeekBar;
@@ -11,6 +12,7 @@ import com.sunshine.engine.bone.logic.Anim;
 import com.sunshine.engine.bone.logic.Bone;
 import com.sunshine.engine.bone.logic.Stage;
 import com.sunshine.studio.R;
+import com.sunshine.studio.base.DlgFactory;
 import com.sunshine.studio.base.RenderHelper;
 import com.sunshine.studio.base.Studio;
 import com.sunshine.studio.base.StudioCb;
@@ -21,6 +23,14 @@ import static com.sunshine.studio.base.StudioTool.EXTERNAL;
 /** Created by songxiaoguang on 2017/12/2. */
 public class BoneStudio extends Studio<Stage> {
   protected Actor actor = null;
+  public Bone bone = null;
+  protected Dialog dlgExtend = null;
+
+  @Override
+  protected void initDlg() {
+    super.initDlg();
+    dlgExtend = DlgFactory.extend(this);
+  }
 
   @Override
   protected void initBtn() {

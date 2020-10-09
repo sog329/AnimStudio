@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/dlg_bg"
+    android:orientation="horizontal"
+    android:padding="5px">
+
+    <com.sunshine.studio.bone.logic.ExtendIv
+        android:id="@+id/iv_normal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:tooltipText="原始皮肤" />
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="5px">
+
+        <com.sunshine.studio.base.StudioEt
+            android:id="@+id/et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:tooltipText="Y方向拉伸坐标" />
+
+        <com.sunshine.studio.bone.logic.ExtendIv
+            android:id="@+id/iv_tall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#000000"
+            android:tooltipText="拉伸后皮肤" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import com.sunshine.engine.base.LayoutHelper;
 import com.sunshine.engine.bone.logic.Actor;
@@ -15,6 +16,8 @@ import com.sunshine.engine.bone.logic.Bone;
 import com.sunshine.engine.bone.logic.Stage;
 import com.sunshine.studio.R;
 import com.sunshine.studio.bone.logic.BmpRect;
+import com.sunshine.studio.bone.logic.BoneStudio;
+import com.sunshine.studio.bone.logic.ExtendIv;
 import com.sunshine.studio.bone.logic.ProjectLv;
 
 import java.util.List;
@@ -180,6 +183,61 @@ public class DlgFactory {
               });
         });
 
+    return dialog;
+  }
+
+  public static Dialog extend(final BoneStudio studio) {
+    AlertDialog.Builder builder = new AlertDialog.Builder(studio.act, R.style.AppDialog);
+    View view = LayoutInflater.from(studio.act).inflate(R.layout.dlg_studio_extend, null);
+    // iv_normal
+    ExtendIv iv = view.findViewById(R.id.iv_normal);
+    iv.autoSize = false;
+    iv.setLayoutParams(
+        new LinearLayout.LayoutParams(StudioTool.getDlgHeight(), StudioTool.getDlgHeight()));
+    // container
+    View v = view.findViewById(R.id.container);
+    v.setLayoutParams(
+        new LinearLayout.LayoutParams(StudioTool.getDlgHeight() / 3, StudioTool.getDlgHeight()));
+    // iv_tall
+    ExtendIv ivTall = view.findViewById(R.id.iv_tall);
+    ivTall.autoSize = false;
+    ivTall.inExtendY(true);
+    builder.setView(view);
+    final Dialog dialog = builder.create();
+    dialog.setOnShowListener(
+        d -> {
+          StudioEt<Integer> et = view.findViewById(R.id.et);
+          Runnable rn =
+              () -> {
+                if (studio.bone.extendY != null) {
+                  iv.setExtendY(studio.bone.extendY);
+                  ivTall.setVisibility(View.VISIBLE);
+                  ivTall.setBmp(studio.entity.bmp, studio.bone.lstRect.get(0));
+                  ivTall.setExtendY(studio.bone.extendY);
+                } else {
+                  iv.setExtendY(null);
+                  ivTall.setVisibility(View.INVISIBLE);
+                  ivTall.setBmp(null, null);
+                  ivTall.setExtendY(null);
+                }
+              };
+          et.mapValue(
+              studio.bone.extendY,
+              y -> {
+                if (y <= 0 || y > studio.bone.lstRect.get(0).height()) {
+                  studio.bone.extendY = null;
+                  rn.run();
+                  if (et.getText() != null && et.getText().length() > 0) {
+                    et.setText(null);
+                  }
+                } else {
+                  studio.bone.extendY = y;
+                  rn.run();
+                }
+              });
+          iv.setBmp(studio.entity.bmp, studio.bone.lstRect.get(0));
+          rn.run();
+        });
     return dialog;
   }
 }

@@ -13,10 +13,10 @@ import java.lang.ref.WeakReference;
 
 /** Created by songxiaoguang on 2017/12/3. */
 public class BoneIv extends StudioImageBtn {
-  private WeakReference<Bitmap> bmp = null;
-  private Rect rcBmp = null;
-  private Rect rcView = new Rect();
-  private Rect rcDraw = new Rect();
+  protected WeakReference<Bitmap> bmp = null;
+  protected Rect rcBmp = null;
+  protected Rect rcView = new Rect();
+  protected Rect rcDraw = new Rect();
 
   public BoneIv(Context context) {
     super(context);
@@ -45,7 +45,7 @@ public class BoneIv extends StudioImageBtn {
 
   private void mergeRcDraw() {
     if (rcBmp != null) {
-      if (rcBmp.width() > rcBmp.height()) {
+      if (1f * rcBmp.width() / rcBmp.height() > 1f * rcView.width() / rcView.height()) {
         int space =
             (rcView.height() - (int) (1f * rcView.width() / rcBmp.width() * rcBmp.height())) / 2;
         rcDraw.set(0, space, rcView.width(), rcView.height() - space);
@@ -61,7 +61,7 @@ public class BoneIv extends StudioImageBtn {
   @Override
   public void onDraw(Canvas can) {
     super.onDraw(can);
-    if (bmp != null) {
+    if (bmp != null && rcBmp != null) {
       Bitmap bitmap = bmp.get();
       if (bitmap != null && !bitmap.isRecycled()) {
         can.drawBitmap(bitmap, rcBmp, rcDraw, null);

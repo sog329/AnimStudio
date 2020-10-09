@@ -148,7 +148,9 @@ public class AnimLv extends ListView {
               studio.dlgPic.show();
             });
         // iv
-        convertView.findViewById(R.id.iv).setVisibility(GONE);
+        View iv = convertView.findViewById(R.id.iv);
+        iv.setVisibility(GONE);
+        iv.setOnClickListener(null);
         // up
         int index = studio.entity.lstActor.indexOf(actor);
         View up = convertView.findViewById(R.id.up);
@@ -220,6 +222,13 @@ public class AnimLv extends ListView {
           }
         }
         iv.setBmp(bmp, rect);
+        iv.setOnClickListener(
+            v -> {
+              selectBone = bone;
+              studio.bone = bone;
+              studio.dlgExtend.show();
+              notifyDataSetChanged();
+            });
         // up
         int index = bone.actor.lstBone.indexOf(bone);
         View up = convertView.findViewById(R.id.up);

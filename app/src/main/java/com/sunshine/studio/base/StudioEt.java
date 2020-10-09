@@ -38,9 +38,9 @@ public class StudioEt<T> extends android.support.v7.widget.AppCompatEditText {
     StudioTv.initSize(this, scale);
   }
 
-  public StudioEt mapValue(T value, Studio.MapValue<T> mapValue) {
+  public StudioEt mapValue(Float value, Studio.MapValue<Float> mapValue) {
     removeTextChangedListener((TextWatcher) getTag());
-    setText(String.valueOf(value));
+    setText(value == null ? null : String.valueOf(value));
     TextWatcher textWatcher =
         new TextWatcher() {
           @Override
@@ -48,20 +48,43 @@ public class StudioEt<T> extends android.support.v7.widget.AppCompatEditText {
 
           @Override
           public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            if (value instanceof Float) {
-              try {
-                mapValue.update((T) new Float(Float.parseFloat(charSequence.toString())));
-              } catch (Exception e) {
-                Tool.log(e);
-              }
-            } else if (value instanceof Integer) {
-              try {
-                mapValue.update((T) new Integer(Integer.parseInt(charSequence.toString())));
-              } catch (Exception e) {
-                Tool.log(e);
-              }
+            if (charSequence.length() == 0) {
+              mapValue.update(0.0f);
             } else {
-              Tool.log("Error type");
+              try {
+                mapValue.update(new Float(Float.parseFloat(charSequence.toString())));
+              } catch (Exception e) {
+                Tool.log(e);
+              }
+            }
+          }
+
+          @Override
+          public void afterTextChanged(Editable editable) {}
+        };
+    addTextChangedListener(textWatcher);
+    setTag(textWatcher);
+    return this;
+  }
+
+  public StudioEt mapValue(Integer value, Studio.MapValue<Integer> mapValue) {
+    removeTextChangedListener((TextWatcher) getTag());
+    setText(value == null ? null : String.valueOf(value));
+    TextWatcher textWatcher =
+        new TextWatcher() {
+          @Override
+          public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+          @Override
+          public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            if (charSequence.length() == 0) {
+              mapValue.update(0);
+            } else {
+              try {
+                mapValue.update(new Integer(Integer.parseInt(charSequence.toString())));
+              } catch (Exception e) {
+                Tool.log(e);
+              }
             }
           }
 

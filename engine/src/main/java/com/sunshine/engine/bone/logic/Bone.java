@@ -28,7 +28,7 @@ public class Bone extends Anim.Helper {
 
   public void draw(Stage stage, Canvas can) {
     onDraw();
-    rcBone.set(0,0,0,0);
+    rcBone.set(0, 0, 0, 0);
 
     Bitmap bmp = stage.bmp;
     Rect rect = lstRect.get(0);
@@ -73,7 +73,7 @@ public class Bone extends Anim.Helper {
               }
               // down
               if (extendY < rect.height()) {
-                RECT_BMP.set(rect.left, rect.bottom - extendY, rect.right, rect.bottom);
+                RECT_BMP.set(rect.left, rect.top + extendY, rect.right, rect.bottom);
                 bottomH = stage.drawInfo.rcDst.width() * RECT_BMP.height() / RECT_BMP.width();
                 stage.drawInfo.rcDst.set(
                     RECT_TMP.left, RECT_TMP.bottom - bottomH, RECT_TMP.right, RECT_TMP.bottom);

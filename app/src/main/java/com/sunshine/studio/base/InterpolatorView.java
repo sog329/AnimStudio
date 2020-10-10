@@ -9,12 +9,14 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
 import com.sunshine.engine.base.InterpolatorHelper;
+import com.sunshine.studio.R;
 
 /** Created by Jack on 2018/6/9. */
 public class InterpolatorView extends StudioTv {
   private String name = null;
   private Paint paint = new Paint();
   private Path path = null;
+  private boolean inDetail = false;
 
   {
     paint.setAntiAlias(true);
@@ -36,16 +38,21 @@ public class InterpolatorView extends StudioTv {
 
   public void setInterpolator(String str) {
     name = str;
-    updatePath();
+    updatePath(name);
+  }
+
+  public void inDetail(boolean b) {
+    inDetail = b;
+    invalidate();
   }
 
   @Override
   protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
-    updatePath();
+    updatePath(name);
   }
 
-  private void updatePath() {
+  private void updatePath(String name) {
     if (path == null) {
       path = new Path();
     } else {
@@ -73,19 +80,62 @@ public class InterpolatorView extends StudioTv {
   public void onDraw(Canvas can) {
     super.onDraw(can);
     if (name != null && path != null) {
-      int w = getWidth();
-      int h2 = getHeight() / 2;
-      // x轴
-      paint.setColor(Color.DKGRAY);
-      can.drawLine(0, h2, w, h2, paint);
-      // y=1
-      int h6 = getHeight() / 6;
-      paint.setColor(Color.DKGRAY);
-      can.drawLine(0, h6, w, h6, paint);
-      // 曲线
-      paint.setColor(Color.WHITE);
-      can.drawPath(path, paint);
-      invalidate();
+      if (inDetail) {
+        int w = getWidth();
+        int h2 = getHeight() / 2;
+        // x轴
+        paint.setColor(Color.DKGRAY);
+        can.drawLine(0, h2, w, h2, paint);
+        // y轴
+        paint.setColor(Color.DKGRAY);
+        can.drawLine(0, 0, 0, getHeight(), paint);
+        // y=1
+        int h6 = getHeight() / 6;
+        paint.setColor(Color.DKGRAY);
+        can.drawLine(0, h6, w, h6, paint);
+        // y=-1
+        paint.setColor(Color.DKGRAY);
+        can.drawLine(0, getHeight() - h6, w, getHeight() - h6, paint);
+        // 曲线
+        String type = name;
+        if (name.indexOf("_") > 0) {
+          String[] ary = name.split("_");
+          type = ary[0];
+        }
+
+        paint.setColor(getResources().getColor(R.color.interpolator_2));
+        updatePath(type + "_2");
+        can.drawPath(path, paint);
+
+        paint.setColor(getResources().getColor(R.color.interpolator_3));
+        updatePath(type + "_3");
+        can.drawPath(path, paint);
+
+        paint.setColor(getResources().getColor(R.color.interpolator_4));
+        updatePath(type + "_4");
+        can.drawPath(path, paint);
+
+        paint.setColor(getResources().getColor(R.color.interpolator_8));
+        updatePath(type + "_8");
+        can.drawPath(path, paint);
+
+        paint.setColor(Color.WHITE);
+        updatePath(name);
+        can.drawPath(path, paint);
+      } else {
+        int w = getWidth();
+        int h2 = getHeight() / 2;
+        // x轴
+        paint.setColor(Color.DKGRAY);
+        can.drawLine(0, h2, w, h2, paint);
+        // y=1
+        int h6 = getHeight() / 6;
+        paint.setColor(Color.DKGRAY);
+        can.drawLine(0, h6, w, h6, paint);
+        // 曲线
+        paint.setColor(Color.WHITE);
+        can.drawPath(path, paint);
+      }
     }
   }
 }

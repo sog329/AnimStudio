@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/dlg_bg"
+    android:orientation="horizontal"
+    android:padding="5px">
+
+    <FrameLayout
+        android:id="@+id/dlg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.sunshine.studio.base.InterpolatorView
+            android:id="@+id/iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/tv_color"
+            android:tooltipText="差值函数" />
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <com.sunshine.studio.base.StudioTv
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/tv_color" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="@color/interpolator_2" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="@color/interpolator_3" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="4"
+                android:textColor="@color/interpolator_4" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="8"
+                android:textColor="@color/interpolator_8" />
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>

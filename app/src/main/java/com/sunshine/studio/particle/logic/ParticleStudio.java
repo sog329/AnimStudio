@@ -374,7 +374,7 @@ public class ParticleStudio extends Studio<Scene> {
   }
 
   private void mapSpinner(View editor, int id, String now, StudioSpinner.Callback cb) {
-    ((InterpolatorSpinner) editor.findViewById(id)).interpolator(now, cb);
+    ((InterpolatorSpinner) editor.findViewById(id)).mapValue(now, cb, this);
   }
 
   private void mapCheckBox(View editor, int id, boolean b, Studio.MapValue<Boolean> mapValue) {

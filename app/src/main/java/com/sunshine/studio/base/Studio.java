@@ -20,6 +20,7 @@ public abstract class Studio<T extends Entity> {
   protected Dialog dlgProject = null;
   public Dialog dlgPic = null;
   protected Dialog dlgEntity = null;
+  protected Dialog dlgInterpolator = null;
 
   public T entity = null;
 
@@ -108,6 +109,7 @@ public abstract class Studio<T extends Entity> {
     dlgProject = DlgFactory.project(this);
     dlgPic = DlgFactory.pic(this);
     dlgEntity = DlgFactory.entity(this);
+    dlgInterpolator = DlgFactory.interpolator(this);
   }
 
   public void onGetProject(String name) {

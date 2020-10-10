@@ -16,4 +16,8 @@
     <color name="ripple">#20000000</color>
     <color name="tv_percent_dark">#666666</color>
     <color name="tv_percent_light">#aaaaaa</color>
+    <color name="interpolator_2">#6691d4ff</color>
+    <color name="interpolator_3">#66fff091</color>
+    <color name="interpolator_4">#668bd49d</color>
+    <color name="interpolator_8">#66c74a7b</color>
 </resources>

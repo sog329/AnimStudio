@@ -1,5 +1,6 @@
 package com.sunshine.studio.base;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -22,9 +23,25 @@ public class InterpolatorSpinner extends LinearLayout {
     super(context, attrs, defStyleAttr);
   }
 
-  public void interpolator(String now, StudioSpinner.Callback callback) {
+  public void mapValue(String now, StudioSpinner.Callback callback, Studio studio) {
     StudioEt<Integer> et = findViewById(R.id.num);
     StudioSpinner sp = findViewById(R.id.type);
+    sp.setOnLongClickListener(
+        v -> {
+          Dialog dlg = studio.dlgInterpolator;
+          dlg.show();
+
+          InterpolatorView iv = dlg.findViewById(R.id.iv);
+          String name =
+              ((TextView) sp.getSelectedView().findViewById(R.id.tv)).getText()
+                  + "_"
+                  + et.getText();
+          iv.setInterpolator(name);
+
+          StudioTv tv = dlg.findViewById(R.id.name);
+          tv.setText(name);
+          return true;
+        });
     String type = now;
     String num = "2";
     if (now.indexOf("_") > 0) {

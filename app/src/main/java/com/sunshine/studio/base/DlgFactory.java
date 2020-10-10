@@ -240,4 +240,17 @@ public class DlgFactory {
         });
     return dialog;
   }
+
+  public static Dialog interpolator(final Studio studio) {
+    AlertDialog.Builder builder = new AlertDialog.Builder(studio.act, R.style.AppDialog);
+    View view = LayoutInflater.from(studio.act).inflate(R.layout.dlg_studio_interpolator, null);
+    View dlg = view.findViewById(R.id.dlg);
+    int w = StudioTool.getDlgHeight() * 2;
+    dlg.setLayoutParams(new FrameLayout.LayoutParams(w, StudioTool.getDlgHeight()));
+    InterpolatorView iv = view.findViewById(R.id.iv);
+    iv.inDetail(true);
+    builder.setView(view);
+    final Dialog dialog = builder.create();
+    return dialog;
+  }
 }

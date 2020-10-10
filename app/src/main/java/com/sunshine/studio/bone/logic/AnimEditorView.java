@@ -210,10 +210,10 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
               if (b) setPercent(anim.duration, true);
             });
     ((InterpolatorSpinner) findViewById(R.id.edit_scale_interpolator_x))
-        .interpolator(anim.scaleX.getInterpolatorName(), s -> anim.scaleX.setInterpolator(s));
+        .mapValue(anim.scaleX.getInterpolatorName(), s -> anim.scaleX.setInterpolator(s), studio);
 
     ((InterpolatorSpinner) findViewById(R.id.edit_scale_interpolator_y))
-        .interpolator(anim.scaleY.getInterpolatorName(), s -> anim.scaleY.setInterpolator(s));
+        .mapValue(anim.scaleY.getInterpolatorName(), s -> anim.scaleY.setInterpolator(s), studio);
 
     findViewById(R.id.edit_scale_copy)
         .setOnClickListener(
@@ -269,7 +269,7 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
         });
     // alpha_interpolator
     ((InterpolatorSpinner) findViewById(R.id.edit_alpha_interpolator))
-        .interpolator(anim.alpha.getInterpolatorName(), s -> anim.alpha.setInterpolator(s));
+        .mapValue(anim.alpha.getInterpolatorName(), s -> anim.alpha.setInterpolator(s), studio);
     // rotate
     ((StudioEt<Integer>) findViewById(R.id.edit_rotate_from))
         .mapValue(anim.rotate.getFrom(), n -> anim.rotate.setFrom(n))
@@ -284,7 +284,7 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
               if (b) setPercent(anim.duration, true);
             });
     ((InterpolatorSpinner) findViewById(R.id.edit_rotate_interpolator))
-        .interpolator(anim.rotate.getInterpolatorName(), s -> anim.rotate.setInterpolator(s));
+        .mapValue(anim.rotate.getInterpolatorName(), s -> anim.rotate.setInterpolator(s), studio);
     findViewById(R.id.edit_rotate_copy)
         .setOnClickListener(
             v ->
@@ -317,9 +317,9 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
     ((StudioEt<Float>) findViewById(R.id.edit_move_to_y))
         .mapValue(anim.centerY.getTo(), n -> anim.centerY.setTo(n));
     ((InterpolatorSpinner) findViewById(R.id.edit_move_interpolator_x))
-        .interpolator(anim.centerX.getInterpolatorName(), s -> anim.centerX.setInterpolator(s));
+        .mapValue(anim.centerX.getInterpolatorName(), s -> anim.centerX.setInterpolator(s), studio);
     ((InterpolatorSpinner) findViewById(R.id.edit_move_interpolator_y))
-        .interpolator(anim.centerY.getInterpolatorName(), s -> anim.centerY.setInterpolator(s));
+        .mapValue(anim.centerY.getInterpolatorName(), s -> anim.centerY.setInterpolator(s), studio);
     // anchor
     ((StudioEt<Float>) findViewById(R.id.edit_rotate_x))
         .mapValue(anim.ptRotate.x, n -> anim.ptRotate.x = n)

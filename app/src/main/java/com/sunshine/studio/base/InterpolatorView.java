@@ -38,7 +38,11 @@ public class InterpolatorView extends StudioTv {
 
   public void setInterpolator(String str) {
     name = str;
-    updatePath(name);
+    if (inDetail) {
+      invalidate();
+    } else {
+      updatePath(name);
+    }
   }
 
   public void inDetail(boolean b) {
@@ -50,6 +54,11 @@ public class InterpolatorView extends StudioTv {
   protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
     updatePath(name);
+    if (inDetail) {
+      invalidate();
+    } else {
+      updatePath(name);
+    }
   }
 
   private void updatePath(String name) {
@@ -79,7 +88,7 @@ public class InterpolatorView extends StudioTv {
   @Override
   public void onDraw(Canvas can) {
     super.onDraw(can);
-    if (name != null && path != null) {
+    if (name != null) {
       if (inDetail) {
         int w = getWidth();
         int h2 = getHeight() / 2;

@@ -7,16 +7,20 @@ import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
+import com.sunshine.engine.base.Tool;
 import com.sunshine.studio.base.StudioImageBtn;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
 
 /** Created by songxiaoguang on 2017/12/3. */
 public class BoneIv extends StudioImageBtn {
   protected WeakReference<Bitmap> bmp = null;
-  protected Rect rcBmp = null;
+  protected List<Rect> lstRcBmp = new ArrayList<>();
   protected Rect rcView = new Rect();
   protected Rect rcDraw = new Rect();
+  private long firstDrawTime = 0;
 
   public BoneIv(Context context) {
     super(context);
@@ -30,9 +34,14 @@ public class BoneIv extends StudioImageBtn {
     super(context, attrs, defStyleAttr);
   }
 
-  public void setBmp(Bitmap bmp, Rect rect) {
+  public void setBmp(Bitmap bmp, List<Rect> lst) {
     this.bmp = new WeakReference<>(bmp);
-    this.rcBmp = rect;
+    if (lst == null) {
+      lstRcBmp.clear();
+    } else {
+      lstRcBmp.addAll(lst);
+    }
+    firstDrawTime = 0;
     mergeRcDraw();
   }
 
@@ -44,7 +53,8 @@ public class BoneIv extends StudioImageBtn {
   }
 
   private void mergeRcDraw() {
-    if (rcBmp != null) {
+    if (lstRcBmp.size() > 0) {
+      Rect rcBmp = lstRcBmp.get(0);
       if (1f * rcBmp.width() / rcBmp.height() > 1f * rcView.width() / rcView.height()) {
         int space =
             (rcView.height() - (int) (1f * rcView.width() / rcBmp.width() * rcBmp.height())) / 2;
@@ -61,9 +71,20 @@ public class BoneIv extends StudioImageBtn {
   @Override
   public void onDraw(Canvas can) {
     super.onDraw(can);
-    if (bmp != null && rcBmp != null) {
+    if (bmp != null && lstRcBmp.size() > 0) {
       Bitmap bitmap = bmp.get();
       if (bitmap != null && !bitmap.isRecycled()) {
+        Rect rcBmp = lstRcBmp.get(0);
+        if (lstRcBmp.size() != 1) {
+          if (firstDrawTime == 0) {
+            firstDrawTime = Tool.getTime();
+          } else {
+            // 默认按照24帧展示
+            int index = (int) ((Tool.getTime() - firstDrawTime) / (1000 / 24)) % lstRcBmp.size();
+            rcBmp = lstRcBmp.get(index);
+          }
+          invalidate();
+        }
         can.drawBitmap(bitmap, rcBmp, rcDraw, null);
       }
     }

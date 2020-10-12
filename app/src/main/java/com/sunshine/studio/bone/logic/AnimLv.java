@@ -3,7 +3,6 @@ package com.sunshine.studio.bone.logic;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -212,7 +211,6 @@ public class AnimLv extends ListView {
         // iv
         BoneIv iv = convertView.findViewById(R.id.iv);
         iv.setVisibility(VISIBLE);
-        Rect rect = new Rect(bone.lstRect.get(0));
         Bitmap bmp = studio.entity.bmp;
         if (bone.externalBmpId != null) {
           bmp = studio.entity.mapBmp.get(bone.externalBmpId);
@@ -221,7 +219,7 @@ public class AnimLv extends ListView {
             studio.entity.mapBmp.put(bone.externalBmpId, bmp);
           }
         }
-        iv.setBmp(bmp, rect);
+        iv.setBmp(bmp, bone.lstRect);
         iv.setOnClickListener(
             v -> {
               selectBone = bone;

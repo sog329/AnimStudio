@@ -1,6 +1,7 @@
 package com.sunshine.studio.particle.logic;
 
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -502,7 +503,9 @@ public class ParticleStudio extends Studio<Scene> {
       TextView tvTo = v.findViewById(R.id.to);
       tvTo.setText(StudioTool.getPercent(pm.chanceRange.getTo()));
       BoneIv iv = v.findViewById(R.id.iv);
-      iv.setBmp(entity.bmp, pm.rcBmp);
+      List<Rect> lst = new ArrayList<>();
+      lst.add(pm.rcBmp);
+      iv.setBmp(entity.bmp, lst);
       v.setTag(pm);
       v.setOnClickListener(
           c -> {

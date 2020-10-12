@@ -53,6 +53,7 @@ public class ExtendIv extends BoneIv {
     if (inExtendY && extendY != null) {
       if (bmp != null) {
         Bitmap bitmap = bmp.get();
+        Rect rcBmp = lstRcBmp.get(0);
         if (bitmap != null && !bitmap.isRecycled()) {
           if (0 < extendY && extendY <= rcBmp.height()) {
             float scale = 1f * rcDraw.width() / rcBmp.width();
@@ -88,6 +89,7 @@ public class ExtendIv extends BoneIv {
         Bitmap bitmap = bmp.get();
         if (bitmap != null && !bitmap.isRecycled()) {
           if (extendY != null) {
+            Rect rcBmp = lstRcBmp.get(0);
             float h = 1f * rcDraw.height() / rcBmp.height();
             int top = rcDraw.top + (int) ((extendY - 1) * h);
             rcLineY.set(rcDraw.left, top, rcDraw.right, top + Math.max(10, (int) h));

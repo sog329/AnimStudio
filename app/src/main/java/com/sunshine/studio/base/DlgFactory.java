@@ -212,7 +212,7 @@ public class DlgFactory {
                 if (studio.bone.extendY != null) {
                   iv.setExtendY(studio.bone.extendY);
                   ivTall.setVisibility(View.VISIBLE);
-                  ivTall.setBmp(studio.entity.bmp, studio.bone.lstRect.get(0));
+                  ivTall.setBmp(studio.entity.bmp, studio.bone.lstRect);
                   ivTall.setExtendY(studio.bone.extendY);
                 } else {
                   iv.setExtendY(null);
@@ -235,7 +235,7 @@ public class DlgFactory {
                   rn.run();
                 }
               });
-          iv.setBmp(studio.entity.bmp, studio.bone.lstRect.get(0));
+          iv.setBmp(studio.entity.bmp, studio.bone.lstRect);
           rn.run();
         });
     return dialog;

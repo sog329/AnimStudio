@@ -71,6 +71,11 @@ public class DlgFactory {
               public int getColor() {
                 return studio.getColor();
               }
+
+              @Override
+              public void onLoading(boolean b) {
+                view.findViewById(R.id.loading).setVisibility(b ? View.VISIBLE : View.INVISIBLE);
+              }
             });
     lv.setAdapter(adapter);
     dialog.setOnShowListener(d -> adapter.loadData());

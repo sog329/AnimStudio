@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.sunshine.engine.base.ViewHelper;
 import com.sunshine.studio.R;
 import com.sunshine.studio.base.ConfigParser;
 import com.sunshine.studio.base.Packer;
@@ -43,46 +44,65 @@ public class ProjectLv extends ListView {
 
     private List<String> lstData = new ArrayList<>();
     private Callback callback = null;
+    private int sequence = 0;
 
     public FileAdapter(Callback callback) {
       this.callback = callback;
     }
 
-    public void loadData() {
+    public synchronized void loadData() {
       lstData.clear();
-      File[] ary = new File(getFilePath(callback.getFolderName())).listFiles();
-      FilenameFilter filterConfig = (file, name) -> "config.xml".equals(name);
-      FilenameFilter filterPic = (file, name) -> "pic".equals(name);
-      FilenameFilter filterPlist = (file, name) -> "pic.plist".equals(name);
-      for (File file : ary) {
-        if (file.isDirectory()) {
-          // use pics to build pic & plist
-          if (file.listFiles(filterPic).length != 1 || file.listFiles(filterPlist).length != 1) {
-            List<Packer.Cell> lst = Packer.getLstBmpRc(file.getPath());
-            if (lst.size() > 0) {
-              lst = Packer.packer(lst);
-              Packer.saveFiles(lst, file.getPath());
-            }
-          }
-          // use config to build plist
-          if (file.listFiles(filterConfig).length == 1 && file.listFiles(filterPlist).length == 0) {
-            List<Packer.Cell> lst = new ArrayList<>();
-            new ConfigParser(lst).parse(file.getPath() + File.separator + "config.xml");
-            Packer.savePlist(lst, file.getPath());
-          }
-          // ensure pic & plist exist
-          if (file.listFiles(filterPic).length == 1 && file.listFiles(filterPlist).length == 1) {
-            String name = file.getName();
-            if (file.listFiles(filterConfig).length == 0) {
-              XmlWriter.save(
-                  getFilePath(callback.getFolderName(), name, "config.xml"),
-                  callback.getWriter(name));
-            }
-            lstData.add(name);
-          }
-        }
+      callback.onLoading(true);
+      int s = ++sequence;
+      new Thread(
+              () -> {
+                List<String> lstResult = new ArrayList<>();
+                File[] ary = new File(getFilePath(callback.getFolderName())).listFiles();
+                FilenameFilter filterConfig = (file, name) -> "config.xml".equals(name);
+                FilenameFilter filterPic = (file, name) -> "pic".equals(name);
+                FilenameFilter filterPlist = (file, name) -> "pic.plist".equals(name);
+                for (File file : ary) {
+                  if (file.isDirectory()) {
+                    // use pics to build pic & plist
+                    if (file.listFiles(filterPic).length != 1
+                        || file.listFiles(filterPlist).length != 1) {
+                      List<Packer.Cell> lst = Packer.getLstBmpRc(file.getPath());
+                      if (lst.size() > 0) {
+                        lst = Packer.packer(lst);
+                        Packer.saveFiles(lst, file.getPath());
+                      }
+                    }
+                    // use config to build plist
+                    if (file.listFiles(filterConfig).length == 1
+                        && file.listFiles(filterPlist).length == 0) {
+                      List<Packer.Cell> lst = new ArrayList<>();
+                      new ConfigParser(lst).parse(file.getPath() + File.separator + "config.xml");
+                      Packer.savePlist(lst, file.getPath());
+                    }
+                    // ensure pic & plist exist
+                    if (file.listFiles(filterPic).length == 1
+                        && file.listFiles(filterPlist).length == 1) {
+                      String name = file.getName();
+                      if (file.listFiles(filterConfig).length == 0) {
+                        XmlWriter.save(
+                            getFilePath(callback.getFolderName(), name, "config.xml"),
+                            callback.getWriter(name));
+                      }
+                      lstResult.add(name);
+                    }
+                  }
+                }
+                ViewHelper.handler.post(() -> render(s, lstResult));
+              })
+          .start();
+    }
+
+    private synchronized void render(int sequence, List<String> lst) {
+      if (this.sequence == sequence) {
+        callback.onLoading(false);
+        lstData.addAll(lst);
+        notifyDataSetChanged();
       }
-      notifyDataSetChanged();
     }
 
     @Override
@@ -144,6 +164,8 @@ public class ProjectLv extends ListView {
       XmlWriter.Callback getWriter(String name);
 
       int getColor();
+
+      void onLoading(boolean b);
     }
   }
 }

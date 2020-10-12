@@ -50,7 +50,7 @@ public class ProjectLv extends ListView {
       this.callback = callback;
     }
 
-    public synchronized void loadData() {
+    public void loadData() {
       lstData.clear();
       callback.onLoading(true);
       int s = ++sequence;
@@ -97,7 +97,7 @@ public class ProjectLv extends ListView {
           .start();
     }
 
-    private synchronized void render(int sequence, List<String> lst) {
+    private void render(int sequence, List<String> lst) {
       if (this.sequence == sequence) {
         callback.onLoading(false);
         lstData.addAll(lst);

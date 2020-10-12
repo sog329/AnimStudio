@@ -36,9 +36,8 @@ public class BoneIv extends StudioImageBtn {
 
   public void setBmp(Bitmap bmp, List<Rect> lst) {
     this.bmp = new WeakReference<>(bmp);
-    if (lst == null) {
-      lstRcBmp.clear();
-    } else {
+    lstRcBmp.clear();
+    if (lst != null) {
       lstRcBmp.addAll(lst);
     }
     firstDrawTime = 0;

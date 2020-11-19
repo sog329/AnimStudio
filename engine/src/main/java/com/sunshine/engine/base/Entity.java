@@ -34,6 +34,7 @@ public abstract class Entity {
   public DrawInfo drawInfo = new DrawInfo();
   public boolean parsed = false;
   public Map<String, Bitmap> mapBmp = new HashMap<>();
+  public Map<String, Render2D.Callback> mapCb = new HashMap<>();
 
   public Entity(ViewHelper helper, String configPath, String picPath, String soundPath) {
     this.helper = helper;

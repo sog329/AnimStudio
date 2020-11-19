@@ -7,6 +7,8 @@ public enum InterpolatorType {
   linear("linear", s -> p -> p),
   accelerate("accelerate", s -> p -> (float) Math.pow(p, s < 2 ? 2 : s)),
   decelerate("decelerate", s -> p -> 1.0f - (float) Math.pow((1.0f - p), s < 2 ? 2 : s)),
+  accelerateDecelerate(
+      "accelerateDecelerate", s -> p -> (float) (Math.cos((p + 1) * Math.PI) / 2.0f) + 0.5f),
   overshoot(
       "overshoot",
       s ->

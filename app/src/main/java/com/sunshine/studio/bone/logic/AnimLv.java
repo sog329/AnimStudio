@@ -212,11 +212,11 @@ public class AnimLv extends ListView {
         BoneIv iv = convertView.findViewById(R.id.iv);
         iv.setVisibility(VISIBLE);
         Bitmap bmp = studio.entity.bmp;
-        if (bone.externalBmpId != null) {
-          bmp = studio.entity.mapBmp.get(bone.externalBmpId);
+        if (bone.externalId != null) {
+          bmp = studio.entity.mapBmp.get(bone.externalId);
           if (bmp == null) {
-            bmp = StudioTool.getBmp(bone.externalBmpId);
-            studio.entity.mapBmp.put(bone.externalBmpId, bmp);
+            bmp = StudioTool.getBmp(bone.externalId);
+            studio.entity.mapBmp.put(bone.externalId, bmp);
           }
         }
         iv.setBmp(bmp, bone.lstRect);

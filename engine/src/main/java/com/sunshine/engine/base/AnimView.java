@@ -6,9 +6,6 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /** Created by songxiaoguang on 2017/12/1. */
 public abstract class AnimView<T extends ViewHelper> extends View {
 
@@ -75,6 +72,10 @@ public abstract class AnimView<T extends ViewHelper> extends View {
 
   public boolean setExternalBmp(String id, Bitmap bmp) {
     return helper.setExternalBmp(id, bmp);
+  }
+
+  public boolean setExternalCb(String id, Render2D.Callback cb) {
+    return helper.setExternalCb(id, cb);
   }
 
   public void setCallback(ViewHelper.Callback cb) {

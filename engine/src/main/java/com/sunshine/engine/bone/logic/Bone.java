@@ -13,7 +13,7 @@ import java.util.List;
 /** Created by songxiaoguang on 2017/11/30. */
 public class Bone extends Anim.Helper {
   public List<Rect> lstRect = new ArrayList<>();
-  public String externalBmpId = null;
+  public String externalId = null;
   public Anim animJump = null;
   public Integer extendY = null;
   public RectF rcBone = new RectF();
@@ -31,12 +31,14 @@ public class Bone extends Anim.Helper {
     rcBone.set(0, 0, 0, 0);
 
     Bitmap bmp = stage.bmp;
+    Render2D.Callback cb = null;
     Rect rect = lstRect.get(0);
-    if (externalBmpId != null) {
-      bmp = stage.mapBmp.get(externalBmpId);
+    if (externalId != null) {
+      bmp = stage.mapBmp.get(externalId);
+      cb = stage.mapCb.get(externalId);
       rect = null;
     }
-    if (bmp == null) {
+    if (bmp == null && cb == null) {
       return;
     } else {
       Anim anim;
@@ -56,8 +58,12 @@ public class Bone extends Anim.Helper {
             rect = lstRect.get((int) (percent * (lstRect.size() - 1)));
           }
           if (extendY == null) {
-            Render2D.draw(can, bmp, rect, stage.drawInfo);
-          } else {
+            if (cb == null) {
+              Render2D.draw(can, bmp, rect, stage.drawInfo);
+            } else {
+              Render2D.draw(can, cb, stage.drawInfo);
+            }
+          } else if (bmp != null) {
             RECT_BMP.set(rect);
             RECT_TMP.set(stage.drawInfo.rcDst);
             if (0 < extendY && extendY <= rect.height()) {

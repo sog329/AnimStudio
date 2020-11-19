@@ -95,10 +95,10 @@ public class StageParser extends XmlParser {
           break;
         case SRC_ID_WH:
           bone = stage.getLastActor().getLastBone();
-          bone.externalBmpId = ary[0];
+          bone.externalId = ary[0];
           bone.lstRect.add(new Rect(0, 0, Integer.parseInt(ary[1]), Integer.parseInt(ary[2])));
           break;
-        // Actor & Bone 复用的key
+          // Actor & Bone 复用的key
         case RANGE:
           anim = getAnim();
           anim.duration.set(Float.parseFloat(ary[0]), Float.parseFloat(ary[1]));
@@ -137,7 +137,7 @@ public class StageParser extends XmlParser {
         case ALPHA_INTERPOLATOR:
           getAnim().alpha.setInterpolator(ary[0]);
           break;
-        // end
+          // end
         default:
           break;
       }

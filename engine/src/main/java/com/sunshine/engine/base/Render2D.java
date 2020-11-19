@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Rect;
+import android.graphics.RectF;
 
 /** Created by songxiaoguang on 2017/11/30. */
 public class Render2D {
@@ -26,6 +27,23 @@ public class Render2D {
     PAINT.setAlpha(255);
   }
 
+  private static void drawCb(Canvas can, Callback cb, DrawInfo drawInfo) {
+    cb.paint.setAlpha(drawInfo.alpha);
+    cb.onDraw(can, drawInfo.rcDst);
+    cb.paint.setAlpha(255);
+  }
+
+  public static void draw(Canvas can, Callback cb, DrawInfo drawInfo) {
+    if (!Tool.equalsZero(drawInfo.rt)) {
+      int cs = can.save();
+      can.rotate(drawInfo.rt, drawInfo.ptDst.x, drawInfo.ptDst.y);
+      drawCb(can, cb, drawInfo);
+      can.restoreToCount(cs);
+    } else {
+      drawCb(can, cb, drawInfo);
+    }
+  }
+
   public static void draw(Canvas can, Bitmap bmp, Rect rcBmp, DrawInfo drawInfo) {
     if (!Tool.equalsZero(drawInfo.rt)) {
       int cs = can.save();
@@ -35,5 +53,13 @@ public class Render2D {
     } else {
       drawBmp(can, bmp, rcBmp, drawInfo);
     }
+  }
+
+  public interface Callback {
+    final Paint paint = new Paint();
+
+    void init();
+
+    void onDraw(Canvas can, RectF rect);
   }
 }

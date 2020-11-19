@@ -13,6 +13,7 @@ import org.xmlpull.v1.XmlSerializer;
 
 import java.util.List;
 
+
 import static com.sunshine.studio.base.XmlWriter.addTag;
 
 /** Created by songxiaoguang on 2017/12/3. */
@@ -38,12 +39,9 @@ public class StageWriter implements XmlWriter.Callback {
       for (Bone bone : actor.lstBone) {
         xml.startTag(null, StageParser.BONE);
         if (bone.name != null && !bone.name.isEmpty()) {
-          addTag(
-              xml,
-              StageParser.NAME,
-              bone.name);
+          addTag(xml, StageParser.NAME, bone.name);
         }
-        if (bone.externalBmpId == null) {
+        if (bone.externalId == null) {
           for (Rect rc : bone.lstRect) {
             addTag(
                 xml,
@@ -54,7 +52,7 @@ public class StageWriter implements XmlWriter.Callback {
           addTag(
               xml,
               StageParser.SRC_ID_WH,
-              bone.externalBmpId
+              bone.externalId
                   + ","
                   + bone.lstRect.get(0).width()
                   + ","

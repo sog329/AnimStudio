@@ -14,6 +14,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import static com.sunshine.engine.base.Tool.DEBUG;
 
 /** Created by songxiaoguang on 2017/12/1. */
@@ -156,6 +157,21 @@ public abstract class ViewHelper<T extends Entity> extends LifeCycle {
         entity.mapBmp.remove(id);
       } else {
         entity.mapBmp.put(id, bmp);
+        invalidate();
+      }
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public boolean setExternalCb(String id, Render2D.Callback cb) {
+    if (entity != null) {
+      if (cb == null) {
+        entity.mapCb.remove(id);
+      } else {
+        cb.init();
+        entity.mapCb.put(id, cb);
         invalidate();
       }
       return true;

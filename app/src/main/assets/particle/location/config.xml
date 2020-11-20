@@ -16,7 +16,7 @@
         <rotate_interpolator>linear</rotate_interpolator>
         <alpha>0,0,255,255</alpha>
         <alpha_interpolator>spring</alpha_interpolator>
-        <scale>.5,.6,.9,1</scale>
+        <scale>.3,.4,.7,.9</scale>
         <scale_interpolator>spring</scale_interpolator>
     </model>
 
@@ -31,7 +31,7 @@
         <rotate_interpolator>linear</rotate_interpolator>
         <alpha>0,0,255,255</alpha>
         <alpha_interpolator>spring</alpha_interpolator>
-        <scale>.5,.6,.9,1</scale>
+        <scale>.3,.4,.7,.9</scale>
         <scale_interpolator>spring</scale_interpolator>
     </model>
 
@@ -46,7 +46,7 @@
         <rotate_interpolator>linear</rotate_interpolator>
         <alpha>0,0,255,255</alpha>
         <alpha_interpolator>spring</alpha_interpolator>
-        <scale>.5,.6,.9,1</scale>
+        <scale>.3,.4,.7,.9</scale>
         <scale_interpolator>spring</scale_interpolator>
     </model>
 
@@ -61,7 +61,7 @@
         <rotate_interpolator>linear</rotate_interpolator>
         <alpha>0,0,255,255</alpha>
         <alpha_interpolator>spring</alpha_interpolator>
-        <scale>.5,.6,.9,1</scale>
+        <scale>.3,.4,.7,.9</scale>
         <scale_interpolator>spring</scale_interpolator>
     </model>
 </scene>

@@ -30,7 +30,6 @@ public class BoneRv extends DemoRv {
 
   @Override
   protected void loadData() {
-    addData().setBone("welcome_omi");
     addData().setBone("loading").setBg(new ColorDrawable(Color.WHITE)).setBind((b, p) -> {
       b.setExternalBmp("pic", getBmp("pic/she.png"));
       b.setExternalCb(
@@ -58,6 +57,7 @@ public class BoneRv extends DemoRv {
       b.setOnRepeat(() -> rn.run());
       b.setOnStop(() -> p.removeCallbacks(post));
     });
+    addData().setBone("welcome_omi");
     addData().setBone("dlg_match2").setBg(new ColorDrawable(Color.WHITE)).setBind((b, p) -> {
       b.setExternalBmp("left", getBmp("pic/she.png"));
       b.setExternalBmp("right", getBmp("pic/he.png"));
@@ -68,20 +68,23 @@ public class BoneRv extends DemoRv {
         p.stop();
         p.play("particle/send_heart");
       };
-      Runnable rn = () -> p.postDelayed(post, 1250);
+      Runnable rn = () -> {
+        p.stop();
+        p.postDelayed(post, 1250);
+      };
       rn.run();
       b.setOnRepeat(() -> rn.run());
       b.setOnStop(() -> p.removeCallbacks(post));
     });
     addData().setBone("welcomeDemo").setBg(new ColorDrawable(Color.WHITE));
     addData().setBone("card").setBg(new ColorDrawable(Color.WHITE));
-    addData().setBone("qin");
-    addData().setBone("sunglasses");
-    addData().setBone("gear");
     addData().setBone("match").setBind((b, p) -> {
       b.setExternalBmp("left", getBmp("pic/she.png"));
       b.setExternalBmp("right", getBmp("pic/he.png"));
     });
+    addData().setBone("qin");
+    addData().setBone("sunglasses");
+    addData().setBone("gear");
     addData().setBone("pass");
     addData().setBone("like");
     addData().setBone("me");

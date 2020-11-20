@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <stage>
-  <duration>500</duration>
+  <duration>800</duration>
   <width_height>640,720</width_height>
   <layout_type>center</layout_type>
   <actor>

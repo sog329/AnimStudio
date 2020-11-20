@@ -21,7 +21,7 @@ public class TestAct extends AppCompatActivity {
     setContentView(R.layout.act_demo);
     StageView stage = findViewById(R.id.stage);
     SceneView scene = findViewById(R.id.scene);
-    stage.stop();
+
     stage.play("bone/loading");
     stage.autoStop(false);
     stage.isRepeat(true);
@@ -38,10 +38,6 @@ public class TestAct extends AppCompatActivity {
 
           @Override
           public void onDraw(Canvas can, float percent, RectF rect, float scale) {
-            Tool.log("percent: " + percent);
-            Tool.log("scale: " + scale);
-            Tool.log("(10 - 8f * percent) * scale: " + ((10 - 8f * percent) * scale));
-
             paint.setStrokeWidth((20 - 18f * percent) * scale);
             can.drawCircle(rect.centerX(), rect.centerY(), rect.width() / 2, paint);
           }
@@ -55,6 +51,6 @@ public class TestAct extends AppCompatActivity {
                 },
                 1250);
     rn.run();
-    stage.setCallback(() -> rn.run());
+    stage.setAnimListener(() -> rn.run());
   }
 }

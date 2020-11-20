@@ -3,6 +3,7 @@ package com.sunshine.engine.bone.logic;
 import com.sunshine.engine.base.AnimLoader;
 import com.sunshine.engine.base.Tool;
 import com.sunshine.engine.base.ViewHelper;
+import com.sunshine.engine.bone.logic.Stage.AnimListener;
 
 public class StageHelper extends ViewHelper<Stage> {
   @Override
@@ -33,9 +34,9 @@ public class StageHelper extends ViewHelper<Stage> {
     }
   }
 
-  public void setCallback(Stage.Callback cb) {
+  public void setAnimListener(AnimListener cb) {
     if (entity != null) {
-      entity.setCallback(cb);
+      entity.setAnimListener(cb);
     }
   }
 }

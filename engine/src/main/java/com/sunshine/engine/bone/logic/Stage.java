@@ -15,7 +15,7 @@ public class Stage extends Entity {
 
   public boolean canJump = false;
 
-  private Stage.Callback cb = null;
+  private AnimListener cb = null;
 
   public Stage(ViewHelper helper, String configPath, String picPath, String soundPath) {
     super(helper, configPath, picPath, soundPath);
@@ -53,7 +53,7 @@ public class Stage extends Entity {
     }
   }
 
-  public void setCallback(Stage.Callback cb) {
+  public void setAnimListener(AnimListener cb) {
     this.cb = cb;
   }
 
@@ -121,7 +121,7 @@ public class Stage extends Entity {
     }
   }
 
-  public interface Callback {
+  public interface AnimListener {
     void onRepeat();
   }
 }

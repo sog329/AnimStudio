@@ -119,7 +119,9 @@ public abstract class DemoRv extends RecyclerView {
       }
       // bind
       holder.sceneView.setBackgroundDrawable(data.bg);
-      data.onBind(holder.stageView, holder.sceneView);
+      if (data.bind != null) {
+        data.bind.onBind(holder.stageView, holder.sceneView);
+      }
     }
 
     @Override
@@ -140,8 +142,7 @@ public abstract class DemoRv extends RecyclerView {
         sceneView = itemView.findViewById(R.id.scene);
         tv = itemView.findViewById(R.id.tv);
         num = itemView.findViewById(R.id.num);
-        itemView.setOnClickListener(v -> {
-        });
+        itemView.setClickable(true);
       }
     }
   }
@@ -150,8 +151,7 @@ public abstract class DemoRv extends RecyclerView {
 
     private String bone = null;
     private String particle = null;
-    private Bind bind = (a, b) -> {
-    };
+    private Bind bind = null;
     private Drawable bg = null;
 
     public Data setBone(String s) {
@@ -167,10 +167,6 @@ public abstract class DemoRv extends RecyclerView {
     public Data setBind(Bind b) {
       bind = b;
       return this;
-    }
-
-    private void onBind(StageView stageView, SceneView sceneView) {
-      bind.onBind(stageView, sceneView);
     }
 
     public Data setBg(Drawable d) {

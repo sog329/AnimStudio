@@ -40,19 +40,6 @@ public abstract class AnimView<T extends ViewHelper> extends View {
   }
 
   /**
-   * 在播放最后一帧后，是否stop动画，true即执行stop
-   *
-   * @param auto
-   * @return
-   */
-  public AnimView autoStop(boolean auto) {
-    if (helper.entity != null) {
-      helper.entity.autoStop = auto;
-    }
-    return this;
-  }
-
-  /**
    * @param repeat
    * @return
    */

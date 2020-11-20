@@ -22,8 +22,7 @@ public class TestAct extends AppCompatActivity {
     StageView stage = findViewById(R.id.stage);
     SceneView scene = findViewById(R.id.scene);
 
-    stage.play("bone/loading");
-    stage.autoStop(false);
+    stage.play("bone/loading/config.xml", "bone/loading/pic");
     stage.isRepeat(true);
     stage.setExternalBmp("pic", Tool.getBmpByAssets(this, "pic/she.png"));
     stage.setExternalCb(
@@ -47,7 +46,7 @@ public class TestAct extends AppCompatActivity {
             scene.postDelayed(
                 () -> {
                   scene.stop();
-                  scene.play("particle/location");
+                  scene.play("particle/location/config.xml", "particle/location/pic");
                 },
                 1250);
     rn.run();

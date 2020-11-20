@@ -66,4 +66,17 @@ public class StageView extends AnimView<StageHelper> {
   public void setAnimListener(AnimListener cb) {
     helper.setAnimListener(cb);
   }
+
+  /**
+   * 在播放最后一帧后，是否stop动画，true即执行stop
+   *
+   * @param auto
+   * @return
+   */
+  public StageView autoStop(boolean auto) {
+    if (helper.entity != null) {
+      helper.entity.autoStop = auto;
+    }
+    return this;
+  }
 }

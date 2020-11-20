@@ -14,6 +14,7 @@ public class Stage extends Entity {
   public List<Actor> lstActor = new ArrayList<>();
 
   public boolean canJump = false;
+  public boolean autoStop = true;
 
   private AnimListener cb = null;
 
@@ -33,7 +34,7 @@ public class Stage extends Entity {
           cb.onRepeat();
         }
       }
-      if (autoStop && getPercent() >= 1 && !inStudio) {
+      if ((!repeat || autoStop) && getPercent() >= 1 && !inStudio) {
         helper.stop();
       }
     }

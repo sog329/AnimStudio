@@ -29,7 +29,6 @@ public abstract class Entity {
   protected long firstDrawTime = Tool.NONE;
   public ProcessFloat percentRange = new ProcessFloat(0f, 1f);
   private float percent = 0;
-  public boolean autoStop = true;
   public boolean repeat = false;
   public DrawInfo drawInfo = new DrawInfo();
   public boolean parsed = false;

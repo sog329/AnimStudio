@@ -76,7 +76,6 @@ public abstract class DemoRv<T extends AnimView> extends RecyclerView {
       // anim
       holder.animView.stop();
       holder.animView.play(getFolderName() + File.separator + name);
-      holder.animView.autoStop(false);
       holder.animView.isRepeat(true);
       if (lstBg.contains(name)) {
         holder.animView.setBackgroundColor(Color.WHITE);

@@ -52,7 +52,10 @@ public class BoneRv extends DemoRv {
         p.stop();
         p.play("particle/location");
       };
-      Runnable rn = () -> p.postDelayed(post, 1250);
+      Runnable rn = () -> {
+        p.stop();
+        p.postDelayed(post, 1250);
+      };
       rn.run();
       b.setOnRepeat(() -> rn.run());
       b.setOnStop(() -> p.removeCallbacks(post));

@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.SystemClock;
 import android.util.Log;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;

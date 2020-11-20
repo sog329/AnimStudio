@@ -69,7 +69,9 @@ public class ParticleModel {
           rt = 270;
         }
       } else {
-        rt = (int) (Math.atan(-p.anim.centerX.getDelta() / p.anim.centerY.getDelta()) / Math.PI * 180);
+        rt =
+            (int)
+                (Math.atan(-p.anim.centerX.getDelta() / p.anim.centerY.getDelta()) / Math.PI * 180);
         if (p.anim.centerY.getDelta() > 0) {
           rt += 180;
         }

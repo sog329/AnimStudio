@@ -1,9 +1,13 @@
 package com.sunshine.studio;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint.Style;
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
+import com.sunshine.engine.base.Render2D;
 import com.sunshine.engine.base.Tool;
 import com.sunshine.engine.bone.StageView;
 import com.sunshine.engine.particle.SceneView;
@@ -15,27 +19,42 @@ public class TestAct extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.act_demo);
-    View.OnClickListener l =
-        v -> {
-          StageView stage = findViewById(R.id.stage);
-          stage.stop();
-          stage.play("bone/dlg_match2");
-          stage.autoStop(false);
-          stage.setExternalBmp("left", Tool.getBmpByAssets(this, "pic/she.png"));
-          stage.setExternalBmp("right", Tool.getBmpByAssets(this, "pic/he.png"));
-          stage.setExternalBmp("bgLeft", Tool.getBmpByAssets(this, "bone/dlg_match2/bg_w"));
-          stage.setExternalBmp("bgRight", Tool.getBmpByAssets(this, "bone/dlg_match2/bg_g"));
-          stage.setExternalBmp("icon", Tool.getBmpByAssets(this, "bone/dlg_match2/icon_g"));
-          SceneView scene = findViewById(R.id.scene);
-          scene.postDelayed(
-              () -> {
-                scene.stop();
-                scene.play("particle/send_heart");
-              },
-              1250);
-        };
-    l.onClick(null);
+    StageView stage = findViewById(R.id.stage);
+    SceneView scene = findViewById(R.id.scene);
+    stage.stop();
+    stage.play("bone/loading");
+    stage.autoStop(false);
+    stage.isRepeat(true);
+    stage.setExternalBmp("pic", Tool.getBmpByAssets(this, "pic/she.png"));
+    stage.setExternalCb(
+        "circle",
+        new Render2D.Callback() {
+          @Override
+          public void init() {
+            paint.setAntiAlias(true);
+            paint.setColor(Color.rgb(255, 92, 49));
+            paint.setStyle(Style.STROKE);
+          }
 
-    findViewById(R.id.root).setOnClickListener(l);
+          @Override
+          public void onDraw(Canvas can, float percent, RectF rect, float scale) {
+            Tool.log("percent: " + percent);
+            Tool.log("scale: " + scale);
+            Tool.log("(10 - 8f * percent) * scale: " + ((10 - 8f * percent) * scale));
+
+            paint.setStrokeWidth((20 - 18f * percent) * scale);
+            can.drawCircle(rect.centerX(), rect.centerY(), rect.width() / 2, paint);
+          }
+        });
+    Runnable rn =
+        () ->
+            scene.postDelayed(
+                () -> {
+                  scene.stop();
+                  scene.play("particle/location");
+                },
+                1250);
+    rn.run();
+    stage.setCallback(() -> rn.run());
   }
 }

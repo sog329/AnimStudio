@@ -1,62 +1,96 @@
 package com.sunshine.studio.bone.logic;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint.Style;
+import android.graphics.RectF;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-
-import com.sunshine.engine.bone.StageView;
-import com.sunshine.studio.R;
+import com.sunshine.engine.base.Render2D;
 import com.sunshine.studio.base.DemoRv;
-
-import java.util.List;
 
 /**
  * Created by Jack on 2019-11-20.
  */
-public class BoneRv extends DemoRv<StageView> {
-	public BoneRv(Context context) {
-		super(context);
-	}
+public class BoneRv extends DemoRv {
 
-	public BoneRv(Context context, @Nullable AttributeSet attrs) {
-		super(context, attrs);
-	}
+  public BoneRv(Context context) {
+    super(context);
+  }
 
-	public BoneRv(Context context, @Nullable AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-	}
+  public BoneRv(Context context, @Nullable AttributeSet attrs) {
+    super(context, attrs);
+  }
 
-	@Override
-	protected void loadData(List<String> data, List<String> bg) {
-		data.add("welcome_omi");
-		data.add("card");
-		data.add("welcomeDemo");
-		data.add("qin");
-		data.add("sunglasses");
-		data.add("gear");
-		data.add("match");
-		data.add("pass");
-		data.add("like");
-		data.add("me");
-		data.add("set");
-		data.add("tab1");
-		data.add("tab2");
-		data.add("tab3");
-		data.add("tab4");
-		data.add("voice2");
-		data.add("arrow");
+  public BoneRv(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    super(context, attrs, defStyle);
+  }
 
-		bg.add("card");
-		bg.add("welcomeDemo");
-	}
+  @Override
+  protected void loadData() {
+    addData().setBone("welcome_omi");
+    addData().setBone("loading").setBg(new ColorDrawable(Color.WHITE)).setBind((b, p) -> {
+      b.setExternalBmp("pic", getBmp("pic/she.png"));
+      b.setExternalCb(
+          "circle",
+          new Render2D.Callback() {
+            @Override
+            public void init() {
+              paint.setAntiAlias(true);
+              paint.setColor(Color.rgb(255, 92, 49));
+              paint.setStyle(Style.STROKE);
+            }
 
-	@Override
-	protected int layoutId() {
-		return R.layout.item_bone_demo_rv;
-	}
-
-	@Override
-	protected String getFolderName() {
-		return "bone";
-	}
+            @Override
+            public void onDraw(Canvas can, float percent, RectF rect, float scale) {
+              paint.setStrokeWidth((20 - 18f * percent) * scale);
+              can.drawCircle(rect.centerX(), rect.centerY(), rect.width() / 2, paint);
+            }
+          });
+      Runnable post = () -> {
+        p.stop();
+        p.play("particle/location");
+      };
+      Runnable rn = () -> p.postDelayed(post, 1250);
+      rn.run();
+      b.setOnRepeat(() -> rn.run());
+      b.setOnStop(() -> p.removeCallbacks(post));
+    });
+    addData().setBone("dlg_match2").setBg(new ColorDrawable(Color.WHITE)).setBind((b, p) -> {
+      b.setExternalBmp("left", getBmp("pic/she.png"));
+      b.setExternalBmp("right", getBmp("pic/he.png"));
+      b.setExternalBmp("bgLeft", getBmp("bone/dlg_match2/bg_w"));
+      b.setExternalBmp("bgRight", getBmp("bone/dlg_match2/bg_g"));
+      b.setExternalBmp("icon", getBmp("bone/dlg_match2/icon_g"));
+      Runnable post = () -> {
+        p.stop();
+        p.play("particle/send_heart");
+      };
+      Runnable rn = () -> p.postDelayed(post, 1250);
+      rn.run();
+      b.setOnRepeat(() -> rn.run());
+      b.setOnStop(() -> p.removeCallbacks(post));
+    });
+    addData().setBone("welcomeDemo").setBg(new ColorDrawable(Color.WHITE));
+    addData().setBone("card").setBg(new ColorDrawable(Color.WHITE));
+    addData().setBone("qin");
+    addData().setBone("sunglasses");
+    addData().setBone("gear");
+    addData().setBone("match").setBind((b, p) -> {
+      b.setExternalBmp("left", getBmp("pic/she.png"));
+      b.setExternalBmp("right", getBmp("pic/he.png"));
+    });
+    addData().setBone("pass");
+    addData().setBone("like");
+    addData().setBone("me");
+    addData().setBone("set");
+    addData().setBone("tab1");
+    addData().setBone("tab2");
+    addData().setBone("tab3");
+    addData().setBone("tab4");
+    addData().setBone("voice2");
+    addData().setBone("arrow");
+  }
 }

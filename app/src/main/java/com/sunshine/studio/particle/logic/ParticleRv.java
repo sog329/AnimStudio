@@ -13,62 +13,53 @@ import java.util.List;
 /**
  * Created by Jack on 2019-11-20.
  */
-public class ParticleRv extends DemoRv<SceneView> {
-	public ParticleRv(Context context) {
-		super(context);
-	}
+public class ParticleRv extends DemoRv {
 
-	public ParticleRv(Context context, @Nullable AttributeSet attrs) {
-		super(context, attrs);
-	}
+  public ParticleRv(Context context) {
+    super(context);
+  }
 
-	public ParticleRv(Context context, @Nullable AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-	}
+  public ParticleRv(Context context, @Nullable AttributeSet attrs) {
+    super(context, attrs);
+  }
 
-	@Override
-	protected void loadData(List<String> data, List<String> bg) {
-		data.add("snowing");
-		data.add("tangyuan");
-		data.add("dinner");
-		data.add("superlike");
-		data.add("mahjong");
-		data.add("dumplings");
-		data.add("home");
-		data.add("mic");
-		data.add("lantern");
-		data.add("wave");
-		data.add("blessing");
-		data.add("annual_goods");
-		data.add("fireworks");
-		data.add("miss");
-		data.add("missu");
-		data.add("send_heart");
-		data.add("note");
-		data.add("heart");
-		data.add("welcome_omi_bg");
-		data.add("match_bg");
-		data.add("cry");
-		data.add("hi");
-		data.add("no");
-		data.add("smile");
-		data.add("what");
-		data.add("yeah");
-		data.add("singleDog");
-		data.add("snow");
-		data.add("christmas");
-		data.add("bell");
-		data.add("gift");
-		data.add("star");
-	}
+  public ParticleRv(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    super(context, attrs, defStyle);
+  }
 
-	@Override
-	protected int layoutId() {
-		return R.layout.item_particle_demo_rv;
-	}
-
-	@Override
-	protected String getFolderName() {
-		return "particle";
-	}
+  @Override
+  protected void loadData() {
+    addData().setParticle("snowing");
+    addData().setParticle("tangyuan");
+    addData().setParticle("dinner");
+    addData().setParticle("superlike");
+    addData().setParticle("mahjong");
+    addData().setParticle("dumplings");
+    addData().setParticle("home");
+    addData().setParticle("mic");
+    addData().setParticle("lantern");
+    addData().setParticle("wave");
+    addData().setParticle("blessing");
+    addData().setParticle("annual_goods");
+    addData().setParticle("fireworks");
+    addData().setParticle("miss");
+    addData().setParticle("missu");
+    addData().setParticle("send_heart");
+    addData().setParticle("note");
+    addData().setParticle("heart");
+    addData().setParticle("welcome_omi_bg");
+    addData().setParticle("match_bg");
+    addData().setParticle("cry");
+    addData().setParticle("hi");
+    addData().setParticle("no");
+    addData().setParticle("smile");
+    addData().setParticle("what");
+    addData().setParticle("yeah");
+    addData().setParticle("singleDog");
+    addData().setParticle("snow");
+    addData().setParticle("christmas");
+    addData().setParticle("bell");
+    addData().setParticle("gift");
+    addData().setParticle("star");
+  }
 }

@@ -3,9 +3,9 @@ package com.sunshine.engine.bone.logic;
 import com.sunshine.engine.base.AnimLoader;
 import com.sunshine.engine.base.Tool;
 import com.sunshine.engine.base.ViewHelper;
-import com.sunshine.engine.bone.logic.Stage.AnimListener;
 
 public class StageHelper extends ViewHelper<Stage> {
+
   @Override
   protected Stage buildEntity(
       ViewHelper helper, String configPath, String picPath, String soundPath) {
@@ -34,9 +34,9 @@ public class StageHelper extends ViewHelper<Stage> {
     }
   }
 
-  public void setAnimListener(AnimListener cb) {
+  public void setOnRepeat(Runnable rn) {
     if (entity != null) {
-      entity.setAnimListener(cb);
+      entity.setOnRepeat(rn);
     }
   }
 }

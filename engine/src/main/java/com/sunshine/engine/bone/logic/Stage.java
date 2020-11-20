@@ -11,12 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Stage extends Entity {
+
   public List<Actor> lstActor = new ArrayList<>();
 
   public boolean canJump = false;
   public boolean autoStop = true;
 
-  private AnimListener cb = null;
+  private Runnable onRepeat = null;
 
   public Stage(ViewHelper helper, String configPath, String picPath, String soundPath) {
     super(helper, configPath, picPath, soundPath);
@@ -30,8 +31,8 @@ public class Stage extends Entity {
       }
       if (getPercent() >= 1 && repeat) {
         setPercent(0, 1, duration);
-        if (cb != null) {
-          cb.onRepeat();
+        if (onRepeat != null) {
+          onRepeat.run();
         }
       }
       if ((!repeat || autoStop) && getPercent() >= 1 && !inStudio) {
@@ -54,8 +55,8 @@ public class Stage extends Entity {
     }
   }
 
-  public void setAnimListener(AnimListener cb) {
-    this.cb = cb;
+  public void setOnRepeat(Runnable rn) {
+    onRepeat = rn;
   }
 
   public Actor getLastActor() {
@@ -120,9 +121,5 @@ public class Stage extends Entity {
         }
       }
     }
-  }
-
-  public interface AnimListener {
-    void onRepeat();
   }
 }

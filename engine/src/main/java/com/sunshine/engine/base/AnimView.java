@@ -6,7 +6,9 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 
-/** Created by songxiaoguang on 2017/12/1. */
+/**
+ * Created by songxiaoguang on 2017/12/1.
+ */
 public abstract class AnimView<T extends ViewHelper> extends View {
 
   protected T helper = buildHelper();
@@ -53,6 +55,26 @@ public abstract class AnimView<T extends ViewHelper> extends View {
   public AnimView isMute(boolean mute) {
     if (helper.entity != null) {
       helper.entity.isMute(mute);
+    }
+    return this;
+  }
+
+  /**
+   * 在stop时是否主动recycle bitmap，默认true，即执行
+   *
+   * @param b
+   * @return
+   */
+  public AnimView recycleBmp(boolean b) {
+    if (helper.entity != null) {
+      helper.entity.recycleBmp = b;
+    }
+    return this;
+  }
+
+  public AnimView setOnStop(Runnable rn) {
+    if (helper.entity != null) {
+      helper.entity.onStop = rn;
     }
     return this;
   }

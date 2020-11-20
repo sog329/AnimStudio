@@ -17,11 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".TestAct"
-            android:configChanges="orientation|screenSize|keyboardHidden|navigation"
-            android:screenOrientation="landscape"></activity>
-        <activity
+      <activity
             android:name=".bone.BoneStudioAct"
             android:configChanges="orientation|screenSize|keyboardHidden|navigation"
             android:screenOrientation="landscape"></activity>

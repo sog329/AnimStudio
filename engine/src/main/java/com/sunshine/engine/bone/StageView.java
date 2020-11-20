@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 import com.sunshine.engine.base.AnimView;
-import com.sunshine.engine.bone.logic.Stage.AnimListener;
 import com.sunshine.engine.bone.logic.StageHelper;
 
 public class StageView extends AnimView<StageHelper> {
@@ -63,8 +62,8 @@ public class StageView extends AnimView<StageHelper> {
     invalidate();
   }
 
-  public void setAnimListener(AnimListener cb) {
-    helper.setAnimListener(cb);
+  public void setOnRepeat(Runnable rn) {
+    helper.setOnRepeat(rn);
   }
 
   /**

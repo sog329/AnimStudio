@@ -4,14 +4,15 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.media.MediaPlayer;
-
-import org.xml.sax.helpers.DefaultHandler;
-
 import java.util.HashMap;
 import java.util.Map;
+import org.xml.sax.helpers.DefaultHandler;
 
-/** Created by songxiaoguang on 2017/12/1. */
+/**
+ * Created by songxiaoguang on 2017/12/1.
+ */
 public abstract class Entity {
+
   public ViewHelper helper = null;
   public String configPath = null;
   public String picPath = null;
@@ -33,7 +34,9 @@ public abstract class Entity {
   public DrawInfo drawInfo = new DrawInfo();
   public boolean parsed = false;
   public Map<String, Bitmap> mapBmp = new HashMap<>();
+  protected boolean recycleBmp = true;
   public Map<String, Render2D.Callback> mapCb = new HashMap<>();
+  protected Runnable onStop = null;
 
   public Entity(ViewHelper helper, String configPath, String picPath, String soundPath) {
     this.helper = helper;
@@ -53,12 +56,17 @@ public abstract class Entity {
       sound.release();
       sound = null;
     }
-    for (Bitmap bmp : mapBmp.values()) {
-      if (bmp != null) {
-        bmp.recycle();
+    if (recycleBmp) {
+      for (Bitmap bmp : mapBmp.values()) {
+        if (bmp != null) {
+          bmp.recycle();
+        }
       }
     }
     mapBmp.clear();
+    if (onStop != null) {
+      onStop.run();
+    }
   }
 
   public void setSrcAsync(final Bitmap bitmap, final MediaPlayer soundPlayer) {
@@ -191,6 +199,10 @@ public abstract class Entity {
         sound.setVolume(1, 1);
       }
     }
+  }
+
+  public void setOnStop(Runnable rn) {
+    onStop = rn;
   }
 
   public abstract void draw(Canvas can);

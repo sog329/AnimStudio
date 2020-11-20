@@ -6,9 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
-import android.view.MotionEvent;
 import android.view.View;
-
 import com.sunshine.engine.bone.StageView;
 import com.sunshine.engine.particle.SceneView;
 import com.sunshine.studio.base.AnimLayout;
@@ -24,9 +22,7 @@ import com.sunshine.studio.particle.ParticleStudioAct;
 
 public class MainAct extends AppCompatActivity
     implements View.OnClickListener,
-        View.OnLongClickListener,
-        View.OnHoverListener,
-        View.OnTouchListener {
+    View.OnLongClickListener {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -86,17 +82,6 @@ public class MainAct extends AppCompatActivity
             .addAnim(new Shimmer())
             .addAnim(
                 new Wave().setColor(Color.argb(90, 42, 63, 103), Color.argb(180, 42, 63, 103))));
-    // test
-    StageView demo = findViewById(R.id.test);
-    demo.play("bone/tab2");
-    demo.setPercent(0);
-    demo.autoStop(false);
-    demo.canJump(true);
-    StudioTv testTv = findViewById(R.id.test_tv);
-    testTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize / 2);
-    findViewById(R.id.test_btn).setOnClickListener(this);
-
-    //    startActivity(new Intent(this, TestAct.class));
   }
 
   @Override
@@ -132,66 +117,9 @@ public class MainAct extends AppCompatActivity
       case R.id.particle_studio:
         startActivity(new Intent(this, ParticleStudioAct.class));
         break;
-      case R.id.test_btn:
-        startActivity(new Intent(this, TestAct.class));
-        break;
       default:
         break;
     }
-  }
-
-  @Override
-  public boolean onHover(View v, MotionEvent event) {
-    int a = event.getAction();
-    StageView demo = findViewById(R.id.test);
-    switch (v.getId()) {
-      case R.id.bone_demo_tv:
-        if (a == MotionEvent.ACTION_HOVER_ENTER) {
-          demo.setPercent(0, 200);
-        }
-        break;
-      case R.id.bone_studio_tv:
-      case R.id.particle_studio_tv:
-        if (a == MotionEvent.ACTION_HOVER_ENTER) {
-          demo.setPercent(0.5f, 200);
-        }
-        break;
-      case R.id.particle_demo_tv:
-        if (a == MotionEvent.ACTION_HOVER_ENTER) {
-          demo.setPercent(1f, 200);
-        }
-        break;
-      default:
-        break;
-    }
-    return false;
-  }
-
-  @Override
-  public boolean onTouch(View v, MotionEvent event) {
-    StageView demo = findViewById(R.id.test);
-    int a = event.getAction();
-    switch (v.getId()) {
-      case R.id.bone_demo_tv:
-        if (a == MotionEvent.ACTION_DOWN) {
-          demo.setPercent(0, 200);
-        }
-        break;
-      case R.id.bone_studio_tv:
-      case R.id.particle_studio_tv:
-        if (a == MotionEvent.ACTION_DOWN) {
-          demo.setPercent(0.5f, 200);
-        }
-        break;
-      case R.id.particle_demo_tv:
-        if (a == MotionEvent.ACTION_DOWN) {
-          demo.setPercent(1, 200);
-        }
-        break;
-      default:
-        break;
-    }
-    return false;
   }
 
   @Override
@@ -202,7 +130,5 @@ public class MainAct extends AppCompatActivity
   private void setListener(View v) {
     v.setOnClickListener(this);
     v.setOnLongClickListener(this);
-    v.setOnHoverListener(this);
-    v.setOnTouchListener(this);
   }
 }

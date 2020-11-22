@@ -563,9 +563,11 @@ public class ParticleStudio extends Studio<Scene> {
 
   private void changeBg(View v, ParticleModel pm) {
     if (pm == model) {
-      v.setBackgroundResource(R.drawable.bg_anim2);
+      v.setBackgroundResource(R.drawable.bg_label);
+      v.setAlpha(1f);
     } else {
-      v.setBackgroundResource(R.drawable.bg_anim);
+      v.setBackgroundDrawable(null);
+      v.setAlpha(.3f);
     }
   }
 

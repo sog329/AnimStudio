@@ -1,5 +1,8 @@
 package com.sunshine.studio.particle.logic;
 
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static com.sunshine.studio.base.StudioTool.getFilePath;
+
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.support.v7.app.AlertDialog;
@@ -9,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.sunshine.engine.base.Area;
 import com.sunshine.engine.base.ProcessFloat;
 import com.sunshine.engine.base.ProcessInt;
@@ -26,15 +28,12 @@ import com.sunshine.studio.base.StudioEt;
 import com.sunshine.studio.base.StudioImageBtn;
 import com.sunshine.studio.base.StudioSpinner;
 import com.sunshine.studio.base.StudioTool;
+import com.sunshine.studio.base.StudioTv;
 import com.sunshine.studio.base.XmlWriter;
 import com.sunshine.studio.bone.logic.BmpRect;
 import com.sunshine.studio.bone.logic.BoneIv;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-import static com.sunshine.studio.base.StudioTool.getFilePath;
 
 /** Created by songxiaoguang on 2017/12/2. */
 public class ParticleStudio extends Studio<Scene> {
@@ -166,13 +165,16 @@ public class ParticleStudio extends Studio<Scene> {
           });
       // move_from_width_match
       editor.findViewById(R.id.move_from_width).setEnabled(pm.areaFrom.w != Area.MATCH_PARENT);
-      mapCheckBox(
+      mapTv(
           editor,
           R.id.move_from_width_match,
           pm.areaFrom.w == Area.MATCH_PARENT,
           b -> {
+            StudioTv cb = editor.findViewById(R.id.move_from_width_match);
+            cb.setText(!b ? "w:" : "x方向全屏");
             TextView tv = editor.findViewById(R.id.move_from_width);
             tv.setEnabled(!b);
+            tv.setVisibility(!b ? View.VISIBLE : View.GONE);
             tv.setText(String.valueOf(b ? Area.MATCH_PARENT : entity.scriptSize.width));
           });
       // move_from_width
@@ -193,22 +195,14 @@ public class ParticleStudio extends Studio<Scene> {
             pm.areaFrom.h = v;
             entity.setMaxParticle(entity.maxParticle);
           });
-
-      // move_rotate_to
-      mapCheckBox(
-          editor,
-          R.id.move_rotate_to,
-          pm.areaTo.isRotate,
-          b -> {
-            pm.areaTo.isRotate = b;
-            entity.setMaxParticle(entity.maxParticle);
-          });
       // move_to_left_offset
-      mapCheckBox(
+      mapTv(
           editor,
           R.id.move_to_left_offset,
           pm.areaTo.isOffsetLeft,
           b -> {
+            StudioTv cb = editor.findViewById(R.id.move_to_left_offset);
+            cb.setText(!b ? "left:" : "offsetX:");
             pm.areaTo.isOffsetLeft = b;
             entity.setMaxParticle(entity.maxParticle);
           });
@@ -222,11 +216,13 @@ public class ParticleStudio extends Studio<Scene> {
             entity.setMaxParticle(entity.maxParticle);
           });
       // move_to_top_offset
-      mapCheckBox(
+      mapTv(
           editor,
           R.id.move_to_top_offset,
           pm.areaTo.isOffsetTop,
           b -> {
+            StudioTv cb = editor.findViewById(R.id.move_to_top_offset);
+            cb.setText(!b ? "top:" : "offsetY:");
             pm.areaTo.isOffsetTop = b;
             entity.setMaxParticle(entity.maxParticle);
           });
@@ -241,13 +237,16 @@ public class ParticleStudio extends Studio<Scene> {
           });
       // move_to_width_match
       editor.findViewById(R.id.move_to_width).setEnabled(pm.areaTo.w != Area.MATCH_PARENT);
-      mapCheckBox(
+      mapTv(
           editor,
           R.id.move_to_width_match,
           pm.areaTo.w == Area.MATCH_PARENT,
           b -> {
+            StudioTv cb = editor.findViewById(R.id.move_to_width_match);
+            cb.setText(!b ? "w:" : "x方向全屏");
             TextView tv = editor.findViewById(R.id.move_to_width);
             tv.setEnabled(!b);
+            tv.setVisibility(!b ? View.VISIBLE : View.GONE);
             tv.setText(String.valueOf(b ? Area.MATCH_PARENT : entity.scriptSize.width));
           });
       // move_to_width
@@ -281,20 +280,34 @@ public class ParticleStudio extends Studio<Scene> {
           pm.interpolatorMove[1],
           s -> pm.interpolatorMove[1] = s);
       // rotate
+      mapTv(
+          editor,
+          R.id.move_rotate_to,
+          pm.areaTo.isRotate,
+          b -> {
+            StudioTv cb = editor.findViewById(R.id.move_rotate_to);
+            cb.setText(!b ? "from" : "矢量from");
+            pm.areaTo.isRotate = b;
+            entity.setMaxParticle(entity.maxParticle);
+          });
       mapInt(
           editor, R.id.rotate_from_from, pm.rotateBegin.getFrom(), v -> pm.rotateBegin.setFrom(v));
       mapInt(editor, R.id.rotate_from_to, pm.rotateBegin.getTo(), v -> pm.rotateBegin.setTo(v));
       editor.findViewById(R.id.rotate_to_from).setEnabled(pm.rotateEnd != null);
       editor.findViewById(R.id.rotate_to_to).setEnabled(pm.rotateEnd != null);
-      mapCheckBox(
+      mapTv(
           editor,
           R.id.rotate_to,
           pm.rotateEnd != null,
           b -> {
+            StudioTv cb = editor.findViewById(R.id.rotate_to);
+            cb.setText(b ? "to" : "角度保持不变");
             TextView tvFrom = editor.findViewById(R.id.rotate_to_from);
             TextView tvTo = editor.findViewById(R.id.rotate_to_to);
             tvFrom.setEnabled(b);
+            tvFrom.setVisibility(b ? View.VISIBLE : View.GONE);
             tvTo.setEnabled(b);
+            tvTo.setVisibility(b ? View.VISIBLE : View.GONE);
             if (b) {
               pm.rotateEnd = new ProcessInt(200, 300);
               tvFrom.setText(String.valueOf(pm.rotateEnd.getFrom()));
@@ -332,15 +345,19 @@ public class ParticleStudio extends Studio<Scene> {
       mapFloat(editor, R.id.scale_from_to, pm.scaleBegin.getTo(), v -> pm.scaleBegin.setTo(v));
       editor.findViewById(R.id.scale_to_from).setEnabled(pm.scaleEnd != null);
       editor.findViewById(R.id.scale_to_to).setEnabled(pm.scaleEnd != null);
-      mapCheckBox(
+      mapTv(
           editor,
           R.id.scale_to,
           pm.scaleEnd != null,
           b -> {
+            StudioTv cb = editor.findViewById(R.id.scale_to);
+            cb.setText(b ? "to" : "缩放保持不变");
             TextView tvFrom = editor.findViewById(R.id.scale_to_from);
             TextView tvTo = editor.findViewById(R.id.scale_to_to);
             tvFrom.setEnabled(b);
             tvTo.setEnabled(b);
+            tvFrom.setVisibility(b ? View.VISIBLE : View.GONE);
+            tvTo.setVisibility(b ? View.VISIBLE : View.GONE);
             if (b) {
               pm.scaleEnd = new ProcessFloat(1f, 1f);
               tvFrom.setText(String.valueOf(pm.scaleEnd.getFrom()));
@@ -380,6 +397,10 @@ public class ParticleStudio extends Studio<Scene> {
 
   private void mapCheckBox(View editor, int id, boolean b, Studio.MapValue<Boolean> mapValue) {
     ((StudioCb) editor.findViewById(id)).mapValue(b, mapValue);
+  }
+
+  private void mapTv(View editor, int id, boolean b, Studio.MapValue<Boolean> mapValue) {
+    ((StudioTv) editor.findViewById(id)).mapValue(b, mapValue);
   }
 
   @Override

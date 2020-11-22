@@ -25,11 +25,12 @@
         android:orientation="vertical">
 
         <include
-            android:id="@+id/anim_editor"
-            layout="@layout/layout_particle_studio_anim_editor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="invisible" />
+          android:id="@+id/anim_editor"
+          layout="@layout/layout_particle_studio_anim_editor"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="2"
+          android:visibility="invisible" />
 
         <LinearLayout
             android:id="@+id/anim_lv"

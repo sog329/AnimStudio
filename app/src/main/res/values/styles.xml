@@ -13,6 +13,7 @@
     </style>
 
     <style name="label">
+        <item name="android:layout_margin">10px</item>
         <item name="android:paddingTop">15px</item>
         <item name="android:paddingLeft">10px</item>
         <item name="android:paddingRight">10px</item>
@@ -29,7 +30,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">left|top</item>
         <item name="android:maxLines">1</item>
-        <item name="android:textColor">@color/tv_color2</item>
+        <item name="android:textColor">@color/btn_bg_p2</item>
     </style>
 
     <style name="Purple" parent="Theme.AppCompat.Light">

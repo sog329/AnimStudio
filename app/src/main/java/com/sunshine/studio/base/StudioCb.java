@@ -8,26 +8,27 @@ import android.util.AttributeSet;
 public class StudioCb extends android.support.v7.widget.AppCompatCheckBox {
   public StudioCb(Context context) {
     super(context);
-    init();
+    init(null);
   }
 
   public StudioCb(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
-    init();
+    init(attrs);
   }
 
   public StudioCb(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-    init();
+    init(attrs);
   }
 
-  private void init() {
-    StudioTv.initSize(this, 1);
+  private void init(AttributeSet attrs) {
+    StudioTv.initSize(this, StudioTv.getScale(getContext(), attrs));
   }
 
   public void mapValue(boolean b, Studio.MapValue<Boolean> mapValue) {
     setOnCheckedChangeListener(null);
     setChecked(b);
     setOnCheckedChangeListener((btn, checked) -> mapValue.update(checked));
+    mapValue.update(b);
   }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:attrs="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/dlg_bg"
@@ -8,7 +9,7 @@
     <LinearLayout
         android:id="@+id/ln"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
@@ -17,22 +18,60 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <com.sunshine.studio.base.StudioEt
-                android:id="@+id/duration"
+
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:maxLines="1"
-                android:textColor="@color/tv_color"
-                android:tooltipText="动画时长" />
+                android:orientation="horizontal">
 
-            <com.sunshine.studio.base.StudioTv
-                android:layout_width="wrap_content"
+                <com.sunshine.studio.base.StudioEt
+                    android:id="@+id/duration"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/tv_color"
+                    android:tooltipText="动画时长"
+                    attrs:scale=".75" />
+
+                <com.sunshine.studio.base.StudioTv
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="ms"
+                    android:textColor="@color/tv_color"
+                    attrs:scale=".75" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/container"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:text="ms,"
-                android:textColor="@color/tv_color" />
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <com.sunshine.studio.base.StudioTv
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text=",   max="
+                    android:textColor="@color/tv_color"
+                    attrs:scale=".75" />
+
+                <com.sunshine.studio.base.StudioEt
+                    android:id="@+id/max"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/tv_color"
+                    android:tooltipText="最大粒子数"
+                    attrs:scale=".75" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -47,7 +86,8 @@
                 android:gravity="right"
                 android:maxLines="1"
                 android:text="w="
-                android:textColor="@color/tv_color" />
+                android:textColor="@color/tv_color"
+                attrs:scale=".75" />
 
             <com.sunshine.studio.base.StudioEt
                 android:id="@+id/width"
@@ -57,7 +97,8 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/tv_color"
-                android:tooltipText="画布宽" />
+                android:tooltipText="画布宽"
+                attrs:scale=".75" />
 
             <com.sunshine.studio.base.StudioTv
                 android:layout_width="wrap_content"
@@ -65,7 +106,8 @@
                 android:gravity="right"
                 android:maxLines="1"
                 android:text=", h="
-                android:textColor="@color/tv_color" />
+                android:textColor="@color/tv_color"
+                attrs:scale=".75" />
 
             <com.sunshine.studio.base.StudioEt
                 android:id="@+id/height"
@@ -75,7 +117,8 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/tv_color"
-                android:tooltipText="画布高" />
+                android:tooltipText="画布高"
+                attrs:scale=".75" />
         </LinearLayout>
 
         <com.sunshine.studio.base.StudioSpinner

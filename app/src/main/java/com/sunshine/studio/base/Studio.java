@@ -3,12 +3,14 @@ package com.sunshine.studio.base;
 import android.app.Activity;
 import android.app.Dialog;
 import android.support.v7.widget.AppCompatSeekBar;
+import android.view.View;
 import android.widget.SeekBar;
 
 import com.sunshine.engine.base.AnimView;
 import com.sunshine.engine.base.Entity;
 import com.sunshine.studio.R;
 import com.sunshine.studio.bone.logic.BmpRect;
+
 
 import static com.sunshine.studio.base.StudioTool.EXTERNAL;
 import static com.sunshine.studio.base.StudioTool.getFilePath;
@@ -142,4 +144,6 @@ public abstract class Studio<T extends Entity> {
   public interface MapValue<T> {
     void update(T value);
   }
+
+  public abstract void onInitDlgEntity(View v);
 }

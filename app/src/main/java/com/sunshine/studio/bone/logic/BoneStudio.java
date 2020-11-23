@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.support.v7.widget.AppCompatSeekBar;
+import android.view.View;
 import android.widget.SeekBar;
 
 import com.sunshine.engine.bone.StageView;
@@ -169,6 +170,11 @@ public class BoneStudio extends Studio<Stage> {
   public void onGetProject(String name) {
     super.onGetProject(name);
     ((StageView) act.findViewById(R.id.sv)).setPercent(0);
+  }
+
+  @Override
+  public void onInitDlgEntity(View v) {
+    // do nothing
   }
 
   public void onEditAnim(Anim.Helper helper, Anim anim) {

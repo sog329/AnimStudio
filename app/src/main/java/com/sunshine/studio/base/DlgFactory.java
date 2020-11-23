@@ -22,6 +22,7 @@ import com.sunshine.studio.bone.logic.ProjectLv;
 
 import java.util.List;
 
+
 import static com.sunshine.studio.base.StudioTool.EXTERNAL;
 
 /** Created by songxiaoguang on 2017/12/2. */
@@ -186,6 +187,8 @@ public class DlgFactory {
                 studio.entity.layoutType = s;
                 LayoutHelper.resize(studio.entity);
               });
+          // plus
+          studio.onInitDlgEntity(view);
         });
 
     return dialog;

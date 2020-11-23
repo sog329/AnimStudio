@@ -1,8 +1,5 @@
 package com.sunshine.studio.particle.logic;
 
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-import static com.sunshine.studio.base.StudioTool.getFilePath;
-
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.support.v7.app.AlertDialog;
@@ -12,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.sunshine.engine.base.Area;
 import com.sunshine.engine.base.ProcessFloat;
 import com.sunshine.engine.base.ProcessInt;
@@ -32,8 +30,13 @@ import com.sunshine.studio.base.StudioTv;
 import com.sunshine.studio.base.XmlWriter;
 import com.sunshine.studio.bone.logic.BmpRect;
 import com.sunshine.studio.bone.logic.BoneIv;
+
 import java.util.ArrayList;
 import java.util.List;
+
+
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static com.sunshine.studio.base.StudioTool.getFilePath;
 
 /** Created by songxiaoguang on 2017/12/2. */
 public class ParticleStudio extends Studio<Scene> {
@@ -171,7 +174,7 @@ public class ParticleStudio extends Studio<Scene> {
           pm.areaFrom.w == Area.MATCH_PARENT,
           b -> {
             StudioTv cb = editor.findViewById(R.id.move_from_width_match);
-            cb.setText(!b ? "w:" : "x方向全屏");
+            cb.setText(!b ? "w:" : "matchX");
             TextView tv = editor.findViewById(R.id.move_from_width);
             tv.setEnabled(!b);
             tv.setVisibility(!b ? View.VISIBLE : View.GONE);
@@ -243,7 +246,7 @@ public class ParticleStudio extends Studio<Scene> {
           pm.areaTo.w == Area.MATCH_PARENT,
           b -> {
             StudioTv cb = editor.findViewById(R.id.move_to_width_match);
-            cb.setText(!b ? "w:" : "x方向全屏");
+            cb.setText(!b ? "w:" : "matchX");
             TextView tv = editor.findViewById(R.id.move_to_width);
             tv.setEnabled(!b);
             tv.setVisibility(!b ? View.VISIBLE : View.GONE);
@@ -301,7 +304,7 @@ public class ParticleStudio extends Studio<Scene> {
           pm.rotateEnd != null,
           b -> {
             StudioTv cb = editor.findViewById(R.id.rotate_to);
-            cb.setText(b ? "to" : "角度保持不变");
+            cb.setText(b ? "to" : "unchangeable");
             TextView tvFrom = editor.findViewById(R.id.rotate_to_from);
             TextView tvTo = editor.findViewById(R.id.rotate_to_to);
             tvFrom.setEnabled(b);
@@ -351,7 +354,7 @@ public class ParticleStudio extends Studio<Scene> {
           pm.scaleEnd != null,
           b -> {
             StudioTv cb = editor.findViewById(R.id.scale_to);
-            cb.setText(b ? "to" : "缩放保持不变");
+            cb.setText(b ? "to" : "unchangeable");
             TextView tvFrom = editor.findViewById(R.id.scale_to_from);
             TextView tvTo = editor.findViewById(R.id.scale_to_to);
             tvFrom.setEnabled(b);
@@ -577,6 +580,12 @@ public class ParticleStudio extends Studio<Scene> {
     SceneView sceneView = act.findViewById(R.id.sv);
     sceneView.isRepeat(true);
     act.findViewById(R.id.anim_editor).setVisibility(View.INVISIBLE);
+  }
+
+  @Override
+  public void onInitDlgEntity(View v) {
+    v.findViewById(R.id.container).setVisibility(View.VISIBLE);
+    mapInt(v, R.id.max, entity.maxParticle, max -> entity.setMaxParticle(max));
   }
 
   @Override

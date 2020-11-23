@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:attrs="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="10px">
@@ -11,5 +11,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:maxLines="1"
-        android:textColor="@color/tv_color"/>
+        android:textColor="@color/tv_color"
+        attrs:scale=".75" />
 </FrameLayout>

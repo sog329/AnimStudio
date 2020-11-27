@@ -23,6 +23,7 @@ import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import static com.sunshine.studio.base.StudioTool.getFilePath;
 
 /** Created by songxiaoguang on 2017/12/2. */
@@ -52,6 +53,7 @@ public class ProjectLv extends ListView {
 
     public void loadData() {
       lstData.clear();
+      notifyDataSetChanged();
       callback.onLoading(true);
       int s = ++sequence;
       new Thread(

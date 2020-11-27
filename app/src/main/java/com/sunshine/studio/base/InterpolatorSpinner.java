@@ -50,7 +50,7 @@ public class InterpolatorSpinner extends LinearLayout {
       num = ary[1];
     }
     sp.interpolator(type, s -> callback.onChoice(s + "_" + et.getText()));
-    et.mapValue(
+    et.map(
         Integer.parseInt(num),
         n ->
             callback.onChoice(

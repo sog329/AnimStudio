@@ -1,5 +1,6 @@
 package com.sunshine.studio.base;
 
+import android.app.ActionBar.LayoutParams;
 import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.support.v7.app.AlertDialog;
@@ -140,10 +141,10 @@ public class DlgFactory {
         d -> {
           // duration
           ((StudioEt<Integer>) view.findViewById(R.id.duration))
-              .mapValue(studio.entity.duration, n -> studio.entity.duration = n);
+              .map(studio.entity.duration, n -> studio.entity.duration = n);
           // w
           ((StudioEt<Integer>) view.findViewById(R.id.width))
-              .mapValue(
+              .map(
                   studio.entity.scriptSize.width,
                   n -> {
                     float dif = (n - studio.entity.scriptSize.width) / 2f;
@@ -162,7 +163,7 @@ public class DlgFactory {
                   });
           // h
           ((StudioEt<Integer>) view.findViewById(R.id.height))
-              .mapValue(
+              .map(
                   studio.entity.scriptSize.height,
                   n -> {
                     float dif = (n - studio.entity.scriptSize.height) / 2f;
@@ -194,6 +195,10 @@ public class DlgFactory {
     return dialog;
   }
 
+  private interface Extend {
+    void init(boolean external);
+  }
+
   public static Dialog extend(final BoneStudio studio) {
     AlertDialog.Builder builder = new AlertDialog.Builder(studio.act, R.style.AppDialog);
     View view = LayoutInflater.from(studio.act).inflate(R.layout.dlg_studio_extend, null);
@@ -203,48 +208,75 @@ public class DlgFactory {
     iv.setLayoutParams(
         new LinearLayout.LayoutParams(StudioTool.getDlgHeight(), StudioTool.getDlgHeight()));
     // container
-    View v = view.findViewById(R.id.container);
-    v.setLayoutParams(
-        new LinearLayout.LayoutParams(StudioTool.getDlgHeight() / 3, StudioTool.getDlgHeight()));
+    View c = view.findViewById(R.id.container);
     // iv_tall
     ExtendIv ivTall = view.findViewById(R.id.iv_tall);
     ivTall.autoSize = false;
     ivTall.inExtendY(true);
     builder.setView(view);
     final Dialog dialog = builder.create();
+    StudioEt<Integer> et = view.findViewById(R.id.et);
+
+    Extend extend =
+        e -> {
+          ivTall.setVisibility(e ? View.GONE : View.VISIBLE);
+          iv.setVisibility(e ? View.GONE : View.VISIBLE);
+          c.setLayoutParams(
+              new LinearLayout.LayoutParams(
+                  e ? StudioTool.getDlgHeight() : StudioTool.getDlgHeight() / 2,
+                  e ? LayoutParams.WRAP_CONTENT : StudioTool.getDlgHeight()));
+          et.setHint(null);
+        };
+
     dialog.setOnShowListener(
         d -> {
-          StudioEt<Integer> et = view.findViewById(R.id.et);
-          Runnable rn =
-              () -> {
-                if (studio.bone.extendY != null) {
-                  iv.setExtendY(studio.bone.extendY);
-                  ivTall.setVisibility(View.VISIBLE);
-                  ivTall.setBmp(studio.entity.bmp, studio.bone.lstRect);
-                  ivTall.setExtendY(studio.bone.extendY);
-                } else {
-                  iv.setExtendY(null);
-                  ivTall.setVisibility(View.INVISIBLE);
-                  ivTall.setBmp(null, null);
-                  ivTall.setExtendY(null);
-                }
-              };
-          et.mapValue(
-              studio.bone.extendY,
-              y -> {
-                if (y <= 0 || y > studio.bone.lstRect.get(0).height()) {
-                  studio.bone.extendY = null;
-                  rn.run();
-                  if (et.getText() != null && et.getText().length() > 0) {
-                    et.setText(null);
+          boolean external = studio.bone.externalId != null;
+          extend.init(external);
+          if (external) {
+            et.map(
+                studio.bone.externalId,
+                s -> {
+                  if (s == null || s.isEmpty()) {
+                    studio.bone.externalId = EXTERNAL;
+                  } else {
+                    studio.bone.externalId = s;
                   }
-                } else {
-                  studio.bone.extendY = y;
-                  rn.run();
-                }
-              });
-          iv.setBmp(studio.entity.bmp, studio.bone.lstRect);
-          rn.run();
+                  studio.updateAnimLv();
+                });
+          } else {
+            Runnable rn =
+                () -> {
+                  if (studio.bone.extendY != null) {
+                    iv.setExtendY(studio.bone.extendY);
+                    ivTall.setVisibility(View.VISIBLE);
+                    ivTall.setBmp(studio.entity.bmp, studio.bone.lstRect);
+                    ivTall.setExtendY(studio.bone.extendY);
+                  } else {
+                    iv.setExtendY(null);
+                    ivTall.setVisibility(View.INVISIBLE);
+                    ivTall.setBmp(null, null);
+                    ivTall.setExtendY(null);
+                  }
+                };
+            final int max = studio.bone.lstRect.get(0).height();
+            et.setHint("[1, " + max + "]");
+            et.map(
+                studio.bone.extendY,
+                y -> {
+                  if (y <= 0 || y > max) {
+                    studio.bone.extendY = null;
+                    rn.run();
+                    if (et.getText() != null && et.getText().length() > 0) {
+                      et.setText(null);
+                    }
+                  } else {
+                    studio.bone.extendY = y;
+                    rn.run();
+                  }
+                });
+            iv.setBmp(studio.entity.bmp, studio.bone.lstRect);
+            rn.run();
+          }
         });
     return dialog;
   }

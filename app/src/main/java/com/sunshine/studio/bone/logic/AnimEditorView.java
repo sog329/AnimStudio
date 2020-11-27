@@ -97,7 +97,8 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
             if (last.duration.getFrom() < nowFrom) {
               last.duration.setTo(nowFrom);
               anim.duration.setFrom(nowFrom);
-              ((StudioEt<Float>) findViewById(R.id.edit_base_from)).setText(String.valueOf(nowFrom));
+              ((StudioEt<Float>) findViewById(R.id.edit_base_from))
+                  .setText(String.valueOf(nowFrom));
               if (last.duration.getFrom() >= StudioTool.format(nowFrom - .01f)) {
                 v.setVisibility(INVISIBLE);
                 v.setOnClickListener(null);
@@ -134,7 +135,7 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
           });
     }
     ((StudioEt<Float>) findViewById(R.id.edit_base_from))
-        .mapValue(
+        .map(
             anim.duration.getFrom(),
             f -> {
               anim.duration.setFrom(f);
@@ -146,7 +147,7 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
               if (b) setPercent(anim.duration, false);
             });
     ((StudioEt<Float>) findViewById(R.id.edit_base_to))
-        .mapValue(
+        .map(
             anim.duration.getTo(),
             f -> {
               anim.duration.setTo(f);
@@ -186,25 +187,25 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
             });
     // scale
     ((StudioEt<Float>) findViewById(R.id.edit_scale_from_x))
-        .mapValue(anim.scaleX.getFrom(), f -> anim.scaleX.setFrom(f))
+        .map(anim.scaleX.getFrom(), f -> anim.scaleX.setFrom(f))
         .setOnFocusChangeListener(
             (v, b) -> {
               if (b) setPercent(anim.duration, false);
             });
     ((StudioEt<Float>) findViewById(R.id.edit_scale_from_y))
-        .mapValue(anim.scaleY.getFrom(), f -> anim.scaleY.setFrom(f))
+        .map(anim.scaleY.getFrom(), f -> anim.scaleY.setFrom(f))
         .setOnFocusChangeListener(
             (v, b) -> {
               if (b) setPercent(anim.duration, false);
             });
     ((StudioEt<Float>) findViewById(R.id.edit_scale_to_x))
-        .mapValue(anim.scaleX.getTo(), f -> anim.scaleX.setTo(f))
+        .map(anim.scaleX.getTo(), f -> anim.scaleX.setTo(f))
         .setOnFocusChangeListener(
             (v, b) -> {
               if (b) setPercent(anim.duration, true);
             });
     ((StudioEt<Float>) findViewById(R.id.edit_scale_to_y))
-        .mapValue(anim.scaleY.getTo(), f -> anim.scaleY.setTo(f))
+        .map(anim.scaleY.getTo(), f -> anim.scaleY.setTo(f))
         .setOnFocusChangeListener(
             (v, b) -> {
               if (b) setPercent(anim.duration, true);
@@ -272,13 +273,13 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
         .mapValue(anim.alpha.getInterpolatorName(), s -> anim.alpha.setInterpolator(s), studio);
     // rotate
     ((StudioEt<Integer>) findViewById(R.id.edit_rotate_from))
-        .mapValue(anim.rotate.getFrom(), n -> anim.rotate.setFrom(n))
+        .map(anim.rotate.getFrom(), n -> anim.rotate.setFrom(n))
         .setOnFocusChangeListener(
             (v, b) -> {
               if (b) setPercent(anim.duration, false);
             });
     ((StudioEt<Integer>) findViewById(R.id.edit_rotate_to))
-        .mapValue(anim.rotate.getTo(), n -> anim.rotate.setTo(n))
+        .map(anim.rotate.getTo(), n -> anim.rotate.setTo(n))
         .setOnFocusChangeListener(
             (v, b) -> {
               if (b) setPercent(anim.duration, true);
@@ -292,9 +293,9 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
                     .setText(((EditText) findViewById(R.id.edit_rotate_from)).getText()));
     // from
     ((StudioEt<Float>) findViewById(R.id.edit_move_from_x))
-        .mapValue(anim.centerX.getFrom(), n -> anim.centerX.setFrom(n));
+        .map(anim.centerX.getFrom(), n -> anim.centerX.setFrom(n));
     ((StudioEt<Float>) findViewById(R.id.edit_move_from_y))
-        .mapValue(anim.centerY.getFrom(), n -> anim.centerY.setFrom(n));
+        .map(anim.centerY.getFrom(), n -> anim.centerY.setFrom(n));
     findViewById(R.id.edit_move_from_copy)
         .setOnClickListener(
             v -> {
@@ -313,22 +314,22 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
                   .setText(((StudioEt) findViewById(R.id.edit_move_to_y)).getText());
             });
     ((StudioEt<Float>) findViewById(R.id.edit_move_to_x))
-        .mapValue(anim.centerX.getTo(), n -> anim.centerX.setTo(n));
+        .map(anim.centerX.getTo(), n -> anim.centerX.setTo(n));
     ((StudioEt<Float>) findViewById(R.id.edit_move_to_y))
-        .mapValue(anim.centerY.getTo(), n -> anim.centerY.setTo(n));
+        .map(anim.centerY.getTo(), n -> anim.centerY.setTo(n));
     ((InterpolatorSpinner) findViewById(R.id.edit_move_interpolator_x))
         .mapValue(anim.centerX.getInterpolatorName(), s -> anim.centerX.setInterpolator(s), studio);
     ((InterpolatorSpinner) findViewById(R.id.edit_move_interpolator_y))
         .mapValue(anim.centerY.getInterpolatorName(), s -> anim.centerY.setInterpolator(s), studio);
     // anchor
     ((StudioEt<Float>) findViewById(R.id.edit_rotate_x))
-        .mapValue(anim.ptRotate.x, n -> anim.ptRotate.x = n)
+        .map(anim.ptRotate.x, n -> anim.ptRotate.x = n)
         .setOnFocusChangeListener(
             (v, b) -> {
               if (b) setPercent(anim.duration, false);
             });
     ((StudioEt<Float>) findViewById(R.id.edit_rotate_y))
-        .mapValue(anim.ptRotate.y, n -> anim.ptRotate.y = n)
+        .map(anim.ptRotate.y, n -> anim.ptRotate.y = n)
         .setOnFocusChangeListener(
             (v, b) -> {
               if (b) setPercent(anim.duration, false);

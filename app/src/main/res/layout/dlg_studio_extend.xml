@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:attrs="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/dlg_bg"
@@ -24,6 +25,8 @@
             android:id="@+id/et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColorHint="@color/tv_color2"
             android:tooltipText="Y方向拉伸坐标" />
 
         <com.sunshine.studio.bone.logic.ExtendIv

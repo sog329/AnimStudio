@@ -8,7 +8,6 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.inputmethod.EditorInfo;
 
-import com.sunshine.engine.base.Tool;
 import com.sunshine.studio.R;
 
 /** Created by songxiaoguang on 2017/12/4. */
@@ -29,45 +28,62 @@ public class StudioEt<T> extends android.support.v7.widget.AppCompatEditText {
   }
 
   protected void init(AttributeSet attrs) {
-    setInputType(EditorInfo.TYPE_CLASS_PHONE);
     float scale = 1;
     if (attrs != null) {
       TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.StudioTv);
       scale = ta.getFloat(R.styleable.StudioTv_scale, 1);
     }
+    setInputType(EditorInfo.TYPE_CLASS_NUMBER);
     StudioTv.initSize(this, scale);
   }
 
-  public StudioEt mapValue(Float value, Studio.MapValue<Float> mapValue) {
-    removeTextChangedListener((TextWatcher) getTag());
-    setText(value == null ? null : String.valueOf(value));
-    TextWatcher textWatcher =
-        new TextWatcher() {
-          @Override
-          public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-
-          @Override
-          public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            if (charSequence.length() == 0) {
-              mapValue.update(0.0f);
-            } else {
-              try {
-                mapValue.update(new Float(Float.parseFloat(charSequence.toString())));
-              } catch (Exception e) {
-                Tool.log(e);
-              }
-            }
+  public StudioEt map(Integer value, Studio.MapValue<Integer> mapValue) {
+    setInputType(EditorInfo.TYPE_CLASS_NUMBER);
+    return map(
+        value,
+        mapValue,
+        c -> {
+          if (c.length() == 0) {
+            return 0;
+          } else {
+            return Integer.parseInt(c.toString());
           }
-
-          @Override
-          public void afterTextChanged(Editable editable) {}
-        };
-    addTextChangedListener(textWatcher);
-    setTag(textWatcher);
-    return this;
+        });
   }
 
-  public StudioEt mapValue(Integer value, Studio.MapValue<Integer> mapValue) {
+  public StudioEt map(Float value, Studio.MapValue<Float> mapValue) {
+    setInputType(EditorInfo.TYPE_CLASS_NUMBER);
+    return map(
+        value,
+        mapValue,
+        c -> {
+          if (c.length() == 0) {
+            return 0.0f;
+          } else {
+            return Float.parseFloat(c.toString());
+          }
+        });
+  }
+
+  public StudioEt map(String value, Studio.MapValue<String> mapValue) {
+    setInputType(EditorInfo.TYPE_CLASS_TEXT);
+    return map(
+        value,
+        mapValue,
+        c -> {
+          if (c.length() == 0) {
+            return null;
+          } else {
+            return c.toString();
+          }
+        });
+  }
+
+  private interface parse {
+    Object parse(CharSequence c);
+  }
+
+  private StudioEt map(Object value, Studio.MapValue mapValue, parse p) {
     removeTextChangedListener((TextWatcher) getTag());
     setText(value == null ? null : String.valueOf(value));
     TextWatcher textWatcher =
@@ -77,15 +93,7 @@ public class StudioEt<T> extends android.support.v7.widget.AppCompatEditText {
 
           @Override
           public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            if (charSequence.length() == 0) {
-              mapValue.update(0);
-            } else {
-              try {
-                mapValue.update(new Integer(Integer.parseInt(charSequence.toString())));
-              } catch (Exception e) {
-                Tool.log(e);
-              }
-            }
+            mapValue.update(p.parse(charSequence));
           }
 
           @Override

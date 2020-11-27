@@ -387,11 +387,11 @@ public class ParticleStudio extends Studio<Scene> {
   }
 
   private StudioEt mapFloat(View editor, int id, float v, MapValue<Float> mapValue) {
-    return ((StudioEt) editor.findViewById(id)).mapValue(v, mapValue);
+    return ((StudioEt) editor.findViewById(id)).map(v, mapValue);
   }
 
   private StudioEt mapInt(View editor, int id, int v, MapValue<Integer> mapValue) {
-    return ((StudioEt) editor.findViewById(id)).mapValue(v, mapValue);
+    return ((StudioEt) editor.findViewById(id)).map(v, mapValue);
   }
 
   private void mapSpinner(View editor, int id, String now, StudioSpinner.Callback cb) {

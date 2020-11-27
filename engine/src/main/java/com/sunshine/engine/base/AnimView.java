@@ -6,9 +6,9 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 
-/**
- * Created by songxiaoguang on 2017/12/1.
- */
+import com.sunshine.engine.base.Entity.Click;
+
+/** Created by songxiaoguang on 2017/12/1. */
 public abstract class AnimView<T extends ViewHelper> extends View {
 
   protected T helper = buildHelper();
@@ -95,6 +95,10 @@ public abstract class AnimView<T extends ViewHelper> extends View {
 
   public boolean setExternalCb(String id, Render2D.Callback cb) {
     return helper.setExternalCb(id, cb);
+  }
+
+  public boolean setClick(String id, Click click) {
+    return helper.setClick(id, click);
   }
 
   public void setCallback(ViewHelper.Callback cb) {

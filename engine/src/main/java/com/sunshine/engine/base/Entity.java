@@ -3,14 +3,15 @@ package com.sunshine.engine.base;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.RectF;
 import android.media.MediaPlayer;
-import java.util.HashMap;
-import java.util.Map;
+
 import org.xml.sax.helpers.DefaultHandler;
 
-/**
- * Created by songxiaoguang on 2017/12/1.
- */
+import java.util.HashMap;
+import java.util.Map;
+
+/** Created by songxiaoguang on 2017/12/1. */
 public abstract class Entity {
 
   public ViewHelper helper = null;
@@ -36,6 +37,7 @@ public abstract class Entity {
   public Map<String, Bitmap> mapBmp = new HashMap<>();
   protected boolean recycleBmp = true;
   public Map<String, Render2D.Callback> mapCb = new HashMap<>();
+  public Map<String, Click> mapClick = new HashMap<>();
   protected Runnable onStop = null;
 
   public Entity(ViewHelper helper, String configPath, String picPath, String soundPath) {
@@ -210,4 +212,8 @@ public abstract class Entity {
   public abstract DefaultHandler getParser();
 
   public abstract boolean needDraw(float percent);
+
+  public interface Click {
+    void onClick(String id, RectF rect, int x, int y);
+  }
 }

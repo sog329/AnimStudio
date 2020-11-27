@@ -21,6 +21,7 @@ public class Bone extends Anim.Helper {
   private static RectF RECT_TMP = new RectF();
   public String name = null;
   public Actor actor = null;
+  public String clickId = null;
 
   public Bone(Actor actor) {
     this.actor = actor;

@@ -10,6 +10,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 
+import com.sunshine.engine.base.Entity.Click;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -173,6 +175,19 @@ public abstract class ViewHelper<T extends Entity> extends LifeCycle {
         cb.init();
         entity.mapCb.put(id, cb);
         invalidate();
+      }
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public boolean setClick(String id, Click click) {
+    if (entity != null) {
+      if (click == null) {
+        entity.mapClick.remove(id);
+      } else {
+        entity.mapClick.put(id, click);
       }
       return true;
     } else {

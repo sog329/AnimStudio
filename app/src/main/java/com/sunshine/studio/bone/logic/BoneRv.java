@@ -10,8 +10,8 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
 import com.sunshine.engine.base.Render2D;
-import com.sunshine.engine.base.Tool;
 import com.sunshine.studio.base.DemoRv;
+import com.sunshine.studio.base.StudioTool;
 
 /** Created by Jack on 2019-11-20. */
 public class BoneRv extends DemoRv {
@@ -53,7 +53,8 @@ public class BoneRv extends DemoRv {
                     }
                   });
               b.setClickable(true);
-              b.setClick("pic", (id, r, x, y) -> Tool.log(id + "_onClick: "));
+              b.setClick(
+                  "pic", (id, r, x, y) -> StudioTool.showToast(b.getContext(), id + "_onClick: "));
               Runnable post =
                   () -> {
                     p.stop();

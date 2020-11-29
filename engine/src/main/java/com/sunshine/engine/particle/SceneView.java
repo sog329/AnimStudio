@@ -1,9 +1,12 @@
 package com.sunshine.engine.particle;
 
 import android.content.Context;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 
 import com.sunshine.engine.base.AnimView;
+import com.sunshine.engine.base.Entity.Click;
+import com.sunshine.engine.particle.logic.Particle;
 import com.sunshine.engine.particle.logic.SceneHelper;
 
 public class SceneView extends AnimView<SceneHelper> {
@@ -50,6 +53,24 @@ public class SceneView extends AnimView<SceneHelper> {
         invalidate();
       }
       return result;
+    }
+  }
+
+  @Override
+  protected void onClick(int x, int y) {
+    RectF rc = new RectF();
+    for (int i = helper.entity.lstActiveParticle.size() - 1; i > -1; i--) {
+      Particle p = helper.entity.lstActiveParticle.get(i);
+      if (p.clickId != null && p.showing) {
+        p.m.mapRect(rc, p.rc);
+        if (rc.contains(x, y)) {
+          Click click = helper.entity.mapClick.get(p.clickId);
+          if (click != null) {
+            click.onClick(p.clickId, rc, x, y);
+            break;
+          }
+        }
+      }
     }
   }
 }

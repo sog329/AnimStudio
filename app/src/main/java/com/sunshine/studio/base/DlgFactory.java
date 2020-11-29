@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import com.sunshine.engine.base.Function;
 import com.sunshine.engine.base.LayoutHelper;
 import com.sunshine.engine.bone.logic.Actor;
 import com.sunshine.engine.bone.logic.Anim;
@@ -195,10 +196,6 @@ public class DlgFactory {
     return dialog;
   }
 
-  private interface Extend {
-    void init(boolean external);
-  }
-
   public static Dialog extend(final BoneStudio studio) {
     AlertDialog.Builder builder = new AlertDialog.Builder(studio.act, R.style.AppDialog);
     View view = LayoutInflater.from(studio.act).inflate(R.layout.dlg_studio_extend, null);
@@ -217,7 +214,7 @@ public class DlgFactory {
     final Dialog dialog = builder.create();
     StudioEt<Integer> et = view.findViewById(R.id.et);
 
-    Extend extend =
+    Function<Boolean> extend =
         e -> {
           ivTall.setVisibility(e ? View.GONE : View.VISIBLE);
           iv.setVisibility(e ? View.GONE : View.VISIBLE);
@@ -231,7 +228,7 @@ public class DlgFactory {
     dialog.setOnShowListener(
         d -> {
           boolean external = studio.bone.externalId != null;
-          extend.init(external);
+          extend.call(external);
           if (external) {
             et.map(
                 studio.bone.externalId,

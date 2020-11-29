@@ -35,7 +35,7 @@ public class Anim {
       percent = 1;
     }
     entity.drawInfo.alpha = alpha.get(percent);
-    if (entity.drawInfo.alpha == 0 && !entity.inStudio) {
+    if (Tool.equalsZero(entity.drawInfo.alpha) && !entity.inStudio) {
       return false;
     }
     float sX = scaleX.get(percent);

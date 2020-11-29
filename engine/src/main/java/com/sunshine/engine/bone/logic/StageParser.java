@@ -20,7 +20,6 @@ public class StageParser extends XmlParser {
   public static final String ROTATE_INTERPOLATOR = "rotate_interpolator";
   public static final String ALPHA = "alpha";
   public static final String ALPHA_INTERPOLATOR = "alpha_interpolator";
-  public static final String CLICK_ID = "click_id";
 
   private Stage stage = null;
   private boolean inActor = false;

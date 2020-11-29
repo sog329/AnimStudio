@@ -4,15 +4,10 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
-import com.sunshine.engine.particle.SceneView;
-import com.sunshine.studio.R;
 import com.sunshine.studio.base.DemoRv;
+import com.sunshine.studio.base.StudioTool;
 
-import java.util.List;
-
-/**
- * Created by Jack on 2019-11-20.
- */
+/** Created by Jack on 2019-11-20. */
 public class ParticleRv extends DemoRv {
 
   public ParticleRv(Context context) {
@@ -31,7 +26,19 @@ public class ParticleRv extends DemoRv {
   protected void loadData() {
     addData().setParticle("snowing");
     addData().setParticle("tangyuan");
-    addData().setParticle("dinner");
+    addData()
+        .setParticle("dinner")
+        .setBind(
+            (b, p) -> {
+              p.setOnClick(
+                  "lobster", (s, x, y, rc) -> StudioTool.showToast(getContext(), s + "_click"));
+              p.setOnClick(
+                  "fish", (s, x, y, rc) -> StudioTool.showToast(getContext(), s + "_click"));
+              p.setOnClick(
+                  "rice", (s, x, y, rc) -> StudioTool.showToast(getContext(), s + "_click"));
+              p.setOnClick(
+                  "chicken", (s, x, y, rc) -> StudioTool.showToast(getContext(), s + "_click"));
+            });
     addData().setParticle("superlike");
     addData().setParticle("mahjong");
     addData().setParticle("dumplings");

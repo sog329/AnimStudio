@@ -36,7 +36,7 @@ public class Bone extends Anim.Helper {
     Rect rect = lstRect.get(0);
     if (externalId != null) {
       bmp = stage.mapBmp.get(externalId);
-      cb = stage.mapCb.get(externalId);
+      cb = stage.map2D.get(externalId);
       rect = null;
     }
     if (bmp == null && cb == null) {
@@ -52,8 +52,7 @@ public class Bone extends Anim.Helper {
         float percent = anim.duration.getPercent(stage.getPercent());
         if (anim.run(percent, stage)) {
           anim.updateDrawInfo(stage);
-          rcBone.set(stage.drawInfo.rcSrc);
-          stage.mergeDrawInfo(m);
+          stage.mergeDrawInfo(rcBone, m);
           showing = true;
           if (lstRect.size() > 1) {
             rect = lstRect.get((int) (percent * (lstRect.size() - 1)));

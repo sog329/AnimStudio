@@ -47,8 +47,14 @@ public class StudioTool {
     }
   }
 
+  private static Toast t = null;
+
   public static void showToast(Context context, String str) {
-    Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
+    if (t != null) {
+      t.cancel();
+    }
+    t = Toast.makeText(context, str, Toast.LENGTH_SHORT);
+    t.show();
   }
 
   public static void prepareResource(Activity act) {

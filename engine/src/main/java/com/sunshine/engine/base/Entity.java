@@ -36,7 +36,7 @@ public abstract class Entity {
   public boolean parsed = false;
   public Map<String, Bitmap> mapBmp = new HashMap<>();
   protected boolean recycleBmp = true;
-  public Map<String, Render2D.Callback> mapCb = new HashMap<>();
+  public Map<String, Render2D.Callback> map2D = new HashMap<>();
   public Map<String, Click> mapClick = new HashMap<>();
   protected Runnable onStop = null;
 
@@ -171,6 +171,7 @@ public abstract class Entity {
     }
   }
 
+  // todo use Matrix
   public void mergeDrawInfo() {
     // move
     drawInfo.rcDst.left = drawInfo.rcSrc.left * scale + drawArea.l;
@@ -182,7 +183,8 @@ public abstract class Entity {
     drawInfo.ptDst.y = drawInfo.ptSrc.y * scale + drawArea.t;
   }
 
-  public void mergeDrawInfo(Matrix m) {
+  public void mergeDrawInfo(RectF rc, Matrix m) {
+    rc.set(drawInfo.rcSrc);
     // move
     m.preTranslate(drawArea.l, drawArea.t);
     m.preScale(scale, scale);

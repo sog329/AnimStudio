@@ -167,13 +167,13 @@ public abstract class ViewHelper<T extends Entity> extends LifeCycle {
     }
   }
 
-  public boolean setExternalCb(String id, Render2D.Callback cb) {
+  public boolean setExternal2D(String id, Render2D.Callback cb) {
     if (entity != null) {
       if (cb == null) {
-        entity.mapCb.remove(id);
+        entity.map2D.remove(id);
       } else {
         cb.init();
-        entity.mapCb.put(id, cb);
+        entity.map2D.put(id, cb);
         invalidate();
       }
       return true;
@@ -182,7 +182,7 @@ public abstract class ViewHelper<T extends Entity> extends LifeCycle {
     }
   }
 
-  public boolean setClick(String id, Click click) {
+  public boolean setOnClick(String id, Click click) {
     if (entity != null) {
       if (click == null) {
         entity.mapClick.remove(id);
@@ -195,21 +195,17 @@ public abstract class ViewHelper<T extends Entity> extends LifeCycle {
     }
   }
 
-  private Callback callback = null;
+  private Function<String> onError = null;
 
-  public void setCallback(Callback callback) {
-    this.callback = callback;
+  public void setOnError(Function<String> function) {
+    onError = function;
   }
 
   public void onError(String log) {
-    Callback cb = callback;
+    Function<String> cb = onError;
     if (cb != null) {
-      cb.onError(log);
+      cb.call(log);
     }
-  }
-
-  public interface Callback {
-    void onError(String log);
   }
 
   public ViewHelper addLog(String log) {

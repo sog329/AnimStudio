@@ -1,10 +1,11 @@
 package com.sunshine.engine.particle.logic;
 
-import com.sunshine.engine.base.DrawInfo;
+import com.sunshine.engine.base.Entity;
 import com.sunshine.engine.base.Point;
 import com.sunshine.engine.base.ProcessFloat;
 import com.sunshine.engine.base.ProcessInt;
 import com.sunshine.engine.base.Size;
+import com.sunshine.engine.base.Tool;
 
 public class Anim {
   protected ProcessFloat centerX = new ProcessFloat(0f, 0f);
@@ -15,7 +16,7 @@ public class Anim {
   protected ProcessFloat scale = new ProcessFloat(1f, 1f);
   protected ProcessInt alpha = new ProcessInt(50, 255);
 
-  public void run(float percent, DrawInfo drawInfo) {
+  public boolean run(float percent, Entity entity) {
     if (percent < 0) {
       percent = 0;
     } else if (percent > 1) {
@@ -25,19 +26,28 @@ public class Anim {
     float y = centerY.get(percent);
     float sX = scale.get(percent);
     float sY = sX;
+
+    if (Tool.equalsZero(sX) || Tool.equalsZero(sY)) {
+      return false;
+    }
+
     float w = sX * halfSize.width;
     float h = sY * halfSize.height;
 
-    drawInfo.rcSrc.left = x - w;
-    drawInfo.rcSrc.top = y - h;
-    drawInfo.rcSrc.right = x + w;
-    drawInfo.rcSrc.bottom = y + h;
+    entity.drawInfo.rcSrc.left = x - w;
+    entity.drawInfo.rcSrc.top = y - h;
+    entity.drawInfo.rcSrc.right = x + w;
+    entity.drawInfo.rcSrc.bottom = y + h;
 
-    drawInfo.rt = rotate.get(percent);
+    entity.drawInfo.rt = rotate.get(percent);
 
-    drawInfo.ptSrc.x = drawInfo.rcSrc.left + ptRotate.x * sX;
-    drawInfo.ptSrc.y = drawInfo.rcSrc.top + ptRotate.y * sY;
+    entity.drawInfo.ptSrc.x = entity.drawInfo.rcSrc.left + ptRotate.x * sX;
+    entity.drawInfo.ptSrc.y = entity.drawInfo.rcSrc.top + ptRotate.y * sY;
 
-    drawInfo.alpha = alpha.get(percent);
+    entity.drawInfo.alpha = alpha.get(percent);
+    if (Tool.equalsZero(entity.drawInfo.alpha) && !entity.inStudio) {
+      return false;
+    }
+    return true;
   }
 }

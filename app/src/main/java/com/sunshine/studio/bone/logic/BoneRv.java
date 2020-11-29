@@ -36,7 +36,7 @@ public class BoneRv extends DemoRv {
         .setBind(
             (b, p) -> {
               b.setExternalBmp("pic", getBmp("pic/she.png"));
-              b.setExternalCb(
+              b.setExternal2D(
                   "circle",
                   new Render2D.Callback() {
                     @Override
@@ -52,9 +52,25 @@ public class BoneRv extends DemoRv {
                       can.drawCircle(rect.centerX(), rect.centerY(), rect.width() / 2, paint);
                     }
                   });
-              b.setClickable(true);
-              b.setClick(
-                  "pic", (id, r, x, y) -> StudioTool.showToast(b.getContext(), id + "_onClick: "));
+              b.setOnClick(
+                  "pic",
+                  (id, r, x, y) ->
+                      StudioTool.showToast(
+                          b.getContext(),
+                          id
+                              + " click\nx="
+                              + x
+                              + " in["
+                              + (int) r.left
+                              + ", "
+                              + (int) r.right
+                              + "]\ny="
+                              + y
+                              + " in["
+                              + (int) r.top
+                              + ", "
+                              + (int) r.bottom
+                              + "]"));
               Runnable post =
                   () -> {
                     p.stop();

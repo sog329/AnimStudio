@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.sunshine.engine.base.Entity.Click;
@@ -93,15 +94,37 @@ public abstract class AnimView<T extends ViewHelper> extends View {
     return helper.setExternalBmp(id, bmp);
   }
 
-  public boolean setExternalCb(String id, Render2D.Callback cb) {
-    return helper.setExternalCb(id, cb);
+  public boolean setExternal2D(String id, Render2D.Callback cb) {
+    return helper.setExternal2D(id, cb);
   }
 
-  public boolean setClick(String id, Click click) {
-    return helper.setClick(id, click);
+  public boolean setOnClick(String id, Click click) {
+    boolean result = helper.setOnClick(id, click);
+    if (helper.entity != null && helper.entity.mapClick.size() > 0) {
+      setClickable(true);
+    } else {
+      setClickable(false);
+    }
+    return result;
   }
 
-  public void setCallback(ViewHelper.Callback cb) {
-    helper.setCallback(cb);
+  public void setOnError(Function<String> function) {
+    helper.setOnError(function);
   }
+
+  private long actionDownTime = Tool.NONE;
+
+  @Override
+  public boolean onTouchEvent(MotionEvent me) {
+    if (helper.entity != null && helper.entity.mapClick.size() > 0) {
+      if (me.getAction() == MotionEvent.ACTION_DOWN) {
+        actionDownTime = Tool.getTime();
+      } else if (me.getAction() == MotionEvent.ACTION_UP && Tool.getTime() - actionDownTime < 200) {
+        onClick((int) me.getX(), (int) me.getY());
+      }
+    }
+    return super.onTouchEvent(me);
+  }
+
+  protected abstract void onClick(int x, int y);
 }

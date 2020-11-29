@@ -3,11 +3,9 @@ package com.sunshine.engine.bone;
 import android.content.Context;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 
 import com.sunshine.engine.base.AnimView;
 import com.sunshine.engine.base.Entity.Click;
-import com.sunshine.engine.base.Tool;
 import com.sunshine.engine.bone.logic.Actor;
 import com.sunshine.engine.bone.logic.Bone;
 import com.sunshine.engine.bone.logic.StageHelper;
@@ -29,6 +27,30 @@ public class StageView extends AnimView<StageHelper> {
   @Override
   public StageHelper buildHelper() {
     return new StageHelper();
+  }
+
+  @Override
+  protected void onClick(int x, int y) {
+    RectF rc = new RectF();
+    for (int i = helper.entity.lstActor.size() - 1; i > -1; i--) {
+      Actor a = helper.entity.lstActor.get(i);
+      if (a.showing) {
+        for (int j = a.lstBone.size() - 1; j > -1; j--) {
+          Bone b = a.lstBone.get(j);
+          if (b.clickId != null && b.showing) {
+            a.m.mapRect(rc, b.rcBone);
+            b.m.mapRect(rc);
+            if (rc.contains(x, y)) {
+              Click click = helper.entity.mapClick.get(b.clickId);
+              if (click != null) {
+                click.onClick(b.clickId, rc, x, y);
+                break;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   public void canJump(boolean can) {
@@ -83,45 +105,5 @@ public class StageView extends AnimView<StageHelper> {
       helper.entity.autoStop = auto;
     }
     return this;
-  }
-
-  private long actionDownTime = Tool.NONE;
-
-  @Override
-  public boolean onTouchEvent(MotionEvent me) {
-    if (helper.entity != null && helper.entity.mapClick.size() > 0) {
-      if (me.getAction() == MotionEvent.ACTION_DOWN) {
-        actionDownTime = Tool.getTime();
-      } else if (me.getAction() == MotionEvent.ACTION_UP && Tool.getTime() - actionDownTime < 200) {
-        RectF rc = new RectF();
-        for (int i = helper.entity.lstActor.size() - 1; i > -1; i--) {
-          Actor a = helper.entity.lstActor.get(i);
-          if (a.showing) {
-            boolean out = false;
-            for (int j = a.lstBone.size() - 1; j > -1; j--) {
-              Bone b = a.lstBone.get(j);
-              if (b.clickId != null && b.showing) {
-                a.m.mapRect(rc, b.rcBone);
-                b.m.mapRect(rc);
-                if (rc.contains(me.getX(), me.getY())) {
-                  Click click = helper.entity.mapClick.get(b.clickId);
-                  if (click != null) {
-                    click.onClick(b.clickId, rc, (int) me.getX(), (int) me.getY());
-                  }
-                  out = true;
-                  break;
-                }
-              } else {
-                continue;
-              }
-            }
-            if (out) {
-              break;
-            }
-          }
-        }
-      }
-    }
-    return super.onTouchEvent(me);
   }
 }

@@ -1,9 +1,9 @@
 package com.sunshine.engine.bone;
 
 import android.content.Context;
+import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-
 import com.sunshine.engine.base.AnimView;
 import com.sunshine.engine.base.Entity.Click;
 import com.sunshine.engine.base.Entity.ClickId;
@@ -34,14 +34,16 @@ public class StageView extends AnimView<StageHelper> {
   @Override
   protected void onClick(int x, int y) {
     RectF rc = new RectF();
+    Matrix m = new Matrix();
     for (int i = helper.entity.lstActor.size() - 1; i > -1; i--) {
       Actor a = helper.entity.lstActor.get(i);
       if (a.showing) {
         for (int j = a.lstBone.size() - 1; j > -1; j--) {
           Bone b = a.lstBone.get(j);
           if (b.showing) {
-            a.m.mapRect(rc, b.rc);
-            b.m.mapRect(rc);
+            m.set(a.m);
+            m.preConcat(b.m);
+            m.mapRect(rc, b.rc);
             if (rc.contains(x, y)) {
               Click click = helper.entity.mapClick.get(b.name);
               if (click != null) {

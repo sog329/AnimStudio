@@ -3,6 +3,9 @@ package com.sunshine.studio.bone.logic;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Paint.Style;
+import android.graphics.RectF;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
 import android.view.View;
@@ -10,8 +13,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
-
+import com.sunshine.engine.bone.logic.Actor;
 import com.sunshine.engine.bone.logic.Anim;
+import com.sunshine.engine.bone.logic.Bone;
 import com.sunshine.engine.bone.logic.Duration;
 import com.sunshine.studio.R;
 import com.sunshine.studio.base.InterpolatorSpinner;
@@ -327,28 +331,54 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
         .map(anim.ptRotate.x, n -> anim.ptRotate.x = n)
         .setOnFocusChangeListener(
             (v, b) -> {
-              if (b) setPercent(anim.duration, false);
+              if (b) {
+                setPercent(anim.duration, false);
+              }
             });
     ((StudioEt<Float>) findViewById(R.id.edit_rotate_y))
         .map(anim.ptRotate.y, n -> anim.ptRotate.y = n)
         .setOnFocusChangeListener(
             (v, b) -> {
-              if (b) setPercent(anim.duration, false);
+              if (b) {
+                setPercent(anim.duration, false);
+              }
             });
   }
 
-  public void drawRect(Canvas can) {
+  private Matrix m = new Matrix();
+  private RectF rc = new RectF();
+  private Paint paint = new Paint();
+
+  public void drawRect(BoneStudio studio, Canvas can) {
     if (getVisibility() == VISIBLE) {
       boolean drawLine = isShow(R.id.edit_rotate_anchor) || isShow(R.id.edit_rotate_range);
       if (isShow(R.id.edit_move_from) || isShow(R.id.edit_move_to) || drawLine) {
 
         if (anim.run(anim.duration.getPercent(studio.entity.getPercent()), studio.entity)) {
           anim.updateDrawInfo(studio.entity);
-          studio.entity.mergeDrawInfo(new Matrix());
+          m.reset();
+          studio.entity.mergeDrawInfo(m);
           int color = getResources().getColor(R.color.btn_bg);
           StudioRender2D.draw(studio.entity, can, color);
           if (drawLine) {
             StudioRender2D.draw(can, studio.entity.drawInfo.ptDst, color);
+          }
+        }
+      }
+    } else {
+      paint.setAntiAlias(true);
+      paint.setStyle(Style.STROKE);
+      paint.setStrokeWidth(5);
+      paint.setARGB(125, 125, 125, 125);
+      for (Actor a : studio.entity.lstActor) {
+        if (a.showing) {
+          for (Bone b : a.lstBone) {
+            if (b.showing) {
+              m.set(a.m);
+              m.preConcat(b.m);
+              m.mapRect(rc, b.rc);
+              can.drawRect(rc, paint);
+            }
           }
         }
       }

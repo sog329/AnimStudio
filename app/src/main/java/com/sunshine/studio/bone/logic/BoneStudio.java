@@ -1,12 +1,13 @@
 package com.sunshine.studio.bone.logic;
 
+import static com.sunshine.studio.base.StudioTool.EXTERNAL;
+
 import android.app.Dialog;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.view.View;
 import android.widget.SeekBar;
-
 import com.sunshine.engine.bone.StageView;
 import com.sunshine.engine.bone.logic.Actor;
 import com.sunshine.engine.bone.logic.Anim;
@@ -18,9 +19,6 @@ import com.sunshine.studio.base.RenderHelper;
 import com.sunshine.studio.base.Studio;
 import com.sunshine.studio.base.StudioCb;
 import com.sunshine.studio.base.XmlWriter;
-
-
-import static com.sunshine.studio.base.StudioTool.EXTERNAL;
 
 /** Created by songxiaoguang on 2017/12/2. */
 public class BoneStudio extends Studio<Stage> {
@@ -85,7 +83,7 @@ public class BoneStudio extends Studio<Stage> {
 
           @Override
           public void draw(Canvas can) {
-            editor.drawRect(can);
+            editor.drawRect(BoneStudio.this, can);
           }
 
           @Override

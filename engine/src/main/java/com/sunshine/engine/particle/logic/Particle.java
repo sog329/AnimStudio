@@ -29,7 +29,8 @@ public class Particle extends Skin {
     if (rp <= 1) {
       if (anim.run(rp, scene)) {
         showing = true;
-        scene.mergeDrawInfo(rc, m);
+        rc.set(scene.drawInfo.rcSrc);
+        scene.mergeDrawInfo(m);
         Render2D.draw(can, scene.bmp, rcBmp, scene.drawInfo);
       }
       return false;

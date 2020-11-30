@@ -31,20 +31,18 @@ public class Actor extends Anim.Helper {
         if (anim.run(percent, stage)) {
           showing = true;
           anim.updateDrawInfo(stage);
-          stage.mergeDrawInfo();
+          stage.mergeDrawInfo(m);
+          m.reset();
           int cs = can.save();
-          m.preRotate(
-              anim.rotate.getNow() - anim.rotate.getFrom(),
-              stage.drawInfo.ptDst.x,
-              stage.drawInfo.ptDst.y);
+          m.preRotate(anim.rotate.getNow(), stage.drawInfo.ptDst.x, stage.drawInfo.ptDst.y);
           m.preScale(
               anim.scaleX.getNow(),
               anim.scaleY.getNow(),
               stage.drawInfo.rcDst.centerX(),
               stage.drawInfo.rcDst.centerY());
           m.preTranslate(
-              (anim.centerX.getNow() - anim.centerX.getFrom()) * stage.scale,
-              (anim.centerY.getNow() - anim.centerY.getFrom()) * stage.scale);
+              (anim.centerX.getNow() - stage.scriptSize.width / 2) * stage.scale,
+              (anim.centerY.getNow() - stage.scriptSize.height / 2) * stage.scale);
           can.concat(m);
           drawBone(stage, can);
           can.restoreToCount(cs);

@@ -2,6 +2,7 @@ package com.sunshine.studio.bone.logic;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
 import android.view.View;
@@ -343,7 +344,7 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
 
         if (anim.run(anim.duration.getPercent(studio.entity.getPercent()), studio.entity)) {
           anim.updateDrawInfo(studio.entity);
-          studio.entity.mergeDrawInfo();
+          studio.entity.mergeDrawInfo(new Matrix());
           int color = getResources().getColor(R.color.btn_bg);
           StudioRender2D.draw(studio.entity, can, color);
           if (drawLine) {

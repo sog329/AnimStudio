@@ -60,7 +60,13 @@ public class StudioEt<T> extends android.support.v7.widget.AppCompatEditText {
           if (c.length() == 0) {
             return 0.0f;
           } else {
-            return Float.parseFloat(c.toString());
+            float f = 0f;
+            try {
+              f = Float.parseFloat(c.toString());
+            } catch (Exception e) {
+              // do nothing
+            }
+            return f;
           }
         });
   }

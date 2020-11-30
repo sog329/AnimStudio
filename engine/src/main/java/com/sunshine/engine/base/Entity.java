@@ -173,20 +173,7 @@ public abstract class Entity {
     }
   }
 
-  // todo use Matrix
-  public void mergeDrawInfo() {
-    // move
-    drawInfo.rcDst.left = drawInfo.rcSrc.left * scale + drawArea.l;
-    drawInfo.rcDst.top = drawInfo.rcSrc.top * scale + drawArea.t;
-    drawInfo.rcDst.right = drawInfo.rcSrc.right * scale + drawArea.l;
-    drawInfo.rcDst.bottom = drawInfo.rcSrc.bottom * scale + drawArea.t;
-    // rotate
-    drawInfo.ptDst.x = drawInfo.ptSrc.x * scale + drawArea.l;
-    drawInfo.ptDst.y = drawInfo.ptSrc.y * scale + drawArea.t;
-  }
-
-  public void mergeDrawInfo(RectF rc, Matrix m) {
-    rc.set(drawInfo.rcSrc);
+  public void mergeDrawInfo(Matrix m) {
     // move
     m.preTranslate(drawArea.l, drawArea.t);
     m.preScale(scale, scale);

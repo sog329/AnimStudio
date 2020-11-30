@@ -49,7 +49,8 @@ public class Bone extends Anim.Helper {
         float percent = anim.duration.getPercent(stage.getPercent());
         if (anim.run(percent, stage)) {
           anim.updateDrawInfo(stage);
-          stage.mergeDrawInfo(rc, m);
+          rc.set(stage.drawInfo.rcSrc);
+          stage.mergeDrawInfo(m);
           showing = true;
           if (lstRect.size() > 1) {
             rect = lstRect.get((int) (percent * (lstRect.size() - 1)));

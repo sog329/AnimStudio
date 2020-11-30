@@ -7,15 +7,30 @@
     android:orientation="horizontal"
     android:padding="5px">
 
-    <com.sunshine.studio.bone.logic.ExtendIv
-        android:id="@+id/iv_normal"
+    <FrameLayout
+        android:id="@+id/container_left"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:background="#000000"
-        android:tooltipText="原始皮肤" />
+        android:layout_height="match_parent">
+
+        <com.sunshine.studio.bone.logic.ExtendIv
+            android:id="@+id/iv_normal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#000000"
+            android:tooltipText="原始皮肤" />
+
+        <com.sunshine.studio.base.StudioTv
+            android:id="@+id/tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/tv_bg"
+            android:gravity="center"
+            android:textColor="@android:color/white" />
+    </FrameLayout>
 
     <LinearLayout
-        android:id="@+id/container"
+        android:id="@+id/container_right"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical"

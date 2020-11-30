@@ -199,17 +199,21 @@ public class DlgFactory {
   public static Dialog extend(final BoneStudio studio) {
     AlertDialog.Builder builder = new AlertDialog.Builder(studio.act, R.style.AppDialog);
     View view = LayoutInflater.from(studio.act).inflate(R.layout.dlg_studio_extend, null);
+    // container_left
+    View left = view.findViewById(R.id.container_left);
+    left.setLayoutParams(
+        new LinearLayout.LayoutParams(StudioTool.getDlgHeight(), StudioTool.getDlgHeight()));
     // iv_normal
     ExtendIv iv = view.findViewById(R.id.iv_normal);
     iv.autoSize = false;
-    iv.setLayoutParams(
-        new LinearLayout.LayoutParams(StudioTool.getDlgHeight(), StudioTool.getDlgHeight()));
-    // container
-    View c = view.findViewById(R.id.container);
+    // container_right
+    View right = view.findViewById(R.id.container_right);
     // iv_tall
     ExtendIv ivTall = view.findViewById(R.id.iv_tall);
     ivTall.autoSize = false;
     ivTall.inExtendY(true);
+    // tv
+    StudioTv tv = view.findViewById(R.id.tv);
     builder.setView(view);
     final Dialog dialog = builder.create();
     StudioEt<Integer> et = view.findViewById(R.id.et);
@@ -217,8 +221,8 @@ public class DlgFactory {
     Function<Boolean> extend =
         e -> {
           ivTall.setVisibility(e ? View.GONE : View.VISIBLE);
-          iv.setVisibility(e ? View.GONE : View.VISIBLE);
-          c.setLayoutParams(
+          left.setVisibility(e ? View.GONE : View.VISIBLE);
+          right.setLayoutParams(
               new LinearLayout.LayoutParams(
                   e ? StudioTool.getDlgHeight() : StudioTool.getDlgHeight() / 2,
                   e ? LayoutParams.WRAP_CONTENT : StudioTool.getDlgHeight()));
@@ -227,6 +231,8 @@ public class DlgFactory {
 
     dialog.setOnShowListener(
         d -> {
+          tv.setText(studio.bone.name);
+          tv.setVisibility(studio.bone.name == null ? View.GONE : View.VISIBLE);
           boolean external = studio.bone.externalId != null;
           extend.call(external);
           if (external) {

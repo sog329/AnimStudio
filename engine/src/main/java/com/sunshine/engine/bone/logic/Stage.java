@@ -35,7 +35,7 @@ public class Stage extends Entity {
           onRepeat.run();
         }
       }
-      if ((!repeat || autoStop) && getPercent() >= 1 && !inStudio) {
+      if (!repeat && autoStop && getPercent() >= 1 && !inStudio) {
         helper.stop();
       }
     }

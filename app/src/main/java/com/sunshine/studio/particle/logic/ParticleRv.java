@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
+import com.sunshine.engine.base.Entity.ClickId;
 import com.sunshine.studio.base.DemoRv;
 import com.sunshine.studio.base.StudioTool;
 
@@ -31,13 +32,13 @@ public class ParticleRv extends DemoRv {
         .setBind(
             (b, p) -> {
               p.setOnClick(
-                  "lobster", (s, x, y, rc) -> StudioTool.showToast(getContext(), s + "_click"));
+                  "lobster", (ClickId) (id) -> StudioTool.showToast(getContext(), id + "_click"));
               p.setOnClick(
-                  "fish", (s, x, y, rc) -> StudioTool.showToast(getContext(), s + "_click"));
+                  "fish", (ClickId) (id) -> StudioTool.showToast(getContext(), id + "_click"));
               p.setOnClick(
-                  "rice", (s, x, y, rc) -> StudioTool.showToast(getContext(), s + "_click"));
+                  "rice", (ClickId) (id) -> StudioTool.showToast(getContext(), id + "_click"));
               p.setOnClick(
-                  "chicken", (s, x, y, rc) -> StudioTool.showToast(getContext(), s + "_click"));
+                  "chicken", (ClickId) (id) -> StudioTool.showToast(getContext(), id + "_click"));
             });
     addData().setParticle("superlike");
     addData().setParticle("mahjong");

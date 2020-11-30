@@ -1,22 +1,17 @@
 package com.sunshine.engine.particle.logic;
 
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Rect;
-import android.graphics.RectF;
 
 import com.sunshine.engine.base.Render2D;
+import com.sunshine.engine.base.Skin;
 import com.sunshine.engine.base.Tool;
 
-public class Particle {
+public class Particle extends Skin {
   protected int activeTimeDuration = 1000;
   protected long activeTimeStart = Tool.NONE;
   protected Rect rcBmp = new Rect();
   protected Anim anim = new Anim();
-  public boolean showing = false;
-  public Matrix m = new Matrix();
-  public RectF rc = new RectF();
-  public String clickId = null;
 
   public void setRcBmp(Rect rect) {
     rcBmp.set(rect);
@@ -46,7 +41,7 @@ public class Particle {
 
   protected void end() {
     showing = false;
-    clickId = null;
+    name = null;
     activeTimeStart = Tool.NONE;
   }
 }

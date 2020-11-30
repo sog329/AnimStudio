@@ -80,10 +80,6 @@ public class StageParser extends XmlParser {
           bone = stage.getLastActor().getLastBone();
           bone.name = ary[0];
           break;
-        case CLICK_ID:
-          bone = stage.getLastActor().getLastBone();
-          bone.clickId = ary[0];
-          break;
         case SRC_LTWH:
           bone = stage.getLastActor().getLastBone();
           int left = Integer.parseInt(ary[0]);

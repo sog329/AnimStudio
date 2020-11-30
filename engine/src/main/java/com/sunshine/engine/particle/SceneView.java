@@ -6,6 +6,9 @@ import android.util.AttributeSet;
 
 import com.sunshine.engine.base.AnimView;
 import com.sunshine.engine.base.Entity.Click;
+import com.sunshine.engine.base.Entity.ClickId;
+import com.sunshine.engine.base.Entity.ClickParticle;
+import com.sunshine.engine.base.Entity.ClickRect;
 import com.sunshine.engine.particle.logic.Particle;
 import com.sunshine.engine.particle.logic.SceneHelper;
 
@@ -61,14 +64,20 @@ public class SceneView extends AnimView<SceneHelper> {
     RectF rc = new RectF();
     for (int i = helper.entity.lstActiveParticle.size() - 1; i > -1; i--) {
       Particle p = helper.entity.lstActiveParticle.get(i);
-      if (p.clickId != null && p.showing) {
+      if (p.showing) {
         p.m.mapRect(rc, p.rc);
         if (rc.contains(x, y)) {
-          Click click = helper.entity.mapClick.get(p.clickId);
+          Click click = helper.entity.mapClick.get(p.name);
           if (click != null) {
-            click.onClick(p.clickId, rc, x, y);
-            break;
+            if (click instanceof ClickParticle) {
+              ((ClickParticle) click).onClick(p.name, p);
+            } else if (click instanceof ClickId) {
+              ((ClickId) click).onClick(p.name);
+            } else if (click instanceof ClickRect) {
+              ((ClickRect) click).onClick(p.name, rc, x, y);
+            }
           }
+          break;
         }
       }
     }

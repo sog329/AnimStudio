@@ -30,7 +30,9 @@ public class Render2D {
   private static void drawCb(
       Canvas can, Callback cb, float percent, DrawInfo drawInfo, float scale) {
     cb.paint.setAlpha(drawInfo.alpha);
-    cb.onDraw(can, percent, drawInfo.rcDst, scale);
+    if (cb instanceof Rect2D) {
+      ((Rect2D) cb).onDraw(can, percent, drawInfo.rcDst, scale);
+    }
   }
 
   public static void draw(Canvas can, Callback cb, float percent, DrawInfo drawInfo, float scale) {
@@ -59,7 +61,9 @@ public class Render2D {
     final Paint paint = new Paint();
 
     void init();
+  }
 
+  public interface Rect2D extends Callback {
     void onDraw(Canvas can, float percent, RectF rect, float scale);
   }
 }

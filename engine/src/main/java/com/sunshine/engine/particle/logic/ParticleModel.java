@@ -11,7 +11,6 @@ import com.sunshine.engine.base.Size;
 import com.sunshine.engine.base.Tool;
 
 public class ParticleModel {
-  public String name = null;
   public Size<Integer> size = new Size(0, 0);
   public Rect rcBmp = new Rect(0, 0, 0, 0);
   public ProcessFloat chanceRange = new ProcessFloat(0f, 1f);
@@ -29,7 +28,7 @@ public class ParticleModel {
   public String interpolatorAlpha = InterpolatorType.spring.toString();
   public ProcessFloat scaleBegin = new ProcessFloat(1f, 1.2f);
   public ProcessFloat scaleEnd = new ProcessFloat(1f, 1f);
-  public String clickId = null;
+  public String name = null;
   //  public ProcessFloat scaleBeginY = new ProcessFloat(1f, 2f);
   //  public ProcessFloat scaleEndY = new ProcessFloat(0f, .2f);
   public String interpolatorScale = InterpolatorType.linear.toString();
@@ -84,6 +83,6 @@ public class ParticleModel {
     p.anim.rotate.setInterpolator(interpolatorRotate);
     p.anim.ptRotate.set(ptRotate.x, ptRotate.y);
     // click
-    p.clickId = clickId;
+    p.name = name;
   }
 }

@@ -6,6 +6,8 @@ import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.media.MediaPlayer;
 
+import com.sunshine.engine.particle.logic.Particle;
+
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.HashMap;
@@ -215,7 +217,17 @@ public abstract class Entity {
 
   public abstract boolean needDraw(float percent);
 
-  public interface Click {
+  public interface Click {}
+
+  public interface ClickId extends Click {
+    void onClick(String id);
+  }
+
+  public interface ClickRect extends Click {
     void onClick(String id, RectF rect, int x, int y);
+  }
+
+  public interface ClickParticle extends Click {
+    void onClick(String id, Particle p);
   }
 }

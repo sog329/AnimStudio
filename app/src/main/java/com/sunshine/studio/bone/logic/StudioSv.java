@@ -60,7 +60,7 @@ public class StudioSv extends StageView implements Studio.Callback<Stage> {
               for (int j = a.lstBone.size() - 1; j > -1; j--) {
                 Bone b = a.lstBone.get(j);
                 if (b.showing) {
-                  a.m.mapRect(rc, b.rcBone);
+                  a.m.mapRect(rc, b.rc);
                   b.m.mapRect(rc);
                   if (rc.contains(me.getX(), me.getY())) {
                     render.callback.onClickBone(b);

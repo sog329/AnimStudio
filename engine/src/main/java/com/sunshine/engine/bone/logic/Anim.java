@@ -1,12 +1,11 @@
 package com.sunshine.engine.bone.logic;
 
-import android.graphics.Matrix;
-
 import com.sunshine.engine.base.Entity;
 import com.sunshine.engine.base.Point;
 import com.sunshine.engine.base.ProcessFloat;
 import com.sunshine.engine.base.ProcessInt;
 import com.sunshine.engine.base.Size;
+import com.sunshine.engine.base.Skin;
 import com.sunshine.engine.base.Tool;
 
 import java.util.ArrayList;
@@ -86,9 +85,7 @@ public class Anim {
         .toString();
   }
 
-  public abstract static class Helper {
-    public Matrix m = new Matrix();
-    public boolean showing = false;
+  public abstract static class Helper extends Skin {
     public List<Anim> lstAnim = new ArrayList<>();
 
     protected void onDraw() {

@@ -8,6 +8,7 @@ import com.sunshine.studio.base.XmlWriter;
 
 import org.xmlpull.v1.XmlSerializer;
 
+
 import static com.sunshine.studio.base.XmlWriter.addTag;
 
 /** Created by songxiaoguang on 2017/12/3. */

@@ -6,7 +6,7 @@
     <max>17</max>
     <!--lobster-->
     <model>
-        <click_id>lobster</click_id>
+        <name>lobster</name>
         <chance_range>0,0.25</chance_range>
         <active_time>3000,4000</active_time>
         <src_ltwh>0,0,71,76</src_ltwh>
@@ -21,7 +21,7 @@
     </model>
     <!--fish-->
     <model>
-        <click_id>fish</click_id>
+        <name>fish</name>
         <chance_range>0.25,0.5</chance_range>
         <active_time>3000,4000</active_time>
         <src_ltwh>0,77,76,58</src_ltwh>
@@ -36,7 +36,7 @@
     </model>
     <!--rice-->
     <model>
-        <click_id>rice</click_id>
+        <name>rice</name>
         <chance_range>0.5,0.7</chance_range>
         <active_time>3000,4000</active_time>
         <src_ltwh>0,136,75,68</src_ltwh>
@@ -51,7 +51,7 @@
     </model>
     <!--chicken-->
     <model>
-        <click_id>chicken</click_id>
+        <name>chicken</name>
         <chance_range>0.7,1.0</chance_range>
         <active_time>3000,4000</active_time>
         <src_ltwh>0,205,73,64</src_ltwh>

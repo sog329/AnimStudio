@@ -13,7 +13,6 @@ public abstract class XmlParser extends DefaultHandler {
   public static final String NAME = "name";
   public static final String SRC_LTWH = "src_ltwh";
   public static final String EXTEND_Y = "extend_y";
-  public static final String CLICK_ID = "click_id";
 
   private StringBuilder sb = null;
 

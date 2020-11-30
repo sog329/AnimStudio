@@ -98,6 +98,11 @@ public abstract class AnimView<T extends ViewHelper> extends View {
     return helper.setExternal2D(id, cb);
   }
 
+  /**
+   * @param id
+   * @param click
+   * @return
+   */
   public boolean setOnClick(String id, Click click) {
     boolean result = helper.setOnClick(id, click);
     if (helper.entity != null && helper.entity.mapClick.size() > 0) {

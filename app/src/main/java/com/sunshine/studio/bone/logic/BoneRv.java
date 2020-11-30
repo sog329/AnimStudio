@@ -9,7 +9,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
-import com.sunshine.engine.base.Render2D;
+import com.sunshine.engine.base.Entity.ClickRect;
+import com.sunshine.engine.base.Render2D.Rect2D;
 import com.sunshine.studio.base.DemoRv;
 import com.sunshine.studio.base.StudioTool;
 
@@ -38,7 +39,7 @@ public class BoneRv extends DemoRv {
               b.setExternalBmp("pic", getBmp("pic/she.png"));
               b.setExternal2D(
                   "circle",
-                  new Render2D.Callback() {
+                  new Rect2D() {
                     @Override
                     public void init() {
                       paint.setAntiAlias(true);
@@ -54,23 +55,24 @@ public class BoneRv extends DemoRv {
                   });
               b.setOnClick(
                   "pic",
-                  (id, r, x, y) ->
-                      StudioTool.showToast(
-                          b.getContext(),
-                          id
-                              + " click\nx="
-                              + x
-                              + " in["
-                              + (int) r.left
-                              + ", "
-                              + (int) r.right
-                              + "]\ny="
-                              + y
-                              + " in["
-                              + (int) r.top
-                              + ", "
-                              + (int) r.bottom
-                              + "]"));
+                  (ClickRect)
+                      (id, r, x, y) ->
+                          StudioTool.showToast(
+                              b.getContext(),
+                              id
+                                  + " click\nx="
+                                  + x
+                                  + " in["
+                                  + (int) r.left
+                                  + ", "
+                                  + (int) r.right
+                                  + "]\ny="
+                                  + y
+                                  + " in["
+                                  + (int) r.top
+                                  + ", "
+                                  + (int) r.bottom
+                                  + "]"));
               Runnable post =
                   () -> {
                     p.stop();

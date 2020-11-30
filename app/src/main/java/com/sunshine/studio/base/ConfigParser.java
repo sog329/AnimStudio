@@ -14,7 +14,7 @@ import javax.xml.parsers.SAXParserFactory;
 /** Created by Jack on 2020/10/5. */
 public class ConfigParser extends XmlParser {
   private List<Packer.Cell> lst = null;
-  private String name = null;
+  private String id = null;
 
   public ConfigParser(List<Packer.Cell> lst) {
     this.lst = lst;
@@ -51,8 +51,8 @@ public class ConfigParser extends XmlParser {
           int right = Integer.parseInt(ary[2]) + left;
           int bottom = Integer.parseInt(ary[3]) + top;
           Packer.Cell rc = new Packer.Cell(left, top, right, bottom);
-          rc.name = name;
-          name = null;
+          rc.name = id;
+          id = null;
           rc.setXY(left, top);
           boolean repeat = false;
           for (Packer.Cell c : lst) {
@@ -66,7 +66,7 @@ public class ConfigParser extends XmlParser {
           }
           break;
         case NAME:
-          name = ary[0];
+          id = ary[0];
           break;
         case EXTEND_Y:
           int y = Integer.parseInt(ary[0]);

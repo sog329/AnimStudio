@@ -6,6 +6,8 @@ import android.util.AttributeSet;
 
 import com.sunshine.engine.base.AnimView;
 import com.sunshine.engine.base.Entity.Click;
+import com.sunshine.engine.base.Entity.ClickId;
+import com.sunshine.engine.base.Entity.ClickRect;
 import com.sunshine.engine.bone.logic.Actor;
 import com.sunshine.engine.bone.logic.Bone;
 import com.sunshine.engine.bone.logic.StageHelper;
@@ -37,15 +39,19 @@ public class StageView extends AnimView<StageHelper> {
       if (a.showing) {
         for (int j = a.lstBone.size() - 1; j > -1; j--) {
           Bone b = a.lstBone.get(j);
-          if (b.clickId != null && b.showing) {
-            a.m.mapRect(rc, b.rcBone);
+          if (b.showing) {
+            a.m.mapRect(rc, b.rc);
             b.m.mapRect(rc);
             if (rc.contains(x, y)) {
-              Click click = helper.entity.mapClick.get(b.clickId);
+              Click click = helper.entity.mapClick.get(b.name);
               if (click != null) {
-                click.onClick(b.clickId, rc, x, y);
-                break;
+                if (click instanceof ClickRect) {
+                  ((ClickRect) click).onClick(b.name, rc, x, y);
+                } else if (click instanceof ClickId) {
+                  ((ClickId) click).onClick(b.name);
+                }
               }
+              break;
             }
           }
         }

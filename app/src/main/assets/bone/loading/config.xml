@@ -96,7 +96,6 @@
         <bone>
             <name>pic</name>
             <src_id_wh>pic,1,1</src_id_wh>
-            <click_id>pic</click_id>
             <anim>
                 <range>0.0,1.0</range>
                 <move>600.0,600.0,600.0,600.0</move>

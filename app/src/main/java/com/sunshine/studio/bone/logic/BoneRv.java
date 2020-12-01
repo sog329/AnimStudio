@@ -116,6 +116,7 @@ public class BoneRv extends DemoRv {
                   () -> {
                     if (aryBmp[0] != null) {
                       aryBmp[0].recycle();
+                      aryBmp[0] = null;
                     }
                   });
             });

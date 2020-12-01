@@ -295,8 +295,7 @@
                 <range>0.0,0.6</range>
                 <move>383.0,300.0,383.0,300.0</move>
                 <move_interpolator>linear,linear</move_interpolator>
-                <scale>56.0,49.0,56.0,49.0</scale><!--1.5-->
-                <!--<scale>44.8.0,39.2,44.8.0,39.2</scale>-->
+                <scale>44.8,39.2,44.8,39.2</scale>
                 <scale_interpolator>linear,linear</scale_interpolator>
                 <rotate>0,0,16.0,14.0</rotate>
                 <rotate_interpolator>linear</rotate_interpolator>
@@ -308,7 +307,7 @@
                 <move>383.0,300.0,383.0,300.0</move>
                 <move_interpolator>linear,linear</move_interpolator>
                 <scale>0.0,0.0,2.0,2.0</scale>
-                <scale>0,0,72.8,63.7</scale><!--0~1.3-->
+                <scale>0,0,58.24,50.96</scale><!--0~1.3-->
                 <scale_interpolator>linear_2,linear</scale_interpolator>
                 <rotate>0,0,16.0,14.0</rotate>
                 <rotate_interpolator>linear</rotate_interpolator>
@@ -319,7 +318,7 @@
                 <range>0.8,0.92</range>
                 <move>383.0,300.0,383.0,300.0</move>
                 <move_interpolator>linear,linear</move_interpolator>
-                <scale>72.8,63.7,50.4,44.1</scale><!--1.3~.9-->
+                <scale>58.24,50.96,40.32,35.28</scale><!--1.3~.9-->
                 <scale_interpolator>linear,linear</scale_interpolator>
                 <rotate>0,0,16.0,14.0</rotate>
                 <rotate_interpolator>linear</rotate_interpolator>
@@ -330,7 +329,7 @@
                 <range>0.92,1.0</range>
                 <move>383.0,300.0,383.0,300.0</move>
                 <move_interpolator>linear,linear</move_interpolator>
-                <scale>50.4,44.1,56,49</scale>
+                <scale>40.32,35.28,44.8,39.2</scale>
                 <scale_interpolator>linear,linear</scale_interpolator>
                 <rotate>0,0,16.0,14.0</rotate>
                 <rotate_interpolator>linear</rotate_interpolator>

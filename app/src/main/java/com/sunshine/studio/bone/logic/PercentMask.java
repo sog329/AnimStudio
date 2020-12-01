@@ -55,6 +55,6 @@ public class PercentMask extends View {
 
   @Override
   public void onDraw(Canvas can) {
-    StudioRender2D.draw(can, tmpLen, getHeight(), color);
+    StudioRender2D.drawCross(can, tmpLen, getHeight(), color);
   }
 }

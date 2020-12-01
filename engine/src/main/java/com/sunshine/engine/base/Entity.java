@@ -174,6 +174,7 @@ public abstract class Entity {
   }
 
   public void mergeDrawInfo(Matrix m) {
+    m.reset();
     // move
     m.preTranslate(drawArea.l, drawArea.t);
     m.preScale(scale, scale);

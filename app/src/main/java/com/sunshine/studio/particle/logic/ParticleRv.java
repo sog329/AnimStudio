@@ -25,6 +25,7 @@ public class ParticleRv extends DemoRv {
 
   @Override
   protected void loadData() {
+    addData().setParticle("match_heart");
     addData().setParticle("snowing");
     addData().setParticle("tangyuan");
     addData()

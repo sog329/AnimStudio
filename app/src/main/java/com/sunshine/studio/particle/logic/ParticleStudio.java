@@ -325,12 +325,20 @@ public class ParticleStudio extends Studio<Scene> {
           editor,
           R.id.rotate_to_from,
           pm.rotateEnd == null ? 0 : pm.rotateEnd.getFrom(),
-          v -> pm.rotateEnd.setFrom(v));
+          v -> {
+            if (pm.rotateEnd != null) {
+              pm.rotateEnd.setFrom(v);
+            }
+          });
       mapInt(
           editor,
           R.id.rotate_to_to,
           pm.rotateEnd == null ? 0 : pm.rotateEnd.getTo(),
-          v -> pm.rotateEnd.setTo(v));
+          v -> {
+            if (pm.rotateEnd != null) {
+              pm.rotateEnd.setTo(v);
+            }
+          });
       mapFloat(editor, R.id.rotate_x, pm.ptRotate.x, v -> pm.ptRotate.x = v);
       mapFloat(editor, R.id.rotate_y, pm.ptRotate.y, v -> pm.ptRotate.y = v);
       mapSpinner(
@@ -375,12 +383,20 @@ public class ParticleStudio extends Studio<Scene> {
           editor,
           R.id.scale_to_from,
           pm.scaleEnd == null ? 0f : pm.scaleEnd.getFrom(),
-          v -> pm.scaleEnd.setFrom(v));
+          v -> {
+            if (pm.scaleEnd != null) {
+              pm.scaleEnd.setFrom(v);
+            }
+          });
       mapFloat(
           editor,
           R.id.scale_to_to,
           pm.scaleEnd == null ? 0f : pm.scaleEnd.getTo(),
-          v -> pm.scaleEnd.setTo(v));
+          v -> {
+            if (pm.scaleEnd != null) {
+              pm.scaleEnd.setTo(v);
+            }
+          });
       mapSpinner(
           editor, R.id.scale_interpolator, pm.interpolatorScale, s -> pm.interpolatorScale = s);
     }

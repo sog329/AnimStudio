@@ -33,12 +33,12 @@ public class StudioEt<T> extends android.support.v7.widget.AppCompatEditText {
       TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.StudioTv);
       scale = ta.getFloat(R.styleable.StudioTv_scale, 1);
     }
-    setInputType(EditorInfo.TYPE_CLASS_NUMBER);
+    setInputType(EditorInfo.TYPE_CLASS_PHONE);
     StudioTv.initSize(this, scale);
   }
 
   public StudioEt map(Integer value, Studio.MapValue<Integer> mapValue) {
-    setInputType(EditorInfo.TYPE_CLASS_NUMBER);
+    setInputType(EditorInfo.TYPE_CLASS_PHONE);
     return map(
         value,
         mapValue,
@@ -46,13 +46,19 @@ public class StudioEt<T> extends android.support.v7.widget.AppCompatEditText {
           if (c.length() == 0) {
             return 0;
           } else {
-            return Integer.parseInt(c.toString());
+            int result = 0;
+            try {
+              result = Integer.parseInt(c.toString());
+            } catch (Exception e) {
+              // do nothing
+            }
+            return result;
           }
         });
   }
 
   public StudioEt map(Float value, Studio.MapValue<Float> mapValue) {
-    setInputType(EditorInfo.TYPE_CLASS_NUMBER);
+    setInputType(EditorInfo.TYPE_CLASS_PHONE);
     return map(
         value,
         mapValue,

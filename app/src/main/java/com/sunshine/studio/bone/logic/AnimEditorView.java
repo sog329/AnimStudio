@@ -2,10 +2,6 @@ package com.sunshine.studio.bone.logic;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Paint.Style;
-import android.graphics.RectF;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
 import android.view.View;
@@ -13,9 +9,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
-import com.sunshine.engine.bone.logic.Actor;
+
 import com.sunshine.engine.bone.logic.Anim;
-import com.sunshine.engine.bone.logic.Bone;
 import com.sunshine.engine.bone.logic.Duration;
 import com.sunshine.studio.R;
 import com.sunshine.studio.base.InterpolatorSpinner;
@@ -345,10 +340,6 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
             });
   }
 
-  private Matrix m = new Matrix();
-  private RectF rc = new RectF();
-  private Paint paint = new Paint();
-
   public void drawRect(BoneStudio studio, Canvas can) {
     if (getVisibility() == VISIBLE) {
       boolean drawLine = isShow(R.id.edit_rotate_anchor) || isShow(R.id.edit_rotate_range);
@@ -356,32 +347,46 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
 
         if (anim.run(anim.duration.getPercent(studio.entity.getPercent()), studio.entity)) {
           anim.updateDrawInfo(studio.entity);
-          m.reset();
-          studio.entity.mergeDrawInfo(m);
+
+          studio.entity.mergeDrawInfo(StudioRender2D.m);
           int color = getResources().getColor(R.color.btn_bg);
-          StudioRender2D.draw(studio.entity, can, color);
+          StudioRender2D.draw(
+              can,
+              studio.entity.drawInfo.rcDst,
+              color,
+              100,
+              true,
+              studio.entity.drawInfo.rt,
+              studio.entity.drawInfo.ptDst.x,
+              studio.entity.drawInfo.ptDst.y);
+          StudioRender2D.draw(
+              can,
+              studio.entity.drawInfo.rcDst,
+              color,
+              255,
+              false,
+              studio.entity.drawInfo.rt,
+              studio.entity.drawInfo.ptDst.x,
+              studio.entity.drawInfo.ptDst.y);
           if (drawLine) {
-            StudioRender2D.draw(can, studio.entity.drawInfo.ptDst, color);
+            StudioRender2D.drawCross(can, studio.entity.drawInfo.ptDst, color);
           }
         }
       }
     } else {
-      paint.setAntiAlias(true);
-      paint.setStyle(Style.STROKE);
-      paint.setStrokeWidth(5);
-      paint.setARGB(125, 125, 125, 125);
-      for (Actor a : studio.entity.lstActor) {
-        if (a.showing) {
-          for (Bone b : a.lstBone) {
-            if (b.showing) {
-              m.set(a.m);
-              m.preConcat(b.m);
-              m.mapRect(rc, b.rc);
-              can.drawRect(rc, paint);
-            }
-          }
-        }
-      }
+      //      for (Actor a : studio.entity.lstActor) {
+      //        if (a.showing) {
+      //          for (Bone b : a.lstBone) {
+      //            if (b.showing) {
+      //              StudioRender2D.m.set(a.m);
+      //              StudioRender2D.m.preConcat(b.m);
+      //              StudioRender2D.m.mapRect(StudioRender2D.rc, b.rc);
+      //              StudioRender2D.draw(
+      //                  can, StudioRender2D.rc, Color.rgb(125, 125, 125), 125, false, 0, 0, 0);
+      //            }
+      //          }
+      //        }
+      //      }
     }
   }
 

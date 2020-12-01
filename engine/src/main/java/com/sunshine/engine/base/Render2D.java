@@ -63,7 +63,12 @@ public class Render2D {
     void init();
   }
 
-  public interface Rect2D extends Callback {
-    void onDraw(Canvas can, float percent, RectF rect, float scale);
+  public abstract static class Rect2D implements Callback {
+    @Override
+    public void init() {
+      paint.setAntiAlias(true);
+    }
+
+    public abstract void onDraw(Canvas can, float percent, RectF rect, float scale);
   }
 }

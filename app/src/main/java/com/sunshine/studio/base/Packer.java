@@ -72,13 +72,15 @@ public class Packer {
   }
 
   public static void saveFiles(List<Cell> lstRc, String folderPath) {
+    // tiny pic
+
     // build pic
     savePic(lstRc, folderPath);
     // build plist
     savePlist(lstRc, folderPath);
   }
 
-  public static void savePic(List<Cell> lstRc, String folderPath) {
+  private static void savePic(List<Cell> lstRc, String folderPath) {
     String picPath = folderPath + File.separator + "pic";
     int[] ary = Packer.getWH(lstRc);
     Bitmap bmp = Bitmap.createBitmap(ary[0], ary[1], Bitmap.Config.ARGB_8888);

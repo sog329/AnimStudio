@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:padding="5px">
 
+
     <com.sunshine.studio.bone.logic.BoneIv
         android:id="@+id/iv"
         android:layout_width="match_parent"
@@ -16,5 +17,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="#66000000"
+        android:gravity="center"
+        android:lines="1"
         android:textColor="@color/tv_color" />
+
+    <com.sunshine.studio.base.StudioCb
+        android:id="@+id/cb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="left|top"
+        android:theme="@style/Indigo"
+        android:visibility="gone" />
 </FrameLayout>

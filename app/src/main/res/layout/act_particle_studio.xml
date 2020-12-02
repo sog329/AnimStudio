@@ -16,6 +16,20 @@
             android:layout_height="match_parent" />
 
 
+        <com.sunshine.studio.base.StudioImageBtn
+            android:id="@+id/pic"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="5px"
+            android:gravity="center"
+            android:maxLines="1"
+            android:padding="10px"
+            android:src="@drawable/set"
+            android:textColor="@color/tv_color"
+            android:tooltipText="重新生成pic" />
+
     </RelativeLayout>
 
     <LinearLayout
@@ -25,12 +39,12 @@
         android:orientation="vertical">
 
         <include
-          android:id="@+id/anim_editor"
-          layout="@layout/layout_particle_studio_anim_editor"
-          android:layout_width="match_parent"
-          android:layout_height="0dp"
-          android:layout_weight="2"
-          android:visibility="invisible" />
+            android:id="@+id/anim_editor"
+            layout="@layout/layout_particle_studio_anim_editor"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:visibility="invisible" />
 
         <LinearLayout
             android:id="@+id/anim_lv"

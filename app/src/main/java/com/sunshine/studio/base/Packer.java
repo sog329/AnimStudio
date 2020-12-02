@@ -65,7 +65,7 @@ public class Packer {
     if (aryFiles != null && aryFiles.length > 0) {
       Arrays.sort(aryFiles, String.CASE_INSENSITIVE_ORDER);
       for (String name : aryFiles) {
-        lst.add(new Cell(name, folderPath + File.separator + name));
+        lst.add(new Cell(name, folderPath + File.separator + name, aryFiles.length == 1));
       }
     }
     return lst;
@@ -370,7 +370,7 @@ public class Packer {
 
     private static final byte SPACE = 1;
 
-    public Cell(String name, String path) {
+    public Cell(String name, String path, boolean only) {
       int n = name.lastIndexOf(".");
       if (n > -1) {
         this.name = name.substring(0, n);
@@ -378,7 +378,7 @@ public class Packer {
         this.name = name;
       }
       bmp = BitmapFactory.decodeFile(path);
-      decodeBmp();
+      decodeBmp(only);
     }
 
     public Cell(int left, int top, int right, int bottom) {
@@ -394,7 +394,7 @@ public class Packer {
       extendY = y;
     }
 
-    private void decodeBmp() {
+    private void decodeBmp(boolean only) {
       int x, y;
       boolean out = false;
       // 从上往下记录有颜色的起始点
@@ -424,7 +424,7 @@ public class Packer {
           break;
         }
       }
-      rcPic.bottom = y + 1;
+      rcPic.bottom = y + (only ? 0 : 1);
       // 从左往右记录有颜色的起始点
       for (x = 0; x < bmp.getWidth(); x++) {
         for (y = rcPic.top; y < rcPic.bottom; y++) {
@@ -452,7 +452,7 @@ public class Packer {
           break;
         }
       }
-      rcPic.right = x + 1;
+      rcPic.right = x + (only ? 0 : 1);
     }
 
     public Rect getDst() {

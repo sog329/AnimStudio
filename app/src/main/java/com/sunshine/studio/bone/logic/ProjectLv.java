@@ -21,6 +21,8 @@ import com.sunshine.studio.base.XmlWriter;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -60,6 +62,21 @@ public class ProjectLv extends ListView {
               () -> {
                 List<String> lstResult = new ArrayList<>();
                 File[] ary = new File(getFilePath(callback.getFolderName())).listFiles();
+                // 文件夹按修改时间降序
+                Arrays.sort(
+                    ary,
+                    new Comparator<File>() {
+                      public int compare(File f1, File f2) {
+                        long diff = f1.lastModified() - f2.lastModified();
+                        if (diff > 0) return -1;
+                        else if (diff == 0) return 0;
+                        else return 1;
+                      }
+
+                      public boolean equals(Object obj) {
+                        return true;
+                      }
+                    });
                 FilenameFilter filterConfig = (file, name) -> "config.xml".equals(name);
                 FilenameFilter filterPic = (file, name) -> "pic".equals(name);
                 FilenameFilter filterPlist = (file, name) -> "pic.plist".equals(name);

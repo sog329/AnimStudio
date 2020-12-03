@@ -300,6 +300,10 @@ public class DlgFactory {
     // tv
     StudioTv tv = view.findViewById(R.id.tv);
     builder.setView(view);
+    // extendY
+    View extendY = view.findViewById(R.id.extendY);
+    extendY.setOnClickListener(
+        v -> right.setVisibility(right.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE));
     final Dialog dialog = builder.create();
     StudioEt<Integer> et = view.findViewById(R.id.et);
 
@@ -312,6 +316,11 @@ public class DlgFactory {
                   e ? StudioTool.getDlgHeight() : StudioTool.getDlgHeight() / 2,
                   e ? LayoutParams.WRAP_CONTENT : StudioTool.getDlgHeight()));
           et.setHint(null);
+          if (!e) {
+            right.setVisibility(studio.bone.extendY == null ? View.GONE : View.VISIBLE);
+          } else {
+            right.setVisibility(View.VISIBLE);
+          }
         };
 
     dialog.setOnShowListener(

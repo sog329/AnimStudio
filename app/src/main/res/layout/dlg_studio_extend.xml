@@ -27,6 +27,19 @@
             android:background="@color/tv_bg"
             android:gravity="center"
             android:textColor="@android:color/white" />
+
+        <com.sunshine.studio.base.StudioImageBtn
+            android:id="@+id/extendY"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="top|right"
+            android:layout_margin="5px"
+            android:background="@color/btn_bg"
+            android:gravity="center"
+            android:padding="10px"
+            android:src="@drawable/set"
+            android:textColor="@color/tv_color"
+            android:tooltipText="设置extendY" />
     </FrameLayout>
 
     <LinearLayout

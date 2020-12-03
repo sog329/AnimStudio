@@ -17,7 +17,7 @@ import com.sunshine.studio.base.DlgFactory;
 import com.sunshine.studio.base.PlistParser;
 import com.sunshine.studio.base.RenderHelper;
 import com.sunshine.studio.base.Studio;
-import com.sunshine.studio.base.StudioCb;
+import com.sunshine.studio.base.StudioImageBtn;
 import com.sunshine.studio.base.XmlWriter;
 
 import java.util.ArrayList;
@@ -141,7 +141,7 @@ public class BoneStudio extends Studio<Stage> {
 
           @Override
           public int getAnimBgColor() {
-            StudioCb cbBg = act.findViewById(R.id.cb_bg);
+            StudioImageBtn cbBg = act.findViewById(R.id.cb_bg);
             return cbBg.isChecked() ? Color.BLACK : Color.WHITE;
           }
         });

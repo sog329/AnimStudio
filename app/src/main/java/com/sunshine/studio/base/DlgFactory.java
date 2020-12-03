@@ -22,6 +22,9 @@ import com.sunshine.studio.bone.logic.BmpRect;
 import com.sunshine.studio.bone.logic.BoneIv;
 import com.sunshine.studio.bone.logic.BoneStudio;
 import com.sunshine.studio.bone.logic.ExtendIv;
+import com.sunshine.studio.bone.logic.MenuLv;
+import com.sunshine.studio.bone.logic.MenuLv.Menu;
+import com.sunshine.studio.bone.logic.MenuLv.MenuAdapter;
 import com.sunshine.studio.bone.logic.ProjectLv;
 
 import java.util.ArrayList;
@@ -33,6 +36,37 @@ import static com.sunshine.studio.base.StudioTool.PNG;
 
 /** Created by songxiaoguang on 2017/12/2. */
 public class DlgFactory {
+  public static Dialog menu(final Studio studio) {
+    AlertDialog.Builder builder = new AlertDialog.Builder(studio.act, R.style.AppDialog);
+    View view = LayoutInflater.from(studio.act).inflate(R.layout.dlg_studio_menu, null);
+    MenuLv lv = view.findViewById(R.id.lv);
+    lv.setLayoutParams(
+        new FrameLayout.LayoutParams(
+            StudioTool.getDlgWidth(), ViewGroup.LayoutParams.WRAP_CONTENT));
+    builder.setView(view);
+    final Dialog dialog = builder.create();
+    MenuLv.MenuAdapter adapter = new MenuAdapter();
+    List<Menu> lst = new ArrayList<>();
+    lst.add(
+        new Menu(
+            "open",
+            v -> {
+              dialog.dismiss();
+              studio.dlgProject.show();
+            }));
+    lst.add(
+        new Menu(
+            "packer",
+            v -> {
+              dialog.dismiss();
+              studio.dlgPacker.show();
+            }));
+    lst.add(new Menu("save as", v -> StudioTool.showToast(studio.act, "todo")));
+    lv.setAdapter(adapter);
+    adapter.loadData(lst);
+    return dialog;
+  }
+
   public static Dialog project(final Studio studio) {
     AlertDialog.Builder builder = new AlertDialog.Builder(studio.act, R.style.AppDialog);
     View view = LayoutInflater.from(studio.act).inflate(R.layout.dlg_studio_project, null);
@@ -133,6 +167,7 @@ public class DlgFactory {
         v -> {
           List<String> lst = new ArrayList<>(adapter.lstCheck);
           if (lst.size() > 0) {
+            studio.act.findViewById(R.id.save).performClick();
             loading.setVisibility(View.VISIBLE);
             new Thread(
                     () -> {

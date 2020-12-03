@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 
 /** Created by songxiaoguang on 2017/12/6. */
 public class StudioImageBtn extends AppCompatImageView {
-
+  private boolean checked = false;
   public boolean autoSize = true;
 
   public StudioImageBtn(Context context) {
@@ -21,7 +21,7 @@ public class StudioImageBtn extends AppCompatImageView {
     super(context, attrs, defStyleAttr);
   }
 
-  public int getSize() {
+  public static int getSize() {
     return StudioTool.getBtnHeight() + 20;
   }
 
@@ -31,5 +31,20 @@ public class StudioImageBtn extends AppCompatImageView {
     if (autoSize) {
       StudioTool.square(this, w, h, getSize());
     }
+  }
+
+  public boolean isChecked() {
+    return checked;
+  }
+
+  public void mapValue(boolean b, Studio.MapValue<Boolean> mapValue) {
+    setOnClickListener(null);
+    checked = b;
+    setOnClickListener(
+        v -> {
+          checked = !checked;
+          mapValue.update(checked);
+        });
+    mapValue.update(b);
   }
 }

@@ -487,7 +487,7 @@ public class ParticleStudio extends Studio<Scene> {
 
           @Override
           public int getAnimBgColor() {
-            StudioCb cbBg = act.findViewById(R.id.cb_bg);
+            StudioImageBtn cbBg = act.findViewById(R.id.cb_bg);
             return cbBg.isChecked() ? Color.BLACK : Color.WHITE;
           }
         });

@@ -22,6 +22,7 @@ public abstract class Studio<T extends Entity> {
   protected Dialog dlgProject = null;
   public Dialog dlgPic = null;
   public Dialog dlgPacker = null;
+  protected Dialog dlgMenu = null;
   protected Dialog dlgEntity = null;
   protected Dialog dlgInterpolator = null;
 
@@ -37,27 +38,29 @@ public abstract class Studio<T extends Entity> {
 
   protected void initBtn() {
     AnimView studioSv = act.findViewById(R.id.sv);
-    // packer
-    act.findViewById(R.id.packer).setOnClickListener(v -> dlgPacker.show());
     // add
     act.findViewById(R.id.add).setOnClickListener(v -> dlgPic.show());
-    // open
-    act.findViewById(R.id.open).setOnClickListener(v -> dlgProject.show());
+    // menu
+    act.findViewById(R.id.menu).setOnClickListener(v -> dlgMenu.show());
     // save
     act.findViewById(R.id.save)
         .setOnClickListener(
             v -> {
-              StudioTool.showToast(act, projectName + " saved");
               XmlWriter.save(
                   getFilePath(getProjectFolderName(), projectName, "config.xml"),
                   getWriter(entity, null));
+              StudioTool.showToast(act, projectName + " saved");
             });
     // set
     act.findViewById(R.id.set).setOnClickListener(v -> dlgEntity.show());
     // anim bg color
-    StudioCb cbBg = act.findViewById(R.id.cb_bg);
-    cbBg.setOnCheckedChangeListener((btn, b) -> studioSv.postInvalidate());
-    cbBg.setChecked(true);
+    StudioImageBtn cb = act.findViewById(R.id.cb_bg);
+    cb.mapValue(
+        true,
+        b -> {
+          cb.setImageResource(b ? R.drawable.black : R.drawable.white);
+          studioSv.postInvalidate();
+        });
     // stage size_w
     AppCompatSeekBar sbSizeW = act.findViewById(R.id.size_w);
     sbSizeW.setOnSeekBarChangeListener(
@@ -116,6 +119,7 @@ public abstract class Studio<T extends Entity> {
     dlgEntity = DlgFactory.entity(this);
     dlgInterpolator = DlgFactory.interpolator(this);
     dlgPacker = DlgFactory.packer(this);
+    dlgMenu = DlgFactory.menu(this);
   }
 
   public void onGetProject(String name) {

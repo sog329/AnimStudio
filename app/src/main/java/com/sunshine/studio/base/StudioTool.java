@@ -109,7 +109,7 @@ public class StudioTool {
   }
 
   public static int getBtnHeight() {
-    return screenHeight / 15;
+    return screenHeight / 14;
   }
 
   public static void copyFile(InputStream input, File to) {

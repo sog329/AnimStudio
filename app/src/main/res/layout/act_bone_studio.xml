@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:attrs="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,20 +17,6 @@
             android:id="@+id/sv"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
-        <com.sunshine.studio.base.StudioImageBtn
-            android:id="@+id/packer"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_margin="5px"
-            android:gravity="center"
-            android:maxLines="1"
-            android:padding="10px"
-            android:src="@drawable/set"
-            android:textColor="@color/tv_color"
-            android:tooltipText="重新生成pic" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,12 +53,19 @@
                 android:layout_weight=".5"
                 android:theme="@style/Purple" />
 
-            <com.sunshine.studio.base.StudioCb
+            <com.sunshine.studio.base.StudioImageBtn
                 android:id="@+id/cb_bg"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:theme="@style/Purple"
-                android:tooltipText="✅：黑色背景\n❌：白色背景" />
+                android:layout_marginLeft="5px"
+                android:layout_marginTop="5px"
+                android:layout_marginBottom="5px"
+                android:background="@drawable/bg_btn"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="10px"
+                android:src="@drawable/menu"
+                android:tooltipText="控件背景色" />
 
         </LinearLayout>
     </RelativeLayout>
@@ -112,19 +106,6 @@
                 android:padding="5px">
 
                 <com.sunshine.studio.base.StudioImageBtn
-                    android:id="@+id/save"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5px"
-                    android:background="@drawable/bg_btn"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:padding="10px"
-                    android:src="@drawable/save"
-                    android:textColor="@color/tv_color"
-                    android:tooltipText="保存" />
-
-                <com.sunshine.studio.base.StudioImageBtn
                     android:id="@+id/add"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -136,6 +117,19 @@
                     android:src="@drawable/add"
                     android:textColor="@color/tv_color"
                     android:tooltipText="增加Actor" />
+
+                <com.sunshine.studio.base.StudioImageBtn
+                    android:id="@+id/save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5px"
+                    android:background="@drawable/bg_btn"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:padding="10px"
+                    android:src="@drawable/save"
+                    android:textColor="@color/tv_color"
+                    android:tooltipText="保存" />
 
                 <com.sunshine.studio.base.StudioImageBtn
                     android:id="@+id/play"
@@ -159,7 +153,7 @@
                     android:theme="@style/Purple" />
 
                 <com.sunshine.studio.base.StudioImageBtn
-                    android:id="@+id/open"
+                    android:id="@+id/menu"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5px"
@@ -169,9 +163,9 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:padding="10px"
-                    android:src="@drawable/open"
+                    android:src="@drawable/menu"
                     android:textColor="@color/tv_color"
-                    android:tooltipText="打开项目" />
+                    android:tooltipText="更多选项" />
 
             </LinearLayout>
         </LinearLayout>

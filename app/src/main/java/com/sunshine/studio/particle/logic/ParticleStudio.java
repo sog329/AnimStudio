@@ -32,7 +32,9 @@ import com.sunshine.studio.bone.logic.BmpRect;
 import com.sunshine.studio.bone.logic.BoneIv;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
@@ -441,12 +443,29 @@ public class ParticleStudio extends Studio<Scene> {
         new SceneRender.Callback() {
           @Override
           public void onLoad() {
+            // 重新映射皮肤资源坐标
+            List<BmpRect> lst = new ArrayList<>();
+            new PlistParser().parse(getPath("pic.plist"), lst);
+            Map<String, BmpRect> map = new HashMap<>();
+            if (lst.size() > 0) {
+              for (BmpRect r : lst) {
+                map.put(r.name, r);
+              }
+              for (ParticleModel m : entity.lstParticleModel) {
+                BmpRect r = map.get(m.name);
+                if (r != null) {
+                  m.rcBmp = r.lstRect.get(0);
+                }
+              }
+            }
+            // 选择默认module
             if (entity.lstParticleModel.size() > 0) {
               model = entity.lstParticleModel.get(0);
               renderEditor(act.findViewById(R.id.anim_editor), model);
             } else {
               model = null;
             }
+            // 刷新module列表
             updateAnimLv();
           }
 

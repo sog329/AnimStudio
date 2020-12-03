@@ -53,7 +53,7 @@ public class StudioRender2D {
     can.drawLine(pt.x - len, pt.y, pt.x + len, pt.y, paint);
   }
 
-  public static void drawCross(Canvas can, float x, float h, int color) {
+  public static void drawLine(Canvas can, float x, float h, int color) {
     paint.setColor(color);
     can.drawLine(x, 0, x, h, paint);
   }

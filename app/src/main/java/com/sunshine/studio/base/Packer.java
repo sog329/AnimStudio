@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -31,6 +32,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+
+
+import static com.sunshine.studio.base.StudioTool.PNG;
 
 /** Created by Jack on 2019-11-11. */
 public class Packer {
@@ -53,15 +57,17 @@ public class Packer {
     return new int[] {w, h};
   }
 
-  public static List<Cell> getLstBmpRc(String folderPath) {
+  public static void buildPic(String folderPath, FilenameFilter filter) {
+    List<Packer.Cell> lst = Packer.getLstBmpRc(folderPath, filter);
+    if (lst.size() > 0) {
+      lst = Packer.packer(lst);
+      Packer.saveFiles(lst, folderPath);
+    }
+  }
+
+  private static List<Cell> getLstBmpRc(String folderPath, FilenameFilter filter) {
     List<Cell> lst = new ArrayList<>();
-    String[] aryFiles =
-        new File(folderPath)
-            .list(
-                (dir, name) -> {
-                  name = name.toLowerCase();
-                  return name.endsWith(".png") || name.endsWith(".jgp") || name.endsWith(".jpeg");
-                });
+    String[] aryFiles = new File(folderPath).list(filter);
     if (aryFiles != null && aryFiles.length > 0) {
       Arrays.sort(aryFiles, String.CASE_INSENSITIVE_ORDER);
       for (String name : aryFiles) {
@@ -71,24 +77,40 @@ public class Packer {
     return lst;
   }
 
-  public static void saveFiles(List<Cell> lstRc, String folderPath) {
-    // tiny pic
-
+  private static void saveFiles(List<Cell> lstRc, String folderPath) {
+    // save cell
+    List<Cell> lst = new ArrayList<>();
+    for (Cell c : lstRc) {
+      if (c.rcPic.width() < c.bmp.getWidth() || c.rcPic.height() < c.bmp.getHeight()) {
+        lst.add(c);
+        savePic(lst, folderPath + File.separator + c.name + PNG, false);
+        lst.clear();
+      }
+    }
     // build pic
-    savePic(lstRc, folderPath);
+    savePic(lstRc, folderPath + File.separator + "pic", true);
     // build plist
     savePlist(lstRc, folderPath);
   }
 
-  private static void savePic(List<Cell> lstRc, String folderPath) {
-    String picPath = folderPath + File.separator + "pic";
-    int[] ary = Packer.getWH(lstRc);
-    Bitmap bmp = Bitmap.createBitmap(ary[0], ary[1], Bitmap.Config.ARGB_8888);
+  private static void savePic(List<Cell> lstRc, String picPath, boolean isFinal) {
+    Bitmap bmp = null;
+    if (isFinal) {
+      int[] ary = Packer.getWH(lstRc);
+      bmp = Bitmap.createBitmap(ary[0], ary[1], Bitmap.Config.ARGB_8888);
+    } else {
+      Rect r = lstRc.get(0).getRcPic();
+      bmp = Bitmap.createBitmap(r.width(), r.height(), Bitmap.Config.ARGB_8888);
+    }
     Canvas can = new Canvas(bmp);
     Render2D.setDrawFilter(can);
     for (Cell rc : lstRc) {
-      can.drawBitmap(rc.bmp, rc.getRcPic(), rc.getDst(), Render2D.PAINT);
-      rc.bmp.recycle();
+      Rect r = rc.getRcPic();
+      can.drawBitmap(
+          rc.bmp, r, isFinal ? rc.getDst() : new Rect(0, 0, r.width(), r.height()), Render2D.PAINT);
+      if (isFinal) {
+        rc.bmp.recycle();
+      }
     }
     // save pic
     BufferedOutputStream bos = null;
@@ -214,7 +236,7 @@ public class Packer {
         });
   }
 
-  public static List<Cell> packer(List<Cell> lstRc) {
+  private static List<Cell> packer(List<Cell> lstRc) {
     // 找出最大边 & 排序
     for (Cell rc : lstRc) {
       rc.max = Math.max(rc.width(), rc.height());
@@ -373,13 +395,11 @@ public class Packer {
     private static final byte SPACE = 1;
 
     public Cell(String name, String path, boolean only) {
-      int n = name.lastIndexOf(".");
-      if (n > -1) {
-        this.name = name.substring(0, n);
-      } else {
-        this.name = name;
-      }
+      this.name = StudioTool.getFileName(name);
       bmp = BitmapFactory.decodeFile(path);
+      if (bmp == null) {
+        Tool.log("bmp==null: path=" + path);
+      }
       decodeBmp(only);
     }
 

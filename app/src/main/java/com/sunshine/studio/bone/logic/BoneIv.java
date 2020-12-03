@@ -3,7 +3,9 @@ package com.sunshine.studio.bone.logic;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
@@ -19,8 +21,9 @@ public class BoneIv extends StudioImageBtn {
   protected WeakReference<Bitmap> bmp = null;
   protected List<Rect> lstRcBmp = new ArrayList<>();
   protected Rect rcView = new Rect();
-  protected Rect rcDraw = new Rect();
+  protected RectF rcDraw = new RectF();
   private long firstDrawTime = 0;
+  public boolean drawRc = false;
 
   public BoneIv(Context context) {
     super(context);
@@ -35,13 +38,19 @@ public class BoneIv extends StudioImageBtn {
   }
 
   public void setBmp(Bitmap bmp, List<Rect> lst) {
-    this.bmp = new WeakReference<>(bmp);
     lstRcBmp.clear();
-    if (lst != null) {
-      lstRcBmp.addAll(lst);
+    if (bmp == null) {
+      this.bmp = null;
+    } else {
+      this.bmp = new WeakReference<>(bmp);
+      if (lst != null) {
+        lstRcBmp.addAll(lst);
+      } else {
+        lstRcBmp.add(new Rect(0, 0, bmp.getWidth(), bmp.getHeight()));
+      }
+      firstDrawTime = 0;
+      mergeRcDraw();
     }
-    firstDrawTime = 0;
-    mergeRcDraw();
   }
 
   @Override
@@ -52,7 +61,7 @@ public class BoneIv extends StudioImageBtn {
   }
 
   private void mergeRcDraw() {
-    if (lstRcBmp.size() > 0) {
+    if (lstRcBmp.size() > 0 && rcView.width() > 0 && rcView.height() > 0) {
       Rect rcBmp = lstRcBmp.get(0);
       if (1f * rcBmp.width() / rcBmp.height() > 1f * rcView.width() / rcView.height()) {
         int space =
@@ -63,8 +72,8 @@ public class BoneIv extends StudioImageBtn {
             (rcView.width() - (int) (1f * rcView.height() / rcBmp.height() * rcBmp.width())) / 2;
         rcDraw.set(space, 0, rcView.width() - space, rcView.height());
       }
+      invalidate();
     }
-    invalidate();
   }
 
   @Override
@@ -85,6 +94,9 @@ public class BoneIv extends StudioImageBtn {
           invalidate();
         }
         can.drawBitmap(bitmap, rcBmp, rcDraw, null);
+        if (drawRc) {
+          StudioRender2D.draw(can, rcDraw, Color.rgb(125, 125, 125), 125, false, 0, 0, 0);
+        }
       }
     }
   }

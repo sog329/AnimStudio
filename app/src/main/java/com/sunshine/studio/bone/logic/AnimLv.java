@@ -22,6 +22,7 @@ import com.sunshine.studio.base.StudioTv;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 /** Created by songxiaoguang on 2017/12/2. */
@@ -214,10 +215,10 @@ public class AnimLv extends ListView {
         Bitmap bmp = studio.entity.bmp;
         if (bone.externalId != null) {
           bmp = studio.entity.mapBmp.get(bone.externalId);
-          if (bmp == null) {
-            bmp = StudioTool.getBmp(bone.externalId);
-            studio.entity.mapBmp.put(bone.externalId, bmp);
-          }
+        }
+        if (bmp == null) {
+          bmp = StudioTool.getBmp(bone.externalId);
+          studio.entity.mapBmp.put(bone.externalId, bmp);
         }
         iv.setBmp(bmp, bone.lstRect);
         iv.setOnClickListener(

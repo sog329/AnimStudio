@@ -26,6 +26,7 @@ import java.util.Comparator;
 import java.util.List;
 
 
+import static com.sunshine.studio.base.StudioTool.PNG;
 import static com.sunshine.studio.base.StudioTool.getFilePath;
 
 /** Created by songxiaoguang on 2017/12/2. */
@@ -85,11 +86,12 @@ public class ProjectLv extends ListView {
                     // use pics to build pic & plist
                     if (file.listFiles(filterPic).length != 1
                         || file.listFiles(filterPlist).length != 1) {
-                      List<Packer.Cell> lst = Packer.getLstBmpRc(file.getPath());
-                      if (lst.size() > 0) {
-                        lst = Packer.packer(lst);
-                        Packer.saveFiles(lst, file.getPath());
-                      }
+                      Packer.buildPic(
+                          file.getPath(),
+                          (dir, name) -> {
+                            name = name.toLowerCase();
+                            return name.endsWith(PNG);
+                          });
                     }
                     // use config to build plist
                     if (file.listFiles(filterConfig).length == 1

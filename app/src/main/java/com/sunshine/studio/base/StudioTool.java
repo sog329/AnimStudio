@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -30,6 +31,7 @@ public class StudioTool {
   public static int screenWidth = 0;
   public static int screenHeight = 0;
   public static final String EXTERNAL = "external";
+  public static final String PNG = ".png";
 
   public static void init(Activity act) {
     Tool.DEBUG = true;
@@ -216,5 +218,31 @@ public class StudioTool {
     int g = h / 255;
     bmp.eraseColor(Color.rgb(r, g, 0));
     return bmp;
+  }
+
+  public static String getFileName(String name) {
+    int n = name.lastIndexOf(".");
+    if (n > -1) {
+      return name.substring(0, n);
+    } else {
+      return name;
+    }
+  }
+
+  public static int getPicDlgWidth() {
+    return (int) (StudioTool.getDlgWidth() * 1.5f);
+  }
+
+  public static Bitmap getBmp(String path, int w, int h) {
+    BitmapFactory.Options o = new BitmapFactory.Options();
+    o.inJustDecodeBounds = true;
+    o.inSampleSize = 1;
+    BitmapFactory.decodeFile(path, o);
+    while (o.outWidth > w || o.outHeight > h) {
+      o.inSampleSize *= 2;
+      BitmapFactory.decodeFile(path, o);
+    }
+    o.inJustDecodeBounds = false;
+    return BitmapFactory.decodeFile(path, o);
   }
 }

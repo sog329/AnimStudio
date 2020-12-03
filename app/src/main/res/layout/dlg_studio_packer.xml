@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/dlg_bg"
+    android:orientation="horizontal"
+    android:padding="5px">
+
+    <FrameLayout
+        android:id="@+id/left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"
+            android:orientation="vertical">
+
+            <com.sunshine.studio.bone.logic.BoneIv
+                android:id="@+id/iv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:id="@+id/build"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5px"
+                android:gravity="center"
+                android:text="build"
+                android:textColor="@color/tv_color" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <com.sunshine.studio.base.PicGv
+        android:id="@+id/gv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:horizontalSpacing="0dp"
+        android:numColumns="4"
+        android:scrollbars="vertical"
+        android:verticalSpacing="0dp" />
+</LinearLayout>

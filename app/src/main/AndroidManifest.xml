@@ -17,22 +17,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-      <activity
+        <activity
             android:name=".bone.BoneStudioAct"
             android:configChanges="orientation|screenSize|keyboardHidden|navigation"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="sensorLandscape" />
         <activity
             android:name=".particle.ParticleStudioAct"
             android:configChanges="orientation|screenSize|keyboardHidden|navigation"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="sensorLandscape" />
         <activity
             android:name=".particle.ParticleDemoAct"
             android:configChanges="orientation|screenSize|keyboardHidden|navigation"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="sensorLandscape" />
         <activity
             android:name=".bone.BoneDemoAct"
             android:configChanges="orientation|screenSize|keyboardHidden|navigation"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="sensorLandscape" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

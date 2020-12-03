@@ -21,6 +21,7 @@ public abstract class Studio<T extends Entity> {
   protected String projectName = null;
   protected Dialog dlgProject = null;
   public Dialog dlgPic = null;
+  public Dialog dlgPacker = null;
   protected Dialog dlgEntity = null;
   protected Dialog dlgInterpolator = null;
 
@@ -36,6 +37,8 @@ public abstract class Studio<T extends Entity> {
 
   protected void initBtn() {
     AnimView studioSv = act.findViewById(R.id.sv);
+    // packer
+    act.findViewById(R.id.packer).setOnClickListener(v -> dlgPacker.show());
     // add
     act.findViewById(R.id.add).setOnClickListener(v -> dlgPic.show());
     // open
@@ -112,6 +115,7 @@ public abstract class Studio<T extends Entity> {
     dlgPic = DlgFactory.pic(this);
     dlgEntity = DlgFactory.entity(this);
     dlgInterpolator = DlgFactory.interpolator(this);
+    dlgPacker = DlgFactory.packer(this);
   }
 
   public void onGetProject(String name) {

@@ -91,8 +91,8 @@ public class ExtendIv extends BoneIv {
           if (extendY != null) {
             Rect rcBmp = lstRcBmp.get(0);
             float h = 1f * rcDraw.height() / rcBmp.height();
-            int top = rcDraw.top + (int) ((extendY - 1) * h);
-            rcLineY.set(rcDraw.left, top, rcDraw.right, top + Math.max(10, (int) h));
+            int top = (int) rcDraw.top + (int) ((extendY - 1) * h);
+            rcLineY.set((int) rcDraw.left, top, (int) rcDraw.right, top + Math.max(10, (int) h));
             can.drawRect(rcLineY, paint);
           }
         }

@@ -1,13 +1,12 @@
 package com.sunshine.studio.bone.logic;
 
-import static com.sunshine.studio.base.StudioTool.EXTERNAL;
-
 import android.app.Dialog;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.view.View;
 import android.widget.SeekBar;
+
 import com.sunshine.engine.bone.StageView;
 import com.sunshine.engine.bone.logic.Actor;
 import com.sunshine.engine.bone.logic.Anim;
@@ -15,10 +14,19 @@ import com.sunshine.engine.bone.logic.Bone;
 import com.sunshine.engine.bone.logic.Stage;
 import com.sunshine.studio.R;
 import com.sunshine.studio.base.DlgFactory;
+import com.sunshine.studio.base.PlistParser;
 import com.sunshine.studio.base.RenderHelper;
 import com.sunshine.studio.base.Studio;
 import com.sunshine.studio.base.StudioCb;
 import com.sunshine.studio.base.XmlWriter;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+import static com.sunshine.studio.base.StudioTool.EXTERNAL;
 
 /** Created by songxiaoguang on 2017/12/2. */
 public class BoneStudio extends Studio<Stage> {
@@ -88,6 +96,23 @@ public class BoneStudio extends Studio<Stage> {
 
           @Override
           public void onLoad() {
+            List<BmpRect> lst = new ArrayList<>();
+            new PlistParser().parse(getPath("pic.plist"), lst);
+            Map<String, BmpRect> map = new HashMap<>();
+            if (lst.size() > 0) {
+              for (BmpRect r : lst) {
+                map.put(r.name, r);
+              }
+              for (Actor a : entity.lstActor) {
+                for (Bone b : a.lstBone) {
+                  BmpRect r = map.get(b.name);
+                  if (r != null) {
+                    b.lstRect = r.lstRect;
+                    b.extendY = r.extendY;
+                  }
+                }
+              }
+            }
             updateAnimLv();
           }
 

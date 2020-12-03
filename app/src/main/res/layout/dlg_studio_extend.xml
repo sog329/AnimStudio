@@ -37,7 +37,7 @@
             android:background="@color/btn_bg"
             android:gravity="center"
             android:padding="10px"
-            android:src="@drawable/set"
+            android:src="@drawable/right"
             android:textColor="@color/tv_color"
             android:tooltipText="设置extendY" />
     </FrameLayout>

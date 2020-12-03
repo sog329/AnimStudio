@@ -336,12 +336,15 @@ public class DlgFactory {
     StudioTv tv = view.findViewById(R.id.tv);
     builder.setView(view);
     // extendY
-    View extendY = view.findViewById(R.id.extendY);
+    StudioImageBtn extendY = view.findViewById(R.id.extendY);
     extendY.setOnClickListener(
-        v -> right.setVisibility(right.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE));
+        v -> {
+          right.setVisibility(right.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+          extendY.setImageResource(
+              right.getVisibility() == View.VISIBLE ? R.drawable.left : R.drawable.right);
+        });
     final Dialog dialog = builder.create();
     StudioEt<Integer> et = view.findViewById(R.id.et);
-
     Function<Boolean> extend =
         e -> {
           ivTall.setVisibility(e ? View.GONE : View.VISIBLE);

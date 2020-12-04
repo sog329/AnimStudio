@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:attrs="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10px"
+    android:paddingTop="10px"
+    android:paddingRight="10px">
+
+    <com.sunshine.studio.base.StudioTv
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_btn_p"
+        android:gravity="left"
+        android:maxLines="1"
+        android:paddingLeft="100px"
+        android:textColor="@color/tv_color"
+        attrs:scale=".8" />
+
+    <com.sunshine.studio.base.StudioImageBtn
+        android:id="@+id/iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rotation="-90"
+        android:src="@drawable/right" />
+</FrameLayout>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:attrs="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <!--chance_range-->
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <LinearLayout style="@style/label">
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="change_range["
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/chance_range_from"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"
+                android:tooltipText="出生概率范围，From"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text=", "
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/chance_range_to"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"
+                android:tooltipText="出生概率范围，To"
+                attrs:scale=".5" />
+        </LinearLayout>
+    </FrameLayout>
+    <!--active_time-->
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <LinearLayout style="@style/label">
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="], active_time["
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/active_time_from"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"
+                android:tooltipText="存活时间范围，From"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text=","
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/active_time_to"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"
+                android:tooltipText="存活时间范围，From"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="]"
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

@@ -13,12 +13,7 @@
     </style>
 
     <style name="label">
-        <item name="android:layout_margin">10px</item>
-        <item name="android:paddingTop">15px</item>
-        <item name="android:paddingLeft">10px</item>
-        <item name="android:paddingRight">10px</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:background">@drawable/bg_label</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">horizontal</item>

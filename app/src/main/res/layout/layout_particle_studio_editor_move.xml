@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:attrs="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <!--move_from-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <com.sunshine.studio.base.StudioTv
+            style="@style/title"
+            android:paddingLeft="0px"
+            android:text="from:"
+            attrs:scale=".5" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="20px">
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="left:"
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/move_from_left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"
+                android:tooltipText="发射区域范围，Left"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text=", top:"
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/move_from_top"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"
+                android:tooltipText="发射区域范围，Top"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text=","
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:id="@+id/move_from_width_match"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_cb"
+                android:paddingLeft="15px"
+                android:paddingRight="15px"
+                android:textColor="@color/tv_color2"
+                android:tooltipText="发射区域X方向全屏"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/move_from_width"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"
+                android:tooltipText="发射区域范围，Width"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text=", h:"
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/move_from_height"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"
+                android:tooltipText="发射区域范围，Height"
+                attrs:scale=".5" />
+        </LinearLayout>
+    </FrameLayout>
+    <!--move_to-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <com.sunshine.studio.base.StudioTv
+            style="@style/title"
+            android:paddingLeft="0px"
+            android:text="to:"
+            attrs:scale=".5" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="20px">
+
+            <com.sunshine.studio.base.StudioTv
+                android:id="@+id/move_to_left_offset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_cb"
+                android:paddingLeft="15px"
+                android:paddingRight="15px"
+                android:text="X方向偏移"
+                android:textColor="@color/tv_color2"
+                android:tooltipText="终止区域X方向偏移"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/move_to_left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"
+                android:tooltipText="终止区域范围，Left"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text=","
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+
+            <com.sunshine.studio.base.StudioTv
+                android:id="@+id/move_to_top_offset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_cb"
+                android:paddingLeft="15px"
+                android:paddingRight="15px"
+                android:text="Y方向偏移"
+                android:textColor="@color/tv_color2"
+                android:tooltipText="终止区域Y方向偏移"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/move_to_top"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"
+                android:tooltipText="终止区域范围，Top"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text=","
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:id="@+id/move_to_width_match"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_cb"
+                android:paddingLeft="15px"
+                android:paddingRight="15px"
+                android:textColor="@color/tv_color2"
+                android:tooltipText="终止区域X方向全屏"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/move_to_width"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"
+                android:tooltipText="终止区域范围，Width"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text=", h:"
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/move_to_height"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"
+                android:tooltipText="终止区域范围，Height"
+                attrs:scale=".5" />
+        </LinearLayout>
+    </FrameLayout>
+    <!--interpolator-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="20px">
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="   axisX:"
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+            <include
+                android:id="@+id/move_interpolator_x"
+                layout="@layout/layout_spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="20px">
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="axisY:"
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+            <include
+                android:id="@+id/move_interpolator_y"
+                layout="@layout/layout_spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

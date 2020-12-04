@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:attrs="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        style="@style/label"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.sunshine.studio.base.StudioTv
+                android:id="@+id/move_rotate_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_cb"
+                android:paddingLeft="15px"
+                android:paddingRight="15px"
+                android:textColor="@color/tv_color2"
+                android:tooltipText="根据运动方向设置初始角度"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="["
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/rotate_from_from"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"
+                android:tooltipText="发射角度范围，From"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text=","
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/rotate_from_to"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"
+                android:tooltipText="发射角度范围，To"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="], "
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:id="@+id/rotate_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_cb"
+                android:paddingLeft="15px"
+                android:paddingRight="15px"
+                android:textColor="@color/tv_color2"
+                android:tooltipText="✅：右侧为终止角度范围\n❌：保持初始角度不变"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="["
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/rotate_to_from"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"
+                android:tooltipText="终止角度范围，From"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text=","
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/rotate_to_to"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"
+                android:tooltipText="终止角度范围，To"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="]"
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="anchor("
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/rotate_x"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"
+                android:tooltipText="旋转圆心坐标，X"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text=","
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioEt
+                android:id="@+id/rotate_y"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/tv_color"
+                android:tooltipText="旋转圆心坐标，Y"
+                attrs:scale=".5" />
+
+            <com.sunshine.studio.base.StudioTv
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text=")"
+                android:textColor="@color/tv_color2"
+                attrs:scale=".5" />
+
+            <include
+                android:id="@+id/rotate_interpolator"
+                layout="@layout/layout_spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

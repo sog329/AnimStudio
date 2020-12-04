@@ -109,6 +109,45 @@ public class ParticleStudio extends Studio<Scene> {
       editor.setVisibility(View.INVISIBLE);
     } else {
       editor.setVisibility(View.VISIBLE);
+
+      // title
+      ViewGroup[] aryTitle =
+          new ViewGroup[] {
+            act.findViewById(R.id.title_base),
+            act.findViewById(R.id.title_move),
+            act.findViewById(R.id.title_rotate),
+            act.findViewById(R.id.title_alpha),
+            act.findViewById(R.id.title_scale)
+          };
+      String[] aryStr = new String[] {"base", "move", "rotate", "alpha", "scale"};
+      View[] aryEditor =
+          new View[] {
+            act.findViewById(R.id.base),
+            act.findViewById(R.id.move),
+            act.findViewById(R.id.rotate),
+            act.findViewById(R.id.alpha),
+            act.findViewById(R.id.scale)
+          };
+      for (int i = 0; i < aryTitle.length; i++) {
+        ViewGroup v = aryTitle[i];
+        StudioImageBtn iv = v.findViewById(R.id.iv);
+        StudioTv tv = v.findViewById(R.id.tv);
+        tv.setText(aryStr[i]);
+        View ed = aryEditor[i];
+        tv.mapValue(
+            false,
+            b -> {
+              iv.setImageResource(b ? R.drawable.right : R.drawable.left);
+              if (b) {
+                for (View e : aryEditor) {
+                  e.setVisibility(e == ed ? View.VISIBLE : View.GONE);
+                }
+              } else {
+                ed.setVisibility(View.GONE);
+              }
+            });
+      }
+
       // chance_range_from
       mapFloat(
               editor,

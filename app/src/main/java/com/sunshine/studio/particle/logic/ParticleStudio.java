@@ -138,9 +138,15 @@ public class ParticleStudio extends Studio<Scene> {
             false,
             b -> {
               iv.setImageResource(b ? R.drawable.right : R.drawable.left);
+              v.setAlpha(b ? 1f : .6f);
               if (b) {
-                for (View e : aryEditor) {
+                for (int j = 0; j < aryEditor.length; j++) {
+                  View e = aryEditor[j];
                   e.setVisibility(e == ed ? View.VISIBLE : View.GONE);
+                  StudioTv t = aryTitle[j].findViewById(R.id.tv);
+                  if (e != ed && t.isChecked()) {
+                    t.performClick();
+                  }
                 }
               } else {
                 ed.setVisibility(View.GONE);

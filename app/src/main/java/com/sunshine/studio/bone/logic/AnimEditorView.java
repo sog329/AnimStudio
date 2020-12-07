@@ -13,7 +13,7 @@ import android.widget.SeekBar;
 import com.sunshine.engine.bone.logic.Anim;
 import com.sunshine.engine.bone.logic.Duration;
 import com.sunshine.studio.R;
-import com.sunshine.studio.base.InterpolatorSpinner;
+import com.sunshine.studio.base.InterpolatorCn;
 import com.sunshine.studio.base.StudioEt;
 import com.sunshine.studio.base.StudioTool;
 import com.sunshine.studio.base.StudioTv;
@@ -210,10 +210,10 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
             (v, b) -> {
               if (b) setPercent(anim.duration, true);
             });
-    ((InterpolatorSpinner) findViewById(R.id.edit_scale_interpolator_x))
+    ((InterpolatorCn) findViewById(R.id.edit_scale_interpolator_x))
         .mapValue(anim.scaleX.getInterpolatorName(), s -> anim.scaleX.setInterpolator(s), studio);
 
-    ((InterpolatorSpinner) findViewById(R.id.edit_scale_interpolator_y))
+    ((InterpolatorCn) findViewById(R.id.edit_scale_interpolator_y))
         .mapValue(anim.scaleY.getInterpolatorName(), s -> anim.scaleY.setInterpolator(s), studio);
 
     findViewById(R.id.edit_scale_copy)
@@ -269,7 +269,7 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
           public void onStopTrackingTouch(SeekBar seekBar) {}
         });
     // alpha_interpolator
-    ((InterpolatorSpinner) findViewById(R.id.edit_alpha_interpolator))
+    ((InterpolatorCn) findViewById(R.id.edit_alpha_interpolator))
         .mapValue(anim.alpha.getInterpolatorName(), s -> anim.alpha.setInterpolator(s), studio);
     // rotate
     ((StudioEt<Integer>) findViewById(R.id.edit_rotate_from))
@@ -284,7 +284,7 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
             (v, b) -> {
               if (b) setPercent(anim.duration, true);
             });
-    ((InterpolatorSpinner) findViewById(R.id.edit_rotate_interpolator))
+    ((InterpolatorCn) findViewById(R.id.edit_rotate_interpolator))
         .mapValue(anim.rotate.getInterpolatorName(), s -> anim.rotate.setInterpolator(s), studio);
     findViewById(R.id.edit_rotate_copy)
         .setOnClickListener(
@@ -317,9 +317,9 @@ public class AnimEditorView extends RelativeLayout implements View.OnClickListen
         .map(anim.centerX.getTo(), n -> anim.centerX.setTo(n));
     ((StudioEt<Float>) findViewById(R.id.edit_move_to_y))
         .map(anim.centerY.getTo(), n -> anim.centerY.setTo(n));
-    ((InterpolatorSpinner) findViewById(R.id.edit_move_interpolator_x))
+    ((InterpolatorCn) findViewById(R.id.edit_move_interpolator_x))
         .mapValue(anim.centerX.getInterpolatorName(), s -> anim.centerX.setInterpolator(s), studio);
-    ((InterpolatorSpinner) findViewById(R.id.edit_move_interpolator_y))
+    ((InterpolatorCn) findViewById(R.id.edit_move_interpolator_y))
         .mapValue(anim.centerY.getInterpolatorName(), s -> anim.centerY.setInterpolator(s), studio);
     // anchor
     ((StudioEt<Float>) findViewById(R.id.edit_rotate_x))

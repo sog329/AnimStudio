@@ -11,20 +11,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sunshine.engine.base.Area;
+import com.sunshine.engine.base.Function;
 import com.sunshine.engine.base.ProcessFloat;
 import com.sunshine.engine.base.ProcessInt;
 import com.sunshine.engine.particle.SceneView;
 import com.sunshine.engine.particle.logic.ParticleModel;
 import com.sunshine.engine.particle.logic.Scene;
 import com.sunshine.studio.R;
-import com.sunshine.studio.base.InterpolatorSpinner;
+import com.sunshine.studio.base.InterpolatorCn;
 import com.sunshine.studio.base.PlistParser;
 import com.sunshine.studio.base.RenderHelper;
 import com.sunshine.studio.base.Studio;
 import com.sunshine.studio.base.StudioCb;
 import com.sunshine.studio.base.StudioEt;
 import com.sunshine.studio.base.StudioImageBtn;
-import com.sunshine.studio.base.StudioSpinner;
 import com.sunshine.studio.base.StudioTool;
 import com.sunshine.studio.base.StudioTv;
 import com.sunshine.studio.base.XmlWriter;
@@ -457,8 +457,8 @@ public class ParticleStudio extends Studio<Scene> {
     return ((StudioEt) editor.findViewById(id)).map(v, mapValue);
   }
 
-  private void mapSpinner(View editor, int id, String now, StudioSpinner.Callback cb) {
-    ((InterpolatorSpinner) editor.findViewById(id)).mapValue(now, cb, this);
+  private void mapSpinner(View editor, int id, String now, Function<String> func) {
+    ((InterpolatorCn) editor.findViewById(id)).mapValue(now, func, this);
   }
 
   private void mapCheckBox(View editor, int id, boolean b, Studio.MapValue<Boolean> mapValue) {

@@ -424,6 +424,9 @@ public class DlgFactory {
     dlg.setLayoutParams(new FrameLayout.LayoutParams(w, StudioTool.getDlgHeight()));
     InterpolatorView iv = view.findViewById(R.id.iv);
     iv.inDetail(true);
+    StudioTv tv = view.findViewById(R.id.select);
+    tv.setBackgroundResource(
+        studio instanceof BoneStudio ? R.drawable.bg_btn : R.drawable.bg_btn_p);
     builder.setView(view);
     final Dialog dialog = builder.create();
     return dialog;

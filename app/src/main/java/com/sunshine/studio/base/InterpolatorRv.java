@@ -51,6 +51,7 @@ public class InterpolatorRv extends RecyclerView {
     String[] ary = Tool.aryKey(InterpolatorType.values());
     Adapter a = (Adapter) getAdapter();
     a.load(Arrays.asList(ary), select, onSelect, selectBg);
+    scrollToPosition(a.lstData.indexOf(select));
   }
 
   private static class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
@@ -62,6 +63,7 @@ public class InterpolatorRv extends RecyclerView {
     public void load(List<String> lst, String select, Runnable onSelect, int selectBg) {
       lstData.clear();
       lstData.addAll(lst);
+      this.select.old = null;
       this.selectBg = selectBg;
       this.onSelect = onSelect;
       select(select);
@@ -91,10 +93,10 @@ public class InterpolatorRv extends RecyclerView {
       holder.tv.setTextColor(holder.itemView.getResources().getColor(R.color.tv_color2));
       if (str.equals(select.now)) {
         holder.tv.setBackgroundResource(selectBg);
-        holder.tv.setAlpha(1f);
+        holder.tv.setAlpha(.7f);
       } else if (str.equals(select.old)) {
         holder.tv.setBackgroundResource(R.drawable.bg_btn_menu);
-        holder.tv.setAlpha(1f);
+        holder.tv.setAlpha(.5f);
       } else {
         holder.tv.setBackgroundResource(0);
         holder.tv.setAlpha(.5f);

@@ -6,6 +6,25 @@
     android:orientation="horizontal"
     android:paddingRight="20px">
 
+    <com.sunshine.studio.base.StudioTv
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:maxLines="1"
+        android:text="("
+        android:textColor="@color/tv_color2"
+        attrs:scale=".5" />
+
+    <com.sunshine.studio.base.InterpolatorView
+        android:id="@+id/type"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:textColor="@color/tv_color2"
+        attrs:scale=".5" />
+
     <com.sunshine.studio.base.StudioEt
         android:id="@+id/num"
         android:layout_width="0dp"
@@ -18,13 +37,12 @@
         android:tooltipText="当前差值器参数"
         attrs:scale=".5" />
 
-    <com.sunshine.studio.base.InterpolatorView
-        android:id="@+id/type"
-        android:layout_width="0dp"
+    <com.sunshine.studio.base.StudioTv
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="3"
-        android:gravity="center"
+        android:maxLines="1"
+        android:text=")"
         android:textColor="@color/tv_color2"
         attrs:scale=".5" />
 </com.sunshine.studio.base.InterpolatorCn>

@@ -57,7 +57,7 @@ public class InterpolatorCn extends LinearLayout {
           rv.load(
               (String) tvType.getText(),
               onSelect,
-              studio instanceof BoneStudio ? R.drawable.bg_btn : R.drawable.bg_btn_p);
+              studio instanceof BoneStudio ? R.drawable.bg_btn : R.drawable.bg_title_p);
         });
     String num = "2";
     if (now.indexOf("_") > 0) {

@@ -62,4 +62,12 @@ public class StudioTv extends android.support.v7.widget.AppCompatTextView {
         });
     mapValue.update(b);
   }
+
+  @Override
+  public void setOnClickListener(@Nullable OnClickListener l) {
+    super.setOnClickListener(l);
+    int len = StudioImageBtn.getSize();
+    setMinHeight(len);
+    setMinWidth(len);
+  }
 }

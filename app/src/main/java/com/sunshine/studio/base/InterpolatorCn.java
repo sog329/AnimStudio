@@ -27,6 +27,8 @@ public class InterpolatorCn extends LinearLayout {
   public void mapValue(String now, Function<String> func, Studio studio) {
     StudioEt<Integer> et = findViewById(R.id.num);
     InterpolatorView tvType = findViewById(R.id.type);
+    tvType.setBackgroundResource(
+        studio instanceof BoneStudio ? R.drawable.bg_btn : R.drawable.bg_btn_p);
     tvType.setText(now);
     tvType.setInterpolator(now);
     tvType.setOnClickListener(

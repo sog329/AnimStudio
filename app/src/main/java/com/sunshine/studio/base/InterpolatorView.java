@@ -89,21 +89,18 @@ public class InterpolatorView extends StudioTv {
   public void onDraw(Canvas can) {
     super.onDraw(can);
     if (name != null) {
+      int w = getWidth();
+      int h2 = getHeight() / 2;
+      paint.setARGB(50, 255, 255, 255);
       if (inDetail) {
-        int w = getWidth();
-        int h2 = getHeight() / 2;
         // x轴
-        paint.setColor(Color.DKGRAY);
         can.drawLine(0, h2, w, h2, paint);
         // y轴
-        paint.setColor(Color.DKGRAY);
         can.drawLine(0, 0, 0, getHeight(), paint);
         // y=1
         int h6 = getHeight() / 6;
-        paint.setColor(Color.DKGRAY);
         can.drawLine(0, h6, w, h6, paint);
         // y=-1
-        paint.setColor(Color.DKGRAY);
         can.drawLine(0, getHeight() - h6, w, getHeight() - h6, paint);
         // 曲线
         String type = name;
@@ -130,21 +127,16 @@ public class InterpolatorView extends StudioTv {
 
         paint.setColor(Color.WHITE);
         updatePath(name);
-        can.drawPath(path, paint);
       } else {
-        int w = getWidth();
-        int h2 = getHeight() / 2;
         // x轴
-        paint.setColor(Color.DKGRAY);
         can.drawLine(0, h2, w, h2, paint);
         // y=1
         int h6 = getHeight() / 6;
-        paint.setColor(Color.DKGRAY);
         can.drawLine(0, h6, w, h6, paint);
         // 曲线
         paint.setColor(Color.WHITE);
-        can.drawPath(path, paint);
       }
+      can.drawPath(path, paint);
     }
   }
 }

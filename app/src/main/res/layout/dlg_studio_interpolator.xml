@@ -47,7 +47,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="2"
-                        android:textColor="@color/interpolator_2" />
+                        android:textColor="@color/interpolator_2"
+                        attrs:scale=".5" />
 
                     <com.sunshine.studio.base.StudioTv
                         android:layout_width="0dp"
@@ -55,7 +56,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="3"
-                        android:textColor="@color/interpolator_3" />
+                        android:textColor="@color/interpolator_3"
+                        attrs:scale=".5" />
 
                     <com.sunshine.studio.base.StudioTv
                         android:layout_width="0dp"
@@ -63,7 +65,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="4"
-                        android:textColor="@color/interpolator_4" />
+                        android:textColor="@color/interpolator_4"
+                        attrs:scale=".5" />
 
                     <com.sunshine.studio.base.StudioTv
                         android:layout_width="0dp"
@@ -71,7 +74,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="8"
-                        android:textColor="@color/interpolator_8" />
+                        android:textColor="@color/interpolator_8"
+                        attrs:scale=".5" />
                 </LinearLayout>
             </FrameLayout>
 

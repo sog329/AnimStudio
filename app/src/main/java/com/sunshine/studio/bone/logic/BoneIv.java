@@ -82,6 +82,9 @@ public class BoneIv extends StudioImageBtn {
     if (bmp != null && lstRcBmp.size() > 0) {
       Bitmap bitmap = bmp.get();
       if (bitmap != null && !bitmap.isRecycled()) {
+        if (drawRc) {
+          StudioRender2D.draw(can, rcDraw, Color.rgb(0, 0, 0), 255, true, 0, 0, 0);
+        }
         Rect rcBmp = lstRcBmp.get(0);
         if (lstRcBmp.size() != 1) {
           if (firstDrawTime == 0) {
@@ -94,9 +97,6 @@ public class BoneIv extends StudioImageBtn {
           invalidate();
         }
         can.drawBitmap(bitmap, rcBmp, rcDraw, null);
-        if (drawRc) {
-          StudioRender2D.draw(can, rcDraw, Color.rgb(125, 125, 125), 125, false, 0, 0, 0);
-        }
       }
     }
   }

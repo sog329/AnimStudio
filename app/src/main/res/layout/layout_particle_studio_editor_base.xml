@@ -3,7 +3,9 @@
     xmlns:attrs="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingLeft="10px"
+    android:paddingRight="10px">
     <!--chance_range-->
     <FrameLayout
         android:layout_width="0dp"

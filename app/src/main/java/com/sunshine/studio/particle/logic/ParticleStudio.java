@@ -29,7 +29,7 @@ import com.sunshine.studio.base.StudioTool;
 import com.sunshine.studio.base.StudioTv;
 import com.sunshine.studio.base.XmlWriter;
 import com.sunshine.studio.bone.logic.BmpRect;
-import com.sunshine.studio.bone.logic.BoneIv;
+import com.sunshine.studio.bone.logic.SkinIv;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -137,7 +137,7 @@ public class ParticleStudio extends Studio<Scene> {
         tv.mapValue(
             false,
             b -> {
-              iv.setImageResource(b ? R.drawable.right : R.drawable.left);
+              iv.setRotation(b ? -90 : 90);
               v.setAlpha(b ? 1f : .6f);
               if (b) {
                 for (int j = 0; j < aryEditor.length; j++) {
@@ -386,8 +386,22 @@ public class ParticleStudio extends Studio<Scene> {
               pm.rotateEnd.setTo(v);
             }
           });
-      mapFloat(editor, R.id.rotate_x, pm.ptRotate.x, v -> pm.ptRotate.x = v);
-      mapFloat(editor, R.id.rotate_y, pm.ptRotate.y, v -> pm.ptRotate.y = v);
+      mapFloat(
+          editor,
+          R.id.rotate_x,
+          pm.ptRotate.x,
+          v -> {
+            pm.ptRotate.x = v;
+            updateAnimLv();
+          });
+      mapFloat(
+          editor,
+          R.id.rotate_y,
+          pm.ptRotate.y,
+          v -> {
+            pm.ptRotate.y = v;
+            updateAnimLv();
+          });
       mapSpinner(
           editor, R.id.rotate_interpolator, pm.interpolatorRotate, s -> pm.interpolatorRotate = s);
       // alpha
@@ -606,7 +620,9 @@ public class ParticleStudio extends Studio<Scene> {
       tvFrom.setText(StudioTool.getPercent(pm.chanceRange.getFrom()));
       TextView tvTo = v.findViewById(R.id.to);
       tvTo.setText(StudioTool.getPercent(pm.chanceRange.getTo()));
-      BoneIv iv = v.findViewById(R.id.iv);
+      SkinIv iv = v.findViewById(R.id.iv);
+      iv.autoSize = false;
+      iv.setPt(pm.ptRotate.x, pm.ptRotate.y);
       List<Rect> lst = new ArrayList<>();
       lst.add(pm.rcBmp);
       iv.setBmp(entity.bmp, lst);

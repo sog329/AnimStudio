@@ -16,7 +16,7 @@ import android.widget.GridView;
 import com.sunshine.engine.base.ViewHelper;
 import com.sunshine.studio.R;
 import com.sunshine.studio.bone.logic.BmpRect;
-import com.sunshine.studio.bone.logic.BoneIv;
+import com.sunshine.studio.bone.logic.SkinIv;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -132,7 +132,7 @@ public class PicGv extends GridView {
         convertView =
             LayoutInflater.from(parent.getContext()).inflate(R.layout.gv_item_studio_pic, null);
       }
-      BoneIv iv = convertView.findViewById(R.id.iv);
+      SkinIv iv = convertView.findViewById(R.id.iv);
       iv.setBackgroundColor(callback.getColor());
       iv.autoSize = false;
       ViewGroup.LayoutParams lp = iv.getLayoutParams();

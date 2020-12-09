@@ -4,11 +4,13 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
+import com.sunshine.engine.base.Point;
 import com.sunshine.engine.base.Tool;
 import com.sunshine.studio.base.StudioImageBtn;
 
@@ -17,23 +19,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 /** Created by songxiaoguang on 2017/12/3. */
-public class BoneIv extends StudioImageBtn {
+public class SkinIv extends StudioImageBtn {
   protected WeakReference<Bitmap> bmp = null;
   protected List<Rect> lstRcBmp = new ArrayList<>();
   protected Rect rcView = new Rect();
   protected RectF rcDraw = new RectF();
   private long firstDrawTime = 0;
   public boolean drawRc = false;
+  private Point<Float> pt = null;
 
-  public BoneIv(Context context) {
+  public SkinIv(Context context) {
     super(context);
   }
 
-  public BoneIv(Context context, @Nullable AttributeSet attrs) {
+  public SkinIv(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
   }
 
-  public BoneIv(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+  public SkinIv(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
   }
 
@@ -53,6 +56,16 @@ public class BoneIv extends StudioImageBtn {
     }
   }
 
+  public void setPt(float x, float y) {
+    if (pt == null) {
+      pt = new Point<>(x, y);
+    } else {
+      pt.set(x, y);
+    }
+    mergeRcDraw();
+    invalidate();
+  }
+
   @Override
   protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
@@ -63,6 +76,7 @@ public class BoneIv extends StudioImageBtn {
   private void mergeRcDraw() {
     if (lstRcBmp.size() > 0 && rcView.width() > 0 && rcView.height() > 0) {
       Rect rcBmp = lstRcBmp.get(0);
+
       if (1f * rcBmp.width() / rcBmp.height() > 1f * rcView.width() / rcView.height()) {
         int space =
             (rcView.height() - (int) (1f * rcView.width() / rcBmp.width() * rcBmp.height())) / 2;
@@ -72,6 +86,12 @@ public class BoneIv extends StudioImageBtn {
             (rcView.width() - (int) (1f * rcView.height() / rcBmp.height() * rcBmp.width())) / 2;
         rcDraw.set(space, 0, rcView.width() - space, rcView.height());
       }
+      float h = pt == null ? 0 : rcDraw.height() / 5;
+      float v = pt == null ? 0 : rcDraw.width() / 5;
+      rcDraw.left += h;
+      rcDraw.right -= h;
+      rcDraw.top += v;
+      rcDraw.bottom -= v;
       invalidate();
     }
   }
@@ -97,6 +117,11 @@ public class BoneIv extends StudioImageBtn {
           invalidate();
         }
         can.drawBitmap(bitmap, rcBmp, rcDraw, null);
+        if (pt != null) {
+          float scale = 1f * rcDraw.width() / rcBmp.width();
+          PointF p = new PointF(rcDraw.centerX() + scale * pt.x, rcDraw.centerY() + scale * pt.y);
+          StudioRender2D.drawCross(can, p, Color.GRAY);
+        }
       }
     }
   }

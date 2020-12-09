@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import com.sunshine.studio.R;
 
 /** Created by Jack on 2020/10/9. */
-public class ExtendIv extends BoneIv {
+public class ExtendIv extends SkinIv {
   private Rect rcLineY = new Rect();
   private Integer extendY = null;
   private boolean inExtendY = false;

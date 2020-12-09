@@ -210,7 +210,7 @@ public class AnimLv extends ListView {
         // add
         convertView.findViewById(R.id.add).setVisibility(GONE);
         // iv
-        BoneIv iv = convertView.findViewById(R.id.iv);
+        SkinIv iv = convertView.findViewById(R.id.iv);
         iv.setVisibility(VISIBLE);
         Bitmap bmp = studio.entity.bmp;
         if (bone.externalId != null) {

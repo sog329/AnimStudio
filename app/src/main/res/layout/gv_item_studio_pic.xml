@@ -5,7 +5,7 @@
     android:padding="5px">
 
 
-    <com.sunshine.studio.bone.logic.BoneIv
+    <com.sunshine.studio.bone.logic.SkinIv
         android:id="@+id/iv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

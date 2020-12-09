@@ -19,13 +19,13 @@ import com.sunshine.engine.bone.logic.Bone;
 import com.sunshine.engine.bone.logic.Stage;
 import com.sunshine.studio.R;
 import com.sunshine.studio.bone.logic.BmpRect;
-import com.sunshine.studio.bone.logic.BoneIv;
 import com.sunshine.studio.bone.logic.BoneStudio;
 import com.sunshine.studio.bone.logic.ExtendIv;
 import com.sunshine.studio.bone.logic.MenuLv;
 import com.sunshine.studio.bone.logic.MenuLv.Menu;
 import com.sunshine.studio.bone.logic.MenuLv.MenuAdapter;
 import com.sunshine.studio.bone.logic.ProjectLv;
+import com.sunshine.studio.bone.logic.SkinIv;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -139,7 +139,7 @@ public class DlgFactory {
     PicGv gv = view.findViewById(R.id.gv);
     gv.setLayoutParams(
         new LinearLayout.LayoutParams(StudioTool.getPicDlgWidth(), StudioTool.getDlgHeight()));
-    BoneIv iv = view.findViewById(R.id.iv);
+    SkinIv iv = view.findViewById(R.id.iv);
     iv.autoSize = false;
     iv.drawRc = true;
     View loading = view.findViewById(R.id.loading);
@@ -339,9 +339,9 @@ public class DlgFactory {
     StudioImageBtn extendY = view.findViewById(R.id.extendY);
     extendY.setOnClickListener(
         v -> {
-          right.setVisibility(right.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
-          extendY.setImageResource(
-              right.getVisibility() == View.VISIBLE ? R.drawable.left : R.drawable.right);
+          boolean b = right.getVisibility() == View.VISIBLE;
+          right.setVisibility(b ? View.GONE : View.VISIBLE);
+          extendY.setRotation(b ? 0 : -180);
         });
     final Dialog dialog = builder.create();
     StudioEt<Integer> et = view.findViewById(R.id.et);
@@ -404,9 +404,11 @@ public class DlgFactory {
                     if (et.getText() != null && et.getText().length() > 0) {
                       et.setText(null);
                     }
+                    extendY.setVisibility(View.VISIBLE);
                   } else {
                     studio.bone.extendY = y;
                     rn.run();
+                    extendY.setVisibility(View.GONE);
                   }
                 });
             iv.setBmp(studio.entity.bmp, studio.bone.lstRect);

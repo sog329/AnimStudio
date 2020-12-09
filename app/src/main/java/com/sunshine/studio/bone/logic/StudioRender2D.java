@@ -47,7 +47,6 @@ public class StudioRender2D {
 
   public static void drawCross(Canvas can, PointF pt, int color) {
     paint.setColor(color);
-    paint.setAlpha(255);
     int len = StudioTool.getBtnHeight() / 2;
     can.drawLine(pt.x, pt.y - len, pt.x, pt.y + len, paint);
     can.drawLine(pt.x - len, pt.y, pt.x + len, pt.y, paint);

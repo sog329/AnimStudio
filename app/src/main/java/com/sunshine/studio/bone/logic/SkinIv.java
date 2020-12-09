@@ -8,11 +8,13 @@ import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
+import android.text.TextPaint;
 import android.util.AttributeSet;
 
 import com.sunshine.engine.base.Point;
 import com.sunshine.engine.base.Tool;
 import com.sunshine.studio.base.StudioImageBtn;
+import com.sunshine.studio.base.StudioTool;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -27,6 +29,8 @@ public class SkinIv extends StudioImageBtn {
   private long firstDrawTime = 0;
   public boolean drawRc = false;
   private Point<Float> pt = null;
+  private TextPaint tp = new TextPaint();
+  private static final int K = 5;
 
   public SkinIv(Context context) {
     super(context);
@@ -86,8 +90,8 @@ public class SkinIv extends StudioImageBtn {
             (rcView.width() - (int) (1f * rcView.height() / rcBmp.height() * rcBmp.width())) / 2;
         rcDraw.set(space, 0, rcView.width() - space, rcView.height());
       }
-      float h = pt == null ? 0 : rcDraw.width() / 5;
-      float v = pt == null ? 0 : rcDraw.height() / 5;
+      float h = pt == null ? 0 : rcDraw.width() / K;
+      float v = pt == null ? 0 : rcDraw.height() / K;
       rcDraw.left += h;
       rcDraw.right -= h;
       rcDraw.top += v;
@@ -120,7 +124,21 @@ public class SkinIv extends StudioImageBtn {
         if (pt != null) {
           float scale = 1f * rcDraw.width() / rcBmp.width();
           PointF p = new PointF(rcDraw.centerX() + scale * pt.x, rcDraw.centerY() + scale * pt.y);
-          StudioRender2D.drawCross(can, p, Color.GRAY);
+          int c = Color.argb(255, 125, 125, 125);
+          StudioRender2D.drawCross(can, p, c);
+          int size = StudioTool.getBtnHeight() / 2;
+          StudioRender2D.paint.setTextSize(size);
+          String s = String.valueOf(rcBmp.width());
+          can.drawText(
+              s,
+              rcDraw.centerX() - StudioRender2D.paint.measureText(s) / 2,
+              rcDraw.bottom + size,
+              StudioRender2D.paint);
+          can.drawText(
+              String.valueOf(rcBmp.height()),
+              rcDraw.right + 10,
+              rcDraw.centerY() + size / 3,
+              StudioRender2D.paint);
         }
       }
     }

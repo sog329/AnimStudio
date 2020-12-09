@@ -86,8 +86,8 @@ public class SkinIv extends StudioImageBtn {
             (rcView.width() - (int) (1f * rcView.height() / rcBmp.height() * rcBmp.width())) / 2;
         rcDraw.set(space, 0, rcView.width() - space, rcView.height());
       }
-      float h = pt == null ? 0 : rcDraw.height() / 5;
-      float v = pt == null ? 0 : rcDraw.width() / 5;
+      float h = pt == null ? 0 : rcDraw.width() / 5;
+      float v = pt == null ? 0 : rcDraw.height() / 5;
       rcDraw.left += h;
       rcDraw.right -= h;
       rcDraw.top += v;

@@ -22,7 +22,6 @@ import com.sunshine.studio.base.InterpolatorCn;
 import com.sunshine.studio.base.PlistParser;
 import com.sunshine.studio.base.RenderHelper;
 import com.sunshine.studio.base.Studio;
-import com.sunshine.studio.base.StudioCb;
 import com.sunshine.studio.base.StudioEt;
 import com.sunshine.studio.base.StudioImageBtn;
 import com.sunshine.studio.base.StudioTool;
@@ -109,50 +108,6 @@ public class ParticleStudio extends Studio<Scene> {
       editor.setVisibility(View.INVISIBLE);
     } else {
       editor.setVisibility(View.VISIBLE);
-
-      // title
-      ViewGroup[] aryTitle =
-          new ViewGroup[] {
-            act.findViewById(R.id.title_base),
-            act.findViewById(R.id.title_move),
-            act.findViewById(R.id.title_rotate),
-            act.findViewById(R.id.title_alpha),
-            act.findViewById(R.id.title_scale)
-          };
-      String[] aryStr = new String[] {"base", "move", "rotate", "alpha", "scale"};
-      View[] aryEditor =
-          new View[] {
-            act.findViewById(R.id.base),
-            act.findViewById(R.id.move),
-            act.findViewById(R.id.rotate),
-            act.findViewById(R.id.alpha),
-            act.findViewById(R.id.scale)
-          };
-      for (int i = 0; i < aryTitle.length; i++) {
-        ViewGroup v = aryTitle[i];
-        StudioImageBtn iv = v.findViewById(R.id.iv);
-        StudioTv tv = v.findViewById(R.id.tv);
-        tv.setText(aryStr[i]);
-        View ed = aryEditor[i];
-        tv.mapValue(
-            false,
-            b -> {
-              iv.setRotation(b ? -90 : 90);
-              v.setAlpha(b ? 1f : .6f);
-              if (b) {
-                for (int j = 0; j < aryEditor.length; j++) {
-                  View e = aryEditor[j];
-                  e.setVisibility(e == ed ? View.VISIBLE : View.GONE);
-                  StudioTv t = aryTitle[j].findViewById(R.id.tv);
-                  if (e != ed && t.isChecked()) {
-                    t.performClick();
-                  }
-                }
-              } else {
-                ed.setVisibility(View.GONE);
-              }
-            });
-      }
 
       // chance_range_from
       mapFloat(
@@ -359,7 +314,9 @@ public class ParticleStudio extends Studio<Scene> {
             tvTo.setEnabled(b);
             tvTo.setVisibility(b ? View.VISIBLE : View.GONE);
             if (b) {
-              pm.rotateEnd = new ProcessInt(200, 300);
+              if (pm.rotateEnd == null) {
+                pm.rotateEnd = new ProcessInt(0, 0);
+              }
               tvFrom.setText(String.valueOf(pm.rotateEnd.getFrom()));
               tvTo.setText(String.valueOf(pm.rotateEnd.getTo()));
             } else {
@@ -475,10 +432,6 @@ public class ParticleStudio extends Studio<Scene> {
     ((InterpolatorCn) editor.findViewById(id)).mapValue(now, func, this);
   }
 
-  private void mapCheckBox(View editor, int id, boolean b, Studio.MapValue<Boolean> mapValue) {
-    ((StudioCb) editor.findViewById(id)).mapValue(b, mapValue);
-  }
-
   private void mapTv(View editor, int id, boolean b, Studio.MapValue<Boolean> mapValue) {
     ((StudioTv) editor.findViewById(id)).mapValue(b, mapValue);
   }
@@ -550,6 +503,50 @@ public class ParticleStudio extends Studio<Scene> {
             return cbBg.isChecked() ? Color.BLACK : Color.WHITE;
           }
         });
+
+    // title
+    ViewGroup[] aryTitle =
+        new ViewGroup[] {
+          act.findViewById(R.id.title_base),
+          act.findViewById(R.id.title_move),
+          act.findViewById(R.id.title_rotate),
+          act.findViewById(R.id.title_alpha),
+          act.findViewById(R.id.title_scale)
+        };
+    String[] aryStr = new String[] {"base", "move", "rotate", "alpha", "scale"};
+    View[] aryEditor =
+        new View[] {
+          act.findViewById(R.id.base),
+          act.findViewById(R.id.move),
+          act.findViewById(R.id.rotate),
+          act.findViewById(R.id.alpha),
+          act.findViewById(R.id.scale)
+        };
+    for (int i = 0; i < aryTitle.length; i++) {
+      ViewGroup v = aryTitle[i];
+      StudioImageBtn iv = v.findViewById(R.id.iv);
+      StudioTv tv = v.findViewById(R.id.tv);
+      tv.setText(aryStr[i]);
+      View ed = aryEditor[i];
+      tv.mapValue(
+          false,
+          b -> {
+            iv.setRotation(b ? -90 : 90);
+            v.setAlpha(b ? 1f : .6f);
+            if (b) {
+              for (int j = 0; j < aryEditor.length; j++) {
+                View e = aryEditor[j];
+                e.setVisibility(e == ed ? View.VISIBLE : View.GONE);
+                StudioTv t = aryTitle[j].findViewById(R.id.tv);
+                if (e != ed && t.isChecked()) {
+                  t.performClick();
+                }
+              }
+            } else {
+              ed.setVisibility(View.GONE);
+            }
+          });
+    }
   }
 
   @Override
@@ -596,7 +593,6 @@ public class ParticleStudio extends Studio<Scene> {
     model.areaTo.w = entity.scriptSize.width;
     model.areaTo.h = h;
 
-    model.ptRotate.x = model.size.width / 2f;
     return model;
   }
 

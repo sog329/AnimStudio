@@ -20,8 +20,8 @@ public class ParticleModel {
   public String[] interpolatorMove =
       new String[] {InterpolatorType.linear.toString(), InterpolatorType.linear.toString()};
   public Point<Float> ptRotate = new Point(0f, 0f);
-  public ProcessInt rotateBegin = new ProcessInt(0, 100);
-  public ProcessInt rotateEnd = new ProcessInt(200, 300);
+  public ProcessInt rotateBegin = new ProcessInt(0, 0);
+  public ProcessInt rotateEnd = new ProcessInt(0, 0);
   public String interpolatorRotate = InterpolatorType.linear.toString();
   public ProcessInt alphaBegin = new ProcessInt(0, 0);
   public ProcessInt alphaEnd = new ProcessInt(255, 255);

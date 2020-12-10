@@ -10,7 +10,6 @@ public class StageParser extends XmlParser {
   public static final String BONE = "bone";
   public static final String ANIM = "anim";
 
-  public static final String SRC_ID_WH = "src_id_wh";
   public static final String RANGE = "range";
   public static final String MOVE = "move";
   public static final String MOVE_INTERPOLATOR = "move_interpolator";

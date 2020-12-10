@@ -74,6 +74,16 @@ public class SceneParser extends XmlParser {
           pm.size.height = Integer.parseInt(ary[3]);
           pm.rcBmp.bottom = pm.rcBmp.top + pm.size.height;
           break;
+        case SRC_ID_WH:
+          pm = scene.getLastParticleModel();
+          pm.externalId = ary[0];
+          pm.rcBmp.left = 0;
+          pm.rcBmp.top = 0;
+          pm.size.width = Integer.parseInt(ary[1]);
+          pm.rcBmp.right = pm.rcBmp.left + pm.size.width;
+          pm.size.height = Integer.parseInt(ary[2]);
+          pm.rcBmp.bottom = pm.rcBmp.top + pm.size.height;
+          break;
         case MOVE_FROM:
           pm = scene.getLastParticleModel();
           pm.areaFrom.l = Integer.parseInt(ary[0]);

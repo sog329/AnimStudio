@@ -35,16 +35,23 @@ public class SceneWriter implements XmlWriter.Callback {
       }
       addTag(xml, SceneParser.CHANCE_RANGE, model.chanceRange.toString());
       addTag(xml, SceneParser.ACTIVE_TIME, model.activeTime.toString());
-      addTag(
-          xml,
-          SceneParser.SRC_LTWH,
-          model.rcBmp.left
-              + ","
-              + model.rcBmp.top
-              + ","
-              + model.rcBmp.width()
-              + ","
-              + model.rcBmp.height());
+      if (model.externalId == null) {
+        addTag(
+            xml,
+            XmlParser.SRC_LTWH,
+            model.rcBmp.left
+                + ","
+                + model.rcBmp.top
+                + ","
+                + model.rcBmp.width()
+                + ","
+                + model.rcBmp.height());
+      } else {
+        addTag(
+            xml,
+            XmlParser.SRC_ID_WH,
+            model.externalId + "," + model.rcBmp.width() + "," + model.rcBmp.height());
+      }
       // move
       addTag(xml, SceneParser.MOVE_FROM, model.areaFrom.toString());
       if (model.areaTo.isRotate) {

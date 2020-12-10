@@ -60,7 +60,7 @@ public class Particle extends Skin {
             if (bmp != null) {
               Render2D.draw(can, bmp, null, scene.drawInfo);
             } else {
-              Render2D.draw(can, cb, rp, scene.drawInfo, scene.scale);
+              Render2D.draw(can, cb, rp, scene);
             }
           }
           return false;

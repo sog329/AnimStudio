@@ -4,7 +4,7 @@ import android.graphics.Rect;
 
 import com.sunshine.engine.base.XmlParser;
 
-public class StageParser extends XmlParser {
+public class StageParser extends XmlParser<Stage> {
   public static final String STAGE = "stage";
   public static final String ACTOR = "actor";
   public static final String BONE = "bone";
@@ -20,18 +20,17 @@ public class StageParser extends XmlParser {
   public static final String ALPHA = "alpha";
   public static final String ALPHA_INTERPOLATOR = "alpha_interpolator";
 
-  private Stage stage = null;
   private boolean inActor = false;
 
   public StageParser(Stage stage) {
-    this.stage = stage;
+    entity = stage;
   }
 
   private Anim getAnim() {
     if (inActor) {
-      return stage.getLastActor().getLastAnim();
+      return entity.getLastActor().getLastAnim();
     } else {
-      return stage.getLastActor().getLastBone().getLastAnim();
+      return entity.getLastActor().getLastBone().getLastAnim();
     }
   }
 
@@ -41,18 +40,18 @@ public class StageParser extends XmlParser {
       switch (tag) {
         case ACTOR:
           inActor = true;
-          stage.lstActor.add(new Actor(stage));
+          entity.lstActor.add(new Actor(entity));
           break;
         case BONE:
           inActor = false;
-          stage.getLastActor().lstBone.add(new Bone(stage.getLastActor()));
+          entity.getLastActor().lstBone.add(new Bone(entity.getLastActor()));
           break;
         case ANIM:
           if (inActor) {
-            Actor actor = stage.getLastActor();
+            Actor actor = entity.getLastActor();
             actor.lstAnim.add(actor.buildAnim());
           } else {
-            Bone bone = stage.getLastActor().getLastBone();
+            Bone bone = entity.getLastActor().getLastBone();
             bone.lstAnim.add(bone.buildAnim());
           }
           break;
@@ -64,36 +63,39 @@ public class StageParser extends XmlParser {
       Bone bone;
       switch (tag) {
         case DURATION:
-          if (stage.useScriptDuration) {
-            stage.duration = Integer.parseInt(ary[0]);
+          if (entity.useScriptDuration) {
+            entity.duration = Integer.parseInt(ary[0]);
           }
           break;
         case WIDTH_HEIGHT:
-          stage.scriptSize.width = Integer.parseInt(ary[0]);
-          stage.scriptSize.height = Integer.parseInt(ary[1]);
+          entity.scriptSize.width = Integer.parseInt(ary[0]);
+          entity.scriptSize.height = Integer.parseInt(ary[1]);
           break;
         case LAYOUT_TYPE:
-          stage.layoutType = ary[0];
+          entity.layoutType = ary[0];
           break;
         case NAME:
-          bone = stage.getLastActor().getLastBone();
+          bone = entity.getLastActor().getLastBone();
           bone.name = ary[0];
           break;
         case SRC_LTWH:
-          bone = stage.getLastActor().getLastBone();
+          bone = entity.getLastActor().getLastBone();
           int left = Integer.parseInt(ary[0]);
           int top = Integer.parseInt(ary[1]);
           int right = Integer.parseInt(ary[2]) + left;
           int bottom = Integer.parseInt(ary[3]) + top;
           Rect rc = new Rect(left, top, right, bottom);
           bone.lstRect.add(rc);
+          if (bone.name != null) {
+            entity.mapRc.put(bone.name, rc);
+          }
           break;
         case EXTEND_Y:
-          bone = stage.getLastActor().getLastBone();
+          bone = entity.getLastActor().getLastBone();
           bone.extendY = Integer.parseInt(ary[0]);
           break;
         case SRC_ID_WH:
-          bone = stage.getLastActor().getLastBone();
+          bone = entity.getLastActor().getLastBone();
           bone.externalId = ary[0];
           bone.lstRect.add(new Rect(0, 0, Integer.parseInt(ary[1]), Integer.parseInt(ary[2])));
           break;

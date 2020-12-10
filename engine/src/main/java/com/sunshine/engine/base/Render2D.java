@@ -27,22 +27,21 @@ public class Render2D {
     PAINT.setAlpha(255);
   }
 
-  private static void drawCb(
-      Canvas can, Callback cb, float percent, DrawInfo drawInfo, float scale) {
-    cb.paint.setAlpha(drawInfo.alpha);
+  private static void drawCb(Canvas can, Callback cb, float percent, Entity entity) {
+    cb.paint.setAlpha(entity.drawInfo.alpha);
     if (cb instanceof Rect2D) {
-      ((Rect2D) cb).onDraw(can, percent, drawInfo.rcDst, scale);
+      ((Rect2D) cb).onDraw(can, percent, entity.drawInfo.rcDst, entity.scale);
     }
   }
 
-  public static void draw(Canvas can, Callback cb, float percent, DrawInfo drawInfo, float scale) {
-    if (!Tool.equalsZero(drawInfo.rt)) {
+  public static void draw(Canvas can, Callback cb, float percent, Entity entity) {
+    if (!Tool.equalsZero(entity.drawInfo.rt)) {
       int cs = can.save();
-      can.rotate(drawInfo.rt, drawInfo.ptDst.x, drawInfo.ptDst.y);
-      drawCb(can, cb, percent, drawInfo, scale);
+      can.rotate(entity.drawInfo.rt, entity.drawInfo.ptDst.x, entity.drawInfo.ptDst.y);
+      drawCb(can, cb, percent, entity);
       can.restoreToCount(cs);
     } else {
-      drawCb(can, cb, percent, drawInfo, scale);
+      drawCb(can, cb, percent, entity);
     }
   }
 

@@ -3,6 +3,7 @@ package com.sunshine.engine.base;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.media.MediaPlayer;
 
@@ -40,6 +41,7 @@ public abstract class Entity {
   protected boolean recycleBmp = true;
   public Map<String, Render2D.Callback> map2D = new HashMap<>();
   public Map<String, Click> mapClick = new HashMap<>();
+  public Map<String, Rect> mapRc = new HashMap<>();
   protected Runnable onStop = null;
 
   public Entity(ViewHelper helper, String configPath, String picPath, String soundPath) {

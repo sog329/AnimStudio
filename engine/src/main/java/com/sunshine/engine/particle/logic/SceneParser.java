@@ -3,9 +3,7 @@ package com.sunshine.engine.particle.logic;
 import com.sunshine.engine.base.Area;
 import com.sunshine.engine.base.XmlParser;
 
-public class SceneParser extends XmlParser {
-  private Scene scene = null;
-
+public class SceneParser extends XmlParser<Scene> {
   public static final String SCENE = "scene";
   public static final String MAX = "max";
   public static final String MODEL = "model";
@@ -27,7 +25,7 @@ public class SceneParser extends XmlParser {
   public static final String SCALE_INTERPOLATOR = "scale_interpolator";
 
   public SceneParser(Scene sc) {
-    scene = sc;
+    entity = sc;
   }
 
   @Override
@@ -35,47 +33,50 @@ public class SceneParser extends XmlParser {
 
     if (start) {
       if (tag.equals(MODEL)) {
-        scene.addParticleModel(new ParticleModel());
+        entity.addParticleModel(new ParticleModel());
       }
     } else {
       ParticleModel pm;
       switch (tag) {
         case WIDTH_HEIGHT:
-          scene.scriptSize.width = Integer.parseInt(ary[0]);
-          scene.scriptSize.height = Integer.parseInt(ary[1]);
+          entity.scriptSize.width = Integer.parseInt(ary[0]);
+          entity.scriptSize.height = Integer.parseInt(ary[1]);
           break;
         case MAX:
-          scene.setMaxParticle(Integer.parseInt(ary[0]));
+          entity.setMaxParticle(Integer.parseInt(ary[0]));
           break;
         case DURATION:
-          scene.duration = Integer.parseInt(ary[0]);
+          entity.duration = Integer.parseInt(ary[0]);
           break;
         case LAYOUT_TYPE:
-          scene.layoutType = ary[0];
+          entity.layoutType = ary[0];
           break;
         case NAME:
-          pm = scene.getLastParticleModel();
+          pm = entity.getLastParticleModel();
           pm.name = ary[0];
           break;
         case CHANCE_RANGE:
-          pm = scene.getLastParticleModel();
+          pm = entity.getLastParticleModel();
           pm.chanceRange.set(Float.parseFloat(ary[0]), Float.parseFloat(ary[1]));
           break;
         case ACTIVE_TIME:
-          pm = scene.getLastParticleModel();
+          pm = entity.getLastParticleModel();
           pm.activeTime.set(Integer.parseInt(ary[0]), Integer.parseInt(ary[1]));
           break;
         case SRC_LTWH:
-          pm = scene.getLastParticleModel();
+          pm = entity.getLastParticleModel();
           pm.rcBmp.left = Integer.parseInt(ary[0]);
           pm.rcBmp.top = Integer.parseInt(ary[1]);
           pm.size.width = Integer.parseInt(ary[2]);
           pm.rcBmp.right = pm.rcBmp.left + pm.size.width;
           pm.size.height = Integer.parseInt(ary[3]);
           pm.rcBmp.bottom = pm.rcBmp.top + pm.size.height;
+          if (pm.name != null) {
+            entity.mapRc.put(pm.name, pm.rcBmp);
+          }
           break;
         case SRC_ID_WH:
-          pm = scene.getLastParticleModel();
+          pm = entity.getLastParticleModel();
           pm.externalId = ary[0];
           pm.rcBmp.left = 0;
           pm.rcBmp.top = 0;
@@ -85,7 +86,7 @@ public class SceneParser extends XmlParser {
           pm.rcBmp.bottom = pm.rcBmp.top + pm.size.height;
           break;
         case MOVE_FROM:
-          pm = scene.getLastParticleModel();
+          pm = entity.getLastParticleModel();
           pm.areaFrom.l = Integer.parseInt(ary[0]);
           pm.areaFrom.t = Integer.parseInt(ary[1]);
           if (MATCH_PARENT.equals(ary[2])) {
@@ -96,10 +97,10 @@ public class SceneParser extends XmlParser {
           pm.areaFrom.h = Integer.parseInt(ary[3]);
           break;
         case MOVE_ROTATE_TO:
-          pm = scene.getLastParticleModel();
+          pm = entity.getLastParticleModel();
           pm.areaTo.isRotate = true;
         case MOVE_TO:
-          pm = scene.getLastParticleModel();
+          pm = entity.getLastParticleModel();
           if (ary[0].contains(OFFSET)) {
             pm.areaTo.isOffsetLeft = true;
             ary[0] = ary[0].replace(OFFSET, NONE);
@@ -124,12 +125,12 @@ public class SceneParser extends XmlParser {
           pm.areaTo.h = Integer.parseInt(ary[3]);
           break;
         case MOVE_INTERPOLATOR:
-          pm = scene.getLastParticleModel();
+          pm = entity.getLastParticleModel();
           pm.interpolatorMove[0] = ary[0];
           pm.interpolatorMove[1] = ary[1];
           break;
         case ROTATE:
-          pm = scene.getLastParticleModel();
+          pm = entity.getLastParticleModel();
           pm.rotateBegin.set(Integer.parseInt(ary[0]), Integer.parseInt(ary[1]));
           if (ary.length == 6) {
             pm.rotateEnd.set(Integer.parseInt(ary[2]), Integer.parseInt(ary[3]));
@@ -142,11 +143,11 @@ public class SceneParser extends XmlParser {
           }
           break;
         case ROTATE_INTERPOLATOR:
-          pm = scene.getLastParticleModel();
+          pm = entity.getLastParticleModel();
           pm.interpolatorRotate = ary[0];
           break;
         case ALPHA:
-          pm = scene.getLastParticleModel();
+          pm = entity.getLastParticleModel();
           pm.alphaBegin.set(Integer.parseInt(ary[0]), Integer.parseInt(ary[1]));
           if (ary.length == 2) {
             pm.alphaEnd = null;
@@ -155,11 +156,11 @@ public class SceneParser extends XmlParser {
           }
           break;
         case ALPHA_INTERPOLATOR:
-          pm = scene.getLastParticleModel();
+          pm = entity.getLastParticleModel();
           pm.interpolatorAlpha = ary[0];
           break;
         case SCALE:
-          pm = scene.getLastParticleModel();
+          pm = entity.getLastParticleModel();
           pm.scaleBegin.set(Float.parseFloat(ary[0]), Float.parseFloat(ary[1]));
           if (ary.length == 4) {
             pm.scaleEnd.set(Float.parseFloat(ary[2]), Float.parseFloat(ary[3]));
@@ -168,7 +169,7 @@ public class SceneParser extends XmlParser {
           }
           break;
         case SCALE_INTERPOLATOR:
-          pm = scene.getLastParticleModel();
+          pm = entity.getLastParticleModel();
           pm.interpolatorScale = ary[0];
           break;
         default:

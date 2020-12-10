@@ -59,7 +59,7 @@ public class Bone extends Anim.Helper {
             if (cb == null) {
               Render2D.draw(can, bmp, rect, stage.drawInfo);
             } else {
-              Render2D.draw(can, cb, percent, stage.drawInfo, stage.scale);
+              Render2D.draw(can, cb, percent, stage);
             }
           } else if (bmp != null) {
             RECT_BMP.set(rect);

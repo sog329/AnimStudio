@@ -96,6 +96,7 @@ public class BoneStudio extends Studio<Stage> {
 
           @Override
           public void onLoad() {
+            // 替换之前脚本中的皮肤映射
             List<BmpRect> lst = new ArrayList<>();
             new PlistParser().parse(getPath("pic.plist"), lst);
             Map<String, BmpRect> map = new HashMap<>();
@@ -113,6 +114,12 @@ public class BoneStudio extends Studio<Stage> {
                 }
               }
             }
+            // 更新mapRc
+            entity.mapRc.clear();
+            for (BmpRect r : lst) {
+              entity.mapRc.put(r.name, r.lstRect.get(0));
+            }
+            // 刷新动画列表
             updateAnimLv();
           }
 

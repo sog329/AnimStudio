@@ -2,6 +2,7 @@ package com.sunshine.studio.bone.logic;
 
 import android.graphics.Rect;
 
+import com.sunshine.engine.base.XmlParser;
 import com.sunshine.engine.bone.logic.Actor;
 import com.sunshine.engine.bone.logic.Anim;
 import com.sunshine.engine.bone.logic.Bone;
@@ -11,7 +12,9 @@ import com.sunshine.studio.base.XmlWriter;
 
 import org.xmlpull.v1.XmlSerializer;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 import static com.sunshine.studio.base.XmlWriter.addTag;
@@ -26,6 +29,7 @@ public class StageWriter implements XmlWriter.Callback {
 
   @Override
   public void write(XmlSerializer xml) throws Exception {
+    Map<String, Rect> map = new HashMap<>(stage.mapRc);
     // stage
     xml.startTag(null, StageParser.STAGE);
     addTag(xml, StageParser.DURATION, Long.toString(stage.duration));
@@ -40,6 +44,7 @@ public class StageWriter implements XmlWriter.Callback {
         xml.startTag(null, StageParser.BONE);
         if (bone.name != null && !bone.name.isEmpty()) {
           addTag(xml, StageParser.NAME, bone.name);
+          map.remove(bone.name);
         }
         if (bone.externalId == null) {
           for (Rect rc : bone.lstRect) {
@@ -65,6 +70,12 @@ public class StageWriter implements XmlWriter.Callback {
         xml.endTag(null, StageParser.BONE);
       }
       xml.endTag(null, StageParser.ACTOR);
+    }
+    // src
+    for (String k : map.keySet()) {
+      Rect r = map.get(k);
+      addTag(
+          xml, XmlParser.SRC, k + "," + r.left + "," + r.top + "," + r.width() + "," + r.height());
     }
     stage = null;
   }

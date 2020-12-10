@@ -1,5 +1,7 @@
 package com.sunshine.studio.particle.logic;
 
+import android.graphics.Rect;
+
 import com.sunshine.engine.base.XmlParser;
 import com.sunshine.engine.particle.logic.ParticleModel;
 import com.sunshine.engine.particle.logic.Scene;
@@ -7,6 +9,9 @@ import com.sunshine.engine.particle.logic.SceneParser;
 import com.sunshine.studio.base.XmlWriter;
 
 import org.xmlpull.v1.XmlSerializer;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 import static com.sunshine.studio.base.XmlWriter.addTag;
@@ -21,6 +26,7 @@ public class SceneWriter implements XmlWriter.Callback {
 
   @Override
   public void write(XmlSerializer xml) throws Exception {
+    Map<String, Rect> map = new HashMap<>(scene.mapRc);
     // scene
     xml.startTag(null, SceneParser.SCENE);
     addTag(xml, SceneParser.DURATION, Long.toString(scene.duration));
@@ -32,6 +38,7 @@ public class SceneWriter implements XmlWriter.Callback {
       xml.startTag(null, SceneParser.MODEL);
       if (model.name != null && !model.name.isEmpty()) {
         addTag(xml, XmlParser.NAME, model.name);
+        map.remove(model.name);
       }
       addTag(xml, SceneParser.CHANCE_RANGE, model.chanceRange.toString());
       addTag(xml, SceneParser.ACTIVE_TIME, model.activeTime.toString());
@@ -89,6 +96,12 @@ public class SceneWriter implements XmlWriter.Callback {
       addTag(xml, SceneParser.SCALE_INTERPOLATOR, model.interpolatorScale);
 
       xml.endTag(null, SceneParser.MODEL);
+    }
+    // src
+    for (String k : map.keySet()) {
+      Rect r = map.get(k);
+      addTag(
+          xml, XmlParser.SRC, k + "," + r.left + "," + r.top + "," + r.width() + "," + r.height());
     }
     scene = null;
   }

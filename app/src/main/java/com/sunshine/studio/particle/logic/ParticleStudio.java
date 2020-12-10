@@ -480,6 +480,11 @@ public class ParticleStudio extends Studio<Scene> {
             } else {
               model = null;
             }
+            // 更新mapRc
+            entity.mapRc.clear();
+            for (BmpRect r : lst) {
+              entity.mapRc.put(r.name, r.lstRect.get(0));
+            }
             // 刷新module列表
             updateAnimLv();
           }

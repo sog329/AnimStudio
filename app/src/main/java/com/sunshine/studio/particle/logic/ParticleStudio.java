@@ -37,6 +37,7 @@ import java.util.Map;
 
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static com.sunshine.studio.base.StudioTool.EXTERNAL;
 import static com.sunshine.studio.base.StudioTool.getFilePath;
 
 /** Created by songxiaoguang on 2017/12/2. */
@@ -374,29 +375,6 @@ public class ParticleStudio extends Studio<Scene> {
       mapFloat(editor, R.id.scale_from_to, pm.scaleBegin.getTo(), v -> pm.scaleBegin.setTo(v));
       editor.findViewById(R.id.scale_to_from).setEnabled(pm.scaleEnd != null);
       editor.findViewById(R.id.scale_to_to).setEnabled(pm.scaleEnd != null);
-      mapTv(
-          editor,
-          R.id.scale_to,
-          pm.scaleEnd != null,
-          b -> {
-            StudioTv cb = editor.findViewById(R.id.scale_to);
-            cb.setText(b ? "to" : "unchangeable");
-            TextView tvFrom = editor.findViewById(R.id.scale_to_from);
-            TextView tvTo = editor.findViewById(R.id.scale_to_to);
-            tvFrom.setEnabled(b);
-            tvTo.setEnabled(b);
-            tvFrom.setVisibility(b ? View.VISIBLE : View.GONE);
-            tvTo.setVisibility(b ? View.VISIBLE : View.GONE);
-            if (b) {
-              pm.scaleEnd = new ProcessFloat(1f, 1f);
-              tvFrom.setText(String.valueOf(pm.scaleEnd.getFrom()));
-              tvTo.setText(String.valueOf(pm.scaleEnd.getTo()));
-            } else {
-              pm.scaleEnd = null;
-              tvFrom.setText(String.valueOf(0));
-              tvTo.setText(String.valueOf(0));
-            }
-          });
       mapFloat(
           editor,
           R.id.scale_to_from,
@@ -413,6 +391,31 @@ public class ParticleStudio extends Studio<Scene> {
           v -> {
             if (pm.scaleEnd != null) {
               pm.scaleEnd.setTo(v);
+            }
+          });
+      mapTv(
+          editor,
+          R.id.scale_to,
+          pm.scaleEnd != null,
+          b -> {
+            StudioTv cb = editor.findViewById(R.id.scale_to);
+            cb.setText(b ? "to" : "unchangeable");
+            TextView tvFrom = editor.findViewById(R.id.scale_to_from);
+            TextView tvTo = editor.findViewById(R.id.scale_to_to);
+            tvFrom.setEnabled(b);
+            tvTo.setEnabled(b);
+            tvFrom.setVisibility(b ? View.VISIBLE : View.GONE);
+            tvTo.setVisibility(b ? View.VISIBLE : View.GONE);
+            if (b) {
+              if (pm.scaleEnd == null) {
+                pm.scaleEnd = new ProcessFloat(1f, 1f);
+              }
+              tvFrom.setText(String.valueOf(pm.scaleEnd.getFrom()));
+              tvTo.setText(String.valueOf(pm.scaleEnd.getTo()));
+            } else {
+              pm.scaleEnd = null;
+              tvFrom.setText(String.valueOf(0));
+              tvTo.setText(String.valueOf(0));
             }
           });
       mapSpinner(
@@ -561,13 +564,13 @@ public class ParticleStudio extends Studio<Scene> {
       List<BmpRect> lst = new ArrayList<>();
       new PlistParser().parse(getFilePath(getProjectFolderName(), name, "pic.plist"), lst);
       for (BmpRect bmpRect : lst) {
-        entity.lstParticleModel.add(buildModel(entity, bmpRect));
+        entity.lstParticleModel.add(buildModel(entity, bmpRect, false));
       }
     }
     return new SceneWriter(entity);
   }
 
-  private ParticleModel buildModel(Scene entity, BmpRect bmpRect) {
+  private ParticleModel buildModel(Scene entity, BmpRect bmpRect, boolean isExternal) {
     ParticleModel model = new ParticleModel();
 
     model.name = bmpRect.name;
@@ -593,12 +596,21 @@ public class ParticleStudio extends Studio<Scene> {
     model.areaTo.w = entity.scriptSize.width;
     model.areaTo.h = h;
 
+    if (isExternal) {
+      model.externalId = EXTERNAL;
+      model.scaleBegin.set(50f, 50f);
+      model.scaleEnd.set(50f, 50f);
+      if (entity.mapBmp.get(EXTERNAL) == null) {
+        entity.mapBmp.put(EXTERNAL, StudioTool.getBmp(EXTERNAL));
+      }
+    }
+
     return model;
   }
 
   @Override
   public void onGetPicRect(BmpRect bmpRect, boolean isExternal) {
-    entity.lstParticleModel.add(buildModel(entity, bmpRect));
+    entity.lstParticleModel.add(buildModel(entity, bmpRect, isExternal));
     updateAnimLv();
   }
 
@@ -621,7 +633,7 @@ public class ParticleStudio extends Studio<Scene> {
       iv.setPt(pm.ptRotate.x, pm.ptRotate.y);
       List<Rect> lst = new ArrayList<>();
       lst.add(pm.rcBmp);
-      iv.setBmp(entity.bmp, lst);
+      iv.setBmp(pm.externalId == null ? entity.bmp : entity.mapBmp.get(pm.externalId), lst);
       v.setTag(pm);
       v.setOnClickListener(
           c -> {

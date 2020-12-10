@@ -29,6 +29,7 @@ public class ParticleModel {
   public ProcessFloat scaleBegin = new ProcessFloat(1f, 1.2f);
   public ProcessFloat scaleEnd = new ProcessFloat(1f, 1f);
   public String name = null;
+  public String externalId = null;
   //  public ProcessFloat scaleBeginY = new ProcessFloat(1f, 2f);
   //  public ProcessFloat scaleEndY = new ProcessFloat(0f, .2f);
   public String interpolatorScale = InterpolatorType.linear.toString();
@@ -84,5 +85,6 @@ public class ParticleModel {
     p.anim.ptRotate.set(ptRotate.x, ptRotate.y);
     // click
     p.name = name;
+    p.externalId = externalId;
   }
 }

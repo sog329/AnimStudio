@@ -25,6 +25,12 @@ public class InterpolatorCn extends LinearLayout {
   }
 
   public void mapValue(String now, Function<String> func, Studio studio) {
+    String num = "2";
+    if (now.indexOf("_") > 0) {
+      String[] ary = now.split("_");
+      now = ary[0];
+      num = ary[1];
+    }
     StudioEt<Integer> et = findViewById(R.id.num);
     InterpolatorView tvType = findViewById(R.id.type);
     tvType.setBackgroundResource(
@@ -59,11 +65,6 @@ public class InterpolatorCn extends LinearLayout {
               onSelect,
               studio instanceof BoneStudio ? R.drawable.bg_btn : R.drawable.bg_title_p);
         });
-    String num = "2";
-    if (now.indexOf("_") > 0) {
-      String[] ary = now.split("_");
-      num = ary[1];
-    }
     et.map(Integer.parseInt(num), n -> func.call(tvType.getText() + "_" + n));
   }
 }

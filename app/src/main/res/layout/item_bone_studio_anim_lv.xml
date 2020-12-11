@@ -34,7 +34,8 @@
         android:layout_margin="5px"
         android:background="@drawable/bg_btn"
         android:gravity="center"
-        android:src="@drawable/up"
+        android:rotation="-90"
+        android:src="@drawable/right"
         android:tooltipText="Bone图层后移" />
 
     <com.sunshine.studio.base.StudioImageBtn
@@ -44,7 +45,8 @@
         android:layout_margin="5px"
         android:background="@drawable/bg_btn"
         android:gravity="center"
-        android:src="@drawable/down"
+        android:rotation="90"
+        android:src="@drawable/right"
         android:tooltipText="Bone图层前置" />
 
     <LinearLayout

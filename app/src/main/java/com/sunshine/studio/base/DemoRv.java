@@ -11,19 +11,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.sunshine.engine.base.Function;
 import com.sunshine.engine.base.Tool;
 import com.sunshine.engine.bone.StageView;
 import com.sunshine.engine.particle.SceneView;
 import com.sunshine.studio.R;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by songxiaoguang on 2017/12/9.
- */
+/** Created by songxiaoguang on 2017/12/9. */
 public abstract class DemoRv extends RecyclerView {
 
   private Map<String, Bitmap> map = new HashMap<>();
@@ -84,8 +85,7 @@ public abstract class DemoRv extends RecyclerView {
 
     private List<Data> lstData = new ArrayList<>();
 
-    public Adapter() {
-    }
+    public Adapter() {}
 
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -101,27 +101,37 @@ public abstract class DemoRv extends RecyclerView {
       // name
       String name = data.bone == null ? data.particle : data.bone;
       holder.tv.setText(name);
-      // stage
-      holder.stageView.stop();
-      if (data.bone != null) {
-        holder.stageView.play("bone" + File.separator + data.bone);
-        holder.stageView.recycleBmp(false);
-        holder.stageView.isRepeat(true);
-      }
-      // scene
-      holder.sceneView.stop();
-      if (data.particle != null) {
-        holder.sceneView.play("particle" + File.separator + data.particle);
-        holder.sceneView.recycleBmp(false);
-        if (data.bone == null) {
-          holder.sceneView.isRepeat(true);
-        }
-      }
       // bind
       holder.sceneView.setBackgroundDrawable(data.bg);
-      if (data.bind != null) {
-        data.bind.onBind(holder.stageView, holder.sceneView);
-      }
+
+      Function<Boolean> func =
+          click -> {
+            // stage
+            holder.stageView.stop();
+            if (data.bone != null) {
+              holder.stageView.play("bone" + File.separator + data.bone);
+              holder.stageView.recycleBmp(false);
+              if (!click) {
+                holder.stageView.isRepeat(true);
+              }
+            }
+            // scene
+            holder.sceneView.stop();
+            if (data.particle != null) {
+              holder.sceneView.play("particle" + File.separator + data.particle);
+              holder.sceneView.recycleBmp(false);
+              if (data.bone == null) {
+                if (!click) {
+                  holder.sceneView.isRepeat(true);
+                }
+              }
+            }
+            if (data.bind != null) {
+              data.bind.onBind(holder.stageView, holder.sceneView);
+            }
+          };
+      func.call(false);
+      holder.itemView.setOnClickListener(v -> func.call(true));
     }
 
     @Override

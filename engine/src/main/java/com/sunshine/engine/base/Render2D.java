@@ -56,18 +56,15 @@ public class Render2D {
     }
   }
 
-  public interface Callback {
-    final Paint paint = new Paint();
+  public abstract static class Callback {
+    public final Paint paint = new Paint();
 
-    void init();
-  }
-
-  public abstract static class Rect2D implements Callback {
-    @Override
     public void init() {
       paint.setAntiAlias(true);
     }
+  }
 
+  public abstract static class Rect2D extends Callback {
     public abstract void onDraw(Canvas can, float percent, RectF rect, float scale);
   }
 }

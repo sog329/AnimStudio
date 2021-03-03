@@ -1,18 +1,15 @@
 package com.sunshine.studio.base;
 
+import static com.sunshine.studio.base.StudioTool.PNG;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
-
 import com.sunshine.engine.base.Render2D;
 import com.sunshine.engine.base.Tool;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,7 +21,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -32,9 +28,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-
-
-import static com.sunshine.studio.base.StudioTool.PNG;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /** Created by Jack on 2019-11-11. */
 public class Packer {
@@ -71,7 +66,7 @@ public class Packer {
     if (aryFiles != null && aryFiles.length > 0) {
       Arrays.sort(aryFiles, String.CASE_INSENSITIVE_ORDER);
       for (String name : aryFiles) {
-        lst.add(new Cell(name, folderPath + File.separator + name, aryFiles.length == 1));
+        lst.add(new Cell(name, folderPath + File.separator + name));
       }
     }
     return lst;
@@ -394,13 +389,13 @@ public class Packer {
 
     private static final byte SPACE = 1;
 
-    public Cell(String name, String path, boolean only) {
+    public Cell(String name, String path) {
       this.name = StudioTool.getFileName(name);
       bmp = BitmapFactory.decodeFile(path);
       if (bmp == null) {
         Tool.log("bmp==null: path=" + path);
       }
-      decodeBmp(only);
+      decodeBmp();
     }
 
     public Cell(int left, int top, int right, int bottom) {
@@ -416,7 +411,7 @@ public class Packer {
       extendY = y;
     }
 
-    private void decodeBmp(boolean only) {
+    private void decodeBmp() {
       int x, y;
       boolean out = false;
       // 从上往下记录有颜色的起始点
@@ -446,7 +441,7 @@ public class Packer {
           break;
         }
       }
-      rcPic.bottom = y + (only ? 0 : 1);
+      rcPic.bottom = y + 1;
       // 从左往右记录有颜色的起始点
       for (x = 0; x < bmp.getWidth(); x++) {
         for (y = rcPic.top; y < rcPic.bottom; y++) {
@@ -474,7 +469,7 @@ public class Packer {
           break;
         }
       }
-      rcPic.right = x + (only ? 0 : 1);
+      rcPic.right = x + 1;
     }
 
     public Rect getDst() {

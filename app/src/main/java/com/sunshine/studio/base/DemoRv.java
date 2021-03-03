@@ -11,13 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.sunshine.engine.base.Function;
 import com.sunshine.engine.base.Tool;
 import com.sunshine.engine.bone.StageView;
 import com.sunshine.engine.particle.SceneView;
 import com.sunshine.studio.R;
-
+import com.sunshine.studio.base.DemoRv.Adapter.Holder;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -81,7 +80,7 @@ public abstract class DemoRv extends RecyclerView {
 
   protected abstract void loadData();
 
-  private static class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
+  public static class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
 
     private List<Data> lstData = new ArrayList<>();
 
@@ -102,32 +101,48 @@ public abstract class DemoRv extends RecyclerView {
       String name = data.bone == null ? data.particle : data.bone;
       holder.tv.setText(name);
       // bind
-      holder.sceneView.setBackgroundDrawable(data.bg);
+      holder.bBg.setBackgroundDrawable(data.bg);
 
       Function<Boolean> func =
           click -> {
             // stage
-            holder.stageView.stop();
+            holder.bFront.stop();
             if (data.bone != null) {
-              holder.stageView.play("bone" + File.separator + data.bone);
-              holder.stageView.recycleBmp(false);
+              holder.bFront.play("bone" + File.separator + data.bone);
+              holder.bFront.recycleBmp(false);
               if (!click) {
-                holder.stageView.isRepeat(true);
+                holder.bFront.isRepeat(true);
+              }
+            }
+            holder.bBack.stop();
+            if (data.bone2 != null) {
+              holder.bBack.play("bone" + File.separator + data.bone2);
+              holder.bBack.recycleBmp(false);
+              if (!click) {
+                holder.bBack.isRepeat(true);
+              }
+            }
+            holder.bBg.stop();
+            if (data.bone3 != null) {
+              holder.bBg.play("bone" + File.separator + data.bone3);
+              holder.bBg.recycleBmp(false);
+              if (!click) {
+                holder.bBg.isRepeat(true);
               }
             }
             // scene
-            holder.sceneView.stop();
+            holder.pBg.stop();
             if (data.particle != null) {
-              holder.sceneView.play("particle" + File.separator + data.particle);
-              holder.sceneView.recycleBmp(false);
+              holder.pBg.play("particle" + File.separator + data.particle);
+              holder.pBg.recycleBmp(false);
               if (data.bone == null) {
                 if (!click) {
-                  holder.sceneView.isRepeat(true);
+                  holder.pBg.isRepeat(true);
                 }
               }
             }
             if (data.bind != null) {
-              data.bind.onBind(holder.stageView, holder.sceneView);
+              data.bind.onBind(holder);
             }
           };
       func.call(false);
@@ -139,17 +154,21 @@ public abstract class DemoRv extends RecyclerView {
       return lstData.size();
     }
 
-    static class Holder extends RecyclerView.ViewHolder {
+    public static class Holder extends RecyclerView.ViewHolder {
 
-      StageView stageView = null;
-      SceneView sceneView = null;
+      public StageView bFront = null;
+      public StageView bBack = null;
+      public StageView bBg = null;
+      public SceneView pBg = null;
       StudioTv tv = null;
       TextView num = null;
 
       public Holder(View itemView) {
         super(itemView);
-        stageView = itemView.findViewById(R.id.stage);
-        sceneView = itemView.findViewById(R.id.scene);
+        bFront = itemView.findViewById(R.id.stage);
+        bBack = itemView.findViewById(R.id.stage2);
+        bBg = itemView.findViewById(R.id.bg);
+        pBg = itemView.findViewById(R.id.scene);
         tv = itemView.findViewById(R.id.tv);
         num = itemView.findViewById(R.id.num);
         itemView.setClickable(true);
@@ -160,12 +179,24 @@ public abstract class DemoRv extends RecyclerView {
   public static class Data {
 
     private String bone = null;
+    private String bone2 = null;
+    private String bone3 = null;
     private String particle = null;
     private Bind bind = null;
     private Drawable bg = null;
 
     public Data setBone(String s) {
       bone = s;
+      return this;
+    }
+
+    public Data setBone2(String s) {
+      bone2 = s;
+      return this;
+    }
+
+    public Data setBone3(String s) {
+      bone3 = s;
       return this;
     }
 
@@ -186,7 +217,7 @@ public abstract class DemoRv extends RecyclerView {
 
     public interface Bind {
 
-      void onBind(StageView stageView, SceneView sceneView);
+      void onBind(Holder h);
     }
   }
 }

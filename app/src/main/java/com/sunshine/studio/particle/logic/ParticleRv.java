@@ -3,7 +3,6 @@ package com.sunshine.studio.particle.logic;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-
 import com.sunshine.engine.base.Entity.ClickId;
 import com.sunshine.studio.base.DemoRv;
 import com.sunshine.studio.base.StudioTool;
@@ -30,23 +29,23 @@ public class ParticleRv extends DemoRv {
     addData()
         .setParticle("match_heart")
         .setBind(
-            (b, p) -> {
-              p.setExternalBmp("she", getBmp("pic/she.png"));
-              p.setExternalBmp("he", getBmp("pic/he.png"));
+            h -> {
+              h.pBg.setExternalBmp("she", getBmp("pic/she.png"));
+              h.pBg.setExternalBmp("he", getBmp("pic/he.png"));
             });
     addData().setParticle("snowing");
     addData().setParticle("tangyuan");
     addData()
         .setParticle("dinner")
         .setBind(
-            (b, p) -> {
-              p.setOnClick(
+            h -> {
+              h.pBg.setOnClick(
                   "lobster", (ClickId) (id) -> StudioTool.showToast(getContext(), id + "_click"));
-              p.setOnClick(
+              h.pBg.setOnClick(
                   "fish", (ClickId) (id) -> StudioTool.showToast(getContext(), id + "_click"));
-              p.setOnClick(
+              h.pBg.setOnClick(
                   "rice", (ClickId) (id) -> StudioTool.showToast(getContext(), id + "_click"));
-              p.setOnClick(
+              h.pBg.setOnClick(
                   "chicken", (ClickId) (id) -> StudioTool.showToast(getContext(), id + "_click"));
             });
     addData().setParticle("superlike");

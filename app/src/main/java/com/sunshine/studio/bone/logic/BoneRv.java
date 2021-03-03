@@ -9,7 +9,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-
 import com.sunshine.engine.base.Entity.ClickRect;
 import com.sunshine.engine.base.Render2D.Rect2D;
 import com.sunshine.engine.base.Tool;
@@ -33,18 +32,52 @@ public class BoneRv extends DemoRv {
 
   @Override
   protected void loadData() {
+    Rect2D r1 =
+        new Rect2D() {
+          @Override
+          public void init() {
+            paint.setColor(Color.rgb(255, 255, 255));
+            paint.setStyle(Style.FILL);
+          }
+
+          @Override
+          public void onDraw(Canvas can, float percent, RectF rect, float scale) {
+            can.drawCircle(rect.centerX(), rect.centerY(), rect.width() / 2, paint);
+          }
+        };
+    Tool.log("r1.hashCode() = " + r1.hashCode());
+    Rect2D r2 =
+        new Rect2D() {
+          @Override
+          public void init() {
+            paint.setColor(Color.rgb(255, 92, 49));
+            paint.setStyle(Style.STROKE);
+          }
+
+          @Override
+          public void onDraw(Canvas can, float percent, RectF rect, float scale) {
+            paint.setStrokeWidth((20 - 18f * percent) * scale);
+            can.drawCircle(rect.centerX(), rect.centerY(), rect.width() / 2, paint);
+          }
+        };
+    Tool.log("r2.hashCode() = " + r2.hashCode());
+    addData()
+        .setBone("ripple_heart")
+        .setBone2("ripple_circle")
+        .setBg(new ColorDrawable(Color.rgb(72, 52, 172)))
+        .setBind(h -> h.bBack.setExternal2D("wave", r1));
     addData()
         .setBone("new_match3")
         .setBg(new ColorDrawable(Color.WHITE))
         .setBind(
-            (b, p) -> {
-              b.setExternalBmp("left", getBmp("pic/she.png"));
-              b.setExternalBmp("right", getBmp("pic/he.png"));
-              b.isRepeat(false);
-              b.autoStop(false);
+            h -> {
+              h.bFront.setExternalBmp("left", getBmp("pic/she.png"));
+              h.bFront.setExternalBmp("right", getBmp("pic/he.png"));
+              h.bFront.isRepeat(false);
+              h.bFront.autoStop(false);
               Bitmap[] aryBmp = new Bitmap[] {null};
               new Thread(() -> aryBmp[0] = getBmp("bone/new_match3/heart")).start();
-              b.setExternal2D(
+              h.bFront.setExternal2D(
                   "heart",
                   new Rect2D() {
                     private long startTime = Tool.NONE;
@@ -106,13 +139,13 @@ public class BoneRv extends DemoRv {
                             can.drawBitmap(aryBmp[0], null, rect, paint);
                           }
                         }
-                        b.postInvalidate();
+                        h.bFront.postInvalidate();
                       } else {
                         can.drawBitmap(aryBmp[0], null, rect, paint);
                       }
                     }
                   });
-              b.setOnStop(
+              h.bFront.setOnStop(
                   () -> {
                     if (aryBmp[0] != null) {
                       aryBmp[0].recycle();
@@ -124,30 +157,15 @@ public class BoneRv extends DemoRv {
         .setBone("loading")
         .setBg(new ColorDrawable(Color.WHITE))
         .setBind(
-            (b, p) -> {
-              b.setExternalBmp("pic", getBmp("pic/she.png"));
-              b.setExternal2D(
-                  "circle",
-                  new Rect2D() {
-                    @Override
-                    public void init() {
-                      super.init();
-                      paint.setColor(Color.rgb(255, 92, 49));
-                      paint.setStyle(Style.STROKE);
-                    }
-
-                    @Override
-                    public void onDraw(Canvas can, float percent, RectF rect, float scale) {
-                      paint.setStrokeWidth((20 - 18f * percent) * scale);
-                      can.drawCircle(rect.centerX(), rect.centerY(), rect.width() / 2, paint);
-                    }
-                  });
-              b.setOnClick(
+            h -> {
+              h.bFront.setExternalBmp("pic", getBmp("pic/she.png"));
+              h.bFront.setExternal2D("circle", r2);
+              h.bFront.setOnClick(
                   "pic",
                   (ClickRect)
                       (id, r, x, y) ->
                           StudioTool.showToast(
-                              b.getContext(),
+                              h.bFront.getContext(),
                               id
                                   + " click\nx="
                                   + x
@@ -164,51 +182,51 @@ public class BoneRv extends DemoRv {
                                   + "]"));
               Runnable post =
                   () -> {
-                    p.stop();
-                    p.play("particle/location");
+                    h.pBg.stop();
+                    h.pBg.play("particle/location");
                   };
               Runnable rn =
                   () -> {
-                    p.stop();
-                    p.postDelayed(post, 1250);
+                    h.pBg.stop();
+                    h.pBg.postDelayed(post, 1250);
                   };
               rn.run();
-              b.setOnRepeat(() -> rn.run());
-              b.setOnStop(() -> p.removeCallbacks(post));
+              h.bFront.setOnRepeat(() -> rn.run());
+              h.bFront.setOnStop(() -> h.pBg.removeCallbacks(post));
             });
     addData().setBone("welcome_omi");
     addData()
         .setBone("dlg_match2")
         .setBg(new ColorDrawable(Color.WHITE))
         .setBind(
-            (b, p) -> {
-              b.setExternalBmp("left", getBmp("pic/she.png"));
-              b.setExternalBmp("right", getBmp("pic/he.png"));
-              b.setExternalBmp("bgLeft", getBmp("bone/dlg_match2/bg_w"));
-              b.setExternalBmp("bgRight", getBmp("bone/dlg_match2/bg_g"));
-              b.setExternalBmp("icon", getBmp("bone/dlg_match2/icon_g"));
+            h -> {
+              h.bFront.setExternalBmp("left", getBmp("pic/she.png"));
+              h.bFront.setExternalBmp("right", getBmp("pic/he.png"));
+              h.bFront.setExternalBmp("bgLeft", getBmp("bone/dlg_match2/bg_w"));
+              h.bFront.setExternalBmp("bgRight", getBmp("bone/dlg_match2/bg_g"));
+              h.bFront.setExternalBmp("icon", getBmp("bone/dlg_match2/icon_g"));
               Runnable post =
                   () -> {
-                    p.stop();
-                    p.play("particle/send_heart");
+                    h.pBg.stop();
+                    h.pBg.play("particle/send_heart");
                   };
               Runnable rn =
                   () -> {
-                    p.stop();
-                    p.postDelayed(post, 1250);
+                    h.pBg.stop();
+                    h.pBg.postDelayed(post, 1250);
                   };
               rn.run();
-              b.setOnRepeat(() -> rn.run());
-              b.setOnStop(() -> p.removeCallbacks(post));
+              h.bFront.setOnRepeat(() -> rn.run());
+              h.bFront.setOnStop(() -> h.pBg.removeCallbacks(post));
             });
     addData().setBone("welcomeDemo").setBg(new ColorDrawable(Color.WHITE));
     addData().setBone("card").setBg(new ColorDrawable(Color.WHITE));
     addData()
         .setBone("match")
         .setBind(
-            (b, p) -> {
-              b.setExternalBmp("left", getBmp("pic/she.png"));
-              b.setExternalBmp("right", getBmp("pic/he.png"));
+            h -> {
+              h.bFront.setExternalBmp("left", getBmp("pic/she.png"));
+              h.bFront.setExternalBmp("right", getBmp("pic/he.png"));
             });
     addData().setBone("qin");
     addData().setBone("sunglasses");

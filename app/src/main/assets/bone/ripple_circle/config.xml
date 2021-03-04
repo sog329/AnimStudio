@@ -15,39 +15,13 @@
       <scale>1.0,1.0,1.0,1.0</scale>
       <scale_interpolator>linear,linear</scale_interpolator>
     </anim>
-    <bone>
-      <name>circle</name>
-      <src_ltwh>0,0,231,231</src_ltwh>
-      <anim>
-        <range>0.0,0.35</range>
-        <alpha>76,113</alpha>
-        <alpha_interpolator>linear</alpha_interpolator>
-        <move>360.0,360.0,360.0,360.0</move>
-        <move_interpolator>linear,linear</move_interpolator>
-        <rotate>0,0,115.5,115.5</rotate>
-        <rotate_interpolator>linear</rotate_interpolator>
-        <scale>1.0,1.0,1.0,1.0</scale>
-        <scale_interpolator>linear,linear</scale_interpolator>
-      </anim>
-      <anim>
-        <range>0.35,1.0</range>
-        <alpha>113,113</alpha>
-        <alpha_interpolator>linear</alpha_interpolator>
-        <move>360.0,360.0,360.0,360.0</move>
-        <move_interpolator>linear,linear</move_interpolator>
-        <rotate>0,0,115.5,115.5</rotate>
-        <rotate_interpolator>linear</rotate_interpolator>
-        <scale>1.0,1.0,1.0,1.0</scale>
-        <scale_interpolator>linear,linear</scale_interpolator>
-      </anim>
-    </bone>
     <!--4_A-->
     <bone>
       <name>wave</name>
       <src_id_wh>wave,231,231</src_id_wh>
       <anim>
         <alpha>8,0</alpha>
-        <alpha_interpolator>accelerate_2</alpha_interpolator>
+        <alpha_interpolator>linear</alpha_interpolator>
         <move>360.0,360.0,360.0,360.0</move>
         <move_interpolator>linear,linear</move_interpolator>
         <range>0.0,1.0</range>
@@ -90,7 +64,7 @@
       <src_id_wh>wave,231,231</src_id_wh>
       <anim>
         <alpha>10,0</alpha>
-        <alpha_interpolator>accelerate_2</alpha_interpolator>
+        <alpha_interpolator>linear</alpha_interpolator>
         <move>360.0,360.0,360.0,360.0</move>
         <move_interpolator>linear,linear</move_interpolator>
         <range>0.0,1.0</range>
@@ -133,7 +107,7 @@
       <src_id_wh>wave,231,231</src_id_wh>
       <anim>
         <alpha>25,0</alpha>
-        <alpha_interpolator>accelerate_2</alpha_interpolator>
+        <alpha_interpolator>linear</alpha_interpolator>
         <move>360.0,360.0,360.0,360.0</move>
         <move_interpolator>linear,linear</move_interpolator>
         <range>0.0,1.0</range>
@@ -177,7 +151,7 @@
       <anim>
         <range>0.0,1.0</range>
         <alpha>25,0</alpha>
-        <alpha_interpolator>accelerate_2</alpha_interpolator>
+        <alpha_interpolator>linear</alpha_interpolator>
         <move>360.0,360.0,360.0,360.0</move>
         <move_interpolator>linear,linear</move_interpolator>
         <rotate>0,0,115.5,115.5</rotate>
@@ -187,5 +161,31 @@
       </anim>
     </bone>
     <!--1_B-->
+    <bone>
+      <name>circle</name>
+      <src_ltwh>0,0,231,231</src_ltwh>
+      <anim>
+        <range>0.0,0.35</range>
+        <alpha>76,113</alpha>
+        <alpha_interpolator>linear</alpha_interpolator>
+        <move>360.0,360.0,360.0,360.0</move>
+        <move_interpolator>linear,linear</move_interpolator>
+        <rotate>0,0,115.5,115.5</rotate>
+        <rotate_interpolator>linear</rotate_interpolator>
+        <scale>1.0,1.0,1.0,1.0</scale>
+        <scale_interpolator>linear,linear</scale_interpolator>
+      </anim>
+      <anim>
+        <range>0.35,1.0</range>
+        <alpha>113,113</alpha>
+        <alpha_interpolator>linear</alpha_interpolator>
+        <move>360.0,360.0,360.0,360.0</move>
+        <move_interpolator>linear,linear</move_interpolator>
+        <rotate>0,0,115.5,115.5</rotate>
+        <rotate_interpolator>linear</rotate_interpolator>
+        <scale>1.0,1.0,1.0,1.0</scale>
+        <scale_interpolator>linear,linear</scale_interpolator>
+      </anim>
+    </bone>
   </actor>
 </stage>

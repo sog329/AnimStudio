@@ -32,40 +32,30 @@ public class BoneRv extends DemoRv {
 
   @Override
   protected void loadData() {
-    Rect2D r1 =
-        new Rect2D() {
-          @Override
-          public void init() {
-            paint.setColor(Color.rgb(255, 255, 255));
-            paint.setStyle(Style.FILL);
-          }
-
-          @Override
-          public void onDraw(Canvas can, float percent, RectF rect, float scale) {
-            can.drawCircle(rect.centerX(), rect.centerY(), rect.width() / 2, paint);
-          }
-        };
-    Tool.log("r1.hashCode() = " + r1.hashCode());
-    Rect2D r2 =
-        new Rect2D() {
-          @Override
-          public void init() {
-            paint.setColor(Color.rgb(255, 92, 49));
-            paint.setStyle(Style.STROKE);
-          }
-
-          @Override
-          public void onDraw(Canvas can, float percent, RectF rect, float scale) {
-            paint.setStrokeWidth((20 - 18f * percent) * scale);
-            can.drawCircle(rect.centerX(), rect.centerY(), rect.width() / 2, paint);
-          }
-        };
-    Tool.log("r2.hashCode() = " + r2.hashCode());
     addData()
         .setBone("ripple_heart")
         .setBone2("ripple_circle")
+        .setBone3("ripple_bg")
+        .setParticle("ripple_star")
         .setBg(new ColorDrawable(Color.rgb(72, 52, 172)))
-        .setBind(h -> h.bBack.setExternal2D("wave", r1));
+        .setBind(
+            h -> {
+              h.pBg.isRepeat(true);
+              h.bBack.setExternal2D(
+                  "wave",
+                  new Rect2D() {
+                    @Override
+                    public void init() {
+                      paint.setColor(Color.rgb(255, 255, 255));
+                      paint.setStyle(Style.FILL);
+                    }
+
+                    @Override
+                    public void onDraw(Canvas can, float percent, RectF rect, float scale) {
+                      can.drawCircle(rect.centerX(), rect.centerY(), rect.width() / 2, paint);
+                    }
+                  });
+            });
     addData()
         .setBone("new_match3")
         .setBg(new ColorDrawable(Color.WHITE))
@@ -159,7 +149,21 @@ public class BoneRv extends DemoRv {
         .setBind(
             h -> {
               h.bFront.setExternalBmp("pic", getBmp("pic/she.png"));
-              h.bFront.setExternal2D("circle", r2);
+              h.bFront.setExternal2D(
+                  "circle",
+                  new Rect2D() {
+                    @Override
+                    public void init() {
+                      paint.setColor(Color.rgb(255, 92, 49));
+                      paint.setStyle(Style.STROKE);
+                    }
+
+                    @Override
+                    public void onDraw(Canvas can, float percent, RectF rect, float scale) {
+                      paint.setStrokeWidth((20 - 18f * percent) * scale);
+                      can.drawCircle(rect.centerX(), rect.centerY(), rect.width() / 2, paint);
+                    }
+                  });
               h.bFront.setOnClick(
                   "pic",
                   (ClickRect)

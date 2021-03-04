@@ -8,7 +8,6 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.SystemClock;
 import android.util.Log;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -28,7 +27,7 @@ public class Tool {
   public static Bitmap getBmpByAssets(Context ctx, String str) {
     Bitmap bmp = null;
     if (ctx != null) {
-      AssetManager am = ctx.getAssets();
+      AssetManager am = ctx.getResources().getAssets();
       if (am != null) {
         InputStream is = null;
         try {
@@ -53,7 +52,7 @@ public class Tool {
   public static AssetFileDescriptor getAssetFileDescriptor(Context ctx, String str) {
     AssetFileDescriptor fd = null;
     if (ctx != null) {
-      AssetManager am = ctx.getAssets();
+      AssetManager am = ctx.getResources().getAssets();
       if (am != null) {
         try {
           fd = am.openFd(str);

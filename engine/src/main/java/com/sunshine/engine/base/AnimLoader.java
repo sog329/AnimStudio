@@ -5,14 +5,12 @@ import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
@@ -61,7 +59,7 @@ public class AnimLoader {
           boolean inAsset = !new File(entity.configPath).exists();
           if (inAsset) {
             Context context = entity.helper.getContext();
-            is = context.getAssets().open(entity.configPath);
+            is = context.getResources().getAssets().open(entity.configPath);
           } else {
             File f = new File(entity.configPath);
             is = new FileInputStream(f);

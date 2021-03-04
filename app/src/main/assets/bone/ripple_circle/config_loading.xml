@@ -20,7 +20,7 @@
       <name>wave</name>
       <src_id_wh>wave,231,231</src_id_wh>
       <anim>
-        <alpha>8,0</alpha>
+        <alpha>3,0</alpha>
         <alpha_interpolator>linear</alpha_interpolator>
         <move>360.0,360.0,360.0,360.0</move>
         <move_interpolator>linear,linear</move_interpolator>
@@ -36,7 +36,7 @@
       <name>wave</name>
       <src_id_wh>wave,231,231</src_id_wh>
       <anim>
-        <alpha>0,8</alpha>
+        <alpha>0,9</alpha>
         <alpha_interpolator>linear</alpha_interpolator>
         <move>360.0,360.0,360.0,360.0</move>
         <move_interpolator>linear,linear</move_interpolator>
@@ -47,7 +47,7 @@
         <scale_interpolator>linear,linear</scale_interpolator>
       </anim>
       <anim>
-        <alpha>8,8</alpha>
+        <alpha>9,9</alpha>
         <alpha_interpolator>linear</alpha_interpolator>
         <move>360.0,360.0,360.0,360.0</move>
         <move_interpolator>linear,linear</move_interpolator>
@@ -63,7 +63,7 @@
       <name>wave</name>
       <src_id_wh>wave,231,231</src_id_wh>
       <anim>
-        <alpha>10,0</alpha>
+        <alpha>6,0</alpha>
         <alpha_interpolator>linear</alpha_interpolator>
         <move>360.0,360.0,360.0,360.0</move>
         <move_interpolator>linear,linear</move_interpolator>
@@ -79,7 +79,7 @@
       <name>wave</name>
       <src_id_wh>wave,231,231</src_id_wh>
       <anim>
-        <alpha>5,15</alpha>
+        <alpha>0,6</alpha>
         <alpha_interpolator>linear</alpha_interpolator>
         <move>360.0,360.0,360.0,360.0</move>
         <move_interpolator>linear,linear</move_interpolator>
@@ -90,7 +90,7 @@
         <scale_interpolator>linear,linear</scale_interpolator>
       </anim>
       <anim>
-        <alpha>15,15</alpha>
+        <alpha>6,6</alpha>
         <alpha_interpolator>linear</alpha_interpolator>
         <move>360.0,360.0,360.0,360.0</move>
         <move_interpolator>linear,linear</move_interpolator>
@@ -106,7 +106,7 @@
       <name>wave</name>
       <src_id_wh>wave,231,231</src_id_wh>
       <anim>
-        <alpha>25,0</alpha>
+        <alpha>9,0</alpha>
         <alpha_interpolator>linear</alpha_interpolator>
         <move>360.0,360.0,360.0,360.0</move>
         <move_interpolator>linear,linear</move_interpolator>
@@ -122,7 +122,7 @@
       <name>wave</name>
       <src_id_wh>wave,231,231</src_id_wh>
       <anim>
-        <alpha>13,31</alpha>
+        <alpha>0,3</alpha>
         <alpha_interpolator>linear</alpha_interpolator>
         <move>360.0,360.0,360.0,360.0</move>
         <move_interpolator>linear,linear</move_interpolator>
@@ -133,7 +133,7 @@
         <scale_interpolator>linear,linear</scale_interpolator>
       </anim>
       <anim>
-        <alpha>31,31</alpha>
+        <alpha>3,3</alpha>
         <alpha_interpolator>linear</alpha_interpolator>
         <move>360.0,360.0,360.0,360.0</move>
         <move_interpolator>linear,linear</move_interpolator>
@@ -151,7 +151,7 @@
       <anim>
         <range>0.0,1.0</range>
         <alpha>50,0</alpha>
-        <alpha_interpolator>linear</alpha_interpolator>
+        <alpha_interpolator>decelerate_2</alpha_interpolator>
         <move>360.0,360.0,360.0,360.0</move>
         <move_interpolator>linear,linear</move_interpolator>
         <rotate>0,0,115.5,115.5</rotate>

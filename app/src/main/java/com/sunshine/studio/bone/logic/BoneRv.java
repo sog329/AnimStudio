@@ -50,7 +50,6 @@ public class BoneRv extends DemoRv {
 
               StageView stageView = h.bFront;
 
-              stageView.play("../config.xml", "../pic");
               stageView.setExternal2D(
                   "bg",
                   new Rect2D() {

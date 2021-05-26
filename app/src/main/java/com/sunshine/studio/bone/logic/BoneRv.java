@@ -9,9 +9,12 @@ import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.View;
+import android.view.ViewGroup;
 import com.sunshine.engine.base.Entity.ClickRect;
 import com.sunshine.engine.base.Render2D.Rect2D;
 import com.sunshine.engine.base.Tool;
+import com.sunshine.engine.bone.StageView;
 import com.sunshine.studio.base.DemoRv;
 import com.sunshine.studio.base.StudioTool;
 
@@ -32,6 +35,76 @@ public class BoneRv extends DemoRv {
 
   @Override
   protected void loadData() {
+    addData()
+        .setBone("guide")
+        .setBind(
+            h -> {
+              View p = (View) h.bFront.getParent();
+              p.post(
+                  () -> {
+                    ViewGroup.LayoutParams lp = h.bFront.getLayoutParams();
+                    lp.width = p.getHeight() / 2;
+                    lp.height = p.getHeight();
+                    h.bFront.setLayoutParams(lp);
+                  });
+
+              StageView stageView = h.bFront;
+
+              stageView.play("../config.xml", "../pic");
+              stageView.setExternal2D(
+                  "bg",
+                  new Rect2D() {
+                    private RectF rc = new RectF();
+
+                    @Override
+                    public void onDraw(Canvas can, float percent, RectF rect, float scale) {
+                      float w = rect.width() / 25;
+                      float r = w * 3;
+                      float e = w / 2;
+                      rc.set(rect.left + e, rect.top + e, rect.right - e, rect.bottom - e);
+
+                      // 绘制手机屏幕
+                      paint.setStyle(Style.FILL);
+                      paint.setARGB(128, 255, 255, 255);
+                      can.drawRoundRect(rc, r, r, paint);
+
+                      // 绘制手机边框
+                      paint.setStyle(Style.STROKE);
+                      paint.setARGB(255, 255, 255, 255);
+                      paint.setStrokeWidth(w);
+                      can.drawRoundRect(rc, r, r, paint);
+
+                      // 设计师一定要的刘海，真丑
+                      paint.setStyle(Style.FILL);
+                      float len = rect.width() / 2.7f;
+                      float left = (rect.width() - len) / 2;
+                      rc.set(left, 0, left + len, 2.3f * w);
+                      can.drawRoundRect(rc, w, w, paint);
+
+                      // 回调 这里根据percent设置tv展示文字内容&变化 todo
+                    }
+                  });
+
+              Rect2D rd =
+                  new Rect2D() {
+                    @Override
+                    public void onDraw(Canvas can, float percent, RectF rect, float scale) {
+                      // 绘制卡片
+                      paint.setStyle(Style.FILL);
+                      int a = paint.getAlpha();
+                      paint.setARGB((int) (128f * a / 255), 255, 255, 255);
+                      float r = rect.width() / 8;
+                      can.drawRoundRect(rect, r, r, paint);
+                    }
+                  };
+              stageView.setExternal2D("card1", rd);
+              stageView.setExternal2D("card2", rd);
+              stageView.setExternal2D("card3", rd);
+              stageView.setExternal2D("card4", rd);
+              stageView.setExternal2D("card5", rd);
+              stageView.setExternal2D("card6", rd);
+              stageView.setExternal2D("card7", rd);
+            });
     addData()
         .setBone("ripple_heart")
         .setBone2("ripple_circle")

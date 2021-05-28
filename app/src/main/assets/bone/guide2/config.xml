@@ -46,11 +46,11 @@
     <anim>
       <range>0.06,0.12</range>
       <move>500.0,1000.0,1800.0,1000.0</move>
-      <move_interpolator>decelerate_2,decelerate_2</move_interpolator>
+      <move_interpolator>accelerate_2,accelerate_2</move_interpolator>
       <scale>1.0,1.0,1.0,1.0</scale>
       <scale_interpolator>linear,linear</scale_interpolator>
       <rotate>0,30,250.0,500.0</rotate>
-      <rotate_interpolator>decelerate_2</rotate_interpolator>
+      <rotate_interpolator>accelerate_2</rotate_interpolator>
       <alpha>255,255</alpha>
       <alpha_interpolator>linear</alpha_interpolator>
     </anim>
@@ -155,11 +155,11 @@
     <anim>
       <range>0.26,0.32</range>
       <move>500.0,1000.0,1800.0,1000.0</move>
-      <move_interpolator>decelerate_2,decelerate_2</move_interpolator>
+      <move_interpolator>accelerate_2,accelerate_2</move_interpolator>
       <scale>1.0,1.0,1.0,1.0</scale>
       <scale_interpolator>linear,linear</scale_interpolator>
       <rotate>0,30,250.0,500.0</rotate>
-      <rotate_interpolator>decelerate_2</rotate_interpolator>
+      <rotate_interpolator>accelerate_2</rotate_interpolator>
       <alpha>255,255</alpha>
       <alpha_interpolator>linear</alpha_interpolator>
     </anim>
@@ -297,11 +297,11 @@
     <anim>
       <range>0.46,0.52</range>
       <move>500.0,1000.0,1800.0,1000.0</move>
-      <move_interpolator>decelerate_2,decelerate_2</move_interpolator>
+      <move_interpolator>accelerate_2,accelerate_2</move_interpolator>
       <scale>1.0,1.0,1.0,1.0</scale>
       <scale_interpolator>linear,linear</scale_interpolator>
       <rotate>0,30,250.0,500.0</rotate>
-      <rotate_interpolator>decelerate_2</rotate_interpolator>
+      <rotate_interpolator>accelerate_2</rotate_interpolator>
       <alpha>255,255</alpha>
       <alpha_interpolator>linear</alpha_interpolator>
     </anim>
@@ -439,11 +439,11 @@
     <anim>
       <range>0.61,0.67</range>
       <move>500.0,1000.0,-800.0,1000.0</move>
-      <move_interpolator>decelerate_2,decelerate_2</move_interpolator>
+      <move_interpolator>accelerate_2,accelerate_2</move_interpolator>
       <scale>1.0,1.0,1.0,1.0</scale>
       <scale_interpolator>linear,linear</scale_interpolator>
       <rotate>0,-30,250.0,500.0</rotate>
-      <rotate_interpolator>decelerate_2</rotate_interpolator>
+      <rotate_interpolator>accelerate_2</rotate_interpolator>
       <alpha>255,255</alpha>
       <alpha_interpolator>linear</alpha_interpolator>
     </anim>
@@ -581,11 +581,11 @@
     <anim>
       <range>0.76,0.82</range>
       <move>500.0,1000.0,-800.0,1000.0</move>
-      <move_interpolator>decelerate_2,decelerate_2</move_interpolator>
+      <move_interpolator>accelerate_2,accelerate_2</move_interpolator>
       <scale>1.0,1.0,1.0,1.0</scale>
       <scale_interpolator>linear,linear</scale_interpolator>
       <rotate>0,-30,250.0,500.0</rotate>
-      <rotate_interpolator>decelerate_2</rotate_interpolator>
+      <rotate_interpolator>accelerate_2</rotate_interpolator>
       <alpha>255,255</alpha>
       <alpha_interpolator>linear</alpha_interpolator>
     </anim>
@@ -723,11 +723,11 @@
     <anim>
       <range>0.91,0.97</range>
       <move>500.0,1000.0,-800.0,1000.0</move>
-      <move_interpolator>decelerate_2,decelerate_2</move_interpolator>
+      <move_interpolator>accelerate_2,accelerate_2</move_interpolator>
       <scale>1.0,1.0,1.0,1.0</scale>
       <scale_interpolator>linear,linear</scale_interpolator>
       <rotate>0,-30,250.0,500.0</rotate>
-      <rotate_interpolator>decelerate_2</rotate_interpolator>
+      <rotate_interpolator>accelerate_2</rotate_interpolator>
       <alpha>255,255</alpha>
       <alpha_interpolator>linear</alpha_interpolator>
     </anim>
@@ -929,11 +929,11 @@
       <anim>
         <range>0.06,0.1</range>
         <move>400.0,1700.0,760.0,1500.0</move>
-        <move_interpolator>decelerate_4,decelerate_4</move_interpolator>
+        <move_interpolator>accelerate_2,accelerate_2</move_interpolator>
         <scale>3.0,3.0,3.0,3.0</scale>
         <scale_interpolator>linear,linear</scale_interpolator>
         <rotate>0,60,82.5,71.5</rotate>
-        <rotate_interpolator>decelerate_4</rotate_interpolator>
+        <rotate_interpolator>accelerate_2</rotate_interpolator>
         <alpha>255,255</alpha>
         <alpha_interpolator>linear</alpha_interpolator>
       </anim>
@@ -951,11 +951,11 @@
       <anim>
         <range>0.16,0.2</range>
         <move>760.0,1500.0,400.0,1700.0</move>
-        <move_interpolator>accelerate_2,accelerate_2</move_interpolator>
+        <move_interpolator>decelerate_2,decelerate_2</move_interpolator>
         <scale>3.0,3.0,3.0,3.0</scale>
         <scale_interpolator>linear,linear</scale_interpolator>
         <rotate>60,0,82.5,71.5</rotate>
-        <rotate_interpolator>accelerate_2</rotate_interpolator>
+        <rotate_interpolator>linear</rotate_interpolator>
         <alpha>255,255</alpha>
         <alpha_interpolator>linear</alpha_interpolator>
       </anim>
@@ -973,11 +973,11 @@
       <anim>
         <range>0.26,0.3</range>
         <move>400.0,1700.0,760.0,1500.0</move>
-        <move_interpolator>decelerate_4,decelerate_4</move_interpolator>
+        <move_interpolator>accelerate_2,accelerate_2</move_interpolator>
         <scale>3.0,3.0,3.0,3.0</scale>
         <scale_interpolator>linear,linear</scale_interpolator>
         <rotate>0,60,82.5,71.5</rotate>
-        <rotate_interpolator>decelerate_4</rotate_interpolator>
+        <rotate_interpolator>accelerate_2</rotate_interpolator>
         <alpha>255,255</alpha>
         <alpha_interpolator>linear</alpha_interpolator>
       </anim>
@@ -995,11 +995,11 @@
       <anim>
         <range>0.36,0.4</range>
         <move>760.0,1500.0,400.0,1700.0</move>
-        <move_interpolator>accelerate_2,accelerate_2</move_interpolator>
+        <move_interpolator>decelerate_2,decelerate_2</move_interpolator>
         <scale>3.0,3.0,3.0,3.0</scale>
         <scale_interpolator>linear,linear</scale_interpolator>
         <rotate>60,0,82.5,71.5</rotate>
-        <rotate_interpolator>accelerate_2</rotate_interpolator>
+        <rotate_interpolator>linear</rotate_interpolator>
         <alpha>255,255</alpha>
         <alpha_interpolator>linear</alpha_interpolator>
       </anim>
@@ -1017,11 +1017,11 @@
       <anim>
         <range>0.46,0.5</range>
         <move>400.0,1700.0,760.0,1500.0</move>
-        <move_interpolator>decelerate_4,decelerate_4</move_interpolator>
+        <move_interpolator>accelerate_2,accelerate_2</move_interpolator>
         <scale>3.0,3.0,3.0,3.0</scale>
         <scale_interpolator>linear,linear</scale_interpolator>
         <rotate>0,60,82.5,71.5</rotate>
-        <rotate_interpolator>decelerate_4</rotate_interpolator>
+        <rotate_interpolator>accelerate_2</rotate_interpolator>
         <alpha>255,255</alpha>
         <alpha_interpolator>linear</alpha_interpolator>
       </anim>
@@ -1050,11 +1050,11 @@
       <anim>
         <range>0.6,0.67</range>
         <move>760.0,1500.0,400.0,1700.0</move>
-        <move_interpolator>decelerate_4,decelerate_4</move_interpolator>
+        <move_interpolator>accelerate_2,accelerate_2</move_interpolator>
         <scale>3.0,3.0,3.0,3.0</scale>
         <scale_interpolator>linear,linear</scale_interpolator>
         <rotate>40,0,82.5,71.5</rotate>
-        <rotate_interpolator>decelerate_4</rotate_interpolator>
+        <rotate_interpolator>linear</rotate_interpolator>
         <alpha>255,255</alpha>
         <alpha_interpolator>linear</alpha_interpolator>
       </anim>
@@ -1072,22 +1072,22 @@
       <anim>
         <range>0.72,0.76</range>
         <move>400.0,1700.0,760.0,1500.0</move>
-        <move_interpolator>accelerate_2,accelerate_2</move_interpolator>
+        <move_interpolator>decelerate_2,decelerate_2</move_interpolator>
         <scale>3.0,3.0,3.0,3.0</scale>
         <scale_interpolator>linear,linear</scale_interpolator>
         <rotate>0,40,82.5,71.5</rotate>
-        <rotate_interpolator>accelerate_2</rotate_interpolator>
+        <rotate_interpolator>linear</rotate_interpolator>
         <alpha>255,255</alpha>
         <alpha_interpolator>linear</alpha_interpolator>
       </anim>
       <anim>
         <range>0.76,0.82</range>
         <move>760.0,1500.0,400.0,1700.0</move>
-        <move_interpolator>decelerate_4,decelerate_4</move_interpolator>
+        <move_interpolator>accelerate_2,accelerate_2</move_interpolator>
         <scale>3.0,3.0,3.0,3.0</scale>
         <scale_interpolator>linear,linear</scale_interpolator>
         <rotate>40,0,82.5,71.5</rotate>
-        <rotate_interpolator>decelerate_4</rotate_interpolator>
+        <rotate_interpolator>linear</rotate_interpolator>
         <alpha>255,255</alpha>
         <alpha_interpolator>linear</alpha_interpolator>
       </anim>
@@ -1105,22 +1105,22 @@
       <anim>
         <range>0.87,0.91</range>
         <move>400.0,1700.0,760.0,1500.0</move>
-        <move_interpolator>accelerate_2,accelerate_2</move_interpolator>
+        <move_interpolator>decelerate_2,decelerate_2</move_interpolator>
         <scale>3.0,3.0,3.0,3.0</scale>
         <scale_interpolator>linear,linear</scale_interpolator>
         <rotate>0,40,82.5,71.5</rotate>
-        <rotate_interpolator>accelerate_2</rotate_interpolator>
+        <rotate_interpolator>linear</rotate_interpolator>
         <alpha>255,255</alpha>
         <alpha_interpolator>linear</alpha_interpolator>
       </anim>
       <anim>
         <range>0.91,0.97</range>
         <move>760.0,1500.0,400.0,1700.0</move>
-        <move_interpolator>decelerate_4,decelerate_4</move_interpolator>
+        <move_interpolator>accelerate_2,accelerate_2</move_interpolator>
         <scale>3.0,3.0,3.0,3.0</scale>
         <scale_interpolator>linear,linear</scale_interpolator>
         <rotate>40,0,82.5,71.5</rotate>
-        <rotate_interpolator>decelerate_4</rotate_interpolator>
+        <rotate_interpolator>linear</rotate_interpolator>
         <alpha>255,255</alpha>
         <alpha_interpolator>linear</alpha_interpolator>
       </anim>

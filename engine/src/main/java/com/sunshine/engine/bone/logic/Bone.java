@@ -4,9 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
-
 import com.sunshine.engine.base.Render2D;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +20,10 @@ public class Bone extends Anim.Helper {
 
   public Bone(Actor actor) {
     this.actor = actor;
+  }
+
+  private void mergeActorAlpha(Stage stage) {
+    stage.drawInfo.alpha = stage.drawInfo.alpha * actor.alpha / 255;
   }
 
   public void draw(Stage stage, Canvas can) {
@@ -48,6 +50,7 @@ public class Bone extends Anim.Helper {
       if (anim != null) {
         float percent = anim.duration.getPercent(stage.getPercent());
         if (anim.run(percent, stage)) {
+          mergeActorAlpha(stage);
           anim.updateDrawInfo(stage);
           rc.set(stage.drawInfo.rcSrc);
           stage.mergeDrawInfo(m);

@@ -1,7 +1,6 @@
 package com.sunshine.engine.bone.logic;
 
 import android.graphics.Canvas;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +8,7 @@ import java.util.List;
 public class Actor extends Anim.Helper {
   public Stage stage = null;
   public List<Bone> lstBone = new ArrayList<>();
+  public int alpha = 255;
 
   public Actor(Stage stage) {
     this.stage = stage;
@@ -26,9 +26,10 @@ public class Actor extends Anim.Helper {
     onDraw();
     if (lstBone.size() > 0) {
       Anim anim = getAnim(stage.getPercent());
-      if (anim != null) {
+      if (anim != null) { // 有Actor动画
         float percent = anim.duration.getPercent(stage.getPercent());
         if (anim.run(percent, stage)) {
+          alpha = stage.drawInfo.alpha;
           showing = true;
           anim.updateDrawInfo(stage);
           stage.mergeDrawInfo(m);
@@ -47,7 +48,8 @@ public class Actor extends Anim.Helper {
           drawBone(stage, can);
           can.restoreToCount(cs);
         }
-      } else {
+      } else { // 无Actor动画
+        alpha = 255;
         showing = true;
         drawBone(stage, can);
       }

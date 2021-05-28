@@ -23,7 +23,9 @@ public class Bone extends Anim.Helper {
   }
 
   private void mergeActorAlpha(Stage stage) {
-    stage.drawInfo.alpha = stage.drawInfo.alpha * actor.alpha / 255;
+    if (actor.alpha != 255) {
+      stage.drawInfo.alpha = stage.drawInfo.alpha * actor.alpha / 255;
+    }
   }
 
   public void draw(Stage stage, Canvas can) {

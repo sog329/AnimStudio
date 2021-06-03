@@ -1,12 +1,14 @@
 package com.sunshine.studio.bone.logic;
 
+import static com.sunshine.studio.base.StudioTool.EXTERNAL;
+
 import android.app.Dialog;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.view.View;
 import android.widget.SeekBar;
-
 import com.sunshine.engine.bone.StageView;
 import com.sunshine.engine.bone.logic.Actor;
 import com.sunshine.engine.bone.logic.Anim;
@@ -18,15 +20,12 @@ import com.sunshine.studio.base.PlistParser;
 import com.sunshine.studio.base.RenderHelper;
 import com.sunshine.studio.base.Studio;
 import com.sunshine.studio.base.StudioImageBtn;
+import com.sunshine.studio.base.StudioTool;
 import com.sunshine.studio.base.XmlWriter;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-
-import static com.sunshine.studio.base.StudioTool.EXTERNAL;
 
 /** Created by songxiaoguang on 2017/12/2. */
 public class BoneStudio extends Studio<Stage> {
@@ -121,6 +120,18 @@ public class BoneStudio extends Studio<Stage> {
             }
             // 刷新动画列表
             updateAnimLv();
+            // 生成已读外部调用的临时图片
+            for (Actor a : entity.lstActor) {
+              for (Bone b : a.lstBone) {
+                if (b.externalId != null) {
+                  Bitmap bmp = entity.mapBmp.get(b.externalId);
+                  if (bmp == null) {
+                    bmp = StudioTool.getBmp(b.externalId);
+                    entity.mapBmp.put(b.externalId, bmp);
+                  }
+                }
+              }
+            }
           }
 
           @Override

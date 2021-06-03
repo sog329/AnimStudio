@@ -15,9 +15,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.sunshine.engine.base.Tool;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -216,7 +214,13 @@ public class StudioTool {
     int h = id.hashCode();
     int r = h % 255;
     int g = h / 255;
-    bmp.eraseColor(Color.rgb(r, g, 0));
+    String num = id.replaceAll(".*[^\\d](?=(\\d+))", "");
+    int b = 0;
+    try {
+      b = Integer.parseInt(num) * 45 % 255;
+    } catch (Exception ignore) {
+    }
+    bmp.eraseColor(Color.rgb(r, g, b));
     return bmp;
   }
 

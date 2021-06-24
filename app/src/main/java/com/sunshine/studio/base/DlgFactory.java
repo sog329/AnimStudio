@@ -1,5 +1,8 @@
 package com.sunshine.studio.base;
 
+import static com.sunshine.studio.base.StudioTool.EXTERNAL;
+import static com.sunshine.studio.base.StudioTool.PNG;
+
 import android.app.ActionBar.LayoutParams;
 import android.app.Dialog;
 import android.graphics.Bitmap;
@@ -9,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-
 import com.sunshine.engine.base.Function;
 import com.sunshine.engine.base.LayoutHelper;
 import com.sunshine.engine.base.ViewHelper;
@@ -26,13 +28,8 @@ import com.sunshine.studio.bone.logic.MenuLv.Menu;
 import com.sunshine.studio.bone.logic.MenuLv.MenuAdapter;
 import com.sunshine.studio.bone.logic.ProjectLv;
 import com.sunshine.studio.bone.logic.SkinIv;
-
 import java.util.ArrayList;
 import java.util.List;
-
-
-import static com.sunshine.studio.base.StudioTool.EXTERNAL;
-import static com.sunshine.studio.base.StudioTool.PNG;
 
 /** Created by songxiaoguang on 2017/12/2. */
 public class DlgFactory {
@@ -61,6 +58,20 @@ public class DlgFactory {
               dialog.dismiss();
               studio.dlgPacker.show();
             }));
+    if (studio instanceof BoneStudio) {
+      BoneStudio b = (BoneStudio) studio;
+      lst.add(
+          new Menu(
+              "copy",
+              v -> {
+                dialog.dismiss();
+
+                if (b.bone != null) {
+                  b.bone.actor.lstBone.add(b.bone);
+                  b.updateAnimLv();
+                }
+              }));
+    }
     lst.add(new Menu("save as", v -> StudioTool.showToast(studio.act, "todo")));
     lv.setAdapter(adapter);
     adapter.loadData(lst);

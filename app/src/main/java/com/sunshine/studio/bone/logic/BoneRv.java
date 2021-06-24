@@ -35,6 +35,7 @@ public class BoneRv extends DemoRv {
 
   @Override
   protected void loadData() {
+    addData().setBone("insert");
     addData()
         .setBone("guide")
         .setBind(

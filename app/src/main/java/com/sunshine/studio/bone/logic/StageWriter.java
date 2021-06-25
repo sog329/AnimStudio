@@ -1,7 +1,8 @@
 package com.sunshine.studio.bone.logic;
 
-import android.graphics.Rect;
+import static com.sunshine.studio.base.XmlWriter.addTag;
 
+import android.graphics.Rect;
 import com.sunshine.engine.base.XmlParser;
 import com.sunshine.engine.bone.logic.Actor;
 import com.sunshine.engine.bone.logic.Anim;
@@ -9,15 +10,10 @@ import com.sunshine.engine.bone.logic.Bone;
 import com.sunshine.engine.bone.logic.Stage;
 import com.sunshine.engine.bone.logic.StageParser;
 import com.sunshine.studio.base.XmlWriter;
-
-import org.xmlpull.v1.XmlSerializer;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-
-import static com.sunshine.studio.base.XmlWriter.addTag;
+import org.xmlpull.v1.XmlSerializer;
 
 /** Created by songxiaoguang on 2017/12/3. */
 public class StageWriter implements XmlWriter.Callback {
@@ -85,41 +81,63 @@ public class StageWriter implements XmlWriter.Callback {
     for (Anim anim : lstAnim) {
       xml.startTag(null, StageParser.ANIM);
       addTag(xml, StageParser.RANGE, anim.duration.toString());
-      addTag(
-          xml,
-          StageParser.MOVE,
-          anim.centerX.getFrom()
-              + ","
-              + anim.centerY.getFrom()
-              + ","
-              + anim.centerX.getTo()
-              + ","
-              + anim.centerY.getTo());
-      addTag(
-          xml,
-          StageParser.MOVE_INTERPOLATOR,
-          anim.centerX.getInterpolatorName() + "," + anim.centerY.getInterpolatorName());
-      addTag(
-          xml,
-          StageParser.SCALE,
-          anim.scaleX.getFrom()
-              + ","
-              + anim.scaleY.getFrom()
-              + ","
-              + anim.scaleX.getTo()
-              + ","
-              + anim.scaleY.getTo());
-      addTag(
-          xml,
-          StageParser.SCALE_INTERPOLATOR,
-          anim.scaleX.getInterpolatorName() + "," + anim.scaleY.getInterpolatorName());
-      addTag(
-          xml,
-          StageParser.ROTATE,
-          anim.rotate.toString() + "," + anim.ptRotate.x + "," + anim.ptRotate.y);
-      addTag(xml, StageParser.ROTATE_INTERPOLATOR, anim.rotate.getInterpolatorName());
-      addTag(xml, StageParser.ALPHA, anim.alpha.toString());
-      addTag(xml, StageParser.ALPHA_INTERPOLATOR, anim.alpha.getInterpolatorName());
+      if (anim.alpha.getFrom() == anim.alpha.getTo() && anim.alpha.getFrom() == 0) {
+        addTag(xml, StageParser.ALPHA, anim.alpha.toString());
+      } else {
+        addTag(
+            xml,
+            StageParser.MOVE,
+            anim.centerX.getFrom()
+                + ","
+                + anim.centerY.getFrom()
+                + ","
+                + anim.centerX.getTo()
+                + ","
+                + anim.centerY.getTo());
+        if (anim.centerX.getFrom() == anim.centerX.getTo()
+            && anim.centerY.getFrom() == anim.centerY.getTo()) {
+          // do nothing
+        } else {
+          addTag(
+              xml,
+              StageParser.MOVE_INTERPOLATOR,
+              anim.centerX.getInterpolatorName() + "," + anim.centerY.getInterpolatorName());
+        }
+        addTag(
+            xml,
+            StageParser.SCALE,
+            anim.scaleX.getFrom()
+                + ","
+                + anim.scaleY.getFrom()
+                + ","
+                + anim.scaleX.getTo()
+                + ","
+                + anim.scaleY.getTo());
+        if (anim.scaleX.getFrom() == anim.scaleX.getTo()
+            && anim.scaleY.getFrom() == anim.scaleY.getTo()) {
+          // do nothing
+        } else {
+          addTag(
+              xml,
+              StageParser.SCALE_INTERPOLATOR,
+              anim.scaleX.getInterpolatorName() + "," + anim.scaleY.getInterpolatorName());
+        }
+        addTag(
+            xml,
+            StageParser.ROTATE,
+            anim.rotate.toString() + "," + anim.ptRotate.x + "," + anim.ptRotate.y);
+        if (anim.rotate.getFrom() == anim.rotate.getTo()) {
+          // do nothing
+        } else {
+          addTag(xml, StageParser.ROTATE_INTERPOLATOR, anim.rotate.getInterpolatorName());
+        }
+        addTag(xml, StageParser.ALPHA, anim.alpha.toString());
+        if (anim.alpha.getFrom() == anim.alpha.getTo()) {
+          // do nothing
+        } else {
+          addTag(xml, StageParser.ALPHA_INTERPOLATOR, anim.alpha.getInterpolatorName());
+        }
+      }
       xml.endTag(null, StageParser.ANIM);
     }
   }

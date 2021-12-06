@@ -24,6 +24,7 @@ public class ParticleRv extends DemoRv {
 
   @Override
   protected void loadData() {
+    addData().setParticle("msg");
     addData().setParticle("plane");
     addData().setParticle("match_heart_diamond");
     addData()

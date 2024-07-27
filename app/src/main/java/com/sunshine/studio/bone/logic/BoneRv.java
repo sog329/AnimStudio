@@ -113,8 +113,8 @@ public class BoneRv extends DemoRv {
         .setBg(new ColorDrawable(Color.rgb(72, 52, 172)))
         .setBind(
             h -> {
-              h.pBg.isRepeat(true);
-              h.bBack.setExternal2D(
+              h.pBg.isRepeat(true); // ripple_bg
+              h.bBack.setExternal2D( // ripple_circle
                   "wave",
                   new Rect2D() {
                     @Override
